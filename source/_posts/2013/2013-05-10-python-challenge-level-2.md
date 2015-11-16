@@ -35,4 +35,4 @@ print ''.join(res)
 ```
 
 # 完整代码：
-Github：<https://github.com/killuahzl/python-challenge>
+Github：<https://github.com/kevinxhuang/python-challenge>

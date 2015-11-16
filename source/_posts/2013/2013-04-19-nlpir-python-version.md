@@ -14,7 +14,7 @@ comments: true
 
 python-nlpir是NLPIR中文分词工具的Python封装，利用SWIG完成C++到python的接口转换。
 
-*项目地址：*<https://github.com/killuahzl/python-nlpir>
+*项目地址：*<https://github.com/kevinxhuang/python-nlpir>
 
 NLPIR汉语分词系统（又名ICTCLAS2013），主要功能包括中文分词；词性标注；命名实体识别；用户词典功能；支持GBK编码、UTF8编码、BIG5编码。新增微博分词、新词发现与关键词提取；是当前最好的中文分词工具之一。
 # 1、使用SWIG进行接口转换
