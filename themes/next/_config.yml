@@ -347,7 +347,7 @@ baidu_analytics: 7935dce3b8c7c4adacbbff4e2533811b
 
 # Disqus
 disqus:
-  enable: true
+  enable: false
   shortname: zhenlohuang
   count: true
 
@@ -384,7 +384,7 @@ valine:
 # Available value:
 #    button | slide
 # Warning: Baidu Share does not support https.
-baidushare: true
+#baidushare: true
 ##  type: button
 
 # Share
