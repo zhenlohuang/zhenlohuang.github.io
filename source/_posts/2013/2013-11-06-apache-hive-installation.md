@@ -11,7 +11,7 @@ description:
 comments: true
 ---
 # 安装前
-在安装Hive之前，请保证已经安装了Hadoop。Hadoop安装参考：[Hadoop 2.2.0安装及配置](http://blog.yidooo.net/archives/hadoop-2-2-0-installation-and-configuration.html)
+在安装Hive之前，请保证已经安装了Hadoop。Hadoop安装参考：[Hadoop 2.2.0安装及配置](http://www.yidooo.net/archives/hadoop-2-2-0-installation-and-configuration.html)
 
 # 安装Mysql
 本文选用mysql作为Hive的metastore。

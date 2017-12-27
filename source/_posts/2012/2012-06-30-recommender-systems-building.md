@@ -30,7 +30,7 @@ Created on Jun 30, 2012
 
 @Author: killua
 @E-mail: killua_hzl@163.com
-@Homepage: http://blog.yidooo.net
+@Homepage: http://www.yidooo.net
 
 Data set download from : http://www.grouplens.org/system/files/ml-100k.zip
 

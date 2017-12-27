@@ -19,7 +19,7 @@ Created on Jul 14, 2012
 
 @Author: killua
 @E-mail: killua_hzl@163.com
-@Homepage: http://blog.yidooo.net
+@Homepage: http://www.yidooo.net
 @Decriptioin: Counting the words in a Feed
 
 feedparser:feedparser is a Python library that parses feeds in all known formats, including Atom, RSS, and RDF.It runs on Python 2.4 all the way up to 3.2.

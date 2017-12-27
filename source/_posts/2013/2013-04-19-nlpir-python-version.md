@@ -263,7 +263,7 @@ if __name__ == '__main__':
 # 常见问题
 - “Unable to find vcvarsall.bat”解决办法
 
-参见：<http://blog.yidooo.net/archives/unable-to-find-vcvarsall-bat-solution.html>
+参见：<http://www.yidooo.net/archives/unable-to-find-vcvarsall-bat-solution.html>
 
 - 提示找不到_NLPIR模块提示找不到_NLPIR模块的文件
 

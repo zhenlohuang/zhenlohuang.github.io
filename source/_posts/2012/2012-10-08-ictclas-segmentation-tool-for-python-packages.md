@@ -16,4 +16,4 @@ comments: true
 
 ~~项目主页：<http://code.google.com/p/python-ictclas/>~~
 
-该项目废除，新项目参考：<http://blog.yidooo.net/archives/nlpir-python-version.html>
+该项目废除，新项目参考：<http://www.yidooo.net/archives/nlpir-python-version.html>

@@ -13,7 +13,7 @@ comments: true
 # Cloudera Manager安装
 
 ## 1）安装Postgresql
-具体安装及配置参见：[Postgresql 安装及配置](http://blog.yidooo.net/archives/postgresql-installation-and-configuration.html)
+具体安装及配置参见：[Postgresql 安装及配置](http://www.yidooo.net/archives/postgresql-installation-and-configuration.html)
 
 ## 修改yum.conf
 由于Cloudera的服务器在国外，网络连接较慢，经常在安装过程中包下载失败，进而导致安装失败。
