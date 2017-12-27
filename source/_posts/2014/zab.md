@@ -1,0 +1,42 @@
+---
+layout: post
+title: "Zookeeper源码分析-一致性协议Zab"
+date: 2014-10-23 21:02:32 +0800
+categories: [Distributed System]
+tags: [ZooKeeper]
+comments: true
+---
+
+Zookeeper使用了一种称为Zab（Zookeeper Atomic Broadcast）的协议作为其一致性的核心。Zab协议是Paxos协议的一种变形，下面将展示一些协议的核心内容。
+
+考虑到Zookeeper的主要操作数据状态，为了保证一致性，Zookeeper提出了两个安全属性：
+
++ 全序（Total Order）：如果消息A在消息B之前发送，则所有Server应该看到相同结果。
++ 因果顺序（Causal Order）：如果消息A在消息B之前发生（A导致了B），并且一起发送，则消息A始终在消息B之前被执行。
+
+为了保证上述两个安全属性，Zookeeper使用了TCP协议和Leader。通过使用TCP协议保证了消息的全序的特性（先发先到），通过Leader解决了因果顺序(先到Leader先执行)。因为有了Leader，Zookeeper的架构就变成为：Master-Slave模式，但在该模式中Master（Leader）会Crash，因此，Zookeeper引入Leader选举算法，以保证系统的健壮性。
+
+当Zookeeper Server收到写操作，Follower会将其转发给Leader，由Leader执行操作。Client可以直接从Follower上读取数据，如果需要读取最新数据，则需要从Leader节点读取，Zookeeper设计的读写比大致为2：1。
+
+Leader执行写操作可以简化为一个两段式提交的transaction：
+
+1. Leader发送proposal给所有的Follower。
+2. 收到proposal后，Follower回复ACK给Leader，接受Leader的proposal.
+3. 当Leader收到大多数的Follower的ACK后，将commit其proposal。
+
+![broadcast](/images/uploads/2014/10/broadcast.png)
+
+在这个过程中，proposal的确认不需要所有节点都同意，如果有2n+1个节点，那么只要有n个节点同意即可，也就是说Zookeeper允许n个节点down掉。任何两个多数派必然有交集，在Leader切换（Leader down）时，这些交集依然保持着最新的系统状态。如果集群节点个数少于n+1个时，Zookeeper将无法进行同步，也就无法继续工作。
+
+# Zab与Paxos
+Zab的作者认为Zab与paxos并不相同，只所以没有采用Paxos是因为Paxos保证不了全序顺序：
+
+> Because multiple leaders can propose a value for a given instance two problems arise.
+> First, proposals can conflict. Paxos uses ballots to detect and resolve conflicting proposals. 
+> Second, it is not enough to know that a given instance number has been committed, processes must also be able to figure out which value has been committed.
+
+举个例子。假设一开始Paxos系统中的Leader是P1，他发起了两个事务{t1, v1}（表示序号为t1的事务要写的值是v1）和{t2, v2}，过程中Leader挂了。新来个Leader是P2，他发起了事务{t1, v1'}。而后又来个新Leader是P3，他汇总了一下，得出最终的执行序列{t1, v1'}和{t2, v2}。
+
+这样的序列为什么不能满足ZooKeeper的需求呢？ZooKeeper是一个树形结构，很多操作都要先检查才能确定能不能执行，比如P1的事务t1可能是创建节点“/a”，t2可能是创建节点“/a/aa”，只有先创建了父节点“/a”，才能创建子节点“/a/aa”。而P2所发起的事务t1可能变成了创建“/b”。这样P3汇总后的序列是先创建“/b”再创建“/a/aa”，由于“/a”还没建，创建“a/aa”就搞不定了。
+
+为了保证这一点，ZAB要保证同一个leader的发起的事务要按顺序被apply，同时还要保证只有先前的leader的所有事务都被apply之后，新选的leader才能在发起事务。
