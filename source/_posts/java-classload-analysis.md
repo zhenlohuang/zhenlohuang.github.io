@@ -2,7 +2,6 @@
 layout: post
 title: "Java ClassLoader分析"
 date: 2017-06-11 22:59:36 +0800
-permalink: /archives/java-classload-analysis.html
 categories: [Programming, Java]
 keywords: java
 description: 
