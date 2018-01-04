@@ -3,7 +3,7 @@ layout: post
 title: 'Qt出错信息”Basic XLib functionality test failed!”解决'
 date: 2009-11-19
 wordpress_id: 364
-categories: [Programming]
+categories: [Programming, C++]
 tags: [Qt]
 keywords: "Qt"
 description: 

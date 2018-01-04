@@ -3,7 +3,7 @@ layout: post
 title: 'QT学习笔记之三 GoToCell'
 date: 2009-4-14
 wordpress_id: 276
-categories: [Programming]
+categories: [Programming, C++]
 tags: [Qt, C++]
 keywords: "Qt, C++"
 description: 

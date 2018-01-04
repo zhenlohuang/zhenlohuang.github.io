@@ -3,7 +3,7 @@ layout: post
 title: 'Qt编程技巧  返回文件列表'
 date: 2009-10-26
 wordpress_id: 360
-categories: [Programming]
+categories: [Programming, C++]
 tags: [Qt]
 keywords: "Qt"
 description: 

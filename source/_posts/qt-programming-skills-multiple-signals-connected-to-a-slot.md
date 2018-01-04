@@ -3,7 +3,7 @@ layout: post
 title: 'Qt编程技巧  多个信号连接一个槽'
 date: 2010-5-15
 wordpress_id: 424
-categories: [Programming]
+categories: [Programming, C++]
 tags: [Python]
 keywords: "Python"
 description: 

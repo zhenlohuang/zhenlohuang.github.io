@@ -3,7 +3,7 @@ layout: post
 title: 'QT学习笔记之七 FindFileDialog'
 date: 2009-5-29
 wordpress_id: 304
-categories: [Programming]
+categories: [Programming, C++]
 tags: [Qt, C++]
 keywords: "Qt, C++"
 description: 

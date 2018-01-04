@@ -3,7 +3,7 @@ layout: post
 title: 'QT学习笔记之十二 ListViewer'
 date: 2009-7-18
 wordpress_id: 327
-categories: [Programming]
+categories: [Programming, C++]
 tags: [Qt, C++]
 keywords: "Qt, C++"
 description: 

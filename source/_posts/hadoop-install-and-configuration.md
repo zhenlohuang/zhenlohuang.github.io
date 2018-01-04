@@ -3,7 +3,7 @@ layout: post
 title: 'Hadoop安装及部署'
 date: 2012-10-29
 wordpress_id: 3451
-categories: [Big Data]
+categories: [Big Data, Hadoop]
 tags: [Hadoop]
 keywords: "Hadoop"
 description: 

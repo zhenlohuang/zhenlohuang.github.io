@@ -3,7 +3,7 @@ layout: post
 title: '各种内排序算法（Python实现）'
 date: 2011-4-13
 wordpress_id: 503
-categories: [Programming, Algorithm]
+categories: [Programming, Python]
 tags: [Python]
 keywords: "Python"
 description: 

@@ -3,9 +3,9 @@ layout: post
 title: 'Postgresql 安装及配置'
 date: 2013-7-29
 wordpress_id: 4062
-categories: [Database]
-tags: [Postgresql]
-keywords: "Postgresql"
+categories: [Database, PostgreSQL]
+tags: [PostgreSQL]
+keywords: "PostgreSQL"
 description: 
 comments: true
 ---

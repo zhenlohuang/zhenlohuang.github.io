@@ -3,7 +3,7 @@ layout: post
 title: 'Hive中in包含子查询'
 date: 2013-8-11
 wordpress_id: 4127
-categories: [Big Data]
+categories: [Big Data, Hive]
 tags: [Hive]
 keywords: "Hive"
 description: 

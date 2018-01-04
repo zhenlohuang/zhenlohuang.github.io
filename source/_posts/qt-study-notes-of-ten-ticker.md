@@ -3,7 +3,7 @@ layout: post
 title: 'QT学习笔记之十  Ticker'
 date: 2009-7-3
 wordpress_id: 313
-categories: [Programming]
+categories: [Programming, C++]
 tags: [Qt, C++]
 keywords: "Qt, C++"
 description: 

@@ -3,7 +3,7 @@ layout: post
 title: '我的第二个J2ME程序，手机备忘录'
 date: 2008-11-15
 wordpress_id: 238
-categories: [Programming]
+categories: [Programming, Java]
 tags: [Java, J2ME]
 keywords: "Java, J2ME"
 description: 

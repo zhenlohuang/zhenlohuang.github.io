@@ -3,7 +3,7 @@ layout: post
 title: 'windows下netbeans 6.5 C/C++的配置'
 date: 2009-2-26
 wordpress_id: 263
-categories: [Programming]
+categories: [Programming, C++]
 tags: [Netbeans]
 keywords: "Netbeans"
 description: 

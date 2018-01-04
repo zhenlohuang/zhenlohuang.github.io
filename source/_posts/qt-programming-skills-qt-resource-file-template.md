@@ -3,7 +3,7 @@ layout: post
 title: 'Qt编程技巧  Qt资源文件模板'
 date: 2009-10-26
 wordpress_id: 357
-categories: [Programming]
+categories: [Programming, C++]
 tags: [Qt]
 keywords: "Qt"
 description: 

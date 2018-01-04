@@ -3,7 +3,7 @@ layout: post
 title: 'Apache Hive安装及配置'
 date: 2013-11-6
 wordpress_id: 4601
-categories: [Big Data]
+categories: [Big Data, Hive]
 tags: [Hive]
 keywords: "Hive"
 description: 

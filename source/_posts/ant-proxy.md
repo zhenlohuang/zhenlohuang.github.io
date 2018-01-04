@@ -3,7 +3,7 @@ layout: post
 title: 'Ant 设置代理'
 date: 2014-6-12
 wordpress_id: 4916
-categories: [Programming]
+categories: [Programming, Java]
 tags: [Java, Ant]
 keywords: "Java, Ant"
 description: 

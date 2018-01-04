@@ -3,7 +3,7 @@ layout: post
 title: 'QT学习笔记之十一 SymbolPicker'
 date: 2009-7-18
 wordpress_id: 326
-categories: [Programming]
+categories: [Programming, C++]
 tags: [Qt, C++]
 keywords: "Qt, C++"
 description: 

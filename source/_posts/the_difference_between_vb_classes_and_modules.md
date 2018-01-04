@@ -3,7 +3,7 @@ layout: post
 title: 'VB类与模块的区别'
 date: 2011-7-17
 wordpress_id: 510
-categories: [Programming]
+categories: [Programming, VB]
 tags: [VB]
 keywords: "VB"
 description: 

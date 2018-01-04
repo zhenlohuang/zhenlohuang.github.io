@@ -3,7 +3,7 @@ layout: post
 title: 'Qt编程技巧  系统托盘设置'
 date: 2010-2-4
 wordpress_id: 388
-categories: [Programming]
+categories: [Programming, C++]
 tags: [Qt]
 keywords: "Qt"
 description: 

@@ -3,7 +3,7 @@ layout: post
 title: 'Qt编程技巧  窗口置顶'
 date: 2010-2-4
 wordpress_id: 387
-categories: [Programming]
+categories: [Programming, C++]
 tags: [Qt]
 keywords: "Qt"
 description: 

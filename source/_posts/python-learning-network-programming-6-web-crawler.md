@@ -3,7 +3,7 @@ layout: post
 title: 'Python学习  网络编程（六） 网络爬虫'
 date: 2010-8-5
 wordpress_id: 460
-categories: [Programming]
+categories: [Programming, Python]
 tags: [Python]
 keywords: "Python"
 description: 

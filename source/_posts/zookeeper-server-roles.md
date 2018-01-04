@@ -2,7 +2,7 @@
 layout: post
 title: "Zookeeper源码分析-Zookeeper角色"
 date: 2014-10-18 20:50:59 +0800
-categories: [Distributed System]
+categories: [Big Data, ZooKeeper]
 tags: [ZooKeeper]
 comments: true
 ---

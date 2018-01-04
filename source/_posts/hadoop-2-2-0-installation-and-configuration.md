@@ -3,7 +3,7 @@ layout: post
 title: 'Hadoop 2.2.0安装及配置'
 date: 2013-10-30
 wordpress_id: 4357
-categories: [Big Data]
+categories: [Big Data, Hadoop]
 tags: [Hadoop]
 keywords: "Hadoop"
 description: 

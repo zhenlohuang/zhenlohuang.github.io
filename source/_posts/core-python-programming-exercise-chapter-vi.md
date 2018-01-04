@@ -3,7 +3,7 @@ layout: post
 title: 'Python核心编程 练习 第六章'
 date: 2010-5-31
 wordpress_id: 439
-categories: [Programming]
+categories: [Programming, Python]
 tags: [Python]
 keywords: "Python"
 description: 

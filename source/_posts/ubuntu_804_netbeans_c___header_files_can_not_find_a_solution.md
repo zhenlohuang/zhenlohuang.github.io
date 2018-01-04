@@ -3,7 +3,7 @@ layout: post
 title: 'Ubuntu 8.04 netbeans C++头文件找不到解决办法'
 date: 2008-11-24
 wordpress_id: 243
-categories: [Programming]
+categories: [Programming, C++]
 tags: [Ubuntu, Netbeans]
 keywords: "Ubuntu, Netbeans"
 description: 

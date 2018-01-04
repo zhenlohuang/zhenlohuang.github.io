@@ -3,7 +3,7 @@ layout: post
 title: 'QT学习笔记之零 Hello World'
 date: 2009-4-12
 wordpress_id: 273
-categories: [Programming]
+categories: [Programming, C++]
 tags: [Qt, C++]
 keywords: "Qt, C++"
 description: 

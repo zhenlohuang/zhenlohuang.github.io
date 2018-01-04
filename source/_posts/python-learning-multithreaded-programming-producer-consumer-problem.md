@@ -3,7 +3,7 @@ layout: post
 title: 'Python学习  多线程编程  生产者-消费者问题'
 date: 2010-8-5
 wordpress_id: 458
-categories: [Programming]
+categories: [Programming, Python]
 tags: [Python]
 keywords: "Python"
 description: 

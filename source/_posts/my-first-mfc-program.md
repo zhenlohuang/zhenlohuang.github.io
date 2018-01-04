@@ -3,7 +3,7 @@ layout: post
 title: '我的第一个MFC程序...'
 date: 2010-2-2
 wordpress_id: 385
-categories: [Programming]
+categories: [Programming, C++]
 tags: [C++, MFC]
 keywords: "C++, MFC"
 description: 

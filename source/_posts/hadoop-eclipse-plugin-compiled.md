@@ -3,7 +3,7 @@ layout: post
 title: 'hadoop-eclipse-plugin编译及安装'
 date: 2012-11-26
 wordpress_id: 3475
-categories: [Big Data]
+categories: [Big Data, Hadoop]
 tags: [Hadoop]
 keywords: "Hadoop"
 description: 

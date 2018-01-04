@@ -3,7 +3,7 @@ layout: post
 title: 'Qt编程技巧  窗口关闭时释放内存'
 date: 2010-1-20
 wordpress_id: 378
-categories: [Programming]
+categories: [Programming, C++]
 tags: [Qt]
 keywords: "Qt"
 description: 

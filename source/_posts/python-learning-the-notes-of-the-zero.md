@@ -3,7 +3,7 @@ layout: post
 title: 'Python学习笔记之零'
 date: 2010-4-28
 wordpress_id: 419
-categories: [Programming]
+categories: [Programming, Python]
 tags: [Python]
 keywords: "Python"
 description: 

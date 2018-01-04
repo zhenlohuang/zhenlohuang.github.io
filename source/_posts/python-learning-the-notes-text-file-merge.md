@@ -3,7 +3,7 @@ layout: post
 title: 'Python学习笔记之二 文本文件合并'
 date: 2010-5-9
 wordpress_id: 422
-categories: [Programming]
+categories: [Programming, Python]
 tags: [Python]
 keywords: "Python"
 description: 

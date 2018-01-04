@@ -3,7 +3,7 @@ layout: post
 title: 'Python学习 网络编程（一） TCP连接'
 date: 2010-8-5
 wordpress_id: 453
-categories: [Programming]
+categories: [Programming, Python]
 tags: [Python]
 keywords: "Python"
 description: 

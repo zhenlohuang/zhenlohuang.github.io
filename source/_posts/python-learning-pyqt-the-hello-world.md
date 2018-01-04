@@ -3,7 +3,7 @@ layout: post
 title: 'Python 学习  PyQt Hello World'
 date: 2010-8-5
 wordpress_id: 462
-categories: [Programming]
+categories: [Programming, Python]
 tags: [Python]
 keywords: "Python"
 description: 

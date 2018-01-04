@@ -3,7 +3,7 @@ layout: post
 title: '编译Mysql时configure: error: No curses/termcap library found 的错误解决方法'
 date: 2008-11-2
 wordpress_id: 235
-categories: [DataBase]
+categories: [Database, MySQL]
 tags: [MySQL]
 keywords: "MySQL"
 description: 

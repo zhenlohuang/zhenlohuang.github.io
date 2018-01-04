@@ -3,7 +3,7 @@ layout: post
 title: 'Python学习笔记之一 文本文件的创建与显示'
 date: 2010-5-8
 wordpress_id: 421
-categories: [Programming]
+categories: [Programming, Python]
 tags: [Python]
 keywords: "Python"
 description: 

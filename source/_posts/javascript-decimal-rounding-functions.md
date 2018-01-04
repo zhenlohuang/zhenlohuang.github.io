@@ -1,11 +1,11 @@
 ---
 layout: post
-title: 'Javascript 小数取整函数'
+title: 'JavaScript 小数取整函数'
 date: 2012-5-24
 wordpress_id: 2441
-categories: [Web]
-tags: [Javascript]
-keywords: "Javascript"
+categories: [Web Development]
+tags: [JavaScript]
+keywords: "JavaScript"
 description: 
 comments: true
 ---

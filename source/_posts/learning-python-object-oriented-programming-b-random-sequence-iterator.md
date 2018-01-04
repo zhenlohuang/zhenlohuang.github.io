@@ -3,7 +3,7 @@ layout: post
 title: 'Python学习  面向对象编程（二）  随机序列迭代器'
 date: 2010-8-5
 wordpress_id: 452
-categories: [Programming]
+categories: [Programming, Python]
 tags: [Python]
 keywords: "Python"
 description: 

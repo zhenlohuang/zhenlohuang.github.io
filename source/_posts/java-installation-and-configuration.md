@@ -3,7 +3,7 @@ layout: post
 title: 'Java安装及配置'
 date: 2009-5-22
 wordpress_id: 294
-categories: [Programming]
+categories: [Programming, Java]
 tags: [Java]
 keywords: "Java"
 description: 

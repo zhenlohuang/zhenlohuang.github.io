@@ -3,7 +3,7 @@ layout: post
 title: '"Unable to find vcvarsall.bat"解决办法'
 date: 2013-5-15
 wordpress_id: 4033
-categories: [Programming]
+categories: [Programming, VC]
 tags: [VC]
 keywords: "VC"
 description: 

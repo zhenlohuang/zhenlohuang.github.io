@@ -3,7 +3,7 @@ layout: post
 title: 'Python中int()函数的用法'
 date: 2010-5-11
 wordpress_id: 423
-categories: [Programming]
+categories: [Programming, Python]
 tags: [Python]
 keywords: "Python"
 description: 

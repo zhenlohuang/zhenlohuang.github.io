@@ -3,7 +3,7 @@ layout: post
 title: 'Sub 与 Function 在VB程序设计中的区别'
 date: 2011-7-17
 wordpress_id: 509
-categories: [Programming]
+categories: [Programming, VB]
 tags: [VB]
 keywords: "VB"
 description: 

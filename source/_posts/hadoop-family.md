@@ -3,7 +3,7 @@ layout: post
 title: 'Hadoop Family'
 date: 2013-10-14
 wordpress_id: 4140
-categories: [Big Data]
+categories: [Big Data, Hadoop]
 tags: [Hadoop, Hive, Pig, HBase, Sqoop, Zookeeper, Mahout, Cassandra, Avro, Ambari, Chukwa, Hama, Flume, Giraph, Oozie, Crunch, Whirr, Bigtop, HCatalog, Hue]
 keywords: "Hadoop, Hive, Pig, HBase, Sqoop, Zookeeper, Mahout, Cassandra, Avro, Ambari, Chukwa, Hama, Flume, Giraph, Oozie, Crunch, Whirr, Bigtop, HCatalog, Hue"
 description: 

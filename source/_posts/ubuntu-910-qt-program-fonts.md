@@ -3,7 +3,7 @@ layout: post
 title: 'Ubuntu 9.10 Qt程序字体问题'
 date: 2009-11-28
 wordpress_id: 366
-categories: [Programming]
+categories: [Programming, C++]
 tags: [Qt]
 keywords: "Qt"
 description: 

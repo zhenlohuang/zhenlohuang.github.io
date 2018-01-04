@@ -3,7 +3,7 @@ layout: post
 title: '关于Qt 程序Release后不能找到输入点的问题解决'
 date: 2010-4-19
 wordpress_id: 416
-categories: [Programming]
+categories: [Programming, C++]
 tags: [Qt]
 keywords: "Qt"
 description: 

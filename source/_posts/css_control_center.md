@@ -3,7 +3,7 @@ layout: post
 title: 'CSS控件居中'
 date: 2010-12-13
 wordpress_id: 489
-categories: [Web]
+categories: [Web Development]
 tags: [CSS]
 keywords: "CSS"
 description: 

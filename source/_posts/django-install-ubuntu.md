@@ -3,7 +3,7 @@ layout: post
 title: 'Ubuntu下django安装'
 date: 2011-4-14
 wordpress_id: 504
-categories: [Programming]
+categories: [Programming, Python]
 tags: [Python, Django]
 keywords: "Python, Django"
 description: 

@@ -3,7 +3,7 @@ layout: post
 title: 'ORACLE SQL 前端补“0”'
 date: 2011-11-27
 wordpress_id: 525
-categories: [Database]
+categories: [Database, Oracle]
 tags: [Oracle]
 keywords: "Oracle"
 description: 

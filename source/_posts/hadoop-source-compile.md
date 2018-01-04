@@ -3,7 +3,7 @@ layout: post
 title: 'Hadoop源代码编译'
 date: 2013-11-24
 wordpress_id: 4820
-categories: [Big Data]
+categories: [Big Data, Hadoop]
 tags: [Hadoop]
 keywords: "Hadoop"
 description: 

@@ -3,7 +3,7 @@ layout: post
 title: 'Windows下Eric4安装'
 date: 2010-4-28
 wordpress_id: 418
-categories: [Programming]
+categories: [Programming, Python]
 tags: [Python, PyQt, Eric4]
 keywords: "Python, PyQt, Eric4"
 description: 

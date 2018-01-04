@@ -3,8 +3,8 @@ layout: post
 title: 'Ubuntu安装中文支持'
 date: 2009-5-22
 wordpress_id: 298
-categories: []
-tags: []
+categories: [Linux]
+tags: [Ubuntu]
 keywords: ""
 description: 
 comments: true

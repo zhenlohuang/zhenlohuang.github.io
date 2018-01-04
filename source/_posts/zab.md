@@ -2,7 +2,7 @@
 layout: post
 title: "Zookeeper源码分析-一致性协议Zab"
 date: 2014-10-23 21:02:32 +0800
-categories: [Distributed System]
+categories: [Big Data, ZooKeeper]
 tags: [ZooKeeper]
 comments: true
 ---

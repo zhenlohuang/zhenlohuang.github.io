@@ -1,11 +1,11 @@
 ---
 layout: post
-title: '【资料整理】Javascript中isNaN 函数'
+title: '【资料整理】JavaScript中isNaN 函数'
 date: 2010-12-13
 wordpress_id: 490
-categories: [Web]
-tags: [Javascript]
-keywords: "Javascript"
+categories: [Web Development]
+tags: [JavaScript]
+keywords: "JavaScript"
 description: 
 comments: true
 ---

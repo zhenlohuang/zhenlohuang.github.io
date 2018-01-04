@@ -3,7 +3,7 @@ layout: post
 title: 'C++类定义空间占用研究'
 date: 2012-9-4
 wordpress_id: 3291
-categories: [Programming]
+categories: [Programming, C++]
 tags: [C++]
 keywords: "C++"
 description: 

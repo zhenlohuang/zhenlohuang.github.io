@@ -3,7 +3,7 @@ layout: post
 title: '将Excel导入SQL Server'
 date: 2010-9-29
 wordpress_id: 472
-categories: [Database]
+categories: [Database, SQL Server]
 tags: [Excel, SQL Server]
 keywords: "Excel, SQL Server"
 description: 

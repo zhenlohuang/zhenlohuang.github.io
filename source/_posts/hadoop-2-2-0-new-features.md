@@ -3,7 +3,7 @@ layout: post
 title: 'Hadoop 2.2.0新特性简介'
 date: 2013-10-30
 wordpress_id: 4193
-categories: [Big Data]
+categories: [Big Data, Hadoop]
 tags: [Hadoop]
 keywords: "Hadoop"
 description: 

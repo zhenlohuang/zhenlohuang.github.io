@@ -3,9 +3,9 @@ layout: post
 title: 'java.sql.SQLException: Before start of result set异常及处理办法'
 date: 2010-12-13
 wordpress_id: 487
-categories: [Web]
-tags: [Javascript]
-keywords: "Javascript"
+categories: [Web Development]
+tags: [JavaScript]
+keywords: "JavaScript"
 description: 
 comments: true
 ---

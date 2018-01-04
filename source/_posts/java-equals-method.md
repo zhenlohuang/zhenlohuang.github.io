@@ -3,7 +3,7 @@ layout: post
 title: 'Java Equals方法完美实现'
 date: 2013-5-16
 wordpress_id: 4039
-categories: [Programming]
+categories: [Programming, Java]
 tags: [Java]
 keywords: "Java"
 description: 

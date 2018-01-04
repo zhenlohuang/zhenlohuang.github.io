@@ -3,7 +3,7 @@ layout: post
 title: '构造函数与析构函数研究'
 date: 2010-3-6
 wordpress_id: 403
-categories: [Programming]
+categories: [Programming, C++]
 tags: [C++]
 keywords: "C++"
 description: 

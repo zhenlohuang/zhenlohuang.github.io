@@ -3,7 +3,7 @@ layout: post
 title: 'Python Challenge攻略之Level 5'
 date: 2013-5-13
 wordpress_id: 4030
-categories: [Programming]
+categories: [Programming, Python]
 tags: [Python]
 keywords: "Python"
 description: 

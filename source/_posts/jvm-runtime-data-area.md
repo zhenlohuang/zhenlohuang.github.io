@@ -3,7 +3,7 @@ layout: post
 title: '【JVM学习笔记】运行时数据区域'
 date: 2013-4-1
 wordpress_id: 3609
-categories: [Programming]
+categories: [Programming, Java]
 tags: [JVM]
 keywords: "JVM"
 description: 

@@ -3,7 +3,7 @@ layout: post
 title: '解决Qt Creator No valid Qt version set. Set one in Tools/Options 问题'
 date: 2009-5-19
 wordpress_id: 290
-categories: [Programming]
+categories: [Programming, C++]
 tags: [Qt, C++]
 keywords: "Qt, C++"
 description: 

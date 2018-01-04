@@ -3,7 +3,7 @@ layout: post
 title: 'C++读取本地时间，用数码形式输出'
 date: 2010-3-8
 wordpress_id: 405
-categories: [Programming]
+categories: [Programming, C++]
 tags: [C++]
 keywords: "C++"
 description: 
