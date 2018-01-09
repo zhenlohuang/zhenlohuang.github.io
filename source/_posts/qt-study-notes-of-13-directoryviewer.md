@@ -2,7 +2,6 @@
 layout: post
 title: 'QT学习笔记之十三 DirectoryViewer'
 date: 2009-7-18
-wordpress_id: 328
 categories: [Programming, C++]
 tags: [Qt, C++]
 keywords: "Qt, C++"

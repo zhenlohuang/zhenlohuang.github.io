@@ -2,7 +2,6 @@
 layout: post
 title: '【IT笔试面试题整理】包含min函数的栈'
 date: 2012-9-23
-wordpress_id: 3407
 categories: [Interview]
 tags: []
 keywords: ""

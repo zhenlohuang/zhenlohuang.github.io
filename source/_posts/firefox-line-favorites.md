@@ -2,7 +2,6 @@
 layout: post
 title: 'firefox 在线收藏夹'
 date: 2009-9-16
-wordpress_id: 342
 categories: [Others]
 tags: [Firefox]
 keywords: "Firefox"

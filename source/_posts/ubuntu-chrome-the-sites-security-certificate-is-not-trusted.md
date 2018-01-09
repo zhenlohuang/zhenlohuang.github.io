@@ -2,7 +2,6 @@
 layout: post
 title: 'Ubuntu GoAgent: "the site security certificate is not trusted"解决办法'
 date: 2013-4-30
-wordpress_id: 3997
 categories: [Others]
 tags: [GoAgent]
 keywords: "GoAgent"

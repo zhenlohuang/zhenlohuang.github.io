@@ -2,7 +2,6 @@
 layout: post
 title: '重装xp后恢复wubi安装的Ubuntu启动菜单'
 date: 2009-7-7
-wordpress_id: 320
 categories: [Linux]
 tags: [Ubuntu]
 keywords: "Ubuntu"

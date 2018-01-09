@@ -2,7 +2,6 @@
 layout: post
 title: 'Ubuntu 下安装ibus日语输入法'
 date: 2010-5-28
-wordpress_id: 438
 categories: [Linux]
 tags: [Ubuntu, ibus]
 keywords: "Ubuntu, ibus"

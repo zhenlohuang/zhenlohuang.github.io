@@ -2,7 +2,6 @@
 layout: post
 title: 'QT学习笔记之二 FindDialog'
 date: 2009-4-12
-wordpress_id: 275
 categories: [Programming, C++]
 tags: [Qt, C++]
 keywords: "Qt, C++"

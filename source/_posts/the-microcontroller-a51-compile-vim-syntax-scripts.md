@@ -2,7 +2,6 @@
 layout: post
 title: '单片机a51汇编 Vim语法脚本'
 date: 2009-7-6
-wordpress_id: 318
 categories: [Linux]
 tags: [Vim, A51]
 keywords: "Vim, A51"

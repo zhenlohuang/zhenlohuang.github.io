@@ -2,7 +2,6 @@
 layout: post
 title: '解决netbeans 安装乱码问题'
 date: 2009-2-13
-wordpress_id: 258
 categories: [Programming, Java]
 tags: [Netbeans]
 keywords: "Netbeans"

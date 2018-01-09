@@ -2,7 +2,6 @@
 layout: post
 title: '【IT笔试面试题整理】字符串的排列'
 date: 2012-10-6
-wordpress_id: 3424
 categories: [Interview]
 tags: []
 keywords: ""

@@ -2,7 +2,6 @@
 layout: post
 title: 'Ubuntu安装飞信'
 date: 2009-7-6
-wordpress_id: 317
 categories: [Linux]
 tags: [Ubuntu]
 keywords: "Ubuntu"

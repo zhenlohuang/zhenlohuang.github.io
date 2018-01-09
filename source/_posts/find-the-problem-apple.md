@@ -2,7 +2,6 @@
 layout: post
 title: '【IT笔试面试题整理】查找问题苹果'
 date: 2010-3-7
-wordpress_id: 404
 categories: [Interview]
 tags: []
 keywords: ""

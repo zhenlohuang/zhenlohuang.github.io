@@ -2,7 +2,6 @@
 layout: post
 title: 'ThunderBird配置'
 date: 2009-8-4
-wordpress_id: 339
 categories: [Others]
 tags: [ThunderBird]
 keywords: "ThunderBird"

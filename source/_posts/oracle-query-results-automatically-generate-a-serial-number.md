@@ -2,7 +2,6 @@
 layout: post
 title: 'Oracle查询结果自动生成序号'
 date: 2011-11-27
-wordpress_id: 524
 categories: [Database, Oracle]
 tags: [Oracle]
 keywords: "Oracle"

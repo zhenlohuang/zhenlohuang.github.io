@@ -2,7 +2,6 @@
 layout: post
 title: 'Linux 安装google-gadgets'
 date: 2008-11-27
-wordpress_id: 246
 categories: [Linux]
 tags: [Ubuntu]
 keywords: "Ubuntu"

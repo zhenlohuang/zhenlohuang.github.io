@@ -2,7 +2,6 @@
 layout: post
 title: '【IT笔试面试题整理】笔试和面试中常见的智力题'
 date: 2012-6-21
-wordpress_id: 2652
 categories: [Interview]
 tags: []
 keywords: ""

@@ -2,7 +2,6 @@
 layout: post
 title: 'QT学习笔记之九 SpliterEditor'
 date: 2009-7-3
-wordpress_id: 312
 categories: [Programming, C++]
 tags: [Qt]
 keywords: "Qt"

@@ -2,7 +2,6 @@
 layout: post
 title: '【集体智慧编程 学习笔记】 协同过滤技术'
 date: 2012-6-30
-wordpress_id: 3213
 categories: [Data Mining]
 tags: []
 keywords: ""

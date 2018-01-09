@@ -2,7 +2,6 @@
 layout: post
 title: 'QT学习笔记之六 IconEditor'
 date: 2009-5-1
-wordpress_id: 286
 categories: [Programming, C++]
 tags: [Qt, C++]
 keywords: "Qt, C++"

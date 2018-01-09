@@ -2,7 +2,6 @@
 layout: post
 title: '【资料整理】fixed()和setprecision()函数的用法'
 date: 2010-10-14
-wordpress_id: 477
 categories: [Programming, C++]
 tags: [C++]
 keywords: "C++"

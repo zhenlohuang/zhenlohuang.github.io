@@ -2,7 +2,6 @@
 layout: post
 title: 'IES4Linux安装'
 date: 2008-12-17
-wordpress_id: 256
 categories: [Linux]
 tags: [Ubuntu]
 keywords: "Ubuntu"

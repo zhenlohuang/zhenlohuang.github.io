@@ -2,7 +2,6 @@
 layout: post
 title: 'Ubuntu 9.04 wubi安装'
 date: 2009-5-21
-wordpress_id: 291
 categories: [Linux]
 tags: [Ubuntu]
 keywords: "Ubuntu"

@@ -2,7 +2,6 @@
 layout: post
 title: '用Qt4 连接MySQL'
 date: 2009-7-29
-wordpress_id: 333
 categories: [Programming, C++]
 tags: [Qt, C++, MySQL]
 keywords: "Qt, C++, MySQL"

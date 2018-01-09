@@ -2,7 +2,6 @@
 layout: post
 title: '使用wget递归下载某目录下的所有文件'
 date: 2010-2-4
-wordpress_id: 391
 categories: [Linux]
 tags: [wget]
 keywords: "wget"

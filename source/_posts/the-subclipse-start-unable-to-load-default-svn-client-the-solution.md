@@ -2,7 +2,6 @@
 layout: post
 title: 'Subclipse启动出现unable to load default svn client的解决办法'
 date: 2012-2-7
-wordpress_id: 536
 categories: [Others]
 tags: [SVN]
 keywords: "SVN"

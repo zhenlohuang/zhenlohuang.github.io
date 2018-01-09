@@ -2,7 +2,6 @@
 layout: post
 title: 'Excel单元格自动变色'
 date: 2011-3-28
-wordpress_id: 501
 categories: [Others]
 tags: [Excel]
 keywords: "Excel"

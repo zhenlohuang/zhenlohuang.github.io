@@ -2,7 +2,6 @@
 layout: post
 title: '【IT笔试面试题整理】替换空格'
 date: 2012-9-4
-wordpress_id: 3287
 categories: [Interview]
 tags: []
 keywords: ""

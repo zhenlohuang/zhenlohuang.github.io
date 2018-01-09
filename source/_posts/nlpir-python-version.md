@@ -2,7 +2,6 @@
 layout: post
 title: 'NLPIR（ICTCLAS 2013）分词工具Python封装'
 date: 2013-4-19
-wordpress_id: 3961
 categories: [NLP]
 tags: [Python, NLPIR]
 keywords: "Python, NLPIR"

@@ -2,7 +2,6 @@
 layout: post
 title: '2012微软暑期实习生笔试题'
 date: 2012-7-5
-wordpress_id: 3226
 categories: [Interview]
 tags: []
 keywords: ""

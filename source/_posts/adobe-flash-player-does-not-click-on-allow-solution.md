@@ -2,7 +2,6 @@
 layout: post
 title: 'adobe flash player设置时无法点击允许的解决方法'
 date: 2012-6-5
-wordpress_id: 2459
 categories: [Others]
 tags: [Flash]
 keywords: "Flash"

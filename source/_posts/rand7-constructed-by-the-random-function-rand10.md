@@ -2,7 +2,6 @@
 layout: post
 title: '【IT笔试面试题整理】由随机函数rand7构造rand10'
 date: 2011-10-9
-wordpress_id: 520
 categories: [Interview]
 tags: []
 keywords: ""

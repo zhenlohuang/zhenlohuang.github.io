@@ -2,7 +2,6 @@
 layout: post
 title: 'mplayer [ao_alsa] unable to find simple control pcm , 0问题解决'
 date: 2010-2-4
-wordpress_id: 390
 categories: [Others]
 tags: [MPlayer]
 keywords: "MPlayer"

@@ -2,7 +2,6 @@
 layout: post
 title: 'JVM学习笔记 垃圾回收'
 date: 2013-4-8
-wordpress_id: 3942
 categories: [Programming, Java]
 tags: [JVM]
 keywords: "JVM"

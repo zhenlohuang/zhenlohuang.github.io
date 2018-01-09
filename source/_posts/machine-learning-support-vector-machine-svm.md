@@ -2,7 +2,6 @@
 layout: post
 title: '机器学习 支持向量机(SVM)'
 date: 2010-10-23
-wordpress_id: 479
 categories: [Machine Learning, SVM]
 tags: [SVM]
 keywords: "SVM"

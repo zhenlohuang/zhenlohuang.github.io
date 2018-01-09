@@ -2,7 +2,6 @@
 layout: post
 title: 'MDI Editor 部分功能修正'
 date: 2009-7-10
-wordpress_id: 322
 categories: [Programming, C++]
 tags: [Qt, C++]
 keywords: "Qt, C++"

@@ -2,7 +2,6 @@
 layout: post
 title: '华丽的数据结构之Bloom Filter'
 date: 2013-11-3
-wordpress_id: 4589
 categories: [Algorithm]
 tags: []
 keywords: ""

@@ -2,7 +2,6 @@
 layout: post
 title: 'Python学习  随机数据生成器'
 date: 2010-8-5
-wordpress_id: 457
 categories: [Programming, Python]
 tags: [Python]
 keywords: "Python"

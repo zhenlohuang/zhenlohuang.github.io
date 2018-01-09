@@ -2,7 +2,6 @@
 layout: post
 title: 'Qt编程技巧  右键菜单'
 date: 2010-2-4
-wordpress_id: 389
 categories: [Programming, C++]
 tags: [Qt]
 keywords: "Qt"

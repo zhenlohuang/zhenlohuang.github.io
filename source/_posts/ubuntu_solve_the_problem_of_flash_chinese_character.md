@@ -2,7 +2,6 @@
 layout: post
 title: 'Ubuntu 解决flash方块字问题'
 date: 2008-12-16
-wordpress_id: 255
 categories: [Linux]
 tags: [Ubuntu, Flash]
 keywords: "Ubuntu, Flash"

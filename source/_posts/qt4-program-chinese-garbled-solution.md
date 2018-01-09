@@ -2,7 +2,6 @@
 layout: post
 title: 'Qt4程序中文乱码解决方案'
 date: 2009-7-18
-wordpress_id: 330
 categories: [Programming, C++]
 tags: [Qt, C++]
 keywords: "Qt, C++"

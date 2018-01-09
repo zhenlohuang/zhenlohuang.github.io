@@ -2,7 +2,6 @@
 layout: post
 title: 'Qt编程技巧  Qt随机数的产生'
 date: 2009-10-26
-wordpress_id: 355
 categories: [Programming, C++]
 tags: [Qt]
 keywords: "Qt"

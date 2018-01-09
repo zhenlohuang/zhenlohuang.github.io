@@ -2,7 +2,6 @@
 layout: post
 title: 'Ubuntu 8.04安装锐捷客户端xrgsu'
 date: 2008-11-1
-wordpress_id: 234
 categories: [Linux]
 tags: [Ubuntu]
 keywords: "Ubuntu"

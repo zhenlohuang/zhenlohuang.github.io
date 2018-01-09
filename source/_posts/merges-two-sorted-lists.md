@@ -2,7 +2,6 @@
 layout: post
 title: '【IT笔试面试题整理】合并两个排序的链表'
 date: 2012-9-23
-wordpress_id: 3403
 categories: [Interview]
 tags: []
 keywords: ""

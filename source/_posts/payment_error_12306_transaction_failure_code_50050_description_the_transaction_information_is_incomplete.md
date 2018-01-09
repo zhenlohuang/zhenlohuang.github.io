@@ -2,7 +2,6 @@
 layout: post
 title: '12306支付出错：交易失败!代码:50050描述:交易信息不完整'
 date: 2012-1-28
-wordpress_id: 532
 categories: [Others]
 tags: []
 keywords: ""

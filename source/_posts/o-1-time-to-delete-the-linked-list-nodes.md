@@ -2,7 +2,6 @@
 layout: post
 title: '【IT笔试面试题整理】在O(1)时间删除链表节点'
 date: 2012-9-11
-wordpress_id: 3395
 categories: [Interview]
 tags: []
 keywords: ""

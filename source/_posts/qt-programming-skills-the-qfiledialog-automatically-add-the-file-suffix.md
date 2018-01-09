@@ -2,7 +2,6 @@
 layout: post
 title: 'Qt编程技巧  QFileDialog自动添文件后缀的方法'
 date: 2009-10-26
-wordpress_id: 353
 categories: [Programming, C++]
 tags: [Qt]
 keywords: "Qt"

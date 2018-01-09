@@ -2,7 +2,6 @@
 layout: post
 title: 'Ubuntu 软件包备份与清理'
 date: 2009-5-22
-wordpress_id: 301
 categories: [Linux]
 tags: [Ubuntu]
 keywords: "Ubuntu"

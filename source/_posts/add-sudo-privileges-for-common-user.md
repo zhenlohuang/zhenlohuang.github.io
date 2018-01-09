@@ -2,7 +2,6 @@
 layout: post
 title: 'Linux为用户添加sudo权限'
 date: 2013-10-19
-wordpress_id: 4148
 categories: [Linux]
 tags: []
 keywords: ""

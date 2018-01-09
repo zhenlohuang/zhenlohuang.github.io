@@ -2,7 +2,6 @@
 layout: post
 title: 'Python Challenge攻略之Level 2'
 date: 2013-5-10
-wordpress_id: 4018
 categories: [Programming, Python]
 tags: [Python]
 keywords: "Python"

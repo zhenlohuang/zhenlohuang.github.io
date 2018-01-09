@@ -2,7 +2,6 @@
 layout: post
 title: '【IT笔试面试题整理】数字在排序数组中出现的次数'
 date: 2012-10-6
-wordpress_id: 3436
 categories: [Interview]
 tags: []
 keywords: ""

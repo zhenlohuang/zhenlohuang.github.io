@@ -2,7 +2,6 @@
 layout: post
 title: '【IT笔试面试题整理】有序矩阵查找值'
 date: 2011-12-29
-wordpress_id: 527
 categories: [Interview]
 tags: []
 keywords: ""

@@ -2,7 +2,6 @@
 layout: post
 title: 'shell学习笔记四  循环'
 date: 2009-9-27
-wordpress_id: 346
 categories: [Linux]
 tags: [Shell]
 keywords: "Shell"

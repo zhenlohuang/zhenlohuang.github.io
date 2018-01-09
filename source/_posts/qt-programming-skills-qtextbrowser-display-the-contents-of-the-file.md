@@ -2,7 +2,6 @@
 layout: post
 title: 'Qt编程技巧  QTextBrowser显示文件内容'
 date: 2010-2-20
-wordpress_id: 396
 categories: [Programming, C++]
 tags: [Qt]
 keywords: "Qt"

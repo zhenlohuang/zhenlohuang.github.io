@@ -2,7 +2,6 @@
 layout: post
 title: 'QT学习笔记之十六  ImageSpaceCompute'
 date: 2009-7-29
-wordpress_id: 332
 categories: [Programming, C++]
 tags: [Qt, C++]
 keywords: "Qt, C++"

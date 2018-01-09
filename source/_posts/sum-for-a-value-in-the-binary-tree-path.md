@@ -2,7 +2,6 @@
 layout: post
 title: '【IT笔试面试题整理】二叉树中和为某一值的路径'
 date: 2012-10-6
-wordpress_id: 3421
 categories: [Interview]
 tags: []
 keywords: ""

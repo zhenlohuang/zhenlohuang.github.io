@@ -2,7 +2,6 @@
 layout: post
 title: '解决Ubuntu 播放器中乱码问题'
 date: 2008-11-1
-wordpress_id: 233
 categories: [Linux]
 tags: [Ubuntu]
 keywords: "Ubuntu"

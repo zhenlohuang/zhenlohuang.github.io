@@ -2,7 +2,6 @@
 layout: post
 title: 'Python学习  猜数字游戏'
 date: 2010-8-5
-wordpress_id: 461
 categories: [Programming, Python]
 tags: [Python]
 keywords: "Python"

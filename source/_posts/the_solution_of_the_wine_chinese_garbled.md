@@ -2,7 +2,6 @@
 layout: post
 title: 'wine中文乱码的解决方法'
 date: 2009-6-3
-wordpress_id: 307
 categories: [Linux]
 tags: [wine]
 keywords: "wine"

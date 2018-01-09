@@ -2,7 +2,6 @@
 layout: post
 title: 'Python核心编程 练习 第二章'
 date: 2010-5-3
-wordpress_id: 420
 categories: [Programming, Python]
 tags: [Python]
 keywords: "Python"

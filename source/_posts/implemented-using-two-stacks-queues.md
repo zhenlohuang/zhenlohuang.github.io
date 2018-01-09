@@ -2,7 +2,6 @@
 layout: post
 title: '【IT笔试面试题整理】用两个栈实现队列'
 date: 2012-9-6
-wordpress_id: 3294
 categories: [Interview]
 tags: []
 keywords: ""

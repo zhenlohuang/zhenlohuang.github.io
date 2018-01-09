@@ -2,7 +2,6 @@
 layout: post
 title: '【IT笔试面试题整理】反转链表'
 date: 2012-9-20
-wordpress_id: 3399
 categories: [Interview]
 tags: []
 keywords: ""

@@ -2,7 +2,6 @@
 layout: post
 title: '破解vmware与锐捷冲突'
 date: 2008-11-28
-wordpress_id: 248
 categories: [Others]
 tags: [VMWare]
 keywords: "VMWare"

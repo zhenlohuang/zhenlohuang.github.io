@@ -2,7 +2,6 @@
 layout: post
 title: '【资料整理】MEF'
 date: 2010-9-5
-wordpress_id: 467
 categories: [Programming, C#]
 tags: [C#]
 keywords: "C#"

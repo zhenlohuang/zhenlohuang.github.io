@@ -2,7 +2,6 @@
 layout: post
 title: 'Cloudera Hadoop安装及配置'
 date: 2013-8-4
-wordpress_id: 4065
 categories: [Big Data, Hadoop]
 tags: [Cloudera, Hadoop]
 keywords: "Cloudera, Hadoop"

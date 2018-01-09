@@ -2,7 +2,6 @@
 layout: post
 title: 'VirtualBox的数据空间使用方法，解决客户机和主机共享问题'
 date: 2009-5-29
-wordpress_id: 305
 categories: [Others]
 tags: [VirtualBox]
 keywords: "VirtualBox"

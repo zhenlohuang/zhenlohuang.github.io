@@ -2,7 +2,6 @@
 layout: post
 title: 'Ubuntu 安装ibus'
 date: 2009-5-27
-wordpress_id: 302
 categories: [Linux]
 tags: [Ubuntu, ibus]
 keywords: "Ubuntu, ibus"

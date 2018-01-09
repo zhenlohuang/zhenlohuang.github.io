@@ -2,7 +2,6 @@
 layout: post
 title: 'Error importing repomd.xml for updates: Damaged repomd.xml file 解决方法'
 date: 2012-6-4
-wordpress_id: 2449
 categories: [Linux]
 tags: [Fedora]
 keywords: "Fedora"

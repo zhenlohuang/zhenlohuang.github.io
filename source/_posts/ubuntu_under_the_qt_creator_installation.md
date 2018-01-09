@@ -2,7 +2,6 @@
 layout: post
 title: 'Ubuntu下Qt Creator安装'
 date: 2009-5-22
-wordpress_id: 296
 categories: [Programming, C++]
 tags: [Qt, C++]
 keywords: "Qt, C++"

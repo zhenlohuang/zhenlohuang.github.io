@@ -2,7 +2,6 @@
 layout: post
 title: 'QtSql：没有该文件或目录 解决方案'
 date: 2009-7-31
-wordpress_id: 335
 categories: [Programming, C++]
 tags: [Qt, C++]
 keywords: "Qt, C++"

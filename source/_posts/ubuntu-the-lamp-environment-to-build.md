@@ -2,7 +2,6 @@
 layout: post
 title: 'Ubuntu LAMP环境搭建'
 date: 2010-4-12
-wordpress_id: 413
 categories: [Programming, PHP]
 tags: [PHP]
 keywords: "PHP"

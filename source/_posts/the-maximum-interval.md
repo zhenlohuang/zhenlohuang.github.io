@@ -2,7 +2,6 @@
 layout: post
 title: '【IT笔试面试题整理】最大间隔问题'
 date: 2010-10-17
-wordpress_id: 478
 categories: [Interview]
 tags: []
 keywords: ""

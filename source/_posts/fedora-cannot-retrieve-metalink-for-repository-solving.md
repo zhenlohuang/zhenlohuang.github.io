@@ -2,7 +2,6 @@
 layout: post
 title: 'Cannot retrieve metalink for repository: fedora. Please verify its path and try again 解决方法'
 date: 2012-6-4
-wordpress_id: 2451
 categories: [Linux]
 tags: [Fedora]
 keywords: "Fedora"

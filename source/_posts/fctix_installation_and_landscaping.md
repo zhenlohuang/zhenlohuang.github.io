@@ -2,7 +2,6 @@
 layout: post
 title: 'linux 不能重启解决办法'
 date: 2008-12-11
-wordpress_id: 253
 categories: [Linux]
 tags: [Ubuntu]
 keywords: "Ubuntu"

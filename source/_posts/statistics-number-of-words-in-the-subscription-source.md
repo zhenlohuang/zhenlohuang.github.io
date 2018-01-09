@@ -2,7 +2,6 @@
 layout: post
 title: '【集体智慧编程 学习笔记】统计订阅源中的单词数'
 date: 2012-7-14
-wordpress_id: 3255
 categories: [Data Mining]
 tags: []
 keywords: ""

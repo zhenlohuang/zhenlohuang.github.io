@@ -2,7 +2,6 @@
 layout: post
 title: 'J2ME作业，手机用户管理系统'
 date: 2008-11-20
-wordpress_id: 240
 categories: [Programming, Java]
 tags: [Java, J2ME]
 keywords: "Java, J2ME"

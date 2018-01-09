@@ -2,7 +2,6 @@
 layout: post
 title: 'PyQt 使用Qt Designer ui文件'
 date: 2010-8-1
-wordpress_id: 449
 categories: [Programming, Python]
 tags: [Python, Qt, PyQt]
 keywords: "Python, Qt, PyQt"

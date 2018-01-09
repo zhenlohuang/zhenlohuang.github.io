@@ -2,7 +2,6 @@
 layout: post
 title: 'fctix安装及美化'
 date: 2008-12-11
-wordpress_id: 254
 categories: [Linux]
 tags: [Ubuntu, Fcitx]
 keywords: "Ubuntu, Fcitx"

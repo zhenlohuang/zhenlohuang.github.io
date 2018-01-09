@@ -2,7 +2,6 @@
 layout: post
 title: 'Ubuntu上PySide安装'
 date: 2013-4-14
-wordpress_id: 3947
 categories: [Programming, Python]
 tags: [Python, Qt, PySide]
 keywords: "Python, Qt, PySide"

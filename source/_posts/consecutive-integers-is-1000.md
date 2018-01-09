@@ -2,7 +2,6 @@
 layout: post
 title: '【IT笔试面试题整理】连续整数之和为1000'
 date: 2011-3-21
-wordpress_id: 498
 categories: [Interview]
 tags: []
 keywords: ""

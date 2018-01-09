@@ -2,7 +2,6 @@
 layout: post
 title: 'EJB开发配置'
 date: 2010-11-22
-wordpress_id: 483
 categories: [Programming, Java]
 tags: [EJB]
 keywords: "EJB"

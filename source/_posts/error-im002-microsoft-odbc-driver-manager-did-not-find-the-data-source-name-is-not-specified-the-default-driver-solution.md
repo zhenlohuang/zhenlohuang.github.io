@@ -2,7 +2,6 @@
 layout: post
 title: '错误：[IM002] [Microsoft][ODBC 驱动程序管理器] 未发现数据源名称并且未指定默认驱动程序 解决方法'
 date: 2010-9-29
-wordpress_id: 473
 categories: [Database, SQL Server]
 tags: [ODBC]
 keywords: "ODBC"

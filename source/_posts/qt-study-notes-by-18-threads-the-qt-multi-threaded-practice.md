@@ -2,7 +2,6 @@
 layout: post
 title: 'QT学习笔记之十八  Threads Qt多线程练习'
 date: 2009-8-5
-wordpress_id: 340
 categories: [Programming, C++]
 tags: [Qt, C++]
 keywords: "Qt, C++"

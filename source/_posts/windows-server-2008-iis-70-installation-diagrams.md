@@ -2,7 +2,6 @@
 layout: post
 title: 'Windows Server 2008 IIS 7.0 安装 （图解）'
 date: 2012-1-7
-wordpress_id: 530
 categories: [Others]
 tags: [Window Server]
 keywords: "Window Server"

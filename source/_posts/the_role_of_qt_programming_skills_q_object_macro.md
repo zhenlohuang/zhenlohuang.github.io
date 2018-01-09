@@ -2,7 +2,6 @@
 layout: post
 title: 'Qt编程技巧  Q_OBJECT宏的作用'
 date: 2010-1-19
-wordpress_id: 377
 categories: [Programming, C++]
 tags: [Qt]
 keywords: "Qt"

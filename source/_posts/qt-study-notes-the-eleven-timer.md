@@ -2,7 +2,6 @@
 layout: post
 title: 'QT学习笔记之十一  Timer'
 date: 2009-7-5
-wordpress_id: 314
 categories: [Programming, C++]
 tags: [Qt]
 keywords: "Qt"

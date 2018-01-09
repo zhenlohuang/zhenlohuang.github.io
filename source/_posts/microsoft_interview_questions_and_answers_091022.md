@@ -2,7 +2,6 @@
 layout: post
 title: '微软的面试题及答案(09.10.22)'
 date: 2009-10-22
-wordpress_id: 352
 categories: [Interview]
 tags: [Microsoft]
 keywords: "Microsoft"

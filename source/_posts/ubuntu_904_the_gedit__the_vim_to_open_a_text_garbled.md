@@ -2,7 +2,6 @@
 layout: post
 title: 'ubuntu 9.04 gedit/VIM 打开文本乱码问题'
 date: 2009-5-17
-wordpress_id: 289
 categories: [Linux]
 tags: [Ubuntu]
 keywords: "Ubuntu"

@@ -2,7 +2,6 @@
 layout: post
 title: 'Windows Server 2008 安装（图解）'
 date: 2012-1-6
-wordpress_id: 529
 categories: [Others]
 tags: [Windows Server]
 keywords: "Windows Server"

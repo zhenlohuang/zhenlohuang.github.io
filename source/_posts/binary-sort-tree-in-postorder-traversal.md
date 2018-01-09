@@ -2,7 +2,6 @@
 layout: post
 title: '【IT笔试面试题整理】二叉排序树的后序遍历'
 date: 2012-9-23
-wordpress_id: 3417
 categories: [Interview]
 tags: []
 keywords: ""

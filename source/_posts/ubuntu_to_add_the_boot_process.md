@@ -2,7 +2,6 @@
 layout: post
 title: 'Ubuntu 添加开机启动程序'
 date: 2009-8-4
-wordpress_id: 338
 categories: [Linux]
 tags: [Ubuntu]
 keywords: "Ubuntu"

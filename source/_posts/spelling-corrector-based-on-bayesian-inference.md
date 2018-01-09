@@ -2,7 +2,6 @@
 layout: post
 title: '基于贝叶斯推断的拼写检查'
 date: 2013-4-15
-wordpress_id: 3951
 categories: [Data Mining]
 tags: [Bayesian]
 keywords: "Bayesian"

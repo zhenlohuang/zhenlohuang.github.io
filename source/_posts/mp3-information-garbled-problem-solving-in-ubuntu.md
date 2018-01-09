@@ -2,7 +2,6 @@
 layout: post
 title: 'Ubuntu下 mp3信息乱码问题解决'
 date: 2009-5-22
-wordpress_id: 295
 categories: [Others]
 tags: []
 keywords: ""

@@ -2,7 +2,6 @@
 layout: post
 title: 'Firefox占用CPU、内存太高解决办法'
 date: 2009-10-6
-wordpress_id: 348
 categories: [Others]
 tags: [Firefox]
 keywords: "Firefox"

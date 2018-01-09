@@ -2,7 +2,6 @@
 layout: post
 title: 'Linux下三国杀聊天窗口乱码 解决方法'
 date: 2012-7-4
-wordpress_id: 3220
 categories: [Others]
 tags: []
 keywords: ""

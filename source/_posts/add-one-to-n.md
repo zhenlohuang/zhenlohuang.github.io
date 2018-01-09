@@ -2,7 +2,6 @@
 layout: post
 title: '【IT笔试面试题整理】求1+2+…+n'
 date: 2011-4-6
-wordpress_id: 502
 categories: [Interview]
 tags: []
 keywords: ""

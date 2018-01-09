@@ -2,7 +2,6 @@
 layout: post
 title: '华丽的数据结构之SkipList'
 date: 2014-4-5
-wordpress_id: 4879
 categories: [Algorithm]
 tags: []
 keywords: ""

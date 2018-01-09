@@ -2,7 +2,6 @@
 layout: post
 title: 'Python学习  文件遍历'
 date: 2010-8-5
-wordpress_id: 450
 categories: [Programming, Python]
 tags: [Python]
 keywords: "Python"

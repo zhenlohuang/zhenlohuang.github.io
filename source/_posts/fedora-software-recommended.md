@@ -2,7 +2,6 @@
 layout: post
 title: 'Fedora 常用软件推荐'
 date: 2012-6-4
-wordpress_id: 2453
 categories: [Linux]
 tags: [Fedora]
 keywords: "Fedora"

@@ -2,7 +2,6 @@
 layout: post
 title: 'firefox配置'
 date: 2009-5-22
-wordpress_id: 293
 categories: [Others]
 tags: [Fireforx]
 keywords: "Fireforx"

@@ -2,7 +2,6 @@
 layout: post
 title: 'Ubuntu 下安装Prism'
 date: 2009-10-6
-wordpress_id: 349
 categories: [Others]
 tags: [Prism]
 keywords: "Prism"

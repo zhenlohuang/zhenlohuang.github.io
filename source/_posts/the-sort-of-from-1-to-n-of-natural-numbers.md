@@ -2,7 +2,6 @@
 layout: post
 title: '【IT笔试面试题整理】1到N自然数排序'
 date: 2010-9-16
-wordpress_id: 469
 categories: [Interview]
 tags: []
 keywords: ""

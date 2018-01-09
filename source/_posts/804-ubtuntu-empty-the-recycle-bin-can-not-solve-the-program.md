@@ -2,7 +2,6 @@
 layout: post
 title: 'Ubtuntu 8.04回收站清空不了解决方案'
 date: 2008-11-27
-wordpress_id: 247
 categories: [Linux]
 tags: [Ubuntu]
 keywords: "Ubuntu"

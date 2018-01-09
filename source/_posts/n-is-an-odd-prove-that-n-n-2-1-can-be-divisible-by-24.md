@@ -2,7 +2,6 @@
 layout: post
 title: '【IT笔试题面试题整理】n是一个奇数，求证n(n^2-1)能被24整除'
 date: 2012-1-28
-wordpress_id: 533
 categories: [Interview]
 tags: []
 keywords: ""

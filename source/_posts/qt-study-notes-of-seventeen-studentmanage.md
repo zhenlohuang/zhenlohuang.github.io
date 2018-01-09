@@ -2,7 +2,6 @@
 layout: post
 title: 'QT学习笔记之十七  StudentManage'
 date: 2009-7-29
-wordpress_id: 334
 categories: [Programming, C++]
 tags: [Qt, C++]
 keywords: "Qt, C++"

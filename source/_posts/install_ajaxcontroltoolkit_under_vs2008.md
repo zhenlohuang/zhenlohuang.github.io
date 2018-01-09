@@ -2,7 +2,6 @@
 layout: post
 title: 'VS2008 下安装 AjaxControlToolkit'
 date: 2011-1-24
-wordpress_id: 493
 categories: [Web Development]
 tags: [ajax]
 keywords: "ajax"

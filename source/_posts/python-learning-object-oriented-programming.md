@@ -2,7 +2,6 @@
 layout: post
 title: 'Python学习  面向对象编程'
 date: 2010-8-5
-wordpress_id: 451
 categories: [Programming, Python]
 tags: [Python]
 keywords: "Python"

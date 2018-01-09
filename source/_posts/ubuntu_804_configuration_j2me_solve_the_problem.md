@@ -2,7 +2,6 @@
 layout: post
 title: 'Ubuntu 8.04配置J2ME问题解决'
 date: 2008-11-13
-wordpress_id: 237
 categories: [Linux]
 tags: [Ubuntu]
 keywords: "Ubuntu"

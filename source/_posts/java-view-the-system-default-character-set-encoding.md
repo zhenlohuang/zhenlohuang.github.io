@@ -2,7 +2,6 @@
 layout: post
 title: 'Java查看系统默认字符集编码'
 date: 2012-12-16
-wordpress_id: 3480
 categories: [Programming, Java]
 tags: [Java]
 keywords: "Java"

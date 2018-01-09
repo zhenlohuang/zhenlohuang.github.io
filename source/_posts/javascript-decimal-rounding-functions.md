@@ -2,7 +2,6 @@
 layout: post
 title: 'JavaScript 小数取整函数'
 date: 2012-5-24
-wordpress_id: 2441
 categories: [Web Development]
 tags: [JavaScript]
 keywords: "JavaScript"

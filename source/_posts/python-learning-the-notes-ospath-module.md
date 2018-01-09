@@ -2,7 +2,6 @@
 layout: post
 title: 'Python学习笔记 OS.Path模块'
 date: 2011-8-3
-wordpress_id: 512
 categories: [Programming, Python]
 tags: [Python]
 keywords: "Python"

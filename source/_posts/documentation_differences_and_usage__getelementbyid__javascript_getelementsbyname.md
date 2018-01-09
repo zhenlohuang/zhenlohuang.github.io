@@ -2,7 +2,6 @@
 layout: post
 title: '【资料整理】JavaScript中getElementsByName()和getElementById()的区别和用法'
 date: 2010-12-13
-wordpress_id: 486
 categories: [Web Development]
 tags: [JavaScript]
 keywords: "JavaScript"

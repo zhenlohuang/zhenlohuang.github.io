@@ -2,7 +2,6 @@
 layout: post
 title: '解决Fedora安装Virtualbox后无法运行'
 date: 2012-2-7
-wordpress_id: 535
 categories: [Linux]
 tags: [Fedora]
 keywords: "Fedora"

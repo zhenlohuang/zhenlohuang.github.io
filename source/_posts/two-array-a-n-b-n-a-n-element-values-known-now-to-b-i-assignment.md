@@ -2,7 +2,6 @@
 layout: post
 title: '【IT笔试面试题整理】两个数组a[N]，b[N]，其中A[N]的各个元素值已知，现给b[i]赋值'
 date: 2012-4-10
-wordpress_id: 540
 categories: [Interview]
 tags: []
 keywords: ""

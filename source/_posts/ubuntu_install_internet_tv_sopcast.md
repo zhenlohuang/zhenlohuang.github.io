@@ -2,7 +2,6 @@
 layout: post
 title: 'Ubuntu下安装网络电视sopcast'
 date: 2008-11-5
-wordpress_id: 236
 categories: [Linux]
 tags: [Ubuntu]
 keywords: "Ubuntu"

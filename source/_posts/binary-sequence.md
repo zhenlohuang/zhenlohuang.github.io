@@ -2,7 +2,6 @@
 layout: post
 title: '【IT笔试面试题整理】二进制序列'
 date: 2011-4-17
-wordpress_id: 505
 categories: [Interview]
 tags: []
 keywords: ""

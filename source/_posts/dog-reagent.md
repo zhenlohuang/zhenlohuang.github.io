@@ -2,7 +2,6 @@
 layout: post
 title: '【IT笔试面试题整理】小狗试药'
 date: 2010-9-19
-wordpress_id: 470
 categories: [Interview]
 tags: []
 keywords: ""

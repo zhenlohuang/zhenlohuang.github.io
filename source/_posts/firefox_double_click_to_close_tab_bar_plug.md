@@ -2,7 +2,6 @@
 layout: post
 title: 'Firefox 双击关闭标签栏插件'
 date: 2009-5-14
-wordpress_id: 288
 categories: [Others]
 tags: [Firefox]
 keywords: "Firefox"

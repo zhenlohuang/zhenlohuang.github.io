@@ -2,7 +2,6 @@
 layout: post
 title: '无法登录到Windows Live Messenger的服务,错误为80048820 解决方法'
 date: 2011-3-17
-wordpress_id: 497
 categories: [Others]
 tags: []
 keywords: ""

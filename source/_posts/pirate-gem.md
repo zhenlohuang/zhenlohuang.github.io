@@ -2,7 +2,6 @@
 layout: post
 title: '【IT笔试面试题整理】海盗分宝石'
 date: 2012-6-18
-wordpress_id: 2556
 categories: [Interview]
 tags: []
 keywords: ""

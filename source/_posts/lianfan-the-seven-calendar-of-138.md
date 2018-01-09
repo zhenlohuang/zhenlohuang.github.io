@@ -2,7 +2,6 @@
 layout: post
 title: '【IT笔试面试题整理】连翻7张日历之和为138'
 date: 2011-10-18
-wordpress_id: 521
 categories: [Interview]
 tags: []
 keywords: ""

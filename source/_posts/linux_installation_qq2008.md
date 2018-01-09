@@ -2,7 +2,6 @@
 layout: post
 title: '在Linux中安装QQ2008'
 date: 2008-11-1
-wordpress_id: 232
 categories: [Linux]
 tags: [Ubuntu]
 keywords: "Ubuntu"

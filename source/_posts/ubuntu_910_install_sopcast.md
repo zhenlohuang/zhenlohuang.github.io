@@ -2,7 +2,6 @@
 layout: post
 title: 'Ubuntu 9.10安装sopcast'
 date: 2010-2-15
-wordpress_id: 394
 categories: [Linux]
 tags: [Ubuntu]
 keywords: "Ubuntu"

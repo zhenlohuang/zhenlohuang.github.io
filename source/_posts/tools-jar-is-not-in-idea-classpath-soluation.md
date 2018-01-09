@@ -2,7 +2,6 @@
 layout: post
 title: 'tools.jar is not in IDEA classpath 解决方法'
 date: 2013-11-24
-wordpress_id: 4837
 categories: [Programming, Java]
 tags: [JAVA, IDEA]
 keywords: "JAVA, IDEA"

@@ -2,7 +2,6 @@
 layout: post
 title: '【IT笔试面试题整理】丑数'
 date: 2012-10-6
-wordpress_id: 3434
 categories: [Interview]
 tags: []
 keywords: ""

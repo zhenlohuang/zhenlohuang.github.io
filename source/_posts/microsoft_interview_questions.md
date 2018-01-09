@@ -2,7 +2,6 @@
 layout: post
 title: '微软面试题'
 date: 2010-10-13
-wordpress_id: 476
 categories: [Interview]
 tags: []
 keywords: ""

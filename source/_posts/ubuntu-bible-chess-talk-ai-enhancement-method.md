@@ -2,7 +2,6 @@
 layout: post
 title: 'Ubuntu 天书棋谈 AI增强方法'
 date: 2010-5-27
-wordpress_id: 437
 categories: [Linux]
 tags: [Ubuntu]
 keywords: "Ubuntu"

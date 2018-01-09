@@ -2,7 +2,6 @@
 layout: post
 title: 'Zookeeper源码分析-源码编译'
 date: 2014-8-31
-wordpress_id: 4930
 categories: [Big Data, ZooKeeper]
 tags: [ZooKeeper]
 comments: true

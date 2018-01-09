@@ -2,7 +2,6 @@
 layout: post
 title: 'ICTCLAS分词工具Python封装'
 date: 2012-10-8
-wordpress_id: 3443
 categories: [Interview]
 tags: []
 keywords: ""

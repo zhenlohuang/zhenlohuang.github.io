@@ -2,7 +2,6 @@
 layout: post
 title: 'PyLucene安装'
 date: 2011-5-16
-wordpress_id: 506
 categories: [Search Engine]
 tags: [PyLucene]
 keywords: "PyLucene"

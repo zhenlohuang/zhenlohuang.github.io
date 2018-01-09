@@ -2,7 +2,6 @@
 layout: post
 title: 'shell学习笔记一  变量'
 date: 2009-9-25
-wordpress_id: 343
 categories: [Linux]
 tags: [Shell]
 keywords: "Shell"

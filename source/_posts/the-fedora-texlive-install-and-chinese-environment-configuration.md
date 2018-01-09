@@ -2,7 +2,6 @@
 layout: post
 title: 'Fedora TexLive安装及中文环境配置'
 date: 2012-2-7
-wordpress_id: 538
 categories: [Linux]
 tags: [Fedora]
 keywords: "Fedora"

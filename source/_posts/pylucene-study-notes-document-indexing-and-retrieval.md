@@ -2,7 +2,6 @@
 layout: post
 title: 'PyLucene学习笔记 文件索引及检索'
 date: 2011-11-21
-wordpress_id: 523
 categories: [Search Engine]
 tags: []
 keywords: ""

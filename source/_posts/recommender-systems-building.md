@@ -2,7 +2,6 @@
 layout: post
 title: '【集体智慧编程 学习笔记】 推荐系统构建'
 date: 2012-6-30
-wordpress_id: 3215
 categories: [Data Mining]
 tags: []
 keywords: ""

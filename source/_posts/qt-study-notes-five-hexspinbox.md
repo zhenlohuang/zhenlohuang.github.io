@@ -2,7 +2,6 @@
 layout: post
 title: 'QT学习笔记之五 HexSpinBox'
 date: 2009-4-28
-wordpress_id: 285
 categories: [Programming, C++]
 tags: [Qt, C++]
 keywords: "Qt, C++"

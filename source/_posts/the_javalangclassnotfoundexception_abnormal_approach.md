@@ -2,7 +2,6 @@
 layout: post
 title: 'java.lang.ClassNotFoundException异常处理办法'
 date: 2010-12-13
-wordpress_id: 485
 categories: [Programming, Java]
 tags: [Java]
 keywords: "Java"

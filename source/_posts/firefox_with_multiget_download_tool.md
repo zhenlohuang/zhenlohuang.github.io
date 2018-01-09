@@ -2,7 +2,6 @@
 layout: post
 title: 'Firefox搭配Multiget下载工具'
 date: 2009-8-4
-wordpress_id: 337
 categories: [Others]
 tags: [Firefox]
 keywords: "Firefox"

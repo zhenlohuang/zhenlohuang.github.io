@@ -2,7 +2,6 @@
 layout: post
 title: 'C++头文件大全'
 date: 2010-8-25
-wordpress_id: 466
 categories: [Programming, C++]
 tags: [C++]
 keywords: "C++"

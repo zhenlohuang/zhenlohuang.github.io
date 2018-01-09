@@ -2,7 +2,6 @@
 layout: post
 title: 'PHP Hello World'
 date: 2010-4-13
-wordpress_id: 415
 categories: [Programming, PHP]
 tags: [PHP]
 keywords: "PHP"

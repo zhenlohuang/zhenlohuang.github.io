@@ -2,7 +2,6 @@
 layout: post
 title: 'scim，ibus，fcitx我忍不住有话要说......'
 date: 2009-6-11
-wordpress_id: 309
 categories: [Linux]
 tags: [scim, ibus, fcitx]
 keywords: "scim, ibus, fcitx"

@@ -2,7 +2,6 @@
 layout: post
 title: 'QT学习笔记之十五 BooleanParser  基于Qt4的逻辑表达式分析工具'
 date: 2009-7-29
-wordpress_id: 331
 categories: [Programming, C++]
 tags: [Qt, C++]
 keywords: "Qt, C++"

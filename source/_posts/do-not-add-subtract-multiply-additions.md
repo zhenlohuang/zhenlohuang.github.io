@@ -2,7 +2,6 @@
 layout: post
 title: '【IT笔试面试题整理】不用加减乘除做加法'
 date: 2012-10-6
-wordpress_id: 3441
 categories: [Interview]
 tags: []
 keywords: ""

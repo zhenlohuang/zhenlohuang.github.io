@@ -2,7 +2,6 @@
 layout: post
 title: '【IT笔试面试题整理】二叉树的深度'
 date: 2012-10-6
-wordpress_id: 3439
 categories: [Interview]
 tags: []
 keywords: ""

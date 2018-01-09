@@ -2,7 +2,6 @@
 layout: post
 title: '【集体智慧编程 学习笔记】 Euclidean距离和Pearson相关系数'
 date: 2012-6-24
-wordpress_id: 3190
 categories: [Data Mining]
 tags: []
 keywords: ""

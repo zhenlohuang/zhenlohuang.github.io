@@ -2,7 +2,6 @@
 layout: post
 title: 'grub2 配置'
 date: 2010-1-19
-wordpress_id: 376
 categories: [Linux]
 tags: [Grub2]
 keywords: "Grub2"

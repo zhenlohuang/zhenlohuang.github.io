@@ -2,7 +2,6 @@
 layout: post
 title: 'mplayer slave 模式文档翻译'
 date: 2010-1-22
-wordpress_id: 380
 categories: [Others]
 tags: [MPlayer]
 keywords: "MPlayer"

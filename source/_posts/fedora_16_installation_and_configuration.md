@@ -2,7 +2,6 @@
 layout: post
 title: 'Fedora 16 安装后配置'
 date: 2012-2-7
-wordpress_id: 534
 categories: [Linux]
 tags: [Fedora]
 keywords: "Fedora"

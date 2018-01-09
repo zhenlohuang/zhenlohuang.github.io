@@ -2,7 +2,6 @@
 layout: post
 title: 'C# 学习笔记之  Hello World'
 date: 2010-7-7
-wordpress_id: 446
 categories: [Programming, C#]
 tags: [C#]
 keywords: "C#"

@@ -2,7 +2,6 @@
 layout: post
 title: '【IT笔试面试题整理】重建二叉树'
 date: 2012-9-4
-wordpress_id: 3289
 categories: [Interview]
 tags: []
 keywords: ""

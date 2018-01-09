@@ -2,7 +2,6 @@
 layout: post
 title: 'matlab自动关闭问题解决'
 date: 2009-3-11
-wordpress_id: 267
 categories: [Programming, Matlab]
 tags: [Matlab]
 keywords: "Matlab"

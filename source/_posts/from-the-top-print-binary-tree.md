@@ -2,7 +2,6 @@
 layout: post
 title: '【IT笔试面试题整理】从上往下打印二叉树'
 date: 2012-9-23
-wordpress_id: 3415
 categories: [Interview]
 tags: []
 keywords: ""

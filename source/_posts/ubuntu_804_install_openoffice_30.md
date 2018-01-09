@@ -2,7 +2,6 @@
 layout: post
 title: 'Ubuntu 8.04安装OpenOffice 3.0'
 date: 2008-11-22
-wordpress_id: 242
 categories: [Linux]
 tags: [Ubuntu]
 keywords: "Ubuntu"

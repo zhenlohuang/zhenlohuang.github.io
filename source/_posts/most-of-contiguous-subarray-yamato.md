@@ -2,7 +2,6 @@
 layout: post
 title: '【IT笔试面试题整理】连续子数组的最大和'
 date: 2012-10-6
-wordpress_id: 3432
 categories: [Interview]
 tags: []
 keywords: ""

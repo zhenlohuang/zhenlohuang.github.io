@@ -2,7 +2,6 @@
 layout: post
 title: '一致性Hash算法(Consistent Hashing)'
 date: 2013-11-9
-wordpress_id: 4606
 categories: [Distributed System]
 tags: [Hash]
 keywords: "Hash"

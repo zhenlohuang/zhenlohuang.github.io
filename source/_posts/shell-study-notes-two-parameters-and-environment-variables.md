@@ -2,7 +2,6 @@
 layout: post
 title: 'shell学习笔记二  参数和环境变量'
 date: 2009-9-26
-wordpress_id: 344
 categories: [Linux]
 tags: [Shell]
 keywords: "Shell"

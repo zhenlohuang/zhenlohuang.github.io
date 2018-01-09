@@ -2,7 +2,6 @@
 layout: post
 title: 'ubuntu 开机自动开启数字小键盘'
 date: 2009-12-9
-wordpress_id: 368
 categories: [Linux]
 tags: [Ubuntu]
 keywords: "Ubuntu"

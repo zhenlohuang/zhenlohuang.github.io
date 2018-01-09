@@ -2,7 +2,6 @@
 layout: post
 title: 'Qt编程技巧  Qt 国际化'
 date: 2010-3-8
-wordpress_id: 406
 categories: [Programming, C++]
 tags: [Qt]
 keywords: "Qt"

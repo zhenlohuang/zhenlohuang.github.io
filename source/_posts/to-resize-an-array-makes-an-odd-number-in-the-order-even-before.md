@@ -2,7 +2,6 @@
 layout: post
 title: '【IT笔试面试题整理】调整数组顺序使得奇数位于偶数前面'
 date: 2012-9-11
-wordpress_id: 3397
 categories: [Interview]
 tags: []
 keywords: ""

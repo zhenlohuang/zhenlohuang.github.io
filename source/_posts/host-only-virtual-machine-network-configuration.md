@@ -2,7 +2,6 @@
 layout: post
 title: '虚拟机Host-Only网络配置'
 date: 2013-7-29
-wordpress_id: 4057
 categories: [Others]
 tags: [Virtual]
 keywords: "Virtual"

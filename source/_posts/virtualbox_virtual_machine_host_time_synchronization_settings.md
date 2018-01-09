@@ -2,7 +2,6 @@
 layout: post
 title: 'VirtualBox  虚拟机主机时间不同步设置'
 date: 2011-9-1
-wordpress_id: 519
 categories: [Others]
 tags: [VirtualBox]
 keywords: "VirtualBox"

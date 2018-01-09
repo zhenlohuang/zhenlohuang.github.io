@@ -2,7 +2,6 @@
 layout: post
 title: '右键复制下载解析迅雷协议的地址脚本'
 date: 2008-12-2
-wordpress_id: 250
 categories: [Others]
 tags: []
 keywords: ""

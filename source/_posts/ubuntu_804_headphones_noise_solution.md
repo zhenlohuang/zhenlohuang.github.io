@@ -2,7 +2,6 @@
 layout: post
 title: 'Ubuntu 8.04耳机有杂音解决办法'
 date: 2008-11-22
-wordpress_id: 241
 categories: [Linux]
 tags: [Ubuntu]
 keywords: "Ubuntu"

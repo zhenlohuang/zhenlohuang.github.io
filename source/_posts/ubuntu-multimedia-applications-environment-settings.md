@@ -2,7 +2,6 @@
 layout: post
 title: 'Ubuntu 多媒体应用环境设置'
 date: 2009-5-22
-wordpress_id: 299
 categories: [Linux]
 tags: [Ubuntu]
 keywords: "Ubuntu"

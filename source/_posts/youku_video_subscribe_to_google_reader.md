@@ -2,7 +2,6 @@
 layout: post
 title: '将优酷视频订阅到Google Reader的方法'
 date: 2011-11-28
-wordpress_id: 526
 categories: [Others]
 tags: []
 keywords: ""

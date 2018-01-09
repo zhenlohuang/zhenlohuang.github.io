@@ -2,7 +2,6 @@
 layout: post
 title: 'shell学习笔记三  分支结构'
 date: 2009-9-26
-wordpress_id: 345
 categories: [Linux]
 tags: [Shell]
 keywords: "Shell"

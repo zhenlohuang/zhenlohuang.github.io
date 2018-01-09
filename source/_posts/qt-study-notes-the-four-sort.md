@@ -2,7 +2,6 @@
 layout: post
 title: 'QT学习笔记之四 Sort'
 date: 2009-4-15
-wordpress_id: 277
 categories: [Programming, C++]
 tags: [Qt, C++]
 keywords: "Qt, C++"

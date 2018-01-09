@@ -2,7 +2,6 @@
 layout: post
 title: 'Qt Embedded 开发环境搭建'
 date: 2009-11-6
-wordpress_id: 363
 categories: [Programming, C++]
 tags: [Qt]
 keywords: "Qt"

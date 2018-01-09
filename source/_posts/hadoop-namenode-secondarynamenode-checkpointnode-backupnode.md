@@ -2,7 +2,6 @@
 layout: post
 title: '浅谈Hadoop NameNode、SecondaryNameNode、CheckPoint Node和BackupNode'
 date: 2013-11-16
-wordpress_id: 4815
 categories: [Big Data, Hadoop]
 tags: [Hadoop, HDFS]
 keywords: "Hadoop, HDFS"

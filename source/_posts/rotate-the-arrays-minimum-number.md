@@ -2,7 +2,6 @@
 layout: post
 title: '【IT笔试面试题整理】旋转数组的最小数字'
 date: 2012-9-6
-wordpress_id: 3296
 categories: [Interview]
 tags: []
 keywords: ""

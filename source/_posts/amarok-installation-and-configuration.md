@@ -2,7 +2,6 @@
 layout: post
 title: 'Amarok安装及配置'
 date: 2009-5-22
-wordpress_id: 292
 categories: [Linux]
 tags: [Amarok]
 keywords: "Amarok"

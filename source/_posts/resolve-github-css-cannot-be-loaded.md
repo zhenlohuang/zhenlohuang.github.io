@@ -2,7 +2,6 @@
 layout: post
 title: '解决Github网站CSS无法加载问题'
 date: 2014-5-10
-wordpress_id: 4907
 categories: [Others]
 tags: [Github]
 keywords: "Github"

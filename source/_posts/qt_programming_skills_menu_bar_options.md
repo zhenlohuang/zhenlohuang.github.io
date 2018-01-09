@@ -2,7 +2,6 @@
 layout: post
 title: 'Qt编程技巧  菜单栏多选项问题'
 date: 2010-2-4
-wordpress_id: 386
 categories: [Programming, C++]
 tags: [Qt]
 keywords: "Qt"

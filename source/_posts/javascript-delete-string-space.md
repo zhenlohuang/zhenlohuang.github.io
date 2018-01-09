@@ -2,7 +2,6 @@
 layout: post
 title: 'JavaScript 删除字符串空格'
 date: 2012-5-23
-wordpress_id: 2434
 categories: [Web Development]
 tags: [JavaScript]
 keywords: "JavaScript"

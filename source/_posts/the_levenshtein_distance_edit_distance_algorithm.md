@@ -2,7 +2,6 @@
 layout: post
 title: '编辑距离算法 Levenshtein Distance'
 date: 2012-1-8
-wordpress_id: 531
 categories: [Algorithm]
 tags: []
 keywords: ""
