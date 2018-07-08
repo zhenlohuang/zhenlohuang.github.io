@@ -67,7 +67,7 @@ int main()
 ```
 
 【运行结果】    
-![image](/images/uploads/2012/04/1334034201_4639.png)
+![image](/images/legacy/2012/04/1334034201_4639.png)
 
 【参考资料】    
 <http://topic.csdn.net/u/20120407/17/2debad5f-d37a-4b41-ab8a-cab309910ccd.html>

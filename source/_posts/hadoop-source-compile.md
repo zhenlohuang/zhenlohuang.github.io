@@ -18,7 +18,7 @@ Hadoop： 2.2.0
 # Pre-Compile
 官方的BUILDING.txt给出的安装需求
 
-![image](/images/uploads/2013/11/Selection_001.png)
+![image](/images/legacy/2013/11/Selection_001.png)
 
 ## 安装JDK
 
@@ -68,11 +68,11 @@ sudo apt-get install cmake
 ``` bash 
 mvn package -Pdist -DskipTests -Dtar
 ```
-![image](/images/uploads/2013/11/Screenshot-from-2013-11-24-171453.png)
+![image](/images/legacy/2013/11/Screenshot-from-2013-11-24-171453.png)
 
 编译后的结果可以在hadoop-2.2.0-src/hadoop-dist/target/hadoop-2.2.0中看到
 
-![image](/images/uploads/2013/11/Selection_003.png)
+![image](/images/legacy/2013/11/Selection_003.png)
 
 # 常见问题
 1） error: cannot access AbstractLifeCycle

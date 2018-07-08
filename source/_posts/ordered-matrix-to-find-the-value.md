@@ -18,8 +18,8 @@ comments: true
 设二分查找的中间点为(m_x,m_y)，其中
 m_x = (s_x +e_x) / 2
 m_y = (s_y +e_y) / 2
-![image](/images/uploads/2011/12/0_13251346359Vmx.gif)
-![image](/images/uploads/2011/12/0_1325134639t706.gif)
+![image](/images/legacy/2011/12/0_13251346359Vmx.gif)
+![image](/images/legacy/2011/12/0_1325134639t706.gif)
 
 【源代码Python】    
 

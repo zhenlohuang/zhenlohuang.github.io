@@ -34,27 +34,27 @@ hash(object)%(N+1)
 1.    首先求出每个Cache服务器的hash（可以利用IP来计算），并将其配置到一个0~2^32的圆环区间上。    
 2.    使用同样的方法求出需要存储对象的hash，也将其配置到这个圆环上。    
 3.    从数据映射到的位置开始顺时针查找，将数据保存到找到的第一个Cache节点上。如果超过2^32仍然找不到Cache节点，就会保存到第一个Cache节点上。    
-![image](/images/uploads/2013/11/0_1300845930vO032.gif)
+![image](/images/legacy/2013/11/0_1300845930vO032.gif)
 
 ## 新增Cache服务器
 假设在这个环形哈希空间中，cache5被映射在Cache3和Cache4之间，那么受影响的将仅是沿Cache5逆时针遍历直到下一个Cache（Cache3）之间的对象（它们本来映射到Cache4上）。
 
-![image](/images/uploads/2013/11/0_13008459978RI82.gif)
+![image](/images/legacy/2013/11/0_13008459978RI82.gif)
 
 - 移除Cache服务器
 
 假设在这个环形哈希空间中，Cache3被移除，那么受影响的将仅是沿Cache3逆时针遍历直到下一个Cache（Cache2）之间的对象（它们本来映射到Cache3上）。
 
-![image](/images/uploads/2013/11/0_1300846030mZN31.gif)
+![image](/images/legacy/2013/11/0_1300846030mZN31.gif)
 
 # 虚拟Cache服务器
 考虑到哈希算法并不是保证绝对的平衡，尤其Cache较少的话，对象并不能被均匀的映射到 Cache上。为了解决这种情况，一致性Hash引入了“虚拟节点”的概念： 一个实际节点对虚拟成若干个“虚拟节点”，这个对应个数也成为“复制个数”，“虚拟节点”在哈希空间中以哈希值排列。仍以4台Cache服务器为例，在下图中看到，引入虚拟节点，并设置“复制个数”为2后，共有8个“虚拟节点”分部在环形区域上，缓解了映射不均的情况。
 
-![image](/images/uploads/2013/11/0_1300846075umFj2.gif)
+![image](/images/legacy/2013/11/0_1300846075umFj2.gif)
 
 引入了“虚拟节点”后，映射关系就从【对象--->Cache服务器】转换成了【对象--->虚拟节点---> Cache服务器】。查询对象所在Cache服务器的映射关系如下图所示。
 
-![image](/images/uploads/2013/11/0_1300846198h1782.gif)
+![image](/images/legacy/2013/11/0_1300846198h1782.gif)
 
 # 参考资料
 一致性hash算法 - consistent hashing: <http://blog.csdn.net/sparkliang/article/details/5279393>    

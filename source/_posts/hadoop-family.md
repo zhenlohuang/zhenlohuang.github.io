@@ -10,7 +10,7 @@ comments: true
 ---
 Hadoop作为目前炙手可热的大数据计算平台，以其稳定性和良好的可扩展性深得业界喜爱。目前Hadoop发展迅速，已经形成了一个以Hadoop为中心的生态圈。
 
-![image](/images/uploads/2013/10/Hadoop.png)
+![image](/images/legacy/2013/10/Hadoop.png)
 
 [Apache Hadoop](http://hadoop.apache.org/): 是Apache开源组织的一个分布式计算开源框架，提供了一个分布式文件系统子项目(HDFS)和支持MapReduce分布式计算的软件架构。
 

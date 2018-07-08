@@ -21,7 +21,7 @@ Hadoop SecondaryNameNode并不是Hadoop 第二个NameNode，它不提供NameNode
 SecondaryNamenode定期地从Namenode上获取元数据。当它准备获取元数据的时候，就通知Namenode暂停写入edits文件。Namenode收到请求后停止写入edits文件，之后的log记录写入一个名为edits.new的文件。Secondary Namenode获取到元数据以后，把edits文件和fsimage文件在本机进行合并，创建出一个新的fsimage文件，然后把新的fsimage文件发送回Namenode。Namenode收到Secondary Namenode发回的fsimage后，就拿它覆盖掉原来的fsimage文件，并删除edits文件，把edits.new重命名为edits。
 
 通过这样一番操作，就避免了Namenode的edits日志的无限增长，加速Namenode的启动过程。
-![image](/images/uploads/2013/11/secondarynamenode.png)
+![image](/images/legacy/2013/11/secondarynamenode.png)
 
 # CheckPoint Node
 可能是由于Secondary NameNode容易对人产生误导，因此Hadoop 1.0.4 之后建议不要使用Secondary NameNode，而使用CheckPoint Node。Checkpoint Node和Secondary NameNode的作用以及配置完全相同，只是启动命令不同 bin/hdfs namenode -checkpoint

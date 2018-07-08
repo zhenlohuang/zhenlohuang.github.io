@@ -25,6 +25,6 @@ int main(int argc, char *argv[])
 ```
 运行结果：
 
-![image](/images/uploads/2009/04/223451108.p.JPG?d=20090430223534608)
+![image](/images/legacy/2009/04/223451108.p.JPG?d=20090430223534608)
 
 PS:入门第一件事情果然是Hello World

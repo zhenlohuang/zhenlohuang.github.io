@@ -407,7 +407,7 @@ void BooleanWindow::booleanExpressionChanged(const QString &expr)
 
 软件截图：
 
-![image](/images/uploads/2009/07/204053983.p.png?d=20090729205238592)
+![image](/images/legacy/2009/07/204053983.p.png?d=20090729205238592)
 ---
 
 PS:最近比较郁闷.....

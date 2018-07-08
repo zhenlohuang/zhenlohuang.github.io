@@ -27,4 +27,4 @@ comments: true
 - 一个ComposablePart返回一个catalog，它在你的程序中很像一个扩展。它有宿主程序提供的Imports，然后Export其他。
 - 默认MEF composable part实现使用attribute元数据来声明exports和imports。这允许MEF来决定哪个parts, imports和exports是完全可用的。
 
-![image](/images/uploads/2010/09/FileDownload.aspx?ProjectName=MEF&DownloadId=50697)
+![image](/images/legacy/2010/09/FileDownload.aspx?ProjectName=MEF&DownloadId=50697)

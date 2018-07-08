@@ -88,6 +88,6 @@ int main(int argc, char *argv[])
     return app.exec();
 }
 ```
-![image](/images/uploads/2009/04/223451170.p.JPG?d=20090430223817014)
+![image](/images/legacy/2009/04/223451170.p.JPG?d=20090430223817014)
 
 PS:庆祝空间人气突破25000

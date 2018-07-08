@@ -15,7 +15,7 @@ comments: true
 
 # Java ClassLoader的体系结构
 现在先看下ClassLoader的体系结构：
-![classload-architecture.png](/images/uploads/2017/06/java-classload-architecture.png)
+![classload-architecture.png](/images/java-classload-architecture.png)
 
 ## Bootstrap ClassLoader
 BootStrap ClassLoader：称为启动类加载器，是Java类加载层次中最顶层的类加载器，负责加载JDK中的核心类库，如：rt.jar、resources.jar、charsets.jar等。

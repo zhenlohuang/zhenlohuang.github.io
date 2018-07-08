@@ -24,7 +24,7 @@ Leader执行写操作可以简化为一个两段式提交的transaction：
 2. 收到proposal后，Follower回复ACK给Leader，接受Leader的proposal.
 3. 当Leader收到大多数的Follower的ACK后，将commit其proposal。
 
-![broadcast](/images/uploads/2014/10/broadcast.png)
+![broadcast](/images/broadcast.png)
 
 在这个过程中，proposal的确认不需要所有节点都同意，如果有2n+1个节点，那么只要有n个节点同意即可，也就是说Zookeeper允许n个节点down掉。任何两个多数派必然有交集，在Leader切换（Leader down）时，这些交集依然保持着最新的系统状态。如果集群节点个数少于n+1个时，Zookeeper将无法进行同步，也就无法继续工作。
 

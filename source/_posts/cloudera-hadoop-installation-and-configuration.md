@@ -71,31 +71,31 @@ ssh zhenlhua-slave2
 访问 http://10.182.251.250:7180   
 用户名：admin   
 密码：admin   
-![image](/images/uploads/2013/08/1.png)
+![image](/images/legacy/2013/08/1.png)
 
 ②版本选择    
-![image](/images/uploads/2013/08/2.png)
+![image](/images/legacy/2013/08/2.png)
 
 ③安装组件列表    
-![image](/images/uploads/2013/08/3.png)
+![image](/images/legacy/2013/08/3.png)
 
 ④指定主机名    
-![image](/images/uploads/2013/08/4.png)
+![image](/images/legacy/2013/08/4.png)
 
 ⑤选择软件安装方式    
-![image](/images/uploads/2013/08/6.png)
+![image](/images/legacy/2013/08/6.png)
 
 ⑥集群安装    
-![image](/images/uploads/2013/08/7.png)
+![image](/images/legacy/2013/08/7.png)
 
 ⑦检查主机正确性    
-![image](/images/uploads/2013/08/8.png)
+![image](/images/legacy/2013/08/8.png)
 
 ⑧安装CDH4服务    
-![image](/images/uploads/2013/08/10.png)
+![image](/images/legacy/2013/08/10.png)
 
 ⑨安装数据库    
-![image](/images/uploads/2013/08/11.png)
+![image](/images/legacy/2013/08/11.png)
 
 ⑩适合配置    
-![image](/images/uploads/2013/08/12.png)
+![image](/images/legacy/2013/08/12.png)

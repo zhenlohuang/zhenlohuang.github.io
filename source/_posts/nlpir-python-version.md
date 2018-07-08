@@ -256,7 +256,7 @@ if __name__ == '__main__':
     nlpir_exit()
 ```
 ## 运行结果
-![image](/images/uploads/2013/04/nlpir.png)
+![image](/images/legacy/2013/04/nlpir.png)
 
 # 常见问题
 - “Unable to find vcvarsall.bat”解决办法

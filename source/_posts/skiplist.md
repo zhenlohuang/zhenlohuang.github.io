@@ -17,11 +17,11 @@ SkipList是对有序的链表增加上附加的前进链接，增加是以随机
 此外，SkipList在当前热门的开源项目中也有很多应用，比如LevelDB的核心数据结构memtable以及redis的sorted set。在JDK中，ConcurrentSkipListMap的核心数据结构也是利用SkipList实现的。
 # SkipList主要思想
 先看一下普通的有序单链表：
-![image](/images/uploads/2014/04/1.png)
+![image](/images/legacy/2014/04/1.png)
 
 要在里面查找一个值就需要顺序比较，如何降低复杂度，折半查找也却可以将复杂度降到O(log N)，但不适应单链表，那就将折半的思想抽出来，隔一段位置就建立一个标签索引，根据标签索引缩短查找范围，就是SkipList，如下图：
 
-![image](/images/uploads/2014/04/2.png)
+![image](/images/legacy/2014/04/2.png)
 SkipList通过对间隔的数据做一个标签索引，产生了多层单链表，在最高层依次确定查找数据的范围，最终将范围缩小到可接受值，我们看SkipList其实就是一个二叉查找树的变形，只是所有的数据都在最左段，其他节点用来建立查找索引，如此SkipList的插入删除就比二叉查找树方便多了。
 
 一个SkipList，应该具有以下特征：
@@ -42,28 +42,28 @@ SkipList通过对间隔的数据做一个标签索引，产生了多层单链表
 - 比较 85， 比 85 大，从后面找
 - 比较 117， 等于 117， 找到了节点。
 
-![image](/images/uploads/2014/04/ec9fd643-f85c-3072-8634-60cfc88ab334.jpg)
+![image](/images/legacy/2014/04/ec9fd643-f85c-3072-8634-60cfc88ab334.jpg)
 
 ## 插入
 先确定该元素要占据的层数 K（采用随机的方式），然后在 Level<sub>1</sub> … Level<sub>K</sub> 各个层的链表都插入元素。
 
 例如：插入 119， K = 2
-![image](/images/uploads/2014/04/bb72be16-6162-3fee-b680-311f25dd7c3a.jpg)
+![image](/images/legacy/2014/04/bb72be16-6162-3fee-b680-311f25dd7c3a.jpg)
 如果 K 大于链表的层数，则要添加新的层。
 
 例如：插入 119， K = 4
-![image](/images/uploads/2014/04/bb72be16-6162-3fee-b680-311f25dd7c3a.jpg)
+![image](/images/legacy/2014/04/bb72be16-6162-3fee-b680-311f25dd7c3a.jpg)
 
 # 删除
 在各个层中找到包含 x 的节点，使用标准的 delete from list 方法删除该节点。
 
 例如：删除 71
-![image](/images/uploads/2014/04/7bab9ad1-9f5a-37d0-bc38-89ee50d1bc0d1.jpg)
+![image](/images/legacy/2014/04/7bab9ad1-9f5a-37d0-bc38-89ee50d1bc0d1.jpg)
 
 # SkipList复杂度分析
-![image](/images/uploads/2014/04/72bba45d-345e-3803-a9ce-087c4b8d51ec.jpg)
-![image](/images/uploads/2014/04/77400f12-eafb-33dd-a458-2fd7af71e609.jpg)
-![image](/images/uploads/2014/04/7ee72328-6746-30eb-b807-46eb7f16f360.jpg)
+![image](/images/legacy/2014/04/72bba45d-345e-3803-a9ce-087c4b8d51ec.jpg)
+![image](/images/legacy/2014/04/77400f12-eafb-33dd-a458-2fd7af71e609.jpg)
+![image](/images/legacy/2014/04/7ee72328-6746-30eb-b807-46eb7f16f360.jpg)
 
 # 参考资料
 <http://blog.csdn.net/daniel_ustc/article/details/20218489>

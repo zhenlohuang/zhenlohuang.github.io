@@ -126,4 +126,4 @@ QMessageBox::information(this,tr("Remove"),tr("Failed to remvoe"));
 ```
 
 **软件截图：**
-![image](/images/uploads/2009/07/233502705.p.png?d=20090718235014439)
+![image](/images/legacy/2009/07/233502705.p.png?d=20090718235014439)

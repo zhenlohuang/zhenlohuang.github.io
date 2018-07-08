@@ -15,7 +15,7 @@ Zookeeper的数据视图采用的是类似Unix的数据视图，但是并没有�
 - **stat**：表示节点的信息，例如节点创建时间，节点的版本，节点的权限等信息。
 - **children**:表是所包含的子节点。
 
-![zookeeper-data-model](/images/uploads/2014/09/zookeeper-data-model.jpg)
+![zookeeper-data-model](/images/legacy/2014/09/zookeeper-data-model.jpg)
 
 # 节点类型
 Zookeeper中的节点类型可以分为三种：

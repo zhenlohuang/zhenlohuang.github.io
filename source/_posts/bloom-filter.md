@@ -19,7 +19,7 @@ Bloom Filter是一种空间效率很高的随机数据结构，它利用位数�
 ## 添加字符串
 对于字符串str，分别计算hash,,1,,(str)，hash,,2,,(str)…… hash,,k,,(str)。然后将BitSet的第hash,,1,,(str)，hash,,2,,(str)…… hash,,k,,(str)位设为1。就此，就完成了将字符串str映射到BitSet中的k个二进制位。
 
-![image](/images/uploads/2013/11/649px-Bloom_filter.svg_.png)
+![image](/images/legacy/2013/11/649px-Bloom_filter.svg_.png)
 
 ## 查找字符串
 
@@ -51,13 +51,13 @@ hash函数的选择对性能影响比较大，一个优秀的hash函数应该做
 
 哈希函数个数k、位数组大小m、加入的字符串数量n的关系可以参考<http://pages.cs.wisc.edu/~cao/papers/summary-cache/node8.html>。该文献证明了对于给定的m、n，当
 
-![image](/images/uploads/2013/11/img11.gif)
+![image](/images/legacy/2013/11/img11.gif)
 
 时出错的概率是最小的。
 
 同时参考文献中也给出了false positive概率与m、n的关系。false postive概率等于
 
-![image](/images/uploads/2013/11/img10.gif)
+![image](/images/legacy/2013/11/img10.gif)
 
 完整的参数关系推导请参考<http://pages.cs.wisc.edu/~cao/papers/summary-cache/node8.html>
 

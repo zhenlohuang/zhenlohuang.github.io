@@ -10,7 +10,7 @@ comments: true
 ---
 在Ubuntu中，启动IntelliJ IDEA时出错，错误如下：
 
-![image](/images/uploads/2013/11/Screenshot-from-2013-11-24-203357.png)
+![image](/images/legacy/2013/11/Screenshot-from-2013-11-24-203357.png)
 
 解决方法：
 

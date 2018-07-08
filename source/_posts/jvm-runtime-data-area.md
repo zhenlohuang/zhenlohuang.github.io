@@ -10,7 +10,7 @@ comments: true
 ---
 JVM运行时数据区域示意图如下所示:
 
-![image](/images/uploads/2013/04/JVM_Runtime_Data_Area.png)
+![image](/images/legacy/2013/04/JVM_Runtime_Data_Area.png)
 
 共享数据区域：Method Area、Heap    
 私有数据区域：VM Stack、Native Method Stack、Program Counter Register    

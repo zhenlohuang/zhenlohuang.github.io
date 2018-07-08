@@ -181,15 +181,15 @@ hadoop namenode -format
 ``` bash
 ~/hadoop-2.2.0/sbin/start-all.sh
 ```
-![image](/images/uploads/2013/10/start.png)
+![image](/images/legacy/2013/10/start.png)
 
 - In master
 
-![image](/images/uploads/2013/10/master.png)
+![image](/images/legacy/2013/10/master.png)
 
 - In slaves
 
-![image](/images/uploads/2013/10/slaves.png)
+![image](/images/legacy/2013/10/slaves.png)
 
 #  Test
 - HDFS Web UI: http://zhenlong-master:50070
@@ -202,4 +202,4 @@ hadoop namenode -format
 ~/hadoop-2.2.0/bin/hadoop jar ~/hadoop-2.2.0/share/hadoop/mapreduce/hadoop-mapreduce-examples-2.2.0.jar wordcount file wordcount_out
 ```
 
-![image](/images/uploads/2013/10/yarn.png)
+![image](/images/legacy/2013/10/yarn.png)

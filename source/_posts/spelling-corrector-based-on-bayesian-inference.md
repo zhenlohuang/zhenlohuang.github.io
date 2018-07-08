@@ -11,7 +11,7 @@ comments: true
 # 拼写检查
 所谓拼写检查，就是在使用Google的时候，输入错误的时候，系统对其自动纠正，如下图所示：
 
-![image](/images/uploads/2013/04/Selection_001.png)
+![image](/images/legacy/2013/04/Selection_001.png)
 
 目前有很多方法可以实现这样的技术，这里使用的是贝叶斯推断的方法。
 

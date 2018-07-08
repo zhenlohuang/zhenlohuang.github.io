@@ -292,7 +292,7 @@ FindFileDialog::~FindFileDialog()
     delete ui;
 }
 ```
-![image](/images/uploads/2009/05/123205680.p.png?d=20090529123218071)
+![image](/images/legacy/2009/05/123205680.p.png?d=20090529123218071)
 
 PS:个人感觉第三种比较和谐..........
 

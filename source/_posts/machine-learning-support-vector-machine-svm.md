@@ -27,13 +27,13 @@ C:/libsvm-3.0/libsvm-3.0/windows
  
 1、  利用svm-train训练样本并生成训练模型  
 Dos中输入：svm-train.exe –c 512 –g 0.002 data1.train  
-![image1](/images/uploads/2010/10/0_1287830139929O.gif)  
+![image1](/images/legacy/2010/10/0_1287830139929O.gif)  
 将生成一个后缀为model的文件  
-![image2](/images/uploads/2010/10/0_1287830179zPX1.gif)
+![image2](/images/legacy/2010/10/0_1287830179zPX1.gif)
 
 2、  利用svm-predict预测测试数据  
 在dos中输入：```svm-predict.exe data1.testing data1.train.model data1.out```
-![image3](/images/uploads/2010/10/0_1287830185Oo7L.gif)
+![image3](/images/legacy/2010/10/0_1287830185Oo7L.gif)
 
 3、  使用grid.py获取最佳参数  
 这边令参数c为512，g为0.002并不是最佳参数，后面将介绍使用grid.py来获取最佳参数  
@@ -48,4 +48,4 @@ gnuplot_exe = r"C:/gnuplot/binary/pgnuplot.exe"
 首先还是修改gnuplot_exe路径  
 然后在dos中执行:```python easy.py data1.train data1.testing```
 
-![image4](/images/uploads/2010/10/0_1287830189YC11.gif)
+![image4](/images/legacy/2010/10/0_1287830189YC11.gif)

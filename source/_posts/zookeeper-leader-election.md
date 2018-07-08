@@ -46,7 +46,7 @@ LeaderElection是Fast Paxos最简单的一种实现，每个Server启动以后�
 3. 收到所有Server回复以后，就计算出zxid最大的那个Server，并将这个Server相关信息设置成下一次要投票的Server；
 4. 线程将当前zxid最大的Server设置为当前Server要推荐的Leader，如果此时获胜的Server获得多数Server票数， 设置当前推荐的leader为获胜的Server，将根据获胜的Server相关信息设置自己的状态，否则，继续这个过程，直到leader被选举出来。
 
-![leader-election](/images/uploads/2014/10/leader_election.jpg)
+![leader-election](/images/leader_election.jpg)
 
 通过流程分析我们可以得出：要使Leader获得多数Server的支持，则Server总数必须是奇数2n+1，且存活的Server的数目不得少于n+1.
 
@@ -99,7 +99,7 @@ FastLeaderElection是标准的Fast Paxos的实现，它首先向所有Server提�
 + 如果LogicalClock相同，将数据保存早recvset，如果Sender宣称自己是Leader，那么判断是不是半数以上的服务器都选举它，如果是设置角色并退出选举。
 + 否则，这是一条与当前LogicalClock不符合的消息，说明在另一个选举过程中已经有了选举结果，于是将该选举结果加入到OutOfElection集合中，根据OutOfElection来判断是否可以结束选举，如果可以也是保存LogicalClock，更新角色，退出选举。
 
-![fast-leader-election](/images/uploads/2014/10/fast_leader_election.png)
+![fast-leader-election](/images/fast_leader_election.png)
 
 ## 具体实现
 ### 数据结构

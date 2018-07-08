@@ -136,7 +136,7 @@ void Ticker::hideEvent(QHideEvent *)
 
 **界面截图如下：**
 
-![image](/images/uploads/2009/07/171211091.p.png?d=20090705171255123)
+![image](/images/legacy/2009/07/171211091.p.png?d=20090705171255123)
 
 
 可以自动向左滚动...（怎么感觉像楼下显示电费的....尴尬了）

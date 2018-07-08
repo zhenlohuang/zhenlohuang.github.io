@@ -14,7 +14,7 @@ comments: true
 
 Follower与Observer并称为Learner。
 
-![zookeeper-server-roles](/images/uploads/2014/10/zookeeper-server-roles.png)
+![zookeeper-server-roles](/images/zookeeper-server-roles.png)
 
 # Leader
 在Zookeeper集群中，只有一个Leader节点，其主要职责：
@@ -24,7 +24,7 @@ Follower与Observer并称为Learner。
 
 Leader的工作流程简图如下所示，在实际实现中，流程要比下图复杂得多，启动了三个线程来实现功能。
 
-![leader-workflow](/images/uploads/2014/10/leader-workflow.jpg)
+![leader-workflow](/images/leader-workflow.jpg)
 
 PING：Learner的心跳。  
 REQUEST：Follower发送的提议信息，包括写请求及同步请求。   
@@ -40,7 +40,7 @@ REVALIDATE：用来延长SESSION有效时间。
 
 Follower的工作流程简图如下所示，在实际实现中，Follower是通过5个线程来实现功能的。
 
-![follower-workflow](/images/uploads/2014/10/follower-workflow.jpg)
+![follower-workflow](/images/follower-workflow.jpg)
 
 PING：心跳消息。  
 PROPOSAL：Leader发起的提案，要求Follower投票。  
