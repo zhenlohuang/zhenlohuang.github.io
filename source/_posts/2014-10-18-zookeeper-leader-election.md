@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Zookeeper源码分析-Zookeeper Leader选举算法"
-date: 2014-10-18 23:30:29 +0800
+date: 2014-10-18
 categories: [Big Data, ZooKeeper]
 tags: [ZooKeeper]
 comments: true

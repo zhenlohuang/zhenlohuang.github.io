@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Octopress-installation"
-date: 2014-10-31 18:10:00 +0800
+date: 2014-10-31
 categories: [Others]
 tags: [Octopress]
 keywords: "Octopress"

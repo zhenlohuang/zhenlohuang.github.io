@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Zookeeper源码分析-Zookeeper Server启动分析"
-date: 2014-09-22 22:52:55 +0800
+date: 2014-09-22
 categories: [Big Data, ZooKeeper]
 tags: [ZooKeeper]
 comments: true

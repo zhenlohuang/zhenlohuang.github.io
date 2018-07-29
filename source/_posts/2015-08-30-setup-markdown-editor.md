@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Sublime Text的Markdown写作"
-date: 2015-08-30 23:34:31 +0800
+date: 2015-08-30
 categories: [Others]
 tags: [Markdown, SublimeText]
 keywords: 

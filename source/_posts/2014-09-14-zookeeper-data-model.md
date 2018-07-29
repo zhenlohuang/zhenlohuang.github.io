@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Zookeeper源码分析-数据模型"
-date: 2014-09-14 17:22:15 +0800
+date: 2014-09-14
 categories: [Big Data, ZooKeeper]
 tags: [ZooKeeper]
 comments: true
