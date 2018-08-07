@@ -8,3 +8,5 @@ date: 2017-12-26 23:28:59
 邮箱：zhenlohuang@gmail.com
 微信：killua_hzl
 LinkedIn: https://www.linkedin.com/in/zhenlohuang/
+公众号：yidoooblog
+![qrcode](/images/about/qrcode.jpg)
