@@ -238,9 +238,9 @@ post_wordcount:
   #description: ex. subscribe to my blog by scanning my public wechat account
 
 # Reward
-#reward_comment: Donate comment here
-#wechatpay: /images/wechatpay.jpg
-#alipay: /images/alipay.jpg
+reward_comment: 坚持原创技术分享，您的支持将鼓励我继续创作！
+wechatpay: /images/money/wechatpay.jpg
+alipay: /images/money/alipay.jpg
 #bitcoin: /images/bitcoin.png
 
 # Declare license on posts
@@ -374,12 +374,12 @@ changyan:
 # You can get your appid and appkey from https://leancloud.cn
 # more info please open https://github.com/xCss/Valine
 valine:
-  enable: false
-  appid:  # your leancloud application appid
-  appkey:  # your leancloud application appkey
-  notify: false # mail notifier , https://github.com/xCss/Valine/wiki
-  verify: false # Verification code
-  placeholder: Comment input placeholder
+  enable: true
+  appid:  GdWobeifa1Cr5zJubUFLGuA9-gzGzoHsz
+  appkey:  zkFt8YflR67GWT6cIhKF0tVH
+  notify: true # mail notifier , https://github.com/xCss/Valine/wiki
+  verify: true # Verification code
+  placeholder: 欢迎评论
 
 # Support for youyan comments system.
 # You can get your uid from http://www.uyan.cc
