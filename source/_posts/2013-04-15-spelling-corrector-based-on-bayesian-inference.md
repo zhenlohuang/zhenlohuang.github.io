@@ -179,7 +179,7 @@ if __name__ == '__main__':
     read_words()
     print sys.argv[1], '->', correct(sys.argv[1])
 ```
-**完整代码可以参见github：**<https://github.com/kevinxhuang/spelling_corrector>
+**完整代码可以参见github：**<https://github.com/zhenlohuang/spelling_corrector>
 
 不足之处    
 拼写检查的精度很大程度依赖所使用的语料库，而且本文仅仅只是抛砖引玉，只考虑编辑距离为1的单词的情况。许多情况下单词的拼写错误不只一处。

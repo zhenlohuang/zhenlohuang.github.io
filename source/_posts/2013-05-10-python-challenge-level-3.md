@@ -1285,4 +1285,4 @@ print ''.join(res)
 ```
 
 # 完整代码：
-Github：<https://github.com/kevinxhuang/python-challenge>
+Github：<https://github.com/zhenlohuang/python-challenge>

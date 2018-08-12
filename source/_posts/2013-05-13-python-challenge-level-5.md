@@ -54,4 +54,4 @@ if __name__ == '__main__':
         print line
 ```
 # 完整代码：
-Github：<https://github.com/kevinxhuang/python-challenge>
+Github：<https://github.com/zhenlohuang/python-challenge>

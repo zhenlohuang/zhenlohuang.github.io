@@ -65,7 +65,7 @@ hash函数的选择对性能影响比较大，一个优秀的hash函数应该做
 Bloom Filter跟HashMap不同之处在于：Bloom Filter使用了k个哈希函数，每个字符串跟k个bit对应，从而降低了冲突的概率。
 
 # Bloom Filter代码实现
-GitHub: <https://github.com/kevinxhuang/BloomFilter">https://github.com/kevinxhuang/BloomFilter>
+GitHub: <https://github.com/zhenlohuang/BloomFilter">https://github.com/zhenlohuang/BloomFilter>
 
 # 参考资料
 布隆过滤器: <http://zh.wikipedia.org/wiki/%E5%B8%83%E9%9A%86%E8%BF%87%E6%BB%A4%E5%99%A8">
