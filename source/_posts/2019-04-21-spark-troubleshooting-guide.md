@@ -33,7 +33,7 @@ date: 2019-04-21 20:41:15
 关于这个问题有单独的一篇文章进行分析，详见：[Spark Troubleshooting - Task not serializable问题分析](http://www.yidooo.net/2018/08/19/spark-task-not-serializable-analysis.html)
 
 ## java.io.IOException: No space left on device错误
-具体stacktrace如下：
+具体stack trace如下：
 ```
 stage 89.3 failed 4 times, most recent failure:
 Lost task 38.4 in stage 89.3 (TID 30100, rhel4.cisco.com): java.io.IOException: No space left on device
@@ -55,6 +55,25 @@ It can also be a comma-separated list of multiple directories on different disks
 * 默认是1g
 * 可以设置为0或者unlimited
 * 如果设置成unlimited就不会再遇到这个错误，取而代之的是OOM。
+
+## java.lang.IllegalArgumentException: Size exceeds Integer.MAX_VALUE
+具体stack trace如下：
+```
+java.lang.IllegalArgumentException: Size exceeds Integer.MAX_VALUE
+at sun.nio.ch.FileChannelImpl.map(FileChannelImpl.java:828) at
+org.apache.spark.storage.DiskStore.getBytes(DiskStore.scala:123) at
+org.apache.spark.storage.DiskStore.getBytes(DiskStore.scala:132) at
+org.apache.spark.storage.BlockManager.doGetLocal(BlockManager.scala:51 7) at
+org.apache.spark.storage.BlockManager.getLocal(BlockManager.scala:432) at
+org.apache.spark.storage.BlockManager.get(BlockManager.scala:618) at
+org.apache.spark.CacheManager.putInBlockManager(CacheManager.scala:146 ) at
+org.apache.spark.CacheManager.getOrCompute(CacheManager.scala:70)
+```
+这个问题是由于shuffle block大于2GB导致的，这个是Spark实现上的一个问题。Spark使用ByteBuffer作为storing blocks。
+``` java
+val buf = ByteBuffer.allocate(length.toInt) * ByteBufferislimitedbyInteger.MAX_SIZE
+```
+这就是2GB的由来。
 
 # 参考资料
 * http://spark.apache.org/docs/latest/configuration.html
