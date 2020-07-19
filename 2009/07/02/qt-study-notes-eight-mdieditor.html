@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Qt, C++" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="这个程序由于期末考试搁置很久了，下午由于下大雨没出去，就把他完成了哈…..主要实现多文档编辑功能，测试了下，基本上没有bug，由于整体设计思路参考书上的，大牛们不要BS我阿….. 等下次有时间将他改成简易的代码编辑器好了，貌似国外网站上有相关模块，有时间去看看。。。。  程序部分代码如下： editor.h 123456789101112131415161718192021222324252627">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QT学习笔记之八 MDIEditor">
+<meta property="og:url" content="http://www.yidooo.net/2009/07/02/qt-study-notes-eight-mdieditor.html">
+<meta property="og:site_name" content="异度部落格">
+<meta property="og:description" content="这个程序由于期末考试搁置很久了，下午由于下大雨没出去，就把他完成了哈…..主要实现多文档编辑功能，测试了下，基本上没有bug，由于整体设计思路参考书上的，大牛们不要BS我阿….. 等下次有时间将他改成简易的代码编辑器好了，貌似国外网站上有相关模块，有时间去看看。。。。  程序部分代码如下： editor.h 123456789101112131415161718192021222324252627">
+<meta property="og:image" content="http://download.csdn.net/source/1458294">
+<meta property="article:published_time" content="2009-07-01T16:00:00.000Z">
+<meta property="article:modified_time" content="2020-07-19T08:02:00.901Z">
+<meta property="article:author" content="核动力蜗牛">
+<meta property="article:tag" content="Qt">
+<meta property="article:tag" content=" C++">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://download.csdn.net/source/1458294">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.yidooo.net/2009/07/02/qt-study-notes-eight-mdieditor.html"/>
+
+
+
+
+
+  <title>QT学习笔记之八 MDIEditor | 异度部落格</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?7935dce3b8c7c4adacbbff4e2533811b";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">异度部落格</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">学习是一种生活态度。</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于我
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.yidooo.net/2009/07/02/qt-study-notes-eight-mdieditor.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="核动力蜗牛">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://en.gravatar.com/userimage/132614578/1525cb3f68df290f2720631caf872dff.jpg?size=200">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="异度部落格">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">QT学习笔记之八 MDIEditor</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2009-07-02T00:00:00+08:00">
+                2009-07-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Programming/" itemprop="url" rel="index">
+                    <span itemprop="name">Programming</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Programming/C/" itemprop="url" rel="index">
+                    <span itemprop="name">C++</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>这个程序由于期末考试搁置很久了，下午由于下大雨没出去，就把他完成了哈…..主要实现多文档编辑功能，测试了下，基本上没有bug，由于整体设计思路参考书上的，大牛们不要BS我阿…..</p>
+<p>等下次有时间将他改成简易的代码编辑器好了，貌似国外网站上有相关模块，有时间去看看。。。。</p>
+<hr>
+<p>程序部分代码如下：</p>
+<p><strong>editor.h</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> EDITOR_H</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> EDITOR_H</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;QTextEdit&gt;</span></span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Editor</span> :</span> <span class="keyword">public</span> QTextEdit</span><br><span class="line">&#123;</span><br><span class="line">    Q_OBJECT</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    Editor(QWidget *parent=<span class="number">0</span>);</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">newFile</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">save</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">saveAs</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function">QSize <span class="title">sizeHint</span><span class="params">()</span> <span class="keyword">const</span></span>;</span><br><span class="line">    <span class="function">QAction *<span class="title">windowMenuAction</span><span class="params">()</span> <span class="keyword">const</span> </span>&#123; <span class="keyword">return</span> action ;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> Editor *<span class="title">open</span><span class="params">(QWidget *parent = <span class="number">0</span>)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> Editor *<span class="title">openFile</span><span class="params">(<span class="keyword">const</span> QString &amp;fileName,QWidget *parent = <span class="number">0</span>)</span></span>;</span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">closeEvent</span><span class="params">(QCloseEvent *event)</span></span>;</span><br><span class="line"><span class="keyword">private</span> slots:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">documentWasModified</span><span class="params">()</span></span>;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">okToContinue</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">saveFile</span><span class="params">(<span class="keyword">const</span> QString &amp;fileName)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">setCurrentFile</span><span class="params">(<span class="keyword">const</span> QString &amp;fileName)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">readFile</span><span class="params">(<span class="keyword">const</span> QString &amp;fileName)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">writeFile</span><span class="params">(<span class="keyword">const</span> QString &amp;fileName)</span></span>;</span><br><span class="line">    <span class="function">QString <span class="title">strippedName</span><span class="params">(<span class="keyword">const</span> QString &amp;fullFileName)</span></span>;</span><br><span class="line">    QString curFile;</span><br><span class="line">    <span class="keyword">bool</span> isUntitled;</span><br><span class="line">    QAction *action;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span> <span class="comment">// EDITOR_H</span></span></span><br></pre></td></tr></table></figure>
+<p><strong>editor.cpp</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;QtGui&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"editor.h"</span></span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  构造函数</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">Editor::Editor(QWidget *parent) :QTextEdit(parent)</span><br><span class="line">&#123;</span><br><span class="line">    action = <span class="keyword">new</span> QAction(<span class="keyword">this</span>);</span><br><span class="line">    action-&gt;setCheckable(<span class="literal">true</span>);</span><br><span class="line">    connect(action,SIGNAL(triggered()),<span class="keyword">this</span>,SLOT(show()));</span><br><span class="line">    connect(action,SIGNAL(triggered()),<span class="keyword">this</span>,SLOT(setFocus()));</span><br><span class="line">    isUntitled = <span class="literal">true</span>;</span><br><span class="line">    connect(document(),SIGNAL(contentsChanged()),<span class="keyword">this</span>,SLOT(documentWasModified()));</span><br><span class="line">    setWindowIcon(QPixmap(<span class="string">":/images/document.png"</span>));</span><br><span class="line">    setWindowTitle(<span class="string">"[*]"</span>);</span><br><span class="line">    setAttribute(Qt::WA_DeleteOnClose);  <span class="comment">//Makes Qt delete this widget when the widget has accepted the close event</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  新建文件</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Editor::newFile</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">int</span> documentNumber = <span class="number">1</span>;</span><br><span class="line">    curFile = tr(<span class="string">"document%1.txt"</span>).arg(documentNumber);</span><br><span class="line">    setWindowTitle(curFile + <span class="string">"[*]"</span>);</span><br><span class="line">    action-&gt;setText(curFile);</span><br><span class="line">    isUntitled= <span class="literal">true</span>;</span><br><span class="line">    ++documentNumber;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  保存</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">Editor::save</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(isUntitled) &#123;</span><br><span class="line">        <span class="keyword">return</span> saveAs();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> saveFile(curFile);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  另存为</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">Editor::saveAs</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    QString fileName = QFileDialog::getSaveFileName(<span class="keyword">this</span>,tr(<span class="string">"Save As"</span>),curFile);</span><br><span class="line">    <span class="keyword">if</span>(fileName.isEmpty())</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">return</span> saveFile(fileName);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  大小调整</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function">QSize <span class="title">Editor::sizeHint</span><span class="params">()</span> <span class="keyword">const</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> QSize(<span class="number">72</span> * fontMetrics().width(<span class="string">'x'</span>),<span class="number">25</span>* fontMetrics().lineSpacing());  <span class="comment">//Returns the font metrics for the widget's current font</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  打开</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function">Editor *<span class="title">Editor::open</span><span class="params">(QWidget *parent)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    QString fileName = QFileDialog::getOpenFileName(parent,tr(<span class="string">"Open"</span>),<span class="string">"."</span>);</span><br><span class="line">    <span class="keyword">if</span>(fileName.isEmpty())</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">return</span> openFile(fileName,parent);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  打开文件</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function">Editor *<span class="title">Editor::openFile</span><span class="params">(<span class="keyword">const</span> QString &amp;fileName,QWidget *parent)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Editor *editor = <span class="keyword">new</span> Editor(parent);</span><br><span class="line">    <span class="keyword">if</span>(editor-&gt;readFile(fileName)) &#123;</span><br><span class="line">        editor-&gt;setCurrentFile(fileName);</span><br><span class="line">        <span class="keyword">return</span> editor;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">delete</span> editor;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  关闭事件</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Editor::closeEvent</span><span class="params">(QCloseEvent *event)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(okToContinue()) &#123;</span><br><span class="line">        event-&gt;accept();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        event-&gt;ignore();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  文件已被修改</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Editor::documentWasModified</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    setWindowModified(<span class="literal">true</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  是否可以继续</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">Editor::okToContinue</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(document()-&gt;isModified()) &#123;</span><br><span class="line">        <span class="keyword">int</span> r=QMessageBox::warning(<span class="keyword">this</span>,tr(<span class="string">"MDI Editor"</span>),</span><br><span class="line">                                   tr(<span class="string">"File %1 has been modified./n"</span>).arg(strippedName(curFile),</span><br><span class="line">                                   QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel));</span><br><span class="line">        <span class="keyword">if</span>(r == QMessageBox::Yes) &#123;</span><br><span class="line">            save();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (r == QMessageBox::Cancel) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  文件保存</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">Editor::saveFile</span><span class="params">(<span class="keyword">const</span> QString &amp;fileName)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (writeFile(fileName)) &#123;</span><br><span class="line">        setCurrentFile(fileName);</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  设置为当前文件</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Editor::setCurrentFile</span><span class="params">(<span class="keyword">const</span> QString &amp;fileName)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    curFile = fileName;</span><br><span class="line">    isUntitled = <span class="literal">false</span>;</span><br><span class="line">    action-&gt;setText(strippedName(curFile));</span><br><span class="line">    document()-&gt;setModified(<span class="literal">false</span>);</span><br><span class="line">    setWindowTitle(strippedName(curFile)+ <span class="string">"[*]"</span>);</span><br><span class="line">    setWindowModified(<span class="literal">false</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  读取文件</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">Editor::readFile</span><span class="params">(<span class="keyword">const</span> QString &amp;fileName)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="function">QFile <span class="title">file</span><span class="params">(fileName)</span></span>;</span><br><span class="line">    <span class="keyword">if</span>(!file.open(QIODevice::ReadOnly | QIODevice::Text)) &#123;   <span class="comment">//设置文件读取模式</span></span><br><span class="line">        QMessageBox::warning(<span class="keyword">this</span>,tr(<span class="string">"MDI Editor"</span>),tr(<span class="string">"Cannot read file %1:/n%2."</span>).</span><br><span class="line">                             arg(file.fileName()).arg(file.errorString()));</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function">QTextStream <span class="title">in</span><span class="params">(&amp;file)</span></span>;</span><br><span class="line">    QApplication::setOverrideCursor(Qt::WaitCursor);  <span class="comment">//设置鼠标</span></span><br><span class="line">    setPlainText(in.readAll());</span><br><span class="line">    QApplication::restoreOverrideCursor();</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  文件写入</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">Editor::writeFile</span><span class="params">(<span class="keyword">const</span> QString &amp;fileName)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="function">QFile <span class="title">file</span><span class="params">(fileName)</span></span>;</span><br><span class="line">    <span class="keyword">if</span>(!file.open(QIODevice::WriteOnly | QIODevice::Text)) &#123;</span><br><span class="line">        QMessageBox::warning(<span class="keyword">this</span>,tr(<span class="string">"MDI Editor"</span>),</span><br><span class="line">                             tr(<span class="string">"Cannot write file %1:/n%2"</span>).arg(file.fileName()).arg(file.errorString()));</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function">QTextStream <span class="title">out</span><span class="params">(&amp;file)</span></span>;</span><br><span class="line">    QApplication::setOverrideCursor(Qt::WaitCursor);</span><br><span class="line">    out&lt;&lt;toPlainText()</span><br><span class="line">            ;</span><br><span class="line">    QApplication::restoreOverrideCursor();</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">QString <span class="title">Editor::strippedName</span><span class="params">(<span class="keyword">const</span> QString &amp;fullFileName)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> QFileInfo(fullFileName).fileName();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><em>mainwindow.h</em></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> MAINWINDOW_H</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAINWINDOW_H</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;QtGui/QMainWindow&gt;</span></span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">QAction</span>;</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">QActionGroup</span>;</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">QLabel</span>;</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">QMdiArea</span>;</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">QMenu</span>;</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">QToolBar</span>;</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Editor</span>;</span></span><br><span class="line"><span class="keyword">namespace</span> Ui</span><br><span class="line">&#123;</span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">MainWindow</span>;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MainWindow</span> :</span> <span class="keyword">public</span> QMainWindow</span><br><span class="line">&#123;</span><br><span class="line">    Q_OBJECT</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    MainWindow(QWidget *parent = <span class="number">0</span>);</span><br><span class="line">    ~MainWindow();</span><br><span class="line"><span class="keyword">public</span> slots:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">newFile</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">openFile</span><span class="params">(<span class="keyword">const</span> QString &amp;fileName)</span></span>;</span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">closeEvent</span><span class="params">(QCloseEvent *event)</span></span>;</span><br><span class="line"><span class="keyword">private</span> slots:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">open</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">save</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">saveAs</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">cut</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">copy</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">paste</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">about</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">updateActions</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">loadFiles</span><span class="params">()</span></span>;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    Ui::MainWindow *ui;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">createActions</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">createMenus</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">createToolBars</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">createStatusBar</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">addEditor</span><span class="params">(Editor *editor)</span></span>;</span><br><span class="line">    <span class="function">Editor *<span class="title">activeEditor</span><span class="params">()</span></span>;</span><br><span class="line">    QMdiArea *mdiArea;    <span class="comment">//The QMdiArea widget provides an area in which MDI windows are displayed</span></span><br><span class="line">    QLabel *readyLabel;</span><br><span class="line">    QWidgetList windows;</span><br><span class="line">    <span class="comment">//Menu</span></span><br><span class="line">    QMenu *fileMenu;</span><br><span class="line">    QMenu *editMenu;</span><br><span class="line">    QMenu *windowMenu;</span><br><span class="line">    QMenu *helpMenu;</span><br><span class="line">    <span class="comment">//ToolBar</span></span><br><span class="line">    QToolBar *fileToolBar;</span><br><span class="line">    QToolBar *editToolBar;</span><br><span class="line">    <span class="comment">//Actions</span></span><br><span class="line">    QActionGroup *windowActionGroup;</span><br><span class="line">    QAction *newAction;</span><br><span class="line">    QAction *openAction;</span><br><span class="line">    QAction *saveAction;</span><br><span class="line">    QAction *saveAsAction;</span><br><span class="line">    QAction *exitAction;</span><br><span class="line">    QAction *cutAction;</span><br><span class="line">    QAction *copyAction;</span><br><span class="line">    QAction *pasteAction;</span><br><span class="line">    QAction *closeAction;</span><br><span class="line">    QAction *closeAllAction;</span><br><span class="line">    QAction *tileAction;</span><br><span class="line">    QAction *cascadeAction;</span><br><span class="line">    QAction *nextAction;</span><br><span class="line">    QAction *previousAction;</span><br><span class="line">    QAction *separatorAction;</span><br><span class="line">    QAction *aboutAction;</span><br><span class="line">    QAction *aboutQtAction;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span> <span class="comment">// MAINWINDOW_H</span></span></span><br></pre></td></tr></table></figure>
+<p><strong>mainwindos.cpp</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;QtGui&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"mainwindow.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"ui_mainwindow.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"editor.h"</span></span></span><br><span class="line">MainWindow::MainWindow(QWidget *parent)</span><br><span class="line">    : QMainWindow(parent), ui(<span class="keyword">new</span> Ui::MainWindow)</span><br><span class="line">&#123;</span><br><span class="line">    ui-&gt;setupUi(<span class="keyword">this</span>);</span><br><span class="line">    mdiArea = <span class="keyword">new</span> QMdiArea;</span><br><span class="line">    setCentralWidget(mdiArea);</span><br><span class="line">    connect(mdiArea, SIGNAL(subWindowActivated(QMdiSubWindow*)),<span class="keyword">this</span>, SLOT(updateActions()));</span><br><span class="line">    createActions();</span><br><span class="line">    createMenus();</span><br><span class="line">    createToolBars();</span><br><span class="line">    createStatusBar();</span><br><span class="line">    setWindowIcon(QPixmap(<span class="string">":/images/icon.png"</span>));</span><br><span class="line">    setWindowTitle(<span class="string">"Killua MDI Editor"</span>);</span><br><span class="line">    QTimer::singleShot(<span class="number">0</span>,<span class="keyword">this</span>,SLOT(loadFiles()));</span><br><span class="line">&#125;</span><br><span class="line">MainWindow::~MainWindow()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">delete</span> ui;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">   文件读取</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">MainWindow::loadFiles</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    QStringList args = QApplication::arguments();</span><br><span class="line">    args.removeFirst();</span><br><span class="line">    <span class="keyword">if</span> (!args.isEmpty()) &#123;</span><br><span class="line">        foreach(QString arg,args)</span><br><span class="line">            openFile(arg);</span><br><span class="line">        mdiArea-&gt;cascadeSubWindows();</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        newFile();</span><br><span class="line">    &#125;</span><br><span class="line">    mdiArea-&gt;activateNextSubWindow();</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  新建文件</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">MainWindow::newFile</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Editor *editor = <span class="keyword">new</span> Editor;</span><br><span class="line">    editor-&gt;newFile();</span><br><span class="line">    addEditor(editor);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  打开文件</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">MainWindow::openFile</span><span class="params">(<span class="keyword">const</span> QString &amp;fileName)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Editor *editor = Editor::openFile(fileName,<span class="keyword">this</span>);</span><br><span class="line">    <span class="keyword">if</span>(editor)</span><br><span class="line">        addEditor(editor);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  关闭事件</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">MainWindow::closeEvent</span><span class="params">(QCloseEvent *event)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    mdiArea-&gt;closeAllSubWindows();</span><br><span class="line">    <span class="keyword">if</span>(!mdiArea-&gt;subWindowList().isEmpty()) &#123;</span><br><span class="line">        event-&gt;ignore();</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        event-&gt;accept();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  打开操作</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">MainWindow::open</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Editor *editor = Editor::open(<span class="keyword">this</span>);</span><br><span class="line">    <span class="keyword">if</span>(editor)</span><br><span class="line">        addEditor(editor);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  保存文件</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">MainWindow::save</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(activeEditor())</span><br><span class="line">        activeEditor()-&gt;save();</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  文件另存为</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">MainWindow::saveAs</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (activeEditor())</span><br><span class="line">        activeEditor()-&gt;saveAs();</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  剪切</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">MainWindow::cut</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(activeEditor())</span><br><span class="line">        activeEditor()-&gt;cut();</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  复制</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">MainWindow::copy</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(activeEditor())</span><br><span class="line">        activeEditor()-&gt;copy();</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  粘贴</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">MainWindow::paste</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(activeEditor())</span><br><span class="line">        activeEditor()-&gt;paste();</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  关于</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">MainWindow::about</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    QMessageBox::about(<span class="keyword">this</span>,tr(<span class="string">"About Killua MDI Editor"</span>),</span><br><span class="line">                       tr(<span class="string">"Design by Killua"</span>));</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  事件更新</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">MainWindow::updateActions</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">bool</span> hasEditor = (activeEditor()!=<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">bool</span> hasSelection = activeEditor() &amp;&amp; activeEditor()-&gt;textCursor().hasSelection();</span><br><span class="line">    saveAction-&gt;setEnabled(hasEditor);</span><br><span class="line">    saveAsAction-&gt;setEnabled(hasEditor);</span><br><span class="line">    cutAction-&gt;setEnabled(hasSelection);</span><br><span class="line">    copyAction-&gt;setEnabled(hasSelection);</span><br><span class="line">    pasteAction-&gt;setEnabled(hasEditor);</span><br><span class="line">    closeAction-&gt;setEnabled(hasEditor);</span><br><span class="line">    closeAllAction-&gt;setEnabled(hasEditor);</span><br><span class="line">    tileAction-&gt;setEnabled(hasEditor);</span><br><span class="line">    cascadeAction-&gt;setEnabled(hasEditor);</span><br><span class="line">    nextAction-&gt;setEnabled(hasEditor);</span><br><span class="line">    previousAction-&gt;setEnabled(hasEditor);</span><br><span class="line">    separatorAction-&gt;setEnabled(hasEditor);</span><br><span class="line">    <span class="keyword">if</span>(activeEditor())</span><br><span class="line">        activeEditor()-&gt;windowMenuAction()-&gt;setChecked(<span class="literal">true</span>);  <span class="comment">//菜单栏可点击</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  事件创建</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">MainWindow::createActions</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//newAction</span></span><br><span class="line">    newAction = <span class="keyword">new</span> QAction(tr(<span class="string">"&amp;New"</span>), <span class="keyword">this</span>);</span><br><span class="line">    newAction-&gt;setIcon(QIcon(<span class="string">":/images/new.png"</span>));</span><br><span class="line">    newAction-&gt;setShortcut(QKeySequence::New);</span><br><span class="line">    connect(newAction, SIGNAL(triggered()), <span class="keyword">this</span>, SLOT(newFile()));</span><br><span class="line">    <span class="comment">//openAction</span></span><br><span class="line">    openAction = <span class="keyword">new</span> QAction(tr(<span class="string">"&amp;Open..."</span>), <span class="keyword">this</span>);</span><br><span class="line">    openAction-&gt;setIcon(QIcon(<span class="string">":/images/open.png"</span>));</span><br><span class="line">    openAction-&gt;setShortcut(QKeySequence::Open);</span><br><span class="line">    connect(openAction, SIGNAL(triggered()), <span class="keyword">this</span>, SLOT(open()));</span><br><span class="line">    <span class="comment">//saveAction</span></span><br><span class="line">    saveAction = <span class="keyword">new</span> QAction(tr(<span class="string">"&amp;Save"</span>), <span class="keyword">this</span>);</span><br><span class="line">    saveAction-&gt;setIcon(QIcon(<span class="string">":/images/save.png"</span>));</span><br><span class="line">    saveAction-&gt;setShortcut(QKeySequence::Save);</span><br><span class="line">    connect(saveAction, SIGNAL(triggered()), <span class="keyword">this</span>, SLOT(save()));</span><br><span class="line">    <span class="comment">//saveAsAction</span></span><br><span class="line">    saveAsAction = <span class="keyword">new</span> QAction(tr(<span class="string">"Save &amp;As..."</span>), <span class="keyword">this</span>);</span><br><span class="line">    connect(saveAsAction, SIGNAL(triggered()), <span class="keyword">this</span>, SLOT(saveAs()));</span><br><span class="line">    <span class="comment">//exitAction</span></span><br><span class="line">    exitAction = <span class="keyword">new</span> QAction(tr(<span class="string">"E&amp;xit"</span>), <span class="keyword">this</span>);</span><br><span class="line">    exitAction-&gt;setShortcut(tr(<span class="string">"Ctrl+Q"</span>));</span><br><span class="line">    connect(exitAction, SIGNAL(triggered()), <span class="keyword">this</span>, SLOT(close()));</span><br><span class="line">    <span class="comment">//cutAction</span></span><br><span class="line">    cutAction = <span class="keyword">new</span> QAction(tr(<span class="string">"Cu&amp;t"</span>), <span class="keyword">this</span>);</span><br><span class="line">    cutAction-&gt;setIcon(QIcon(<span class="string">":/images/cut.png"</span>));</span><br><span class="line">    cutAction-&gt;setShortcut(QKeySequence::Cut);</span><br><span class="line">    connect(cutAction, SIGNAL(triggered()), <span class="keyword">this</span>, SLOT(cut()));</span><br><span class="line">    <span class="comment">//copyAction</span></span><br><span class="line">    copyAction = <span class="keyword">new</span> QAction(tr(<span class="string">"&amp;Copy"</span>), <span class="keyword">this</span>);</span><br><span class="line">    copyAction-&gt;setIcon(QIcon(<span class="string">":/images/copy.png"</span>));</span><br><span class="line">    copyAction-&gt;setShortcut(QKeySequence::Copy);</span><br><span class="line">    connect(copyAction, SIGNAL(triggered()), <span class="keyword">this</span>, SLOT(copy()));</span><br><span class="line">    <span class="comment">//pasteAction</span></span><br><span class="line">    pasteAction = <span class="keyword">new</span> QAction(tr(<span class="string">"&amp;Paste"</span>), <span class="keyword">this</span>);</span><br><span class="line">    pasteAction-&gt;setIcon(QIcon(<span class="string">":/images/paste.png"</span>));</span><br><span class="line">    pasteAction-&gt;setShortcut(QKeySequence::Paste);</span><br><span class="line">    connect(pasteAction, SIGNAL(triggered()), <span class="keyword">this</span>, SLOT(paste()));</span><br><span class="line">    <span class="comment">//closeAction</span></span><br><span class="line">    closeAction = <span class="keyword">new</span> QAction(tr(<span class="string">"Cl&amp;ose"</span>), <span class="keyword">this</span>);</span><br><span class="line">    closeAction-&gt;setShortcut(QKeySequence::Close);</span><br><span class="line">    connect(closeAction, SIGNAL(triggered()),mdiArea, SLOT(closeActiveSubWindow()));</span><br><span class="line">    <span class="comment">//closeAllAction</span></span><br><span class="line">    closeAllAction = <span class="keyword">new</span> QAction(tr(<span class="string">"Close &amp;All"</span>), <span class="keyword">this</span>);</span><br><span class="line">    connect(closeAllAction, SIGNAL(triggered()), <span class="keyword">this</span>, SLOT(close()));</span><br><span class="line">    <span class="comment">//tileAction</span></span><br><span class="line">    tileAction = <span class="keyword">new</span> QAction(tr(<span class="string">"&amp;Tile"</span>), <span class="keyword">this</span>);</span><br><span class="line">    connect(tileAction, SIGNAL(triggered()),mdiArea, SLOT(tileSubWindows()));</span><br><span class="line">    <span class="comment">//cacadeAction</span></span><br><span class="line">    cascadeAction = <span class="keyword">new</span> QAction(tr(<span class="string">"&amp;Cascade"</span>), <span class="keyword">this</span>);</span><br><span class="line">    connect(cascadeAction, SIGNAL(triggered()),mdiArea, SLOT(cascadeSubWindows()));</span><br><span class="line">    <span class="comment">//newAction</span></span><br><span class="line">    nextAction = <span class="keyword">new</span> QAction(tr(<span class="string">"Ne&amp;xt"</span>), <span class="keyword">this</span>);</span><br><span class="line">    nextAction-&gt;setShortcut(QKeySequence::NextChild);</span><br><span class="line">    connect(nextAction, SIGNAL(triggered()),mdiArea, SLOT(activateNextSubWindow()));</span><br><span class="line">    <span class="comment">//previousAction</span></span><br><span class="line">    previousAction = <span class="keyword">new</span> QAction(tr(<span class="string">"Pre&amp;vious"</span>), <span class="keyword">this</span>);</span><br><span class="line">    previousAction-&gt;setShortcut(QKeySequence::PreviousChild);</span><br><span class="line">    connect(previousAction, SIGNAL(triggered()),mdiArea, SLOT(activatePreviousSubWindow()));</span><br><span class="line">    <span class="comment">//separatorAction</span></span><br><span class="line">    separatorAction = <span class="keyword">new</span> QAction(<span class="keyword">this</span>);</span><br><span class="line">    separatorAction-&gt;setSeparator(<span class="literal">true</span>);</span><br><span class="line">    <span class="comment">//aboutAction</span></span><br><span class="line">    aboutAction = <span class="keyword">new</span> QAction(tr(<span class="string">"&amp;About"</span>), <span class="keyword">this</span>);</span><br><span class="line">    aboutAction-&gt;setStatusTip(tr(<span class="string">"Show the application's About box"</span>));</span><br><span class="line">    connect(aboutAction, SIGNAL(triggered()), <span class="keyword">this</span>, SLOT(about()));</span><br><span class="line">    <span class="comment">//aboutQtAction</span></span><br><span class="line">    aboutQtAction = <span class="keyword">new</span> QAction(tr(<span class="string">"About &amp;Qt"</span>), <span class="keyword">this</span>);</span><br><span class="line">    connect(aboutQtAction, SIGNAL(triggered()), qApp, SLOT(aboutQt()));</span><br><span class="line">    windowActionGroup = <span class="keyword">new</span> QActionGroup(<span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  菜单栏创建</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">MainWindow::createMenus</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//fileMenu</span></span><br><span class="line">    fileMenu = menuBar()-&gt;addMenu(<span class="string">"&amp;File"</span>);</span><br><span class="line">    fileMenu-&gt;addAction(newAction);</span><br><span class="line">    fileMenu-&gt;addAction(openAction);</span><br><span class="line">    fileMenu-&gt;addAction(saveAction);</span><br><span class="line">    fileMenu-&gt;addAction(saveAsAction);</span><br><span class="line">    fileMenu-&gt;addSeparator();</span><br><span class="line">    fileMenu-&gt;addAction(exitAction);</span><br><span class="line">    <span class="comment">//editMenu</span></span><br><span class="line">    editMenu = menuBar()-&gt;addMenu(tr(<span class="string">"&amp;Edit"</span>));</span><br><span class="line">    editMenu-&gt;addAction(cutAction);</span><br><span class="line">    editMenu-&gt;addAction(copyAction);</span><br><span class="line">    editMenu-&gt;addAction(pasteAction);</span><br><span class="line">    windowMenu=menuBar()-&gt;addMenu(tr(<span class="string">"&amp;Windos"</span>));</span><br><span class="line">    windowMenu-&gt;addAction(closeAction);</span><br><span class="line">    windowMenu-&gt;addAction(closeAllAction);</span><br><span class="line">    windowMenu-&gt;addSeparator();</span><br><span class="line">    windowMenu-&gt;addAction(tileAction);</span><br><span class="line">    windowMenu-&gt;addAction(cascadeAction);</span><br><span class="line">    windowMenu-&gt;addSeparator();</span><br><span class="line">    windowMenu-&gt;addAction(nextAction);</span><br><span class="line">    windowMenu-&gt;addAction(previousAction);</span><br><span class="line">    windowMenu-&gt;addAction(separatorAction);</span><br><span class="line">    menuBar()-&gt;addSeparator();</span><br><span class="line">    helpMenu = menuBar()-&gt;addMenu(tr(<span class="string">"&amp;Help"</span>));</span><br><span class="line">    helpMenu-&gt;addAction(aboutAction);</span><br><span class="line">    helpMenu-&gt;addAction(aboutQtAction);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  创建工具栏</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">MainWindow::createToolBars</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    fileToolBar = addToolBar(tr(<span class="string">"FIle"</span>));</span><br><span class="line">    fileToolBar-&gt;addAction(newAction);</span><br><span class="line">    fileToolBar-&gt;addAction(openAction);</span><br><span class="line">    fileToolBar-&gt;addAction(saveAction);</span><br><span class="line">    editToolBar = addToolBar(tr(<span class="string">"Edit"</span>));</span><br><span class="line">    editToolBar-&gt;addAction(cutAction);</span><br><span class="line">    editToolBar-&gt;addAction(copyAction);</span><br><span class="line">    editToolBar-&gt;addAction(pasteAction);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  创建状态栏</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">MainWindow::createStatusBar</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    readyLabel = <span class="keyword">new</span> QLabel(tr(<span class="string">"Ready"</span>));</span><br><span class="line">    statusBar()-&gt;addWidget(readyLabel,<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  添加Editor</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">MainWindow::addEditor</span><span class="params">(Editor *editor)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    connect(editor,SIGNAL(copyAvailable(<span class="keyword">bool</span>)),cutAction,SLOT(setEnabled(<span class="keyword">bool</span>)));</span><br><span class="line">    connect(editor,SIGNAL(copyAvailable(<span class="keyword">bool</span>)),copyAction,SLOT(setEnabled(<span class="keyword">bool</span>)));</span><br><span class="line">    QMdiSubWindow *subWindow = mdiArea-&gt;addSubWindow(editor);</span><br><span class="line">    windowMenu-&gt;addAction(editor-&gt;windowMenuAction());</span><br><span class="line">    subWindow-&gt;show();</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  激活窗口</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line"><span class="function">Editor *<span class="title">MainWindow::activeEditor</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    QMdiSubWindow *subWindow = mdiArea-&gt;activeSubWindow();</span><br><span class="line">    <span class="keyword">if</span>(subWindow)</span><br><span class="line">        <span class="keyword">return</span> qobject_cast&lt;Editor *&gt;(subWindow-&gt;widget());</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><em>PS:完整源代码放到资源里面了，附上链接……</em></p>
+<p><img src="http://download.csdn.net/source/1458294" alt="http://download.csdn.net/source/1458294"></p>
+<hr>
+<p>放假了…无聊中….</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/money/wechatpay.jpg" alt="核动力蜗牛 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/money/alipay.jpg" alt="核动力蜗牛 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Qt/" rel="tag"># Qt</a>
+          
+            <a href="/tags/C/" rel="tag"># C++</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2009/06/11/of-scim-ibus-fcitx-i-could-not-help-but-have-something-to-say-.html" rel="next" title="scim，ibus，fcitx我忍不住有话要说......">
+                <i class="fa fa-chevron-left"></i> scim，ibus，fcitx我忍不住有话要说......
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2009/07/03/qt-study-notes-the-nine-splitereditor.html" rel="prev" title="QT学习笔记之九 SpliterEditor">
+                QT学习笔记之九 SpliterEditor <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  
+    <div class="comments" id="comments">
+      <div id="vcomments"></div>
+    </div>
+  
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://en.gravatar.com/userimage/132614578/1525cb3f68df290f2720631caf872dff.jpg?size=200"
+                alt="核动力蜗牛" />
+            
+              <p class="site-author-name" itemprop="name">核动力蜗牛</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">283</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">96</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/zhenlohuang" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:zhenlohuang@gmail.com" target="_blank" title="E-Mail">
+                    
+                      <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://twitter.com/zhenlohunag" target="_blank" title="Twitter">
+                    
+                      <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.facebook.com/zhenlohuang" target="_blank" title="FB Page">
+                    
+                      <i class="fa fa-fw fa-facebook"></i>FB Page</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://stackoverflow.com/users/2945192" target="_blank" title="StackOverflow">
+                    
+                      <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">核动力蜗牛</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine@1.1.4/dist/Valine.min.js"></script>
+  <script type="text/javascript">
+    new Valine({
+        av: AV,
+        el: '#vcomments' ,
+        verify: true,
+        notify: true,
+        app_id: 'GdWobeifa1Cr5zJubUFLGuA9-gzGzoHsz',
+        app_key: 'zkFt8YflR67GWT6cIhKF0tVH',
+        placeholder: '欢迎评论'
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

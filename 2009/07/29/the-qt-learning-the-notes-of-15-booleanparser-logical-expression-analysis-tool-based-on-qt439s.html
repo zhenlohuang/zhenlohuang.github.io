@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Qt, C++" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="貌似好久没写了，最近比较忙的说，这个主要练习Model的设计，部分代码是参考别人的，大牛们不要鄙视啊…. 源码最后附上。 部分核心代码如下： booleanmodel.h 12345678910111213141516171819202122#ifndef BOOLEANMODEL_H#define BOOLEANMODEL_H#include &lt;QAbstractItemModel&gt;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QT学习笔记之十五 BooleanParser  基于Qt4的逻辑表达式分析工具">
+<meta property="og:url" content="http://www.yidooo.net/2009/07/29/the-qt-learning-the-notes-of-15-booleanparser-logical-expression-analysis-tool-based-on-qt439s.html">
+<meta property="og:site_name" content="异度部落格">
+<meta property="og:description" content="貌似好久没写了，最近比较忙的说，这个主要练习Model的设计，部分代码是参考别人的，大牛们不要鄙视啊…. 源码最后附上。 部分核心代码如下： booleanmodel.h 12345678910111213141516171819202122#ifndef BOOLEANMODEL_H#define BOOLEANMODEL_H#include &lt;QAbstractItemModel&gt;">
+<meta property="og:image" content="http://www.yidooo.net/images/legacy/2009/07/204053983.p.png?d=20090729205238592">
+<meta property="article:published_time" content="2009-07-28T16:00:00.000Z">
+<meta property="article:modified_time" content="2020-07-19T08:02:00.904Z">
+<meta property="article:author" content="核动力蜗牛">
+<meta property="article:tag" content="Qt">
+<meta property="article:tag" content=" C++">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://www.yidooo.net/images/legacy/2009/07/204053983.p.png?d=20090729205238592">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.yidooo.net/2009/07/29/the-qt-learning-the-notes-of-15-booleanparser-logical-expression-analysis-tool-based-on-qt439s.html"/>
+
+
+
+
+
+  <title>QT学习笔记之十五 BooleanParser  基于Qt4的逻辑表达式分析工具 | 异度部落格</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?7935dce3b8c7c4adacbbff4e2533811b";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">异度部落格</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">学习是一种生活态度。</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于我
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.yidooo.net/2009/07/29/the-qt-learning-the-notes-of-15-booleanparser-logical-expression-analysis-tool-based-on-qt439s.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="核动力蜗牛">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://en.gravatar.com/userimage/132614578/1525cb3f68df290f2720631caf872dff.jpg?size=200">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="异度部落格">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">QT学习笔记之十五 BooleanParser  基于Qt4的逻辑表达式分析工具</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2009-07-29T00:00:00+08:00">
+                2009-07-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Programming/" itemprop="url" rel="index">
+                    <span itemprop="name">Programming</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Programming/C/" itemprop="url" rel="index">
+                    <span itemprop="name">C++</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>貌似好久没写了，最近比较忙的说，这个主要练习Model的设计，部分代码是参考别人的，大牛们不要鄙视啊….</p>
+<p>源码最后附上。</p>
+<p>部分核心代码如下：</p>
+<p><strong>booleanmodel.h</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> BOOLEANMODEL_H</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BOOLEANMODEL_H</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;QAbstractItemModel&gt;</span></span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Node</span>;</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BooleanModel</span> :</span> <span class="keyword">public</span> QAbstractItemModel</span><br><span class="line">&#123;</span><br><span class="line">    Q_OBJECT</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    BooleanModel(QObject *parent = <span class="number">0</span>);</span><br><span class="line">    ~BooleanModel();</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">setRootNode</span><span class="params">(Node *node)</span></span>;</span><br><span class="line">    <span class="function">QModelIndex <span class="title">index</span><span class="params">(<span class="keyword">int</span> row, <span class="keyword">int</span> column, <span class="keyword">const</span> QModelIndex &amp;parent)</span> <span class="keyword">const</span></span>;</span><br><span class="line">    <span class="function">QModelIndex <span class="title">parent</span><span class="params">(<span class="keyword">const</span> QModelIndex &amp;child)</span> <span class="keyword">const</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">rowCount</span><span class="params">(<span class="keyword">const</span> QModelIndex &amp;parent)</span> <span class="keyword">const</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">columnCount</span><span class="params">(<span class="keyword">const</span> QModelIndex &amp;parent)</span> <span class="keyword">const</span></span>;</span><br><span class="line">    <span class="function">QVariant <span class="title">data</span><span class="params">(<span class="keyword">const</span> QModelIndex &amp;index, <span class="keyword">int</span> role)</span> <span class="keyword">const</span></span>;</span><br><span class="line">    <span class="function">QVariant <span class="title">headerData</span><span class="params">(<span class="keyword">int</span> section,Qt::Orientation orientation, <span class="keyword">int</span> role)</span> <span class="keyword">const</span></span>;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="function">Node *<span class="title">nodeFromIndex</span><span class="params">(<span class="keyword">const</span> QModelIndex &amp;index)</span> <span class="keyword">const</span></span>;</span><br><span class="line">    Node *rootNode;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span> <span class="comment">// BOOLEANMODEL_H</span></span></span><br></pre></td></tr></table></figure>
+<p><strong>booleanmodel.cpp</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;QtCore&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"booleanmodel.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"booleanparser.h"</span></span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  构造函数，初始化根结点为空</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line">BooleanModel::BooleanModel(QObject *parent) :QAbstractItemModel(parent)</span><br><span class="line">&#123;</span><br><span class="line">    rootNode = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  析构函数，删除根结点</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line">BooleanModel::~BooleanModel()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">delete</span> rootNode;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  设置根结点,删除原来根结点，重新设置根结点</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">BooleanModel::setRootNode</span><span class="params">(Node *node)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">delete</span> rootNode;</span><br><span class="line">    rootNode = node;</span><br><span class="line">    reset();  <span class="comment">//刷新表格数据</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  返回索引，这个是virtual函数所以一定要重载</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line"><span class="function">QModelIndex <span class="title">BooleanModel::index</span><span class="params">(<span class="keyword">int</span> row,<span class="keyword">int</span> column,<span class="keyword">const</span> QModelIndex &amp;parent)</span> <span class="keyword">const</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!rootNode || row &lt; <span class="number">0</span> || column &lt; <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> QModelIndex();    <span class="comment">//非法情况</span></span><br><span class="line">    Node *parentNode = nodeFromIndex(parent);</span><br><span class="line">    Node *childNode = parentNode-&gt;children.value(row);</span><br><span class="line">    <span class="keyword">if</span> (!childNode)</span><br><span class="line">        <span class="keyword">return</span> QModelIndex();</span><br><span class="line">    <span class="keyword">return</span> createIndex(row,column, childNode);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  返回父亲结点</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line"><span class="function">QModelIndex <span class="title">BooleanModel::parent</span><span class="params">(<span class="keyword">const</span> QModelIndex &amp;child)</span> <span class="keyword">const</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Node *node = nodeFromIndex(child);</span><br><span class="line">    <span class="keyword">if</span> (!node)</span><br><span class="line">        <span class="keyword">return</span> QModelIndex(); <span class="comment">//结点无效</span></span><br><span class="line">    Node *parentNode = node-&gt;parent;</span><br><span class="line">    <span class="keyword">if</span> (!parentNode)</span><br><span class="line">        <span class="keyword">return</span> QModelIndex();  <span class="comment">//父结点无效</span></span><br><span class="line">    Node *grandparentNode = parentNode-&gt;parent;</span><br><span class="line">    <span class="keyword">if</span>(!grandparentNode)</span><br><span class="line">        <span class="keyword">return</span> QModelIndex();  <span class="comment">//父结点的父结点无效</span></span><br><span class="line">    <span class="keyword">int</span> row = grandparentNode-&gt;children.indexOf(parentNode);</span><br><span class="line">    <span class="keyword">return</span> createIndex(row,<span class="number">0</span>,parentNode);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  返回行数，这个也是virtual函数，要重载</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">BooleanModel::rowCount</span><span class="params">(<span class="keyword">const</span> QModelIndex &amp;parent)</span> <span class="keyword">const</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (parent.column() &gt; <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    Node *parentNode = nodeFromIndex(parent);</span><br><span class="line">    <span class="keyword">if</span>(!parentNode)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">return</span> parentNode-&gt;children.count();</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  返回列数，固定只有2，这个也是virtual函数，要重载</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">BooleanModel::columnCount</span><span class="params">(<span class="keyword">const</span> QModelIndex &amp; <span class="comment">/*parent*/</span>)</span> <span class="keyword">const</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  返回数据，这个也是virtual函数，要重载</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line"><span class="function">QVariant <span class="title">BooleanModel::data</span><span class="params">(<span class="keyword">const</span> QModelIndex &amp;index, <span class="keyword">int</span> role)</span> <span class="keyword">const</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (role != Qt::DisplayRole)</span><br><span class="line">        <span class="keyword">return</span> QVariant();    <span class="comment">//不是显示角色，认为是无效数据</span></span><br><span class="line">    Node *node = nodeFromIndex(index);</span><br><span class="line">    <span class="keyword">if</span> (!node)</span><br><span class="line">        <span class="keyword">return</span> QVariant();     <span class="comment">//结点无效</span></span><br><span class="line">    <span class="keyword">if</span>(index.column() == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">switch</span> (node-&gt;type) &#123;</span><br><span class="line">            <span class="keyword">case</span> Node::Root:</span><br><span class="line">                <span class="keyword">return</span> tr(<span class="string">"Root"</span>);</span><br><span class="line">            <span class="keyword">case</span> Node::OrExpression:</span><br><span class="line">                <span class="keyword">return</span> tr(<span class="string">"OR Expression"</span>);</span><br><span class="line">            <span class="keyword">case</span> Node::AndExpression:</span><br><span class="line">                <span class="keyword">return</span> tr(<span class="string">"AND Expression"</span>);</span><br><span class="line">            <span class="keyword">case</span> Node::NotExpression:</span><br><span class="line">                <span class="keyword">return</span> tr(<span class="string">"NOT Expression"</span>);</span><br><span class="line">            <span class="keyword">case</span> Node::Atom:</span><br><span class="line">                <span class="keyword">return</span> tr(<span class="string">"Atom"</span>);</span><br><span class="line">            <span class="keyword">case</span> Node::Identifier:</span><br><span class="line">                <span class="keyword">return</span> tr(<span class="string">"Identifier"</span>);</span><br><span class="line">            <span class="keyword">case</span> Node::Operator:</span><br><span class="line">                <span class="keyword">return</span> tr(<span class="string">"Operator"</span>);</span><br><span class="line">            <span class="keyword">case</span> Node::Punctuator:</span><br><span class="line">                <span class="keyword">return</span> tr(<span class="string">"Punctuator"</span>);</span><br><span class="line">            <span class="keyword">default</span>:</span><br><span class="line">                <span class="keyword">return</span> tr(<span class="string">"Unknown"</span>);    <span class="comment">//默认为未知</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span>(index.column() == <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> node-&gt;str;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> QVariant();</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  返回表头</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line"><span class="function">QVariant <span class="title">BooleanModel::headerData</span><span class="params">(<span class="keyword">int</span> section, Qt::Orientation orientation, <span class="keyword">int</span> role)</span> <span class="keyword">const</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (orientation == Qt::Horizontal &amp;&amp; role == Qt::DisplayRole) &#123;</span><br><span class="line">        <span class="keyword">if</span> (section == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> tr(<span class="string">"Node"</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (section == <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> tr(<span class="string">"Value"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">        <span class="keyword">return</span> QVariant();</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  从索引返回结点</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line"><span class="function">Node *<span class="title">BooleanModel::nodeFromIndex</span><span class="params">(<span class="keyword">const</span> QModelIndex &amp;index)</span> <span class="keyword">const</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (index.isValid()) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">static_cast</span>&lt;Node *&gt;(index.internalPointer());</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> rootNode;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>booleanparser.h</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> BOOLEANPARSER_H</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BOOLEANPARSER_H</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"node.h"</span></span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BooleanParser</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    BooleanParser();</span><br><span class="line">    <span class="function">Node *<span class="title">parse</span><span class="params">(<span class="keyword">const</span> QString &amp;expr)</span></span>;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="function">Node *<span class="title">parseOrExpression</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function">Node *<span class="title">parseAndExpression</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function">Node *<span class="title">parseNotExpression</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function">Node *<span class="title">parseAtom</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function">Node *<span class="title">parseIdentifier</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">addChild</span><span class="params">(Node *parent, Node *child)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">addToken</span><span class="params">(Node *parent, <span class="keyword">const</span> QString &amp;str, Node::Type type)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">matchToken</span><span class="params">(<span class="keyword">const</span> QString &amp;str)</span> <span class="keyword">const</span></span>;</span><br><span class="line">    QString in;</span><br><span class="line">    <span class="keyword">int</span> pos;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span> <span class="comment">// BOOLEANPARSER_H</span></span></span><br></pre></td></tr></table></figure>
+<p><strong>booleanparser.cpp</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;QtCore&gt;</span><br><span class="line">#include &quot;booleanparser.h&quot;</span><br><span class="line">#include &quot;node.h&quot;</span><br><span class="line">BooleanParser::BooleanParser()</span><br><span class="line">&#123;</span><br><span class="line">&#125;</span><br><span class="line">Node *BooleanParser::parse(const QString &amp;expr)</span><br><span class="line">&#123;</span><br><span class="line">    in &#x3D; expr;</span><br><span class="line">    in.replace(&quot; &quot;, &quot;&quot;);</span><br><span class="line">    pos &#x3D; 0;</span><br><span class="line">    Node *node &#x3D; new Node(Node::Root);</span><br><span class="line">    addChild(node, parseOrExpression());</span><br><span class="line">    return node;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;**</span><br><span class="line">  解析或表达式</span><br><span class="line">  *&#x2F;</span><br><span class="line">Node *BooleanParser::parseOrExpression()</span><br><span class="line">&#123;</span><br><span class="line">    Node *childNode &#x3D; parseAndExpression();</span><br><span class="line">    if (matchToken(&quot;||&quot;)) &#123;</span><br><span class="line">        Node *node &#x3D; new Node(Node::OrExpression);</span><br><span class="line">        addChild(node,childNode);</span><br><span class="line">        while (matchToken(&quot;||&quot;)) &#123;</span><br><span class="line">            addToken(node,&quot;||&quot;, Node::Operator);</span><br><span class="line">            addChild(node, parseAndExpression());</span><br><span class="line">        &#125;</span><br><span class="line">        return node;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        return childNode;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;**</span><br><span class="line">  解析与表达式</span><br><span class="line">  *&#x2F;</span><br><span class="line">Node *BooleanParser::parseAndExpression()</span><br><span class="line">&#123;</span><br><span class="line">    Node *childNode &#x3D; parseNotExpression();</span><br><span class="line">    if (matchToken(&quot;&amp;&amp;&quot;)) &#123;</span><br><span class="line">        Node *node &#x3D; new Node(Node::AndExpression);</span><br><span class="line">        addChild(node, childNode);</span><br><span class="line">        while (matchToken(&quot;&amp;&amp;&quot;)) &#123;</span><br><span class="line">            addToken(node, &quot;&amp;&amp;&quot;, Node::Operator);</span><br><span class="line">            addChild(node, parseNotExpression());</span><br><span class="line">        &#125;</span><br><span class="line">        return node;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        return childNode;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;**</span><br><span class="line">  解析非表达式</span><br><span class="line">  *&#x2F;</span><br><span class="line">Node *BooleanParser::parseNotExpression()</span><br><span class="line">&#123;</span><br><span class="line">    if (matchToken(&quot;!&quot;)) &#123;</span><br><span class="line">        Node *node &#x3D; new Node(Node::NotExpression);</span><br><span class="line">        while (matchToken(&quot;!&quot;))</span><br><span class="line">            addToken(node, &quot;!&quot;, Node::Operator);</span><br><span class="line">        addChild(node, parseAtom());</span><br><span class="line">        return node;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        return parseAtom();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;**</span><br><span class="line">  解析一个项</span><br><span class="line">  *&#x2F;</span><br><span class="line">Node *BooleanParser::parseAtom()</span><br><span class="line">&#123;</span><br><span class="line">    if (matchToken(&quot;(&quot;)) &#123;</span><br><span class="line">        Node *node &#x3D; new Node(Node::Atom);</span><br><span class="line">        addToken(node, &quot;(&quot;, Node::Punctuator);</span><br><span class="line">        addChild(node, parseOrExpression());</span><br><span class="line">        addToken(node, &quot;)&quot;, Node::Punctuator);</span><br><span class="line">        return node;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        return parseIdentifier();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;**</span><br><span class="line">  解析标识符</span><br><span class="line">  *&#x2F;</span><br><span class="line">Node *BooleanParser::parseIdentifier()</span><br><span class="line">&#123;</span><br><span class="line">    int startPos &#x3D; pos;</span><br><span class="line">    while (pos &lt; in.length() &amp;&amp; in[pos].isLetterOrNumber())</span><br><span class="line">        ++pos;</span><br><span class="line">    if (pos &gt; startPos) &#123;</span><br><span class="line">        return new Node(Node::Identifier,</span><br><span class="line">                        in.mid(startPos, pos - startPos));</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        return 0;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;**</span><br><span class="line">  添加子结点</span><br><span class="line">  *&#x2F;</span><br><span class="line">void BooleanParser::addChild(Node *parent, Node *child)</span><br><span class="line">&#123;</span><br><span class="line">    if (child) &#123;</span><br><span class="line">        parent-&gt;children +&#x3D; child;</span><br><span class="line">        parent-&gt;str +&#x3D; child-&gt;str;</span><br><span class="line">        child-&gt;parent &#x3D; parent;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;**</span><br><span class="line">  添加token</span><br><span class="line">  *&#x2F;</span><br><span class="line">void BooleanParser::addToken(Node *parent, const QString &amp;str,</span><br><span class="line">                             Node::Type type)</span><br><span class="line">&#123;</span><br><span class="line">    if (in.mid(pos, str.length()) &#x3D;&#x3D; str) &#123;</span><br><span class="line">        addChild(parent, new Node(type, str));</span><br><span class="line">        pos +&#x3D; str.length();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;**</span><br><span class="line">  token匹配</span><br><span class="line">  *&#x2F;</span><br><span class="line">bool BooleanParser::matchToken(const QString &amp;str) const</span><br><span class="line">&#123;</span><br><span class="line">    return in.mid(pos, str.length()) &#x3D;&#x3D; str;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>booleanwindow.h</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> BOOLEANWINDOW_H</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BOOLEANWINDOW_H</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;QWidget&gt;</span></span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">QLabel</span>;</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">QLineEdit</span>;</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">QTreeView</span>;</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BooleanModel</span>;</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BooleanWindow</span> :</span> <span class="keyword">public</span> QWidget</span><br><span class="line">&#123;</span><br><span class="line">    Q_OBJECT</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    BooleanWindow();</span><br><span class="line"><span class="keyword">private</span> slots:<span class="keyword">private</span> slots:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">booleanExpressionChanged</span><span class="params">(<span class="keyword">const</span> QString &amp;expr)</span></span>;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    QLabel *label;</span><br><span class="line">    QLineEdit *lineEdit;</span><br><span class="line">    BooleanModel *booleanModel;</span><br><span class="line">    QTreeView *treeView;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span> <span class="comment">// BOOLEANWINDOW_H</span></span></span><br></pre></td></tr></table></figure>
+<p><strong>booleanwindow.cpp</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;QtGui&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"booleanwindow.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"booleanmodel.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"booleanparser.h"</span></span></span><br><span class="line">BooleanWindow::BooleanWindow()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//Label</span></span><br><span class="line">    label = <span class="keyword">new</span> QLabel(tr(<span class="string">"Boolean expression:"</span>));</span><br><span class="line">    <span class="comment">//LineEdit</span></span><br><span class="line">    lineEdit = <span class="keyword">new</span> QLineEdit;</span><br><span class="line">    <span class="comment">//BooleanModel</span></span><br><span class="line">    booleanModel = <span class="keyword">new</span> BooleanModel(<span class="keyword">this</span>);</span><br><span class="line">    <span class="comment">//TreeView</span></span><br><span class="line">    treeView = <span class="keyword">new</span> QTreeView;</span><br><span class="line">    treeView-&gt;setModel(booleanModel);</span><br><span class="line">    <span class="comment">//signal and slot</span></span><br><span class="line">    connect(lineEdit, SIGNAL(textChanged(QString)), <span class="keyword">this</span>,SLOT(booleanExpressionChanged(QString)));</span><br><span class="line">    <span class="comment">//Layout</span></span><br><span class="line">    QGridLayout *layout = <span class="keyword">new</span> QGridLayout;</span><br><span class="line">    layout-&gt;addWidget(label, <span class="number">0</span> ,<span class="number">0</span>);</span><br><span class="line">    layout-&gt;addWidget(lineEdit, <span class="number">0</span> , <span class="number">1</span>);</span><br><span class="line">    layout-&gt;addWidget(treeView, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>);</span><br><span class="line">    setLayout(layout);</span><br><span class="line">    setWindowTitle(tr(<span class="string">"Boolean Parser"</span>));</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">BooleanWindow::booleanExpressionChanged</span><span class="params">(<span class="keyword">const</span> QString &amp;expr)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    BooleanParser parser;</span><br><span class="line">    Node *rootNode = parser.parse(expr);</span><br><span class="line">    booleanModel-&gt;setRootNode(rootNode);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其他的可以去下载</p>
+<p>下载地址：<a href="http://download.csdn.net/source/1529790&quot;&gt;http://download.csdn.net/source/1529790" target="_blank" rel="noopener">http://download.csdn.net/source/1529790”&gt;http://download.csdn.net/source/1529790</a></p>
+<p>软件截图：</p>
+<h2 id=""><a href="#" class="headerlink" title=""></a><img src="/images/legacy/2009/07/204053983.p.png?d=20090729205238592" alt="image"></h2><p>PS:最近比较郁闷…..</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/money/wechatpay.jpg" alt="核动力蜗牛 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/money/alipay.jpg" alt="核动力蜗牛 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Qt/" rel="tag"># Qt</a>
+          
+            <a href="/tags/C/" rel="tag"># C++</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2009/07/29/qt-study-notes-of-sixteen-imagespacecompute.html" rel="next" title="QT学习笔记之十六  ImageSpaceCompute">
+                <i class="fa fa-chevron-left"></i> QT学习笔记之十六  ImageSpaceCompute
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2009/07/29/qt-study-notes-of-seventeen-studentmanage.html" rel="prev" title="QT学习笔记之十七  StudentManage">
+                QT学习笔记之十七  StudentManage <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  
+    <div class="comments" id="comments">
+      <div id="vcomments"></div>
+    </div>
+  
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://en.gravatar.com/userimage/132614578/1525cb3f68df290f2720631caf872dff.jpg?size=200"
+                alt="核动力蜗牛" />
+            
+              <p class="site-author-name" itemprop="name">核动力蜗牛</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">283</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">96</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/zhenlohuang" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:zhenlohuang@gmail.com" target="_blank" title="E-Mail">
+                    
+                      <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://twitter.com/zhenlohunag" target="_blank" title="Twitter">
+                    
+                      <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.facebook.com/zhenlohuang" target="_blank" title="FB Page">
+                    
+                      <i class="fa fa-fw fa-facebook"></i>FB Page</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://stackoverflow.com/users/2945192" target="_blank" title="StackOverflow">
+                    
+                      <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">1.</span> <span class="nav-text"></span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">核动力蜗牛</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine@1.1.4/dist/Valine.min.js"></script>
+  <script type="text/javascript">
+    new Valine({
+        av: AV,
+        el: '#vcomments' ,
+        verify: true,
+        notify: true,
+        app_id: 'GdWobeifa1Cr5zJubUFLGuA9-gzGzoHsz',
+        app_key: 'zkFt8YflR67GWT6cIhKF0tVH',
+        placeholder: '欢迎评论'
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

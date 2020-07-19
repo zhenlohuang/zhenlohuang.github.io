@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Python" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="所谓的网络爬虫就是利用程序抓取想要的网页或者数据。 下面对程序中所使用模块进行简单分析： 网络方面涉及Python的三个模块htmllib，urllib，urlparse。1）htmllib这个模块定义了一个可以担当在超文本标记语言(HTML)中解析文本格式文件的基类。该类不直接与I&#x2F;O有关–它必须被提供字符串格式的输入，并且调用一个”格式设置”对象的方法来产生输出。该HTMLParser类被设计">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python学习  网络编程（六） 网络爬虫">
+<meta property="og:url" content="http://www.yidooo.net/2010/08/05/python-learning-network-programming-6-web-crawler.html">
+<meta property="og:site_name" content="异度部落格">
+<meta property="og:description" content="所谓的网络爬虫就是利用程序抓取想要的网页或者数据。 下面对程序中所使用模块进行简单分析： 网络方面涉及Python的三个模块htmllib，urllib，urlparse。1）htmllib这个模块定义了一个可以担当在超文本标记语言(HTML)中解析文本格式文件的基类。该类不直接与I&#x2F;O有关–它必须被提供字符串格式的输入，并且调用一个”格式设置”对象的方法来产生输出。该HTMLParser类被设计">
+<meta property="article:published_time" content="2010-08-04T16:00:00.000Z">
+<meta property="article:modified_time" content="2020-07-19T08:02:00.916Z">
+<meta property="article:author" content="核动力蜗牛">
+<meta property="article:tag" content="Python">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.yidooo.net/2010/08/05/python-learning-network-programming-6-web-crawler.html"/>
+
+
+
+
+
+  <title>Python学习  网络编程（六） 网络爬虫 | 异度部落格</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?7935dce3b8c7c4adacbbff4e2533811b";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">异度部落格</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">学习是一种生活态度。</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于我
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.yidooo.net/2010/08/05/python-learning-network-programming-6-web-crawler.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="核动力蜗牛">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://en.gravatar.com/userimage/132614578/1525cb3f68df290f2720631caf872dff.jpg?size=200">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="异度部落格">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Python学习  网络编程（六） 网络爬虫</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2010-08-05T00:00:00+08:00">
+                2010-08-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Programming/" itemprop="url" rel="index">
+                    <span itemprop="name">Programming</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Programming/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>所谓的网络爬虫就是利用程序抓取想要的网页或者数据。</p>
+<p>下面对程序中所使用模块进行简单分析：</p>
+<p>网络方面涉及Python的三个模块htmllib，urllib，urlparse。<br>1）<em>htmllib</em>这个模块定义了一个可以担当在超文本标记语言(HTML)中解析文本格式文件的基类。该类不直接与I/O有关–它必须被提供字符串格式的输入，并且调用一个”格式设置”对象的方法来产生输出。该HTMLParser类被设计用来作为其他类增加功能性的基类，并且允许它的多数方法被扩展或者重载。该HTMLParser实现支持HTML 2.0（描述在RFC1866中）语言。<br>2）<em>urllib</em>模块提供的上层接口，使我们可以像读取本地文件一样读取www和ftp上的数据。通过简单的函数调用，URL所定位的资源就可以被你作为输入使用到你的程序中。如果再配以re(正则表达式)模块，那么你就能够下载Web页面、提取信息、自动创建你所寻找的东西。urlretrieve方法直接将远程数据下载到本地。参数filename指定了保存到本地的路径（如果未指定该参数，urllib会生成一个临时文件来保存数据）；<br>3）<em>urlparse</em>模块使我们能够轻松地把URL分解成元件（urlparse），之后，还能将这些元件重新组装成一个URL（urljoin）。当我们处理HTML 文档的时候，这项功能是非常方便的。   </p>
+<p>系统方面涉及Python的模块比较简单，主要是常用的<em>sys</em>和<em>os</em>两个模块。主要用于文件夹的创建，文件路径的定位和判断等常用功能。这里不再介绍深入介绍。</p>
+<p>输入输出方面使用了<em>cStringIO</em>模块。StringIO的行为与file对象非常像，但它不是针对磁盘上文件，而是一个内存中的”文件”，我们可以将操作磁盘文件那样来操作StringIO。</p>
+<p><em>formatter</em>模块主要用于格式化输出。这里的格式化输出不仅仅是”格式化”输出而已。它可以将 HTML 解析器的标签和数据流转换为适合输出设备的事件流( event stream ),从 而 写将事件流相应的输出到设备上。</p>
+<p>这个程序所使用的Python解释器版本为2.6.5</p>
+<p>下面是代码部分<br><strong>NetCrawl.py</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment">#网络爬虫程序</span></span><br><span class="line"><span class="keyword">from</span> sys <span class="keyword">import</span> argv</span><br><span class="line"><span class="keyword">from</span> os <span class="keyword">import</span> makedirs, unlink, sep</span><br><span class="line"><span class="keyword">from</span> os.path <span class="keyword">import</span> dirname, exists, isdir, splitext</span><br><span class="line"><span class="keyword">from</span> string <span class="keyword">import</span> replace, find, lower</span><br><span class="line"><span class="keyword">from</span> htmllib <span class="keyword">import</span> HTMLParser</span><br><span class="line"><span class="keyword">from</span> urllib <span class="keyword">import</span> urlretrieve</span><br><span class="line"><span class="keyword">from</span> urlparse <span class="keyword">import</span> urlparse, urljoin</span><br><span class="line"><span class="keyword">from</span> formatter <span class="keyword">import</span> DumbWriter, AbstractFormatter</span><br><span class="line"><span class="keyword">from</span> cStringIO <span class="keyword">import</span> StringIO</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Downloader</span><span class="params">(object)</span> :</span></span><br><span class="line">    <span class="comment">#构造器</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, url)</span> :</span></span><br><span class="line">        self.url = url</span><br><span class="line">        self.file = self.filename(url)</span><br><span class="line">    <span class="comment">#分析获取文件名</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">filename</span><span class="params">(self, url, defFile = <span class="string">'index.htm'</span>)</span> :</span></span><br><span class="line">        parsedUrl = urlparse(url, <span class="string">'http:'</span>, <span class="number">0</span>)</span><br><span class="line">        path = parsedUrl[<span class="number">1</span>] + parsedUrl[<span class="number">2</span>]</span><br><span class="line">        ext = splitext(path)</span><br><span class="line">        <span class="keyword">if</span> ext[<span class="number">1</span>] == <span class="string">''</span>:        <span class="comment">#使用默认文件名</span></span><br><span class="line">            <span class="keyword">if</span> path[<span class="number">-1</span>] == <span class="string">'/'</span>:</span><br><span class="line">                path += defFile</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                path += <span class="string">'/'</span> + defFile</span><br><span class="line">        localDir = dirname(path)</span><br><span class="line">        <span class="keyword">if</span> sep != <span class="string">'/'</span>:</span><br><span class="line">            localDir = replace(localDir, <span class="string">'/'</span>, sep)</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> isdir(localDir):</span><br><span class="line">            <span class="keyword">if</span> exists(localDir):     <span class="comment">#文件存在删除</span></span><br><span class="line">                unlink(localDir)</span><br><span class="line">            makedirs(localDir)</span><br><span class="line">        <span class="keyword">return</span> path</span><br><span class="line">    <span class="comment">#下载页面</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">download</span><span class="params">(self)</span> :</span></span><br><span class="line">        <span class="keyword">try</span> :</span><br><span class="line">            retval = urlretrieve(self.url, self.file)</span><br><span class="line">        <span class="keyword">except</span> IOError:</span><br><span class="line">            retval = (<span class="string">'***ERROR: invalid URL "%s"'</span> % self.url)</span><br><span class="line">        <span class="keyword">return</span> retval</span><br><span class="line">    <span class="comment">#分析保存链接</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">parseAndGetLinks</span><span class="params">(self)</span> :</span></span><br><span class="line">        self.parser = HTMLParser(AbstractFormatter( /</span><br><span class="line">            DumbWriter(StringIO())))</span><br><span class="line">        self.parser.feed(open(self.file).read())</span><br><span class="line">        self.parser.close()</span><br><span class="line">        <span class="keyword">return</span> self.parser.anchorlist</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">NetCrawler</span><span class="params">(object)</span>:</span></span><br><span class="line">    count = <span class="number">0</span>  <span class="comment">#计数器</span></span><br><span class="line">    <span class="comment">#构造器</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, url)</span> :</span></span><br><span class="line">        self.queue = [url]</span><br><span class="line">        self.seen = []</span><br><span class="line">        self.dom = urlparse(url)[<span class="number">1</span>]</span><br><span class="line">    <span class="comment">#获取页面</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getPage</span><span class="params">(self, url)</span> :</span></span><br><span class="line">        dl = Downloader(url)</span><br><span class="line">        retval = dl.download()</span><br><span class="line">        <span class="keyword">if</span> retval[<span class="number">0</span>] == <span class="string">'*'</span> :</span><br><span class="line">            <span class="keyword">print</span> retval, <span class="string">'...skipping parse'</span></span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        NetCrawler.count += <span class="number">1</span></span><br><span class="line">        <span class="keyword">print</span> <span class="string">'/n('</span>, NetCrawler.count, <span class="string">')'</span></span><br><span class="line">        <span class="keyword">print</span> <span class="string">'Url: '</span>, url</span><br><span class="line">        <span class="keyword">print</span> <span class="string">'File: '</span>, retval[<span class="number">0</span>]</span><br><span class="line">        self.seen.append(url)</span><br><span class="line">        links = dl.parseAndGetLinks()</span><br><span class="line">        <span class="keyword">for</span> eachLink <span class="keyword">in</span> links :</span><br><span class="line">            <span class="keyword">if</span> eachLink[ : <span class="number">4</span>] != <span class="string">'http'</span> <span class="keyword">and</span> /</span><br><span class="line">               find(eachLink, <span class="string">'://'</span>) == <span class="number">-1</span>:</span><br><span class="line">                eachLink = urljoin(url, eachLink)</span><br><span class="line">                <span class="keyword">print</span> <span class="string">'*'</span>,eachLink</span><br><span class="line">            <span class="keyword">if</span> find(lower(eachLink), <span class="string">'mailto:'</span>) != <span class="number">-1</span>:</span><br><span class="line">                <span class="keyword">print</span> <span class="string">'... discarded, mailto link'</span></span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            <span class="keyword">if</span> eachLink <span class="keyword">not</span> <span class="keyword">in</span> self.seen:</span><br><span class="line">                <span class="keyword">if</span> find(eachLink, self.dom) == <span class="number">-1</span> :</span><br><span class="line">                    <span class="keyword">print</span> <span class="string">'... discarded, not in domain'</span></span><br><span class="line">                <span class="keyword">else</span> :</span><br><span class="line">                    <span class="keyword">if</span> eachLink <span class="keyword">not</span> <span class="keyword">in</span> self.queue :</span><br><span class="line">                        self.queue.append(eachLink)</span><br><span class="line">                        <span class="keyword">print</span> <span class="string">'... new, added to queue'</span></span><br><span class="line">                    <span class="keyword">else</span> :</span><br><span class="line">                        <span class="keyword">print</span> <span class="string">'... dirscarded, already in queue'</span></span><br><span class="line">            <span class="keyword">else</span> :</span><br><span class="line">                <span class="keyword">print</span> <span class="string">'... discarded, already processed'</span></span><br><span class="line">    <span class="comment">#处理队列中的链接</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(self)</span> :</span></span><br><span class="line">        <span class="keyword">while</span> self.queue :</span><br><span class="line">            url = self.queue.pop()</span><br><span class="line">            self.getPage(url)</span><br><span class="line"><span class="comment">#主函数</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span> :</span></span><br><span class="line">    <span class="comment">#url = 'http://www.hao123.com/haoserver/index.htm'</span></span><br><span class="line">    <span class="keyword">if</span> len(argv) &gt; <span class="number">1</span> :</span><br><span class="line">        url = argv[<span class="number">1</span>]</span><br><span class="line">    <span class="keyword">else</span> :</span><br><span class="line">        <span class="keyword">try</span> :</span><br><span class="line">            url = raw_input(<span class="string">'Enter starting URL: '</span>)</span><br><span class="line">        expect (KeyboardInterrupt, EOFError) :</span><br><span class="line">            url = <span class="string">''</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> url :</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    netCrawler = NetCrawler(url)</span><br><span class="line">    netCrawler.run()</span><br><span class="line">        </span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span> :</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+<p>这里的程序只是简单的抓取网页，如果要抓取指定网页可以加上也正则表达式（模块）来进行处理</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/money/wechatpay.jpg" alt="核动力蜗牛 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/money/alipay.jpg" alt="核动力蜗牛 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Python/" rel="tag"># Python</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2010/08/05/python-learning-network-programming-b-of-the-udp-connection.html" rel="next" title="Python学习  网络编程（二） UDP连接">
+                <i class="fa fa-chevron-left"></i> Python学习  网络编程（二） UDP连接
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2010/08/05/python-learning-network-programming-a-tcp-connection.html" rel="prev" title="Python学习 网络编程（一） TCP连接">
+                Python学习 网络编程（一） TCP连接 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  
+    <div class="comments" id="comments">
+      <div id="vcomments"></div>
+    </div>
+  
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://en.gravatar.com/userimage/132614578/1525cb3f68df290f2720631caf872dff.jpg?size=200"
+                alt="核动力蜗牛" />
+            
+              <p class="site-author-name" itemprop="name">核动力蜗牛</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">283</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">96</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/zhenlohuang" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:zhenlohuang@gmail.com" target="_blank" title="E-Mail">
+                    
+                      <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://twitter.com/zhenlohunag" target="_blank" title="Twitter">
+                    
+                      <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.facebook.com/zhenlohuang" target="_blank" title="FB Page">
+                    
+                      <i class="fa fa-fw fa-facebook"></i>FB Page</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://stackoverflow.com/users/2945192" target="_blank" title="StackOverflow">
+                    
+                      <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">核动力蜗牛</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine@1.1.4/dist/Valine.min.js"></script>
+  <script type="text/javascript">
+    new Valine({
+        av: AV,
+        el: '#vcomments' ,
+        verify: true,
+        notify: true,
+        app_id: 'GdWobeifa1Cr5zJubUFLGuA9-gzGzoHsz',
+        app_key: 'zkFt8YflR67GWT6cIhKF0tVH',
+        placeholder: '欢迎评论'
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

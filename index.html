@@ -1,0 +1,2282 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Java, Scala, Python, 大数据, Hadoop, Spark" />
+
+
+
+
+
+
+
+
+
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="异度部落格">
+<meta property="og:url" content="http://www.yidooo.net/index.html">
+<meta property="og:site_name" content="异度部落格">
+<meta property="article:author" content="核动力蜗牛">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.yidooo.net/"/>
+
+
+
+
+
+  <title>异度部落格 - 学习是一种生活态度。</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?7935dce3b8c7c4adacbbff4e2533811b";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left 
+  page-home">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">异度部落格</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">学习是一种生活态度。</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于我
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.yidooo.net/2020/07/19/MLSys-The-New-Frontier-of-Machine-Learning-Systems-Alexander.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="核动力蜗牛">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://en.gravatar.com/userimage/132614578/1525cb3f68df290f2720631caf872dff.jpg?size=200">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="异度部落格">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/07/19/MLSys-The-New-Frontier-of-Machine-Learning-Systems-Alexander.html" itemprop="url">【PaperWeekly】MLSys: The New Frontier of Machine Learning Systems Alexander</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-19T16:17:53+08:00">
+                2020-07-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Machine-Learning/" itemprop="url" rel="index">
+                    <span itemprop="name">Machine Learning</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>论文原文：<a href="https://arxiv.org/abs/1904.03257" target="_blank" rel="noopener">MLSys: The New Frontier of Machine Learning Systems</a></p>
+<p>这是一篇发表意义大于内容本身的一篇论文，它是一个全新的会议MLSys的开篇。所谓MLSys，顾名思义就是Machine Learning和System的交叉领域。</p>
+<p>在论文中，作者从两个维度阐述了MLSys涉及的核心问题：<br>维度一：</p>
+<ul>
+<li>How should software systems be designed to support the full machine learning lifecycle, from program- ming interfaces and data preprocessing to output interpretation, debugging and monitoring?</li>
+<li>How should hardware systems be designed for machine learning? </li>
+<li>How should machine learning systems be designed to satisfy metrics beyond predictive accuracy, such as<br>power and memory efficiency, accessibility, cost, latency, privacy, security, fairness, and interpretability?</li>
+</ul>
+<p>维度二：</p>
+<ul>
+<li>high-level systems for ML that support interfaces and<br>workflows for ML development—the analogue of traditional work on programming languages and software<br>engineering.</li>
+<li>low-level systems for ML that involve hardware or software—and that often blur the lines<br>between the two—to support training and execution of models, the analogue of traditional work on compilers and<br>architecture.</li>
+</ul>
+<p>这篇论文最流弊的地方就是它的作者署名(亮点自寻)：<br><img src="/images/mlsys-authors.png" alt="mlsys-authors"></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.yidooo.net/2019/10/11/kerberos-authentication.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="核动力蜗牛">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://en.gravatar.com/userimage/132614578/1525cb3f68df290f2720631caf872dff.jpg?size=200">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="异度部落格">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/10/11/kerberos-authentication.html" itemprop="url">Kerberos认证流程</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-11T02:32:22+08:00">
+                2019-10-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="术语解释"><a href="#术语解释" class="headerlink" title="术语解释"></a>术语解释</h1><ul>
+<li>AD: Active Directory。</li>
+<li>Service Session Key: 服务会话密钥。</li>
+<li>Logon Session Key: 登录会话密钥。</li>
+<li>KDC: Key Distribution Center。</li>
+<li>KAS: Key Kerberos Authentication Service。它是KDC的一个服务。</li>
+<li>TGS: Ticket Granting Service；它是KDC的一个服务。</li>
+<li>Service Ticket: 服务票据，通过TGS获取，主要包括用户信息与Service Session Key。</li>
+<li>TGT: Ticket  Granting Ticket。通过KAS获取，主要包括用户信息与Logon Session Key。</li>
+<li>Authenticator: 交互双方预先知晓的信息，通过它来对对方做认证。</li>
+</ul>
+<h1 id="KDC整体结构图"><a href="#KDC整体结构图" class="headerlink" title="KDC整体结构图"></a>KDC整体结构图</h1><p><img src="/images/kerberos_architecture.jpg" alt="kerberos_architecture.jpg"></p>
+<h1 id="Kerberos认证的流程"><a href="#Kerberos认证的流程" class="headerlink" title="Kerberos认证的流程"></a>Kerberos认证的流程</h1><ol>
+<li>客户端通过KDC的KAS服务获取TGT。</li>
+<li>通过TGT获取Service Ticket。</li>
+<li>通过Service Ticket访问服务资源 。</li>
+</ol>
+<h1 id="Client与Server之间的消息交互"><a href="#Client与Server之间的消息交互" class="headerlink" title="Client与Server之间的消息交互"></a>Client与Server之间的消息交互</h1><ol>
+<li>客户端发送消息到KDC的KAS服务一获取TGT<br><img src="/images/kerberos_step_1.jpg" alt="kerberos_step_1.jpg"></li>
+<li>KAS 发送信息到Client<br><img src="/images/kerberos_step_2.jpg" alt="kerberos_step_2.jpg"></li>
+<li>客户端发送消息到KDC（Key Distribution Center）的TGS（Ticket Granting Service）服务一获取ST（Service Ticket）<br><img src="/images/kerberos_step_3.jpg" alt="kerberos_step_3.jpg"></li>
+<li>TGS服务返回消息给客户端<br><img src="/images/kerberos_step_4.jpg" alt="kerberos_step_4.jpg"></li>
+<li>客户端通过ST访问服务器资源<br><img src="/images/kerberos_step_5.jpg" alt="kerberos_step_5.jpg"></li>
+<li>客户端对服务器的认证<br><img src="/images/kerberos_step_6.jpg" alt="kerberos_step_6.jpg"></li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.yidooo.net/2019/05/07/2pc-and-3pc.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="核动力蜗牛">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://en.gravatar.com/userimage/132614578/1525cb3f68df290f2720631caf872dff.jpg?size=200">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="异度部落格">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/05/07/2pc-and-3pc.html" itemprop="url">分布式系统 - 两段式提交（2PC）和三段式提交（3PC）</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-07T22:41:55+08:00">
+                2019-05-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Distributed-System/" itemprop="url" rel="index">
+                    <span itemprop="name">Distributed System</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>之前<a href="2019/04/21/base-theorem.html">BASE理论</a>中提到，分布式系统对一致性做出了权衡。因此涌现出很多分布式协议。其中比较著名的是：两段式提交（Two Phase Commit）和三段式提交（Three Phase Commit）。</p>
+<h1 id="两段式提交"><a href="#两段式提交" class="headerlink" title="两段式提交"></a>两段式提交</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>每个参与者将操作成败通知协调者，再由协调者根据所有参与者的反馈情报，决定各参与者是否要提交操作还是中止操作。</p>
+<p><img src="/images/2pc.png" alt="2pc"></p>
+<p>所谓的两个阶段分别是：</p>
+<h3 id="第一阶段：准备阶段-投票阶段"><a href="#第一阶段：准备阶段-投票阶段" class="headerlink" title="第一阶段：准备阶段/投票阶段"></a>第一阶段：准备阶段/投票阶段</h3><ol>
+<li>协调者节点向所有参与者节点询问是否可以执行提交操作，并开始等待各参与者节点的响应。</li>
+<li>参与者节点执行询问发起为止的所有事务操作，并将Undo信息和Redo信息写入日志。</li>
+<li>各参与者节点响应协调者节点发起的询问。如果参与者节点的事务操作实际执行成功，则它返回一个”同意”消息；如果参与者节点的事务操作实际执行失败，则它返回一个”中止”消息。</li>
+</ol>
+<h3 id="第二阶段：提交阶段-执行阶段"><a href="#第二阶段：提交阶段-执行阶段" class="headerlink" title="第二阶段：提交阶段/执行阶段"></a>第二阶段：提交阶段/执行阶段</h3><p>当协调者节点从所有参与者节点获得的相应消息都为”同意”时：</p>
+<ol>
+<li>协调者节点向所有参与者节点发出”正式提交”的请求。</li>
+<li>参与者节点正式完成操作，并释放在整个事务期间内占用的资源。</li>
+<li>参与者节点向协调者节点发送”完成”消息。</li>
+<li>协调者节点收到所有参与者节点反馈的”完成”消息后，完成事务。</li>
+</ol>
+<p>如果任一参与者节点在第一阶段返回的响应消息为”终止”，或者 协调者节点在第一阶段的询问超时之前无法获取所有参与者节点的响应消息时：</p>
+<ol>
+<li>协调者节点向所有参与者节点发出”回滚操作”的请求。</li>
+<li>参与者节点利用之前写入的Undo信息执行回滚，并释放在整个事务期间内占用的资源。</li>
+<li>参与者节点向协调者节点发送”回滚完成”消息。</li>
+<li>协调者节点收到所有参与者节点反馈的”回滚完成”消息后，取消事务。</li>
+</ol>
+<h2 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h2><ul>
+<li>优点：原理简单，实现方便。</li>
+<li>缺点：同步阻塞，单点问题，数据不一致，容错性不好</li>
+</ul>
+<h1 id="三段式提交"><a href="#三段式提交" class="headerlink" title="三段式提交"></a>三段式提交</h1><h2 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h2><p>由于两段式提交存在诸多缺陷，因此研究者在两段式基础上进行改进，实现了三段式提交。与两阶段提交不同的是，三阶段提交有两个改动点：</p>
+<ul>
+<li>引入超时机制 - 同时在协调者和参与者中都引入超时机制。</li>
+<li>在第一阶段和第二阶段中插入一个准备阶段，保证了在最后提交阶段之前各参与节点的状态是一致的。</li>
+</ul>
+<p><img src="/images/3pc.png" alt="3pc"></p>
+<p>所谓的三个阶段分别是：</p>
+<h3 id="第一阶段：CanCommit"><a href="#第一阶段：CanCommit" class="headerlink" title="第一阶段：CanCommit"></a>第一阶段：CanCommit</h3><ol>
+<li>协调者向参与者发送CanCommit请求。询问是否可以执行事务提交操作。然后开始等待参与者的响应。</li>
+<li>参与者接到CanCommit请求之后，正常情况下，如果其自身认为可以顺利执行事务，则返回Yes响应，并进入预备状态；否则反馈No。</li>
+</ol>
+<h3 id="第二阶段：PreCommit"><a href="#第二阶段：PreCommit" class="headerlink" title="第二阶段：PreCommit"></a>第二阶段：PreCommit</h3><ol>
+<li>协调者向所有参与者节点发出 preCommit 的请求，并进入 prepared 状态。</li>
+<li>参与者受到 preCommit 请求后，会执行事务操作，对应 2PC 准备阶段中的 “执行事务”，也会 Undo 和 Redo 信息记录到事务日志中。</li>
+<li>如果参与者成功执行了事务，就反馈 ACK 响应，同时等待指令：提交（commit） 或终止（abort）。</li>
+</ol>
+<h3 id="第三阶段：Do-Commit"><a href="#第三阶段：Do-Commit" class="headerlink" title="第三阶段：Do Commit"></a>第三阶段：Do Commit</h3><ol>
+<li>协调者接收到各参与者发送的ACK响应，那么他将从预提交状态进入到提交状态。并向所有参与者发送 doCommit 请求。</li>
+<li>参与者接收到 doCommit 请求之后，执行正式的事务提交。并在完成事务提交之后释放所有事务资源。</li>
+<li>事务提交完之后，向协调者发送 ACK 响应。</li>
+<li>协调者接收到所有参与者的 ACK 响应之后，完成事务。</li>
+</ol>
+<h2 id="优缺点-1"><a href="#优缺点-1" class="headerlink" title="优缺点"></a>优缺点</h2><ul>
+<li>优点：相对于二阶段提交，三阶段提交主要解决的单点故障问题，并减少了阻塞的时间。</li>
+<li>缺点：三阶段提交也会导致数据一致性问题。由于网络原因，协调者发送的 abort 响应没有及时被参与者接收到，那么参与者在等待超时之后执行了 commit 操作。这样就和其他接到 abort 命令并执行回滚的参与者之间存在数据不一致的情况。</li>
+</ul>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
+<li><a href="https://en.wikipedia.org/wiki/Two-phase_commit_protocol" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Two-phase_commit_protocol</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Three-phase_commit_protocol" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Three-phase_commit_protocol</a></li>
+<li><a href="https://juejin.im/post/5b26648e5188257494641b9f" target="_blank" rel="noopener">https://juejin.im/post/5b26648e5188257494641b9f</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.yidooo.net/2019/04/21/base-theorem.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="核动力蜗牛">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://en.gravatar.com/userimage/132614578/1525cb3f68df290f2720631caf872dff.jpg?size=200">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="异度部落格">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/04/21/base-theorem.html" itemprop="url">分布式系统 - BASE理论</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-21T22:28:00+08:00">
+                2019-04-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Distributed-System/" itemprop="url" rel="index">
+                    <span itemprop="name">Distributed System</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="BASE定理简介"><a href="#BASE定理简介" class="headerlink" title="BASE定理简介"></a>BASE定理简介</h1><p>BASE理论是Basically Available(基本可用)，Soft State（软状态）和Eventually Consistent（最终一致性）三个短语的缩写，由eBay架构师Dan Pritchett提出来的。</p>
+<p>BASE是对CAP中一致性和可用性权衡的结果，其来源于对大规模互联网分布式系统实践的总结，是基于CAP定律逐步演化而来。其核心思想是即使无法做到强一致性，但每个应用都可以根据自身业务特点，才用适当的方式来使系统打到最终一致。</p>
+<h1 id="BASE理论的内容"><a href="#BASE理论的内容" class="headerlink" title="BASE理论的内容"></a>BASE理论的内容</h1><h2 id="基本可用（Basically-Available）"><a href="#基本可用（Basically-Available）" class="headerlink" title="基本可用（Basically Available）"></a>基本可用（Basically Available）</h2><p>所谓基本可用就是在出现不可预知的故障时，系统主体功能依然可用。一个比较典型的例子就是在电商促销时，为保护购物系统，部分消费有可能会被导到一个降级页面。</p>
+<h2 id="软状态（Soft-State）"><a href="#软状态（Soft-State）" class="headerlink" title="软状态（Soft State）"></a>软状态（Soft State）</h2><p>所谓软状态是指允许系统中的数据存在中间状态，并认为这种状态不影响系统的整体可用性。典型的例子如在分布式文件系统中，数据的写入往往是先写入一份，再异步生成多个副本（同步生成副本不属于这种情况）。</p>
+<h2 id="最终一致性（Eventually-Consistent）"><a href="#最终一致性（Eventually-Consistent）" class="headerlink" title="最终一致性（Eventually Consistent）"></a>最终一致性（Eventually Consistent）</h2><p>上面提到了软状态，但是系统不可以一直处于软状态，必须有一个期限。在期限过后，应当保证所有副本数据是的一致的，从而达到数据的最终一致性。而在实际工程实践中，最终一致性分为5种：</p>
+<h4 id="因果一致性（Causal-consistency）"><a href="#因果一致性（Causal-consistency）" class="headerlink" title="因果一致性（Causal consistency）"></a>因果一致性（Causal consistency）</h4><p>如果节点A在更新完某个数据后通知了节点B，那么节点B之后对该数据的访问和修改都是基于A更新后的值。于此同时，和节点A无因果关系的节点C的数据访问则没有这样的限制。</p>
+<h4 id="读己之所写（Read-your-writes）"><a href="#读己之所写（Read-your-writes）" class="headerlink" title="读己之所写（Read your writes）"></a>读己之所写（Read your writes）</h4><p>节点A更新一个数据后，它自身总是能访问到自身更新过的最新值，而不会看到旧值。其实也算一种因果一致性。</p>
+<h4 id="会话一致性（Session-consistency）"><a href="#会话一致性（Session-consistency）" class="headerlink" title="会话一致性（Session consistency）"></a>会话一致性（Session consistency）</h4><p>会话一致性将对系统数据的访问过程框定在了一个会话当中：系统能保证在同一个有效的会话中实现 “读己之所写” 的一致性，也就是说，执行更新操作之后，客户端能够在同一个会话中始终读取到该数据项的最新值。</p>
+<h4 id="单调读一致性（Monotonic-read-consistency）"><a href="#单调读一致性（Monotonic-read-consistency）" class="headerlink" title="单调读一致性（Monotonic read consistency）"></a>单调读一致性（Monotonic read consistency）</h4><p>单调读一致性指的是：如果一个节点从系统中读取出一个数据项的某个值后，那么系统对于该节点后续的任何数据访问都不应该返回更旧的值。</p>
+<h4 id="单调写一致性（Monotonic-write-consistency）"><a href="#单调写一致性（Monotonic-write-consistency）" class="headerlink" title="单调写一致性（Monotonic write consistency）"></a>单调写一致性（Monotonic write consistency）</h4><p>单调写一致性指的是：一个系统要能够保证来自同一个节点的写操作被顺序的执行。</p>
+<p>在实际的实践中，这5种系统往往会结合使用，以构建一个具有最终一致性的分布式系统。事实上，最终一致性并不是只有那些大型分布式系统才涉及的特性，许多现代的关系型数据库都采用了最终一致性模型。在现代关系型数据库中，大多都会采用同步和异步方式来实现主备数据复制技术。在同步方式中，数据的复制过程通常是更新事务的一部分，因此在事务完成后，主备数据库的数据就会达到一致。而在异步方式中，备库的更新往往会存在延时，这取决于事务日志在主备数据库之间传输的时间长短，如果传输时间过长或者甚至在日志传输过程中出现异常导致无法及时将事务应用到备库上，那么很显然，从备库中读取的数据将是旧的，因此就出现了数据不一致的情况。当然，无论是采用多次重试还是人为数据订正，关系型数据库还是能够保证最终数据达到一致。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>总的来说，BASE理论面向的是大型高可用可扩展的分布式系统，和传统事务的ACID特性是相反的，它完全不同于ACID的强一致性模型，而是提出通过牺牲强一致性来获得可用性，并允许数据在一段时间内是不一致的，但最终达到一致状态。</p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
+<li><a href="https://juejin.im/post/5b2663fcf265da59a401e6f8" target="_blank" rel="noopener">https://juejin.im/post/5b2663fcf265da59a401e6f8</a></li>
+<li><a href="https://xinklabi.iteye.com/blog/2341034" target="_blank" rel="noopener">https://xinklabi.iteye.com/blog/2341034</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.yidooo.net/2019/04/21/spark-troubleshooting-guide.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="核动力蜗牛">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://en.gravatar.com/userimage/132614578/1525cb3f68df290f2720631caf872dff.jpg?size=200">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="异度部落格">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/04/21/spark-troubleshooting-guide.html" itemprop="url">Spark常见问题(持续更新)</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-21T20:41:15+08:00">
+                2019-04-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Big-Data/" itemprop="url" rel="index">
+                    <span itemprop="name">Big Data</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Big-Data/Spark/" itemprop="url" rel="index">
+                    <span itemprop="name">Spark</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="综述"><a href="#综述" class="headerlink" title="综述"></a>综述</h1><p>这篇文章记录了Spark应用开发过程遇到的各种问题及解决方案。主要来自于个人开发的实践，也有部分解决方案来自互联网，如有不足之处欢迎批评指正。<strong>本人会持续更新转载请保留原文地址</strong></p>
+<h1 id="问题描述及解决方案"><a href="#问题描述及解决方案" class="headerlink" title="问题描述及解决方案"></a>问题描述及解决方案</h1><h2 id="java-lang-OutOfMemoryError-Java-heap-space错误"><a href="#java-lang-OutOfMemoryError-Java-heap-space错误" class="headerlink" title="java.lang.OutOfMemoryError: Java heap space错误"></a>java.lang.OutOfMemoryError: Java heap space错误</h2><p>这个是Spark应用常见错误。JVM堆内存空间不足。解决方案如下：</p>
+<ul>
+<li>首先要判断是Driver或者Executor出现OOM，通过–driver-memory或者–executor-memory进行调整。</li>
+<li>如果是Spark SQL或者Spark Streaming的程序，建议适当地提高heap size。</li>
+</ul>
+<h2 id="java-lang-OutOfMemoryError-GC-overhead-limit-exceeded错误"><a href="#java-lang-OutOfMemoryError-GC-overhead-limit-exceeded错误" class="headerlink" title="java.lang.OutOfMemoryError: GC overhead limit exceeded错误"></a>java.lang.OutOfMemoryError: GC overhead limit exceeded错误</h2><p>这个也是Spark应用常见错误，由于GC时间过长导致的。解决方案如下：</p>
+<ul>
+<li>直接通过–driver-memory或者–executor-memory增加heap size</li>
+<li>修改GC policy。可以使用-XX:UseG1GC或者-XX:UseParallelGC</li>
+</ul>
+<h2 id="编译OK，运行时出NoClassDefineError错误"><a href="#编译OK，运行时出NoClassDefineError错误" class="headerlink" title="编译OK，运行时出NoClassDefineError错误"></a>编译OK，运行时出NoClassDefineError错误</h2><p>这个错误非常清晰，根本原因就是jar没有放入classpath之中。首先需要判断到底是Driver还是Executor缺少这个jar包。</p>
+<ul>
+<li>将jar包路径配置到spark.driver.extraClassPath或者spark.executor.extraClassPath。</li>
+<li>将jar包路径通过spark-submit的–driver-class-path或者–executor-class-path指定。</li>
+</ul>
+<p>其实，spark-submit还有一个–packages参数，这个参数让Spark通过Maven从本地或者远程的repository处获取jar包。这个参数看似非常方便，但实际使用的时候不是很实用。因为Hadoop和Spark集群应用一般都是部署在内网的，为了数据安全，一般情况都是无法访问外网的。</p>
+<h2 id="org-apache-spark-SparkException-Task-not-serializable"><a href="#org-apache-spark-SparkException-Task-not-serializable" class="headerlink" title="org.apache.spark.SparkException: Task not serializable"></a>org.apache.spark.SparkException: Task not serializable</h2><p>关于这个问题有单独的一篇文章进行分析，详见：<a href="http://www.yidooo.net/2018/08/19/spark-task-not-serializable-analysis.html">Spark Troubleshooting - Task not serializable问题分析</a></p>
+<h2 id="java-io-IOException-No-space-left-on-device错误"><a href="#java-io-IOException-No-space-left-on-device错误" class="headerlink" title="java.io.IOException: No space left on device错误"></a>java.io.IOException: No space left on device错误</h2><p>具体stack trace如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">stage 89.3 failed 4 times, most recent failure:</span><br><span class="line">Lost task 38.4 in stage 89.3 (TID 30100, rhel4.cisco.com): java.io.IOException: No space left on device</span><br><span class="line">            at java.io.FileOutputStream.writeBytes(Native Method)</span><br><span class="line">            at java.io.FileOutputStream.write(FileOutputStream.java:326)</span><br><span class="line">            at org.apache.spark.storage.TimeTrackingOutputStream.write(TimeTrackingOutputStream.java:58)</span><br><span class="line">            at java.io.BufferedOutputStream.flushBuffer(BufferedOutputStream.java:82)</span><br><span class="line">            at java.io.BufferedOutputStream.write(BufferedOutputStream.java:126)</span><br></pre></td></tr></table></figure><br>这个错误是由于，Spark “scratch” space不足，具体路径通过spark.local.dir参数设置，默认是/tmp。官方对于scratch space的解释是<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Directory to use for &quot;scratch&quot; space in Spark, including map output files and RDDs that get stored on disk.</span><br><span class="line">This should be on a fast, local disk in your system.</span><br><span class="line">It can also be a comma-separated list of multiple directories on different disks.</span><br></pre></td></tr></table></figure></p>
+<h2 id="spark-driver-maxResultSize超出错误"><a href="#spark-driver-maxResultSize超出错误" class="headerlink" title="spark.driver.maxResultSize超出错误"></a>spark.driver.maxResultSize超出错误</h2><p>数据拉回Driver端是有限制的，通过spark.driver.maxResultSize控制：</p>
+<ul>
+<li>默认是1g</li>
+<li>可以设置为0或者unlimited</li>
+<li>如果设置成unlimited就不会再遇到这个错误，取而代之的是OOM。</li>
+</ul>
+<h2 id="java-lang-IllegalArgumentException-Size-exceeds-Integer-MAX-VALUE"><a href="#java-lang-IllegalArgumentException-Size-exceeds-Integer-MAX-VALUE" class="headerlink" title="java.lang.IllegalArgumentException: Size exceeds Integer.MAX_VALUE"></a>java.lang.IllegalArgumentException: Size exceeds Integer.MAX_VALUE</h2><p>具体stack trace如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">java.lang.IllegalArgumentException: Size exceeds Integer.MAX_VALUE</span><br><span class="line">at sun.nio.ch.FileChannelImpl.map(FileChannelImpl.java:828) at</span><br><span class="line">org.apache.spark.storage.DiskStore.getBytes(DiskStore.scala:123) at</span><br><span class="line">org.apache.spark.storage.DiskStore.getBytes(DiskStore.scala:132) at</span><br><span class="line">org.apache.spark.storage.BlockManager.doGetLocal(BlockManager.scala:51 7) at</span><br><span class="line">org.apache.spark.storage.BlockManager.getLocal(BlockManager.scala:432) at</span><br><span class="line">org.apache.spark.storage.BlockManager.get(BlockManager.scala:618) at</span><br><span class="line">org.apache.spark.CacheManager.putInBlockManager(CacheManager.scala:146 ) at</span><br><span class="line">org.apache.spark.CacheManager.getOrCompute(CacheManager.scala:70)</span><br></pre></td></tr></table></figure><br>这个问题是由于shuffle block大于2GB导致的，这个是Spark实现上的一个问题。Spark使用ByteBuffer作为storing blocks。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">val buf = ByteBuffer.allocate(length.toInt) * ByteBufferislimitedbyInteger.MAX_SIZE</span><br></pre></td></tr></table></figure><br>这就是2GB的由来。</p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
+<li><a href="http://spark.apache.org/docs/latest/configuration.html" target="_blank" rel="noopener">http://spark.apache.org/docs/latest/configuration.html</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.yidooo.net/2019/02/28/cap-theorem.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="核动力蜗牛">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://en.gravatar.com/userimage/132614578/1525cb3f68df290f2720631caf872dff.jpg?size=200">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="异度部落格">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/02/28/cap-theorem.html" itemprop="url">分布式系统 - CAP定理</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-28T22:57:27+08:00">
+                2019-02-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Distributed-System/" itemprop="url" rel="index">
+                    <span itemprop="name">Distributed System</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="CAP定理简介"><a href="#CAP定理简介" class="headerlink" title="CAP定理简介"></a>CAP定理简介</h1><p>在理论计算机科学中，CAP定理（CAP theorem），又被称作布鲁尔定理（Brewer’s theorem），指的是在一个分布式系统中，Consistency（一致性）、 Availability（可用性）、Partition tolerance（分区容错性）这三个基本需求，最多只能同时满足其中的2个</p>
+<ul>
+<li>一致性（Consistency）：数据在多个副本之间能够保持一致的特性</li>
+<li>可用性（Availability）：系统提供的服务必须一直处于可用的状态，每次请求都能获取到非错的响应（不保证获取的数据为最新数据）</li>
+<li>分区容错性（Partition tolerance）：分布式系统在遇到任何网络分区故障的时候，仍然能够对外提供满足一致性和可用性的服务，除非整个网络环境都发生了故障</li>
+</ul>
+<h1 id="CAP权衡"><a href="#CAP权衡" class="headerlink" title="CAP权衡"></a>CAP权衡</h1><p>既然根据CAP定理，我们无法同时满足一致性，可用性和分区容错性，那要舍弃哪个呢？</p>
+<ul>
+<li>CA without P<br>如果不要求P（不允许分区），则C（强一致性）和A（可用性）是可以保证的。但其实分区不是你想不想的问题，而是始终会存在，因此CA的系统更多的是允许分区后各子系统依然保持CA。</li>
+<li>CP without A<br>如果不要求A（可用性），相当于每个请求都需要在Server之间强一致，而P（分区）会导致同步时间无限延长，如此CP也是可以保证的。很多传统的数据库分布式事务都属于这种模式。</li>
+<li>AP wihtout C<br>要高可用并允许分区，则需放弃一致性。一旦分区发生，节点之间可能会失去联系，为了高可用，每个节点只能用本地数据提供服务，而这样会导致全局数据的不一致性。实际上，目前大部分NoSQL都属于这一类。</li>
+</ul>
+<h1 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h1><ul>
+<li><a href="https://en.wikipedia.org/wiki/CAP_theorem" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/CAP_theorem</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.yidooo.net/2018/08/19/spark-task-not-serializable-analysis.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="核动力蜗牛">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://en.gravatar.com/userimage/132614578/1525cb3f68df290f2720631caf872dff.jpg?size=200">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="异度部落格">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/19/spark-task-not-serializable-analysis.html" itemprop="url">Spark Troubleshooting - Task not serializable问题分析</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-19T15:34:38+08:00">
+                2018-08-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Big-Data/" itemprop="url" rel="index">
+                    <span itemprop="name">Big Data</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Big-Data/Spark/" itemprop="url" rel="index">
+                    <span itemprop="name">Spark</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>出现“org.apache.spark.SparkException: Task not serializable”这个错误，一般是因为在map、filter等的参数使用了外部的变量，但是这个变量不能序列化。其中最普遍的情形是：当引用了某个类（经常是当前类）的成员函数或变量时，会导致这个类的所有成员（整个类）都需要支持序列化。虽然许多情形下，当前类使用了“extends Serializable”声明支持序列化，但是由于某些字段不支持序列化，仍然会导致整个类序列化时出现问题，最终导致出现Task未序列化问题。</p>
+<h1 id="解决办法与编程建议"><a href="#解决办法与编程建议" class="headerlink" title="解决办法与编程建议"></a>解决办法与编程建议</h1><p>这个问题主要是引用了某类的成员变量或函数，并且相应的类没有做好序列化处理导致的。因此解决这个问题无非以下两种方法：</p>
+<h2 id="不在（或不直接在）map等闭包内部直接引用某类成员函数或成员变量"><a href="#不在（或不直接在）map等闭包内部直接引用某类成员函数或成员变量" class="headerlink" title="不在（或不直接在）map等闭包内部直接引用某类成员函数或成员变量"></a>不在（或不直接在）map等闭包内部直接引用某类成员函数或成员变量</h2><ul>
+<li><p>对于依赖某类成员变量的情形<br>如果程序依赖的值相对固定，可取固定的值，或定义在map、filter等操作内部，或定义在scala object对象中。<br>如果依赖值需要程序调用时动态指定（以函数参数形式），则在map、filter等操作时，可不直接引用该成员变量，而是根据成员变量的值重新定义一个局部变量，这样map等算子就无需引用类的成员变量。</p>
+</li>
+<li><p>对于依赖某类成员函数的情形<br>如果函数功能独立，可定义在scala object对象中（类似于Java中的static方法），这样就无需一来特定的类。</p>
+</li>
+</ul>
+<h2 id="如果引用了某类的成员函数或变量，则需对相应的类做好序列化处理"><a href="#如果引用了某类的成员函数或变量，则需对相应的类做好序列化处理" class="headerlink" title="如果引用了某类的成员函数或变量，则需对相应的类做好序列化处理"></a>如果引用了某类的成员函数或变量，则需对相应的类做好序列化处理</h2><p>首先该类继承Serializable接口，然后对于不能序列化的成员变量使用“@transent”标注，告诉编译器不需要序列化。 此外如果可以，可将依赖的变量独立放到一个小的class中，让这个class支持序列化，这样做可以减少网络传输量，提高效率。</p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
+<li><a href="https://blog.csdn.net/javastart/article/details/51206715" target="_blank" rel="noopener">https://blog.csdn.net/javastart/article/details/51206715</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.yidooo.net/2018/08/05/spark-basic-concepts.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="核动力蜗牛">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://en.gravatar.com/userimage/132614578/1525cb3f68df290f2720631caf872dff.jpg?size=200">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="异度部落格">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/05/spark-basic-concepts.html" itemprop="url">Spark基本概念</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-05T16:02:08+08:00">
+                2018-08-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Big-Data/" itemprop="url" rel="index">
+                    <span itemprop="name">Big Data</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Big-Data/Spark/" itemprop="url" rel="index">
+                    <span itemprop="name">Spark</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>在我们编写Spark Application的的过程中，会涉及到很多概念，下面会介绍一些基本概念用于更好地理解Spark的设计以及应用开发。</p>
+<h1 id="RDD（Resillent-Distributed-Dataset）"><a href="#RDD（Resillent-Distributed-Dataset）" class="headerlink" title="RDD（Resillent Distributed Dataset）"></a>RDD（Resillent Distributed Dataset）</h1><p>弹性数据集。它是Spark的基本数据结构，Spark中的所有数据都是通过RDD的形式进行组织。RDD是不可变的数据集合，不可变的意思是RDD中的每个分区数据是只读的。RDD数据集是要做逻辑分区的，每个分区可以单独在集群节点进行计算。</p>
+<h1 id="DAG（Directed-Acycle-Graph）"><a href="#DAG（Directed-Acycle-Graph）" class="headerlink" title="DAG（Directed Acycle Graph）"></a>DAG（Directed Acycle Graph）</h1><p>有向无环图。在图论中，如果一个有向图无法从有一个定点出发经过若干条边回到该点，则这个图是有向无环图。Spark中用DAG来表示RDD之间的血缘关系。</p>
+<h1 id="NarrowDependency"><a href="#NarrowDependency" class="headerlink" title="NarrowDependency"></a>NarrowDependency</h1><p>窄依赖，子RDD依赖于父RDD中固定的Partition。NarrowDependency分为OneToOneDependency和RangeDependency。</p>
+<h1 id="ShuffleDependency"><a href="#ShuffleDependency" class="headerlink" title="ShuffleDependency"></a>ShuffleDependency</h1><p>Shuffle依赖，也称作宽依赖，子RDD可能对父RDD中所有的Partition都有依赖。子RDD对父RDD各个Partition的依赖取决于分区计算器（Partitioner）的算法。</p>
+<h1 id="Job"><a href="#Job" class="headerlink" title="Job"></a>Job</h1><p>所谓一个Job，就是由一个RDD的action触发的动作，可以简单的理解为，当你需要执行一个RDD的action的时候，会生成一个job。</p>
+<h1 id="Stage"><a href="#Stage" class="headerlink" title="Stage"></a>Stage</h1><p>Stage是一个Job的组成单位，就是说，一个Job会被切分成1个或多个的Stage，然后各个Stage会按照执行顺序依次执行。至于Job根据什么标准来切分Stage，可以简单理解为按照是否需要shuffle来划分stage。当一个操作需要shuffle时，Spark就会将其划分为一个Stage。具体细节后续会有文章单独介绍。</p>
+<h1 id="Task"><a href="#Task" class="headerlink" title="Task"></a>Task</h1><p>Task是Spark的执行单元，每个Stage都会包含一个或者一组Task。一般来说，数据有多少个partition就会有多少个Task。</p>
+<h1 id="Partition"><a href="#Partition" class="headerlink" title="Partition"></a>Partition</h1><p>Partition类似Hadoop的Split，是数据的一种划分方式，计算以Partition为单位进行的。Partition的划分依据有很多，也可以自己定义。例如HDFS的文件的划分方式就是按照HDFS Block大小来划分的。</p>
+<h1 id="Shuffle"><a href="#Shuffle" class="headerlink" title="Shuffle"></a>Shuffle</h1><p>Shuffle是Spark Application中一个非常重要的阶段。Shuffle用于打通map task（在Spark称为ShuffleMapTask）的输出与reduce task的任务（在Spark中就是ResultTask）的输入，map task的输出结果按照指定的分区策略分配给某一个分区的reduce task。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.yidooo.net/2018/07/29/spark-architecture.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="核动力蜗牛">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://en.gravatar.com/userimage/132614578/1525cb3f68df290f2720631caf872dff.jpg?size=200">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="异度部落格">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/29/spark-architecture.html" itemprop="url">Spark架构简介</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-29T00:00:00+08:00">
+                2018-07-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Big-Data/" itemprop="url" rel="index">
+                    <span itemprop="name">Big Data</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Big-Data/Spark/" itemprop="url" rel="index">
+                    <span itemprop="name">Spark</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Spark-架构简介"><a href="#Spark-架构简介" class="headerlink" title="Spark 架构简介"></a>Spark 架构简介</h1><p>Spark是一个master/slave架构的分布式系统，它的架构主要包含有</p>
+<ul>
+<li>Spark Driver</li>
+<li>Spark Executor</li>
+<li>Cluster Manager<br><img src="/images/spark_architecture.png" alt="spark_architecture.png"></li>
+</ul>
+<p>一个Spark集群一般拥有单个的Driver和多个的Executor。Spark Driver和Executor都是独立运行的JVM进程，它们可以运行在单台机器上，也可以运行在多台机器上。</p>
+<h1 id="Spark-Driver"><a href="#Spark-Driver" class="headerlink" title="Spark Driver"></a>Spark Driver</h1><p>Spark Driver是一个Spark Application的主入口，它可以用Scala，Python或者R进行编写。一个Spark Driver包含有一个SparkContext，这是整个Spark Application中最核心的组件。同时，还包含有DAGScheduler, TaskScheduler, BackendScheduler和BlockManager等组件用于将用户代码转换为Spark job运行在集群当中。Spark Driver的主要功能包括：</p>
+<ul>
+<li>负责协调Job的运行和以及Cluster Manager进行交互。</li>
+<li>将RDD转换为执行的DAG图，同时把DAG图分为不同的Stage</li>
+<li>将Job切割成更小的执行单元，Task，由Executor执行。</li>
+<li>启动一个HTTP Server，端口为4040。这个Web UI会把Spark Application运行时的信息展示出来。</li>
+</ul>
+<h1 id="Spark-Executor"><a href="#Spark-Executor" class="headerlink" title="Spark Executor"></a>Spark Executor</h1><p>Spark Executor是Task的实际执行者。每个Application的Executor数量可以通过配置指定（Static Allocation）或者有Spark动态分配（Dynamic Allocation）。Executor的主要功能包括：</p>
+<ul>
+<li>负责所有的数据处理工作</li>
+<li>用于读取和写入外部数据源</li>
+<li>缓存着计算过程中的数据</li>
+</ul>
+<h1 id="Cluster-Manager"><a href="#Cluster-Manager" class="headerlink" title="Cluster Manager"></a>Cluster Manager</h1><p>严格上说Cluster Manager并不是Spark的一部分，而是一个外部的Service（除了Standalone）。Spark Driver会和其进行交互用于从集群里获取资源（CPU，Memory等）。目前Spark支持4种Cluster Manager：</p>
+<ul>
+<li>Standalone：这是一种Spark自带的集群管理模式，设计也比较简单。</li>
+<li>Apache Mesos：Mesos是一种通用的集群资源管理服务，用于管理MapReduce应用或者其他类型的应用。</li>
+<li>Hadoop YARN ：YARN是由Hadoop 2.0引入的集群资源管理服务。</li>
+<li>Kubernetes：Kubernetes是一种管理containerized的应用的服务。Spark 2.3以后引入了对Kubernetes的支持。</li>
+</ul>
+<p>至于选择使用哪一种Cluster Manager，完全取决于生产环境以及业务场景，并没有绝对的优劣。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.yidooo.net/2018/07/29/spark-memory-management.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="核动力蜗牛">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://en.gravatar.com/userimage/132614578/1525cb3f68df290f2720631caf872dff.jpg?size=200">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="异度部落格">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/29/spark-memory-management.html" itemprop="url">Spark内存管理模型详解</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-29T00:00:00+08:00">
+                2018-07-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Big-Data/" itemprop="url" rel="index">
+                    <span itemprop="name">Big Data</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Big-Data/Spark/" itemprop="url" rel="index">
+                    <span itemprop="name">Spark</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>Spark 作为一个基于内存的分布式计算引擎，其内存管理模块在整个系统中扮演着非常重要的角色。理解 Spark 内存管理的基本原理，有助于更好地开发 Spark 应用程序和进行性能调优。</p>
+<p>一个Spark Application一般包括Driver和Executor两种JVM进程。Driver为主控进程，负责创建Context，提交Job，并将Job转换为Task，协调Executor间的Task执行。而Executor主要负责执行具体的计算任务，将结果返回Driver。 由于Driver的内存管理比较简单，和一般的JVM程序区别不大，所以本文重点分析Executor的内存管理。所以，本文提到的内存管理都是指Executor的内存管理。</p>
+<h1 id="堆内内存和堆外内存"><a href="#堆内内存和堆外内存" class="headerlink" title="堆内内存和堆外内存"></a>堆内内存和堆外内存</h1><p>Executor作为一个JVM进程，它的内存管理是基于JVM之上的。所以JVM的内存管理包括两种方式：</p>
+<ul>
+<li><strong>堆内内存管理（On-Heap）</strong>：对象分配的在JVM的堆上，对象会受GC束缚。</li>
+<li><strong>堆外内存管理（Off-Heap）</strong>：对象通过序列化分配在JVM之外的内存里，由应用程序对其进行管理，且不受GC束缚。这种内存管理方式可以避免频繁的 GC，但缺点是必须自己编写内存申请和释放的逻辑。</li>
+</ul>
+<p>一般来说对象读写速度是：on-heap &gt; off-heap &gt; disk</p>
+<h1 id="内存空间分配"><a href="#内存空间分配" class="headerlink" title="内存空间分配"></a>内存空间分配</h1><p>在Spark中，支持两种内存管理方式：静态内存管理（Static Memory Manager）和统一内存管理（Unified Memory Manager）。</p>
+<p>Spark为Storage内存和Execution内存的管理提供了统一的接口<a href="https://github.com/apache/spark/blob/branch-2.3/core/src/main/scala/org/apache/spark/memory/MemoryManager.scala" target="_blank" rel="noopener">MemoryManager</a>，同一个 Executor内的任务都调用这个接口的方法来申请或释放内存。MemoryManager的实现上，Spark 1.6以前默认采用的是静态内存管理（<a href="(https://github.com/apache/spark/blob/branch-2.3/core/src/main/scala/org/apache/spark/memory/StaticMemoryManager.scala">StaticMemoryManager</a>）的方式；而在Spark1.6以后，默认采用的是统一内存管理(<a href="https://github.com/apache/spark/blob/branch-2.3/core/src/main/scala/org/apache/spark/memory/UnifiedMemoryManager.scala" target="_blank" rel="noopener">UnifiedMemoryManager</a>)的方式。在中Spark 1.6+中，可以通过spark.memory.useLegacyMode参数启用静态内存管理。</p>
+<h2 id="静态内存管理（Static-Memory-Manager）"><a href="#静态内存管理（Static-Memory-Manager）" class="headerlink" title="静态内存管理（Static Memory Manager）"></a>静态内存管理（Static Memory Manager）</h2><p>静态内存管理机制下，Storage内存、Execution内存和其他内存的大小在 Spark 应用程序运行期间均为固定的，但用户可以应用程序启动前进行配置。由于这种分配已经逐渐被淘汰，但出于兼容性考虑，Spark依然保留下来。有兴趣的话，可以参考：<a href="https://blog.csdn.net/Lin_wj1995/article/details/79924542" target="_blank" rel="noopener">https://blog.csdn.net/Lin_wj1995/article/details/79924542</a></p>
+<p>这边主要讲下静态内存管理的弊端：静态内存管理机制实现起来较为简单，但如果用户不熟悉Spark的存储机制，或没有根据具体的数据规模和计算任务或做相应的配置，很容易造成Storage内存和Execution内存中的一方剩余大量的空间，而另一方却早早被占满，不得不淘汰或移出旧的内容以存储新的内容。</p>
+<h2 id="统一内存管理（Unified-Memory-Manager）"><a href="#统一内存管理（Unified-Memory-Manager）" class="headerlink" title="统一内存管理（Unified Memory Manager）"></a>统一内存管理（Unified Memory Manager）</h2><p>Spark 1.6之后引入了统一内存管理机制，该机制与静态内存管理的区别在于，Storage内存和Execution内存是共享一块内存空间的，双方可以互相占用对方的空闲区域。</p>
+<h3 id="堆内模型"><a href="#堆内模型" class="headerlink" title="堆内模型"></a>堆内模型</h3><p>默认情况下，Spark仅使用了堆内内存。堆内内存的大小由Spark Application启动时的–executor-memory或spark.executor.memory 参数配置。Executor内运行的并发任务共享JVM堆内内存。</p>
+<p>Executor端的堆内内存区域大致可以分为以下四大块：</p>
+<ul>
+<li>Storage内存（Storage Memory）：主要用于存储Spark的cache数据，例如RDD的缓存、Broadcast变量，Unroll数据等。</li>
+<li>Execution内存（Execution Memory）：主要用于存放 Shuffle、Join、Sort、Aggregation等计算过程中的临时数据。</li>
+<li>用户内存（User Memory）：主要用于存储 RDD 转换操作所需要的数据，例如 RDD 依赖等信息。</li>
+<li>预留内存（Reserved Memory）：系统预留内存，会用来存储Spark内部对象。</li>
+</ul>
+<p>内存分布如下图所示:<br><img src="/images/unified_memory_managment_on_heap.svg" alt="unified_memory_managment_on_heap"></p>
+<h3 id="堆外模型"><a href="#堆外模型" class="headerlink" title="堆外模型"></a>堆外模型</h3><p>Spark 1.6 开始引入了Off-heap memory(<a href="https://www.iteblog.com/redirect.php?url=aHR0cHM6Ly9pc3N1ZXMuYXBhY2hlLm9yZy9qaXJhL2Jyb3dzZS9TUEFSSy0xMTM4OQ==&amp;article=true" target="_blank" rel="noopener">SPARK-11389</a>)。默认情况下，堆外内存是关闭的，我们可以通过spark.memory.offHeap.enabled参数启用，通过spark.memory.offHeap.size设置堆外内存大小。相比堆内内存，堆外内存的模型比较简单，只包括Storage内存和Execution内存，其分布如下图所示：<br><img src="/images/unified_memory_management_off_heap.svg" alt="unified_memory_management_off_heap"></p>
+<p>如果堆外内存被启用，那么Executor内将同时存在堆内和堆外内存，两者的使用互补影响，这个时候Executor中的Execution内存是堆内的Execution 内存和堆外的Execution内存之和，同理，Storage内存也一样。下图为Spark堆内和堆外示意图<br><img src="/images/spark_on_heap_and_off_heap_memory.png" alt="spark_on_heap_and_off_heap_memory"></p>
+<h3 id="动态占用机制"><a href="#动态占用机制" class="headerlink" title="动态占用机制"></a>动态占用机制</h3><ul>
+<li>在程序提交时，会根据spark.memory.storageFraction参数设置Storage内存区域和Execution内存区域。</li>
+<li>在程序运行时，如果双方的空间不不足（存储空间不足以放下一个完整的Block），则按照LRU规则存储到磁盘；如果己方空间不足而对方空间有空余，则借用对方的空间。</li>
+<li>Storage占用对方内存，可将占用的部分转存到硬盘，然后”归还”借用的空间。</li>
+<li>Execution占用对方内存，目前的实现是无法让对方”归还”的。因为Shuffle过程产生的文件在后面一定会被使用到，而Cache在内存的数据不一定在后面使用，归还内存可能会导致性能严重下降。</li>
+</ul>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
+<li><a href="https://stackoverflow.com/questions/6091615/difference-between-on-heap-and-off-heap" target="_blank" rel="noopener">Difference between “on-heap” and “off-heap”</a></li>
+<li><a href="https://www.ibm.com/developerworks/cn/analytics/library/ba-cn-apache-spark-memory-management/index.html" target="_blank" rel="noopener">Apache Spark 内存管理详解</a></li>
+<li><a href="https://www.iteblog.com/archives/2342.html#Off-heap_Memory" target="_blank" rel="noopener">Apache Spark 统一内存管理模型详解</a></li>
+<li><a href="https://0x0fff.com/spark-memory-management/" target="_blank" rel="noopener">Spark Memory Management</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+  </section>
+
+  
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/29/">29</a><a class="extend next" rel="next" href="/page/2/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
+  </nav>
+
+
+
+          </div>
+          
+
+
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://en.gravatar.com/userimage/132614578/1525cb3f68df290f2720631caf872dff.jpg?size=200"
+                alt="核动力蜗牛" />
+            
+              <p class="site-author-name" itemprop="name">核动力蜗牛</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">283</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">96</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/zhenlohuang" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:zhenlohuang@gmail.com" target="_blank" title="E-Mail">
+                    
+                      <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://twitter.com/zhenlohunag" target="_blank" title="Twitter">
+                    
+                      <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.facebook.com/zhenlohuang" target="_blank" title="FB Page">
+                    
+                      <i class="fa fa-fw fa-facebook"></i>FB Page</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://stackoverflow.com/users/2945192" target="_blank" title="StackOverflow">
+                    
+                      <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">核动力蜗牛</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine@1.1.4/dist/Valine.min.js"></script>
+  <script type="text/javascript">
+    new Valine({
+        av: AV,
+        el: '#vcomments' ,
+        verify: true,
+        notify: true,
+        app_id: 'GdWobeifa1Cr5zJubUFLGuA9-gzGzoHsz',
+        app_key: 'zkFt8YflR67GWT6cIhKF0tVH',
+        placeholder: '欢迎评论'
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

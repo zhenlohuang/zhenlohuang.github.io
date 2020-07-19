@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Java, Scala, Python, 大数据, Hadoop, Spark" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="【试题描述】 你让工人为你工作7天，给工人的回报是一根金条。金条平分成相连的7段，你必须在每天结束时给他们一段金条，如果只许你两次把金条弄断，你如何给你的工人付费？分为1、2、4 三段。Day1：给1 Day2：给2，还1 Day3：给1 Day4：给4，还1、2 Day5：给1，还2 Day6：给2，还1 Day7：给1 【试题描述】请把一盒蛋糕切成8份，分给8个人，但蛋糕盒里还必须留有一份。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【IT笔试面试题整理】笔试和面试中常见的智力题">
+<meta property="og:url" content="http://www.yidooo.net/2012/06/21/common-written-examination-and-the-interview-puzzles.html">
+<meta property="og:site_name" content="异度部落格">
+<meta property="og:description" content="【试题描述】 你让工人为你工作7天，给工人的回报是一根金条。金条平分成相连的7段，你必须在每天结束时给他们一段金条，如果只许你两次把金条弄断，你如何给你的工人付费？分为1、2、4 三段。Day1：给1 Day2：给2，还1 Day3：给1 Day4：给4，还1、2 Day5：给1，还2 Day6：给2，还1 Day7：给1 【试题描述】请把一盒蛋糕切成8份，分给8个人，但蛋糕盒里还必须留有一份。">
+<meta property="article:published_time" content="2012-06-20T16:00:00.000Z">
+<meta property="article:modified_time" content="2020-07-19T08:02:00.928Z">
+<meta property="article:author" content="核动力蜗牛">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.yidooo.net/2012/06/21/common-written-examination-and-the-interview-puzzles.html"/>
+
+
+
+
+
+  <title>【IT笔试面试题整理】笔试和面试中常见的智力题 | 异度部落格</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?7935dce3b8c7c4adacbbff4e2533811b";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">异度部落格</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">学习是一种生活态度。</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于我
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.yidooo.net/2012/06/21/common-written-examination-and-the-interview-puzzles.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="核动力蜗牛">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://en.gravatar.com/userimage/132614578/1525cb3f68df290f2720631caf872dff.jpg?size=200">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="异度部落格">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">【IT笔试面试题整理】笔试和面试中常见的智力题</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2012-06-21T00:00:00+08:00">
+                2012-06-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Interview/" itemprop="url" rel="index">
+                    <span itemprop="name">Interview</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong>【试题描述】</strong> 你让工人为你工作7天，给工人的回报是一根金条。金条平分成相连的7段，你必须在每天结束时给他们一段金条，如果只许你两次把金条弄断，你如何给你的工人付费？<br>分为1、2、4 三段。<br>Day1：给1</p>
+<p>Day2：给2，还1</p>
+<p>Day3：给1</p>
+<p>Day4：给4，还1、2</p>
+<p>Day5：给1，还2</p>
+<p>Day6：给2，还1</p>
+<p>Day7：给1</p>
+<p><strong>【试题描述】</strong>请把一盒蛋糕切成8份，分给8个人，但蛋糕盒里还必须留有一份。</p>
+<p>将蛋糕均分层8份，取七份给其中七个人，最后一份放入盒中给第八个。</p>
+<p><strong>【试题描述】</strong>小明一家过一座桥，过桥时是黑夜，所以必须有灯。现在小明过桥要1秒，小明的弟弟要3秒，小明的爸爸要6秒，小明的妈妈要8秒，小明的爷爷要12秒。每次此桥最多可过两人，而过桥的速度依过桥最慢者而定，而且灯在点燃后30秒就会熄灭。问：小明一家如何过桥？</p>
+<p>A：小明  1s</p>
+<p>B：小明的弟弟  3s</p>
+<p>C：小明的爸爸  6s</p>
+<p>D：小明的妈妈  8s</p>
+<p>E：小明的爷爷  12s<br>    步骤    用时    位置状况<br>1    小明和小明的弟弟先过去    3s    AB—CDE<br>2    小明的弟弟回来    3s    A—BCDE<br>3    小明的妈妈和爷爷过去    12s    ADE—BC<br>4    小明回来    1s    DE—ABC<br>5    小明和他的爸爸过去    6s    ACDE—B<br>6    小明回来    1s    CDE—AB<br>7    小明和他的弟弟过去    3s    ABCDE—<br>总用时：29s</p>
+<p><em>【试题描述】<strong>一群人</strong>开<strong>舞会，</strong>每<strong>人</strong>头<strong>上都戴着一</strong>顶<strong>帽子。帽子只有黑白两</strong>种<strong>，黑的至少有一</strong>顶<strong>。</strong>每<strong>个人都能看到其他人帽子的</strong>颜<strong>色，却看不到自己的。主持人先</strong>让<strong>大家看看</strong>别<strong>人</strong>头<strong>上戴的是什</strong>么<strong>帽子，然后</strong>关<strong>灯，如果有人</strong>认为<strong>自己戴的是黑帽子，就打自己一个耳光。第一次</strong>关<strong>灯，没有声音。于是再</strong>开<strong>灯，大家再看一遍，</strong>关<strong>灯</strong>时<strong>仍然</strong>鸦<strong>雀无声。一直到第三次</strong>关<strong>灯，才有劈劈</strong>啪啪<strong>打耳光的声音响起。</strong>问<strong>有多少人戴着黑帽子？</strong></em></p>
+<p>本题关键就是至少有一顶黑帽子。假如只有一个人戴黑帽子，那他看到所有人都戴白帽，在第一次关灯时就 应自打耳光，所以应该不止一个人戴黑帽子；如果有两顶黑帽子，第一次两人都只 看到对方头上的黑帽子，不敢确定自己的颜色，但到第二次关灯，这两人应该明白 ，如果自己戴着白帽，那对方早在上一次就应打耳光了，因此自己戴的也是黑帽子 ，于是也会有耳光声响起；可事实是第三次才响起了耳光声，说明全场不止两顶黑 帽，依此类推，应该是关了几次灯，有几顶黑帽。</p>
+<p><em>【试题描述】<strong>一楼到十楼的</strong>每层电<strong>梯</strong>门<strong>口都放着一</strong>颗钻<strong>石，</strong>钻<strong>石大小不一。你乘坐</strong>电<strong>梯从一楼到十楼，</strong>每层<strong>楼</strong>电<strong>梯</strong>门<strong>都会打</strong>开<strong>一次，只能拿一次</strong>钻<strong>石，</strong>问<strong>怎</strong>样<strong>才能拿到最大的一</strong>颗<strong>？</strong></em></p>
+<p>第一步：对1到3层的大小进行比较，记住最大的一颗m1。</p>
+<p>第二步：4到6层作为参考，将4-6层的与m1作比较，确认最大的一个的平均水平m2。</p>
+<p>第三步：在最后4层中当遇到与m2相近时直接拿下</p>
+<p>（答案仅供参考）</p>
+<p>PS：这个问题类似柏拉图的麦穗问题，属于哲学的范畴了，所以再深入讨论。</p>
+<p><em>【试题描述】<strong>U2</strong>合唱<strong>团</strong>在<strong>17</strong>分<strong>钟</strong>内得赶到演唱会<strong>场</strong>，途中必需跨<strong>过</strong>一座<strong>桥</strong>，四个人从<strong>桥</strong>的同一端出<strong>发</strong>，你得帮助他<strong>们</strong>到达另一端，天色很暗，而他<strong>们</strong>只有一只手<strong>电</strong>筒。一次同<strong>时</strong>最多可以有两人一起<strong>过桥</strong>，而<strong>过桥</strong>的<strong>时</strong>候必<strong>须</strong>持有手<strong>电</strong>筒，所以就得有人把手<strong>电</strong>筒<strong>带</strong>来<strong>带</strong>去，来回<strong>桥</strong>两端。手<strong>电</strong>筒是不能用<strong>丢</strong>的方式来<strong>传递</strong>的。四个人的<strong>步</strong>行速度各不同，若两人同行<strong>则</strong>以<strong>较</strong>慢者的速度<strong>为</strong>准。<strong>Bono</strong>需花<strong>1</strong>分<strong>钟过桥</strong>，<strong>Edge</strong>需花<strong>2</strong>分<strong>钟过桥</strong>，<strong>Adam</strong>需花<strong>5</strong>分<strong>钟过桥</strong>，<strong>Lay</strong>需花<strong>10</strong>分<strong>钟过桥</strong>。他<strong>们</strong>要如何在<strong>17</strong>分<strong>钟</strong>内<strong>过桥</strong>呢？**</em></p>
+<table border="1" cellspacing="0" cellpadding="0"><br><tbody><br><tr><br><td valign="top">姓名</td><br><td valign="top">所用时间</td><br><td valign="top">简称</td><br></tr><br><tr><br><td valign="top">Bono</td><br><td valign="top">1 min</td><br><td valign="top">B</td><br></tr><br><tr><br><td valign="top">Edge</td><br><td valign="top">2 min</td><br><td valign="top">E</td><br></tr><br><tr><br><td valign="top">Adam</td><br><td valign="top">5 min</td><br><td valign="top">A</td><br></tr><br><tr><br><td valign="top">Lay</td><br><td valign="top">10 min</td><br><td valign="top">L</td><br></tr><br></tbody><br></table>
+
+<table border="1" cellspacing="0" cellpadding="0"><br><tbody><br><tr><br><td valign="top" width="36"></td><br><td valign="top" width="227">步骤</td><br><td valign="top" width="198">用时</td><br><td valign="top" width="195">位置状况</td><br></tr><br><tr><br><td valign="top" width="36">1</td><br><td valign="top" width="227">Bono和Edge过去</td><br><td valign="top" width="198">Max（1,2）=2min</td><br><td valign="top" width="195">BE—AL</td><br></tr><br><tr><br><td valign="top" width="36">2</td><br><td valign="top" width="227">Bono回来</td><br><td valign="top" width="198">1min</td><br><td valign="top" width="195">E—BAL</td><br></tr><br><tr><br><td valign="top" width="36">3</td><br><td valign="top" width="227">Adam和Lay过去</td><br><td valign="top" width="198">Max（5,10）= 10min</td><br><td valign="top" width="195">EAL—B</td><br></tr><br><tr><br><td valign="top" width="36">4</td><br><td valign="top" width="227">Edge回来</td><br><td valign="top" width="198">2min</td><br><td valign="top" width="195">AL—BE</td><br></tr><br><tr><br><td valign="top" width="36">5</td><br><td valign="top" width="227">Bono和Edge过去</td><br><td valign="top" width="198">Max（1,2）=2min</td><br><td valign="top" width="195">BA EL—</td><br></tr><br><tr><br><td colspan="4" valign="top" width="656">总用时：17min</td><br></tr><br></tbody><br></table>
+
+
+<p><em>【试题描述】<strong>烧</strong>一根不均匀的<strong>绳</strong>要用一个小<strong>时</strong>，如何用它来判断半个小<strong>时</strong>?**</em></p>
+<p>只要将绳子两头同时点上即可。</p>
+<p><em>【试题描述】<strong>为</strong>什<strong>么</strong>下水道的盖子是<strong>圆</strong>的？</em></p>
+<p>参考答案一：相同面积下圆形的井盖最省材料。</p>
+<p>参考答案二：圆形井盖可以避免井盖落入下水道中。</p>
+<p><em>【试题描述】<strong>有</strong>7<strong>克、</strong>2<strong>克砝</strong>码<strong>各一个，天平一只，如何只用</strong>这<strong>些物品三次将</strong>140<strong>克的</strong>盐<strong>分成</strong>50<strong>、</strong>90**克各一份？</em></p>
+<p>第一次：140 = 70 + 70 ，得到两份70g的</p>
+<p>第二次：70 = 35 + 35，得到70,35,35</p>
+<p>第三次：35 = （7 + 15）+ （2 + 20），得到70,35,15,20</p>
+<p>70 + 20 = 90</p>
+<p>35 + 15 = 50</p>
+<p><em>【试题描述】<strong>有一</strong>辆<strong>火</strong>车<strong>以</strong>每<strong>小</strong>时<strong>15</strong>公里的速度离<strong>开</strong>洛杉<strong>矶</strong>直奔<strong>纽约</strong>，另一<strong>辆</strong>火<strong>车</strong>以第小<strong>时</strong>20<strong>公里的速度从</strong>纽约开<strong>往洛杉</strong>矶<strong>。如果有一只</strong>鸟<strong>，以外</strong>30<strong>公里</strong>每<strong>小</strong>时<strong>的速度和两</strong>辆<strong>火</strong>车现时<strong>启</strong>动<strong>，从洛杉</strong>矶<strong>出</strong>发<strong>，碰到另</strong>辆车<strong>后返回，依次在两</strong>辆<strong>火</strong>车<strong>来回的</strong>飞<strong>行，直道两面</strong>辆<strong>火</strong>车<strong>相遇，</strong>请问<strong>，</strong>这<strong>只小</strong>鸟飞<strong>行了多</strong>长**距离？</em></p>
+<p>设New York到LA的距离为S</p>
+<p>s = v<em>t = 30km/h </em> S/（15+20）</p>
+<p><em>【试题描述】<strong>你有两个罐子，</strong>50<strong>个</strong>红<strong>色</strong>弹<strong>球，</strong>50<strong>个</strong>蓝<strong>色</strong>弹<strong>球，随机</strong>选<strong>出一个罐子，随机</strong>选<strong>取出一个</strong>弹<strong>球放入罐子，怎</strong>么给红<strong>色</strong>弹<strong>球最大的</strong>选<strong>中机会？在你的</strong>计<strong>划中，得到</strong>红**球的准确几率是多少？</em></p>
+<p>A罐子里放1个红球，B罐子里放49个红球和蓝球。</p>
+<p>选中A罐就等于选中那个红球，几率就是50%，而B罐子也有49/99的几率选到红球。</p>
+<p>整个选到红球的几率就是50%+50%*49/99=99/198+49/198=148/198=74/99，</p>
+<p><em>【试题描述】<strong>你有四</strong>个<strong>装</strong>药<strong>丸的罐子，</strong>每<strong>个</strong>药<strong>丸都有一定的重量，被</strong>污<strong>染的</strong>药<strong>丸是没被</strong>污<strong>染的重量</strong>+1.<strong>只称量一次，如何判断哪个罐子的</strong>药<strong>被</strong>污**染了？</em></p>
+<p>第一个罐子取1颗，第二个罐子取两颗，第三个罐子取3颗，第四个罐子取4颗。称得总重量，然后减去标准重量15，得到n。n为多少就是哪一罐被污染。</p>
+<p><em>【试题描述】<strong>如果你有无</strong>穷<strong>多的水，一个</strong>3<strong>夸脱的和一个</strong>5<strong>夸脱的提桶，你如何准确称出</strong>4**夸脱的水？</em></p>
+<p>首先用容量3的水桶装满，往容量5的水桶里面装水。然后再取3夸脱的水，将容量5的水桶装满。此时桶里会剩下1夸脱的水。此时，将容量为5的桶清空，将剩下的1夸脱倒过来。再取3夸脱加入即可。</p>
+<p><em>【试题描述】<strong>你有一桶果</strong>冻<strong>，其中有黄色，</strong>绿<strong>色，</strong>红<strong>色三</strong>种<strong>，，</strong>闭<strong>上眼睛</strong>选<strong>出同</strong>样颜<strong>色的两个，抓取同</strong>种颜<strong>色的两个。抓取多少个就可以确定你肯定有两个同一</strong>颜<strong>色的果</strong>冻**？</em></p>
+<p>4个。数量大于颜色，必定有相同的颜色。</p>
+<p><em>【试题描述】<strong>对</strong>一批<strong>编</strong>号<strong>为</strong>1~100<strong>全部</strong>开关<strong>朝上</strong>开<strong>的灯</strong>进<strong>行以下操作凡是</strong>1<strong>的倍数反方向</strong>拨<strong>一次</strong>开，<strong>2</strong>的倍数反方向又<strong>拨</strong>一次<strong>开关，</strong>3<strong>的倍数反方向又</strong>拨<strong>一次</strong>开关<strong>……</strong>问<strong>最后</strong>为关<strong>熄状</strong>态<strong>的灯的</strong>编**号。</em></p>
+<p>10盏是亮的，分别是1 4 9 16 25 36 49 64 81 100；90盏是灭的。</p>
+<p>这是因为除了这些平方数以外，其余的任意一个数都能分成不同的两数乘积，质数可以分为1和本身，合数都可以分成若干组乘积（每组两个），因此，这些等都被拉了偶数倍，也就是灭的，平方数因为在被自己的开方数拉是只有一次，所以是奇数次，也就是亮的。随便举两个例子以证明。36分别被1、2、3、4、6、9、12、18、36拉过，共是9次，亮。38分别被1、2、19、38拉过，共是4次，灭。所以10盏是亮的;90盏是灭的</p>
+<p><em>【试题描述】<strong>假</strong>设<strong>一</strong>张圆盘<strong>像唱机上的唱</strong>盘<strong>那</strong>样转动<strong>。</strong>这张盘<strong>一半是黑色，一半是白色。假</strong>设<strong>你有数量不限的一些</strong>颜<strong>色</strong>传<strong>感器。要想确定</strong>圆盘转动<strong>的方向，你需要在它周</strong>围摆<strong>多少个</strong>颜<strong>色</strong>传<strong>感器？它</strong>们应该<strong>被</strong>摆<strong>放在什</strong>么**位置？</em></p>
+<p>两个。</p>
+<p>设两个传感器一个在12点位置（A），一个在1点的位置（B）。</p>
+<p>首先利用传感器A的两次变化，估算出转盘转半圈所用的大致时间。然后计时，当B传感器变化的时间较短，证明是由A-&gt;B即顺时针。反之为逆时针。</p>
+<p><em>【试题描述】<strong>假</strong>设时钟<strong>到了</strong>12<strong>点。注意</strong>时针<strong>和分</strong>针<strong>重叠在一起。在一天之中，</strong>时针<strong>和分</strong>针<strong>共重叠多少次？你知道它</strong>们<strong>重叠</strong>时<strong>的具体</strong>时间吗**？</em></p>
+<p>22次，即每一小时都会有一次重合（0点和24点视为一次）</p>
+<p>分针一小时走360°，时针走30°，也就是说他们的速度差是330°/h。因此第一圈追上的时刻是360/330=（1 + 1/11），即1点5分多点。第二圈追上时刻720/330=2+ 2/11，即2点11分左右。因此得到所有的重叠时刻。</p>
+<p>0，1 + 1/11，2 + 2/11，3 + 3/11，4+ 4/11，5 + 5/11，6 + 6/11，7 + 7/11，8 + 8/11，9 + 9/11，10 + 10/11，12，13 + 1/11，14 + 2/11，15 + 3/11，16 + 4/11，17 + 5/11，18 + 6/11，19 + 7/11，20 + 8/11，21 + 9/11，22 + 10/11</p>
+<p><em>【试题描述】<strong>一个屋子有一个</strong>门<strong>（</strong>门<strong>是</strong>关闭<strong>的）和</strong>3<strong>盏电</strong>灯。屋外有<strong>3</strong>个<strong>开关</strong>，分<strong>别</strong>与<strong>这</strong>3<strong>盏</strong>灯相<strong>连</strong>。你可以随意操<strong>纵这</strong>些<strong>开关</strong>，可一旦你将<strong>门</strong>打<strong>开</strong>，就不能<strong>变换开关</strong>了。确定<strong>每</strong>个<strong>开关</strong>具体管哪<strong>盏</strong>灯。**</em></p>
+<p>先在门外打开一个开关，等一会儿，然后关掉它，再另开一个开关，再走到屋内，热而不亮的一个<a href="http://wenwen.soso.com/z/Search.e?sp=S%E7%81%AF%E6%B3%A1&ch=w.search.yjjlink&cid=w.search.yjjlink" target="_blank">灯泡</a>是第一个开关所控制，亮的便是第二个，不亮又不热的便是第三个开关所控制的了。</p>
+<p><em>【试题描述】<strong>假</strong>设<strong>你有</strong>8<strong>个球，其中一个略微重一些，但是找出</strong>这<strong>个球的惟一方法是将两个球放在天平上</strong>对<strong>比。最少要称多少次才能找出</strong>这<strong>个</strong>较**重的球？</em></p>
+<p>两次。</p>
+<p>首选，天枰两边各放3个。如果平衡，取剩余两个，天枰上面各放一个可以得到结果；如果不平衡取下较重的三个记为ABC，将AB放在天枰两边，如果不平衡即得到结果，如果平衡C为较重的那个球。</p>
+<p><em>【试题描述】<strong>如果你有两个桶，一个装的是</strong>红<strong>色的</strong>颜<strong>料，另一个装的是</strong>蓝<strong>色的</strong>颜<strong>料。你从</strong>蓝<strong>色</strong>颜<strong>料桶里舀一杯，倒入</strong>红<strong>色</strong>颜<strong>料桶，再从</strong>红<strong>色</strong>颜<strong>料桶里舀一杯倒入</strong>蓝颜<strong>料桶。两个桶中</strong>红蓝颜<strong>料的比例哪个更高？通</strong>过<strong>算</strong>术<strong>的方式来</strong>证<strong>明</strong>这**一点。</em></p>
+<p>假设两个桶里面的颜料各自为10，一杯的容量刚好是1</p>
+<p><table border="1" cellspacing="0" cellpadding="0"></p>
+<p><tbody></p>
+<p><tr></p>
+<p><td valign="top" width="300"></p>
+<p><p align="center">操作<br></td></p>
+<p><td colspan="2" valign="top" width="356"></p>
+<p><p align="center">状态<br></td><br></tr></p>
+<p><tr></p>
+<p><td valign="top" width="300">从蓝色颜料桶里舀一杯，倒入红色颜料桶</td></p>
+<p><td valign="top" width="192">10R，1B</td></p>
+<p><td valign="top" width="164">9B</td><br></tr></p>
+<p><tr></p>
+<p><td valign="top" width="300">再从红色颜料桶里舀一杯倒入蓝颜料桶</td></p>
+<p><td valign="top" width="192">（10R + 1B）*（10/11）</td></p>
+<p><td valign="top" width="164">9B + （10R + 1B）/11</td><br></tr><br></tbody><br></table><br>因此红颜料桶的红蓝比例：10:1，蓝颜料桶红蓝比例：1:10。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/money/wechatpay.jpg" alt="核动力蜗牛 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/money/alipay.jpg" alt="核动力蜗牛 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2012/06/18/pirate-gem.html" rel="next" title="【IT笔试面试题整理】海盗分宝石">
+                <i class="fa fa-chevron-left"></i> 【IT笔试面试题整理】海盗分宝石
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2012/06/24/the-euclidean-distance-and-the-pearson-correlation-coefficient.html" rel="prev" title="【集体智慧编程 学习笔记】 Euclidean距离和Pearson相关系数">
+                【集体智慧编程 学习笔记】 Euclidean距离和Pearson相关系数 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  
+    <div class="comments" id="comments">
+      <div id="vcomments"></div>
+    </div>
+  
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://en.gravatar.com/userimage/132614578/1525cb3f68df290f2720631caf872dff.jpg?size=200"
+                alt="核动力蜗牛" />
+            
+              <p class="site-author-name" itemprop="name">核动力蜗牛</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">283</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">96</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/zhenlohuang" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:zhenlohuang@gmail.com" target="_blank" title="E-Mail">
+                    
+                      <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://twitter.com/zhenlohunag" target="_blank" title="Twitter">
+                    
+                      <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.facebook.com/zhenlohuang" target="_blank" title="FB Page">
+                    
+                      <i class="fa fa-fw fa-facebook"></i>FB Page</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://stackoverflow.com/users/2945192" target="_blank" title="StackOverflow">
+                    
+                      <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">核动力蜗牛</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine@1.1.4/dist/Valine.min.js"></script>
+  <script type="text/javascript">
+    new Valine({
+        av: AV,
+        el: '#vcomments' ,
+        verify: true,
+        notify: true,
+        app_id: 'GdWobeifa1Cr5zJubUFLGuA9-gzGzoHsz',
+        app_key: 'zkFt8YflR67GWT6cIhKF0tVH',
+        placeholder: '欢迎评论'
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

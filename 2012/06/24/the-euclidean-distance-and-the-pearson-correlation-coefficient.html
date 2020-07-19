@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Java, Scala, Python, 大数据, Hadoop, Spark" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Euclidean距离 定义:欧几里得空间中点 x &#x3D; (x1,…,xn) 和 y &#x3D; (y1,…,yn) 之间的距离为  两个变量之间的相关系数越高，从一个变量去预测另一个变量的精确度就越高，这是因为相关系数越高，就意味着这两个变量的共变部分越多，所以从其中一个变量的变化就可越多地获知另一个变量的变化。如果两个变量之间的相关系数为1或-1，那么你完全可由变量X去获知变量Y的值。 · 当相关系数为">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【集体智慧编程 学习笔记】 Euclidean距离和Pearson相关系数">
+<meta property="og:url" content="http://www.yidooo.net/2012/06/24/the-euclidean-distance-and-the-pearson-correlation-coefficient.html">
+<meta property="og:site_name" content="异度部落格">
+<meta property="og:description" content="Euclidean距离 定义:欧几里得空间中点 x &#x3D; (x1,…,xn) 和 y &#x3D; (y1,…,yn) 之间的距离为  两个变量之间的相关系数越高，从一个变量去预测另一个变量的精确度就越高，这是因为相关系数越高，就意味着这两个变量的共变部分越多，所以从其中一个变量的变化就可越多地获知另一个变量的变化。如果两个变量之间的相关系数为1或-1，那么你完全可由变量X去获知变量Y的值。 · 当相关系数为">
+<meta property="og:image" content="http://www.yidooo.net/images/legacy/2012/06/clip_image001_thumb2-300x33.png">
+<meta property="og:image" content="http://www.yidooo.net/images/legacy/2012/06/96202_2375725_1.gif">
+<meta property="article:published_time" content="2012-06-23T16:00:00.000Z">
+<meta property="article:modified_time" content="2020-07-19T08:02:00.928Z">
+<meta property="article:author" content="核动力蜗牛">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://www.yidooo.net/images/legacy/2012/06/clip_image001_thumb2-300x33.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.yidooo.net/2012/06/24/the-euclidean-distance-and-the-pearson-correlation-coefficient.html"/>
+
+
+
+
+
+  <title>【集体智慧编程 学习笔记】 Euclidean距离和Pearson相关系数 | 异度部落格</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?7935dce3b8c7c4adacbbff4e2533811b";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">异度部落格</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">学习是一种生活态度。</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于我
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.yidooo.net/2012/06/24/the-euclidean-distance-and-the-pearson-correlation-coefficient.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="核动力蜗牛">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://en.gravatar.com/userimage/132614578/1525cb3f68df290f2720631caf872dff.jpg?size=200">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="异度部落格">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">【集体智慧编程 学习笔记】 Euclidean距离和Pearson相关系数</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2012-06-24T00:00:00+08:00">
+                2012-06-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Data-Mining/" itemprop="url" rel="index">
+                    <span itemprop="name">Data Mining</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><em>Euclidean距离</em></p>
+<p>定义:欧几里得空间中点 x = (x1,…,xn) 和 y = (y1,…,yn) 之间的距离为</p>
+<p><img src="/images/legacy/2012/06/clip_image001_thumb2-300x33.png" alt="image"></p>
+<p>两个变量之间的相关系数越高，从一个变量去预测另一个变量的精确度就越高，这是因为相关系数越高，就意味着这两个变量的共变部分越多，所以从其中一个变量的变化就可越多地获知另一个变量的变化。如果两个变量之间的相关系数为1或-1，那么你完全可由变量X去获知变量Y的值。</p>
+<p>· 当相关系数为0时，X和Y两变量无关系。</p>
+<p>· 当X的值增大，Y也增大，正相关关系，相关系数在0.00与1.00之间</p>
+<p>· 当X的值减小，Y也减小，正相关关系，相关系数在0.00与1.00之间</p>
+<p>· 当X的值增大，Y减小，负相关关系，相关系数在-1.00与0.00之间</p>
+<p>当X的值减小，Y增大，负相关关系，相关系数在-1.00与0.00之间</p>
+<p>相关系数的绝对值越大，相关性越强，相关系数越接近于1和-1，相关度越强，相关系数越接近于0，相关度越弱。</p>
+<p><img src="/images/legacy/2012/06/96202_2375725_1.gif" alt="image"></p>
+<p>实现代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> math <span class="keyword">import</span> sqrt</span><br><span class="line"></span><br><span class="line"><span class="comment"># A dictionary of movie critics and their ratings of a small</span></span><br><span class="line"><span class="comment"># set of movies</span></span><br><span class="line">movies = &#123;<span class="string">'Lisa Rose'</span>: &#123;<span class="string">'Lady in the Water'</span>: <span class="number">2.5</span>, </span><br><span class="line">                       <span class="string">'Snakes on a Plane'</span>: <span class="number">3.5</span>,</span><br><span class="line">                       <span class="string">'Just My Luck'</span>: <span class="number">3.0</span>, </span><br><span class="line">                       <span class="string">'Superman Returns'</span>: <span class="number">3.5</span>, </span><br><span class="line">                       <span class="string">'You, Me and Dupree'</span>: <span class="number">2.5</span>, </span><br><span class="line">                       <span class="string">'The Night Listener'</span>: <span class="number">3.0</span>&#125;,</span><br><span class="line">         <span class="string">'Gene Seymour'</span>: &#123;<span class="string">'Lady in the Water'</span>: <span class="number">3.0</span>, </span><br><span class="line">                          <span class="string">'Snakes on a Plane'</span>: <span class="number">3.5</span>, </span><br><span class="line">                          <span class="string">'Just My Luck'</span>: <span class="number">1.5</span>, </span><br><span class="line">                          <span class="string">'Superman Returns'</span>: <span class="number">5.0</span>, </span><br><span class="line">                          <span class="string">'The Night Listener'</span>: <span class="number">3.0</span>, </span><br><span class="line">                          <span class="string">'You, Me and Dupree'</span>: <span class="number">3.5</span>&#125;, </span><br><span class="line">         <span class="string">'Michael Phillips'</span>: &#123;<span class="string">'Lady in the Water'</span>: <span class="number">2.5</span>, </span><br><span class="line">                              <span class="string">'Snakes on a Plane'</span>: <span class="number">3.0</span>,</span><br><span class="line">                              <span class="string">'Superman Returns'</span>: <span class="number">3.5</span>, </span><br><span class="line">                              <span class="string">'The Night Listener'</span>: <span class="number">4.0</span>&#125;,</span><br><span class="line">         <span class="string">'Claudia Puig'</span>: &#123;<span class="string">'Snakes on a Plane'</span>: <span class="number">3.5</span>, </span><br><span class="line">                          <span class="string">'Just My Luck'</span>: <span class="number">3.0</span>,</span><br><span class="line">                          <span class="string">'The Night Listener'</span>: <span class="number">4.5</span>,</span><br><span class="line">                          <span class="string">'Superman Returns'</span>: <span class="number">4.0</span>, </span><br><span class="line">                          <span class="string">'You, Me and Dupree'</span>: <span class="number">2.5</span>&#125;,</span><br><span class="line">         <span class="string">'Mick LaSalle'</span>: &#123;<span class="string">'Lady in the Water'</span>: <span class="number">3.0</span>, </span><br><span class="line">                          <span class="string">'Snakes on a Plane'</span>: <span class="number">4.0</span>, </span><br><span class="line">                          <span class="string">'Just My Luck'</span>: <span class="number">2.0</span>, </span><br><span class="line">                          <span class="string">'Superman Returns'</span>: <span class="number">3.0</span>, </span><br><span class="line">                          <span class="string">'The Night Listener'</span>: <span class="number">3.0</span>,</span><br><span class="line">                          <span class="string">'You, Me and Dupree'</span>: <span class="number">2.0</span>&#125;, </span><br><span class="line">         <span class="string">'Jack Matthews'</span>: &#123;<span class="string">'Lady in the Water'</span>: <span class="number">3.0</span>, </span><br><span class="line">                           <span class="string">'Snakes on a Plane'</span>: <span class="number">4.0</span>,</span><br><span class="line">                           <span class="string">'The Night Listener'</span>: <span class="number">3.0</span>, </span><br><span class="line">                           <span class="string">'Superman Returns'</span>: <span class="number">5.0</span>, </span><br><span class="line">                           <span class="string">'You, Me and Dupree'</span>: <span class="number">3.5</span>&#125;,</span><br><span class="line">         <span class="string">'Toby'</span>: &#123;<span class="string">'Snakes on a Plane'</span>:<span class="number">4.5</span>,</span><br><span class="line">                  <span class="string">'You, Me and Dupree'</span>:<span class="number">1.0</span>,</span><br><span class="line">                  <span class="string">'Superman Returns'</span>:<span class="number">4.0</span>&#125;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">euclidean</span><span class="params">(data, p1, p2)</span>:</span></span><br><span class="line">    <span class="string">"Calculate Euclidean distance"</span></span><br><span class="line">    distance = sum([pow(data[p1][item]-data[p2][item],<span class="number">2</span>) </span><br><span class="line">                      <span class="keyword">for</span> item <span class="keyword">in</span> data[p1] <span class="keyword">if</span> item <span class="keyword">in</span> data[p2]])</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> distance</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">pearson</span><span class="params">(data, p1, p2)</span>:</span></span><br><span class="line">    <span class="string">"Calculate Pearson correlation coefficient"</span>    </span><br><span class="line">    corrItems = [item <span class="keyword">for</span> item <span class="keyword">in</span> data[p1] <span class="keyword">if</span> item <span class="keyword">in</span> data[p2]]</span><br><span class="line"></span><br><span class="line">    n = len(corrItems)</span><br><span class="line">    <span class="keyword">if</span> n == <span class="number">0</span>: </span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    sumX = sum([data[p1][item] <span class="keyword">for</span> item <span class="keyword">in</span> corrItems])</span><br><span class="line">    sumY = sum([data[p2][item] <span class="keyword">for</span> item <span class="keyword">in</span> corrItems])</span><br><span class="line">    sumXY = sum([data[p1][item] * data[p2][item] <span class="keyword">for</span> item <span class="keyword">in</span> corrItems])</span><br><span class="line">    sumXsq = sum([pow(data[p1][item], <span class="number">2</span>) <span class="keyword">for</span> item <span class="keyword">in</span> corrItems])</span><br><span class="line">    sumYsq = sum([pow(data[p2][item],<span class="number">2</span>) <span class="keyword">for</span> item <span class="keyword">in</span> corrItems])         </span><br><span class="line"></span><br><span class="line">    pearson = (sumXY - sumX * sumY / n) / sqrt((sumXsq - pow(sumX, <span class="number">2</span>) / n) * (sumYsq - pow(sumY, <span class="number">2</span>) / n))</span><br><span class="line">    <span class="keyword">return</span> pearson</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/money/wechatpay.jpg" alt="核动力蜗牛 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/money/alipay.jpg" alt="核动力蜗牛 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2012/06/21/common-written-examination-and-the-interview-puzzles.html" rel="next" title="【IT笔试面试题整理】笔试和面试中常见的智力题">
+                <i class="fa fa-chevron-left"></i> 【IT笔试面试题整理】笔试和面试中常见的智力题
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2012/06/30/the-collective-wisdom-of-programming-study-notes-collaborative-filtering-technology.html" rel="prev" title="【集体智慧编程 学习笔记】 协同过滤技术">
+                【集体智慧编程 学习笔记】 协同过滤技术 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  
+    <div class="comments" id="comments">
+      <div id="vcomments"></div>
+    </div>
+  
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://en.gravatar.com/userimage/132614578/1525cb3f68df290f2720631caf872dff.jpg?size=200"
+                alt="核动力蜗牛" />
+            
+              <p class="site-author-name" itemprop="name">核动力蜗牛</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">283</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">96</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/zhenlohuang" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:zhenlohuang@gmail.com" target="_blank" title="E-Mail">
+                    
+                      <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://twitter.com/zhenlohunag" target="_blank" title="Twitter">
+                    
+                      <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.facebook.com/zhenlohuang" target="_blank" title="FB Page">
+                    
+                      <i class="fa fa-fw fa-facebook"></i>FB Page</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://stackoverflow.com/users/2945192" target="_blank" title="StackOverflow">
+                    
+                      <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">核动力蜗牛</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine@1.1.4/dist/Valine.min.js"></script>
+  <script type="text/javascript">
+    new Valine({
+        av: AV,
+        el: '#vcomments' ,
+        verify: true,
+        notify: true,
+        app_id: 'GdWobeifa1Cr5zJubUFLGuA9-gzGzoHsz',
+        app_key: 'zkFt8YflR67GWT6cIhKF0tVH',
+        placeholder: '欢迎评论'
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
