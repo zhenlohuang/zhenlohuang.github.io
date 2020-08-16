@@ -1,5 +1,5 @@
 ---
-title: '【PaperWeekly】MLSys: The New Frontier of Machine Learning Systems Alexander'
+title: '【PaperWeekly】MLSys: The New Frontier of Machine Learning Systems'
 date: 2020-07-19 16:17:53
 tags: Machine Learning
 categories: Machine Learning
