@@ -268,6 +268,159 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.yidooo.net/2009/09/26/shell-study-notes-three-branch-structure.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="核动力蜗牛">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://en.gravatar.com/userimage/132614578/1525cb3f68df290f2720631caf872dff.jpg?size=200">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="异度部落格">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2009/09/26/shell-study-notes-three-branch-structure.html" itemprop="url">shell学习笔记三  分支结构</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2009-09-26T00:00:00+08:00">
+                2009-09-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>分支结构主要是if…else 和case 这两种，下面用简单的练习代码说明下好了</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"Input two number A and B"</span></span><br><span class="line"><span class="built_in">read</span> A</span><br><span class="line"><span class="built_in">read</span> B</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"A=<span class="variable">$A</span>"</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"B=<span class="variable">$B</span>"</span></span><br><span class="line"><span class="keyword">if</span> [ <span class="variable">$A</span> -gt <span class="variable">$B</span> ]; <span class="keyword">then</span></span><br><span class="line">	<span class="built_in">echo</span> <span class="string">"A &gt; B"</span></span><br><span class="line"><span class="keyword">elif</span> [ <span class="variable">$A</span> -lt <span class="variable">$B</span> ]; <span class="keyword">then</span></span><br><span class="line">	<span class="built_in">echo</span> <span class="string">"A &lt; B"</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">       	<span class="built_in">echo</span> <span class="string">"A = B"</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"><span class="built_in">exit</span> 0;</span><br></pre></td></tr></table></figure>
+<p>运行结果：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Input two number A and B</span><br><span class="line">10</span><br><span class="line">5</span><br><span class="line">A=10</span><br><span class="line">B=5</span><br><span class="line">A &gt; B</span><br></pre></td></tr></table></figure>
+<p>说到if 肯定要有条件判断，在shell里面条件判断用的是[..] ，还有一点要注意的是then前面的那个分号，要事then和if 在同一行的话就要加上</p>
+<p>随便说下，记得以fi结尾</p>
+<p>下面说下case结构：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"Are you OK?:"</span></span><br><span class="line"><span class="built_in">read</span> ans</span><br><span class="line"><span class="keyword">case</span> <span class="string">"<span class="variable">$ans</span>"</span> <span class="keyword">in</span></span><br><span class="line">	yes | y | Y | Yes | YES ) <span class="built_in">echo</span> <span class="string">"Yes,I'm OK."</span> ;;</span><br><span class="line">	no | n | N | No | NO ) <span class="built_in">echo</span> <span class="string">"No,I'm bad."</span> ;;</span><br><span class="line">	* ) <span class="built_in">echo</span> <span class="string">"Error input."</span></span><br><span class="line"><span class="keyword">esac</span></span><br></pre></td></tr></table></figure>
+<p>运行结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Are you OK?:</span><br><span class="line">yes</span><br><span class="line">Yes,I&#39;m OK.</span><br></pre></td></tr></table></figure>
+<p>本人一直认为case结构是一个很麻烦的结构，语法复杂又没什么优势，哎…..</p>
+<p>注意点主要是条件末尾的）和语句块后面的;;  ，还有case匹配原则是是从上到下的，最后用一个*号，相当与C里面的default吧</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.yidooo.net/2009/09/26/shell-study-notes-two-parameters-and-environment-variables.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1628,169 +1781,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.yidooo.net/2009/07/29/qt-study-notes-of-seventeen-studentmanage.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="核动力蜗牛">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://en.gravatar.com/userimage/132614578/1525cb3f68df290f2720631caf872dff.jpg?size=200">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="异度部落格">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2009/07/29/qt-study-notes-of-seventeen-studentmanage.html" itemprop="url">QT学习笔记之十七  StudentManage</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2009-07-29T00:00:00+08:00">
-                2009-07-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Programming/" itemprop="url" rel="index">
-                    <span itemprop="name">Programming</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Programming/C/" itemprop="url" rel="index">
-                    <span itemprop="name">C++</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>这里利用Qt4+MySQL做一个简单的例子</p>
-<p>不会连接MySQL的，参考这里：<a href="http://blog.csdn.net/killua_hzl/archive/2009/07/29/4391956.aspx" target="_blank" rel="noopener">http://blog.csdn.net/killua_hzl/archive/2009/07/29/4391956.aspx</a></p>
-<p>代码如下：</p>
-<p><strong>studentmanage.h</strong></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> STUDENTMANAGE_H</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> STUDENTMANAGE_H</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;QtGui/QWidget&gt;</span></span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">QSqlTableModel</span>;</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">QTableView</span>;</span></span><br><span class="line"><span class="keyword">enum</span> &#123; Stu_Sno = <span class="number">0</span>,Stu_Name = <span class="number">1</span>,Stu_Age = <span class="number">2</span>,Stu_Math = <span class="number">3</span>,Stu_Chinese = <span class="number">4</span>,Stu_English = <span class="number">5</span> &#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">StudentManage</span> :</span> <span class="keyword">public</span> QWidget</span><br><span class="line">&#123;</span><br><span class="line">    Q_OBJECT</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    StudentManage(QWidget *parent = <span class="number">0</span>);</span><br><span class="line">    ~StudentManage();</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    QSqlTableModel *model;</span><br><span class="line">    QTableView *view;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span> <span class="comment">// STUDENTMANAGE_H</span></span></span><br></pre></td></tr></table></figure>
-<p><strong>studentmanage.cpp</strong></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;QtGui&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;QtSql&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"studentmanage.h"</span></span></span><br><span class="line">StudentManage::StudentManage(QWidget *parent)</span><br><span class="line">    : QWidget(parent)</span><br><span class="line">&#123;</span><br><span class="line">    model = <span class="keyword">new</span> QSqlTableModel(<span class="keyword">this</span>);</span><br><span class="line">    model-&gt;setTable(<span class="string">"student"</span>);</span><br><span class="line">    model-&gt;setSort(Stu_Sno, Qt::AscendingOrder);</span><br><span class="line">    model-&gt;setHeaderData(Stu_Name, Qt::Horizontal, tr(<span class="string">"Name"</span>));</span><br><span class="line">    model-&gt;setHeaderData(Stu_Age, Qt::Horizontal, tr(<span class="string">"Age"</span>));</span><br><span class="line">    model-&gt;setHeaderData(Stu_Math, Qt::Horizontal, tr(<span class="string">"Math"</span>));</span><br><span class="line">    model-&gt;setHeaderData(Stu_Chinese, Qt::Horizontal, tr(<span class="string">"Chinese"</span>));</span><br><span class="line">    model-&gt;setHeaderData(Stu_English, Qt::Horizontal, tr(<span class="string">"English"</span>));</span><br><span class="line">    model-&gt;select();</span><br><span class="line">    view = <span class="keyword">new</span> QTableView;</span><br><span class="line">    view-&gt;setModel(model);</span><br><span class="line">    view-&gt;setSelectionMode(QAbstractItemView::SingleSelection);</span><br><span class="line">    view-&gt;setSelectionBehavior(QAbstractItemView::SelectRows);</span><br><span class="line">    view-&gt;resizeColumnsToContents();</span><br><span class="line">    view-&gt;setEditTriggers(QAbstractItemView::NoEditTriggers);</span><br><span class="line">    QHeaderView *headerView = view-&gt;horizontalHeader();</span><br><span class="line">    headerView-&gt;setStretchLastSection(<span class="literal">true</span>);</span><br><span class="line">    QHBoxLayout *layout = <span class="keyword">new</span> QHBoxLayout;</span><br><span class="line">    layout-&gt;addWidget(view);</span><br><span class="line">    setLayout(layout);</span><br><span class="line">    setWindowTitle(tr(<span class="string">"Student Manage"</span>));</span><br><span class="line">&#125;</span><br><span class="line">StudentManage::~StudentManage()</span><br><span class="line">&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>main.cpp</strong></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;QtGui/QApplication&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;QtSql&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;QMessageBox&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"studentmanage.h"</span></span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  建立数据库链接</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">createConnection</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    QSqlDatabase db = QSqlDatabase::addDatabase(<span class="string">"QMYSQL"</span>);</span><br><span class="line">    db.setHostName(<span class="string">"localhost"</span>);</span><br><span class="line">    db.setDatabaseName(<span class="string">"DB_Stu"</span>);</span><br><span class="line">    db.setUserName(<span class="string">"root"</span>);</span><br><span class="line">    db.setPassword(<span class="string">"123456"</span>);</span><br><span class="line">    <span class="keyword">if</span> (!db.open()) &#123;</span><br><span class="line">        QMessageBox::warning(<span class="number">0</span>, QObject::tr(<span class="string">"Database Error"</span>),</span><br><span class="line">                             db.lastError().text());</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  创建数据</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">createData</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    QSqlQuery query;</span><br><span class="line">    query.exec(<span class="string">"Drop table student"</span>);  <span class="comment">//如果表存在删除</span></span><br><span class="line">    <span class="comment">//建表</span></span><br><span class="line">    query.exec(<span class="string">"Create table student ("</span></span><br><span class="line">               <span class="string">"Sno int not null,"</span></span><br><span class="line">               <span class="string">"Name varchar(40) not null,"</span></span><br><span class="line">               <span class="string">"Age int not null,"</span></span><br><span class="line">               <span class="string">"Math int not null,"</span></span><br><span class="line">               <span class="string">"Chinese int not null,"</span></span><br><span class="line">               <span class="string">"English int not null)"</span>);</span><br><span class="line">    <span class="comment">//插入数据</span></span><br><span class="line">    query.exec(<span class="string">"Insert into student (Sno,Name,Age,Math,Chinese,English) values(1,'Dear_fox',1,100,100,100)"</span>);</span><br><span class="line">    query.exec(<span class="string">"Insert into student (Sno,Name,Age,Math,Chinese,English) values(2,'Killua',2,99,98,98)"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  主函数</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="function">QApplication <span class="title">a</span><span class="params">(argc, argv)</span></span>;</span><br><span class="line">    <span class="keyword">bool</span> isCreate = !QFile::exists(<span class="string">"DB_Stu"</span>);</span><br><span class="line">    <span class="keyword">if</span> (!createConnection())</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span>(isCreate)</span><br><span class="line">        createData();</span><br><span class="line">    StudentManage studentManage;</span><br><span class="line">    studentManage.resize(<span class="number">400</span>,<span class="number">300</span>);</span><br><span class="line">    studentManage.show();</span><br><span class="line">    <span class="keyword">return</span> a.exec();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>结果截图：</strong></p>
-<p><img src="/images/legacy/2009/07/204057561.p.png?d=20090729211407405&quot;" alt="image"></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1845,7 +1835,7 @@
               
                 <a href="/archives/%20%7C%7C%20archive">
               
-                  <span class="site-state-item-count">283</span>
+                  <span class="site-state-item-count">284</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

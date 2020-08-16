@@ -268,6 +268,169 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.yidooo.net/2009/07/29/qt-study-notes-of-seventeen-studentmanage.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="核动力蜗牛">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://en.gravatar.com/userimage/132614578/1525cb3f68df290f2720631caf872dff.jpg?size=200">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="异度部落格">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2009/07/29/qt-study-notes-of-seventeen-studentmanage.html" itemprop="url">QT学习笔记之十七  StudentManage</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2009-07-29T00:00:00+08:00">
+                2009-07-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Programming/" itemprop="url" rel="index">
+                    <span itemprop="name">Programming</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Programming/C/" itemprop="url" rel="index">
+                    <span itemprop="name">C++</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>这里利用Qt4+MySQL做一个简单的例子</p>
+<p>不会连接MySQL的，参考这里：<a href="http://blog.csdn.net/killua_hzl/archive/2009/07/29/4391956.aspx" target="_blank" rel="noopener">http://blog.csdn.net/killua_hzl/archive/2009/07/29/4391956.aspx</a></p>
+<p>代码如下：</p>
+<p><strong>studentmanage.h</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> STUDENTMANAGE_H</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> STUDENTMANAGE_H</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;QtGui/QWidget&gt;</span></span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">QSqlTableModel</span>;</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">QTableView</span>;</span></span><br><span class="line"><span class="keyword">enum</span> &#123; Stu_Sno = <span class="number">0</span>,Stu_Name = <span class="number">1</span>,Stu_Age = <span class="number">2</span>,Stu_Math = <span class="number">3</span>,Stu_Chinese = <span class="number">4</span>,Stu_English = <span class="number">5</span> &#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">StudentManage</span> :</span> <span class="keyword">public</span> QWidget</span><br><span class="line">&#123;</span><br><span class="line">    Q_OBJECT</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    StudentManage(QWidget *parent = <span class="number">0</span>);</span><br><span class="line">    ~StudentManage();</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    QSqlTableModel *model;</span><br><span class="line">    QTableView *view;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span> <span class="comment">// STUDENTMANAGE_H</span></span></span><br></pre></td></tr></table></figure>
+<p><strong>studentmanage.cpp</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;QtGui&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;QtSql&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"studentmanage.h"</span></span></span><br><span class="line">StudentManage::StudentManage(QWidget *parent)</span><br><span class="line">    : QWidget(parent)</span><br><span class="line">&#123;</span><br><span class="line">    model = <span class="keyword">new</span> QSqlTableModel(<span class="keyword">this</span>);</span><br><span class="line">    model-&gt;setTable(<span class="string">"student"</span>);</span><br><span class="line">    model-&gt;setSort(Stu_Sno, Qt::AscendingOrder);</span><br><span class="line">    model-&gt;setHeaderData(Stu_Name, Qt::Horizontal, tr(<span class="string">"Name"</span>));</span><br><span class="line">    model-&gt;setHeaderData(Stu_Age, Qt::Horizontal, tr(<span class="string">"Age"</span>));</span><br><span class="line">    model-&gt;setHeaderData(Stu_Math, Qt::Horizontal, tr(<span class="string">"Math"</span>));</span><br><span class="line">    model-&gt;setHeaderData(Stu_Chinese, Qt::Horizontal, tr(<span class="string">"Chinese"</span>));</span><br><span class="line">    model-&gt;setHeaderData(Stu_English, Qt::Horizontal, tr(<span class="string">"English"</span>));</span><br><span class="line">    model-&gt;select();</span><br><span class="line">    view = <span class="keyword">new</span> QTableView;</span><br><span class="line">    view-&gt;setModel(model);</span><br><span class="line">    view-&gt;setSelectionMode(QAbstractItemView::SingleSelection);</span><br><span class="line">    view-&gt;setSelectionBehavior(QAbstractItemView::SelectRows);</span><br><span class="line">    view-&gt;resizeColumnsToContents();</span><br><span class="line">    view-&gt;setEditTriggers(QAbstractItemView::NoEditTriggers);</span><br><span class="line">    QHeaderView *headerView = view-&gt;horizontalHeader();</span><br><span class="line">    headerView-&gt;setStretchLastSection(<span class="literal">true</span>);</span><br><span class="line">    QHBoxLayout *layout = <span class="keyword">new</span> QHBoxLayout;</span><br><span class="line">    layout-&gt;addWidget(view);</span><br><span class="line">    setLayout(layout);</span><br><span class="line">    setWindowTitle(tr(<span class="string">"Student Manage"</span>));</span><br><span class="line">&#125;</span><br><span class="line">StudentManage::~StudentManage()</span><br><span class="line">&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>main.cpp</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;QtGui/QApplication&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;QtSql&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;QMessageBox&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"studentmanage.h"</span></span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  建立数据库链接</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">createConnection</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    QSqlDatabase db = QSqlDatabase::addDatabase(<span class="string">"QMYSQL"</span>);</span><br><span class="line">    db.setHostName(<span class="string">"localhost"</span>);</span><br><span class="line">    db.setDatabaseName(<span class="string">"DB_Stu"</span>);</span><br><span class="line">    db.setUserName(<span class="string">"root"</span>);</span><br><span class="line">    db.setPassword(<span class="string">"123456"</span>);</span><br><span class="line">    <span class="keyword">if</span> (!db.open()) &#123;</span><br><span class="line">        QMessageBox::warning(<span class="number">0</span>, QObject::tr(<span class="string">"Database Error"</span>),</span><br><span class="line">                             db.lastError().text());</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  创建数据</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">createData</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    QSqlQuery query;</span><br><span class="line">    query.exec(<span class="string">"Drop table student"</span>);  <span class="comment">//如果表存在删除</span></span><br><span class="line">    <span class="comment">//建表</span></span><br><span class="line">    query.exec(<span class="string">"Create table student ("</span></span><br><span class="line">               <span class="string">"Sno int not null,"</span></span><br><span class="line">               <span class="string">"Name varchar(40) not null,"</span></span><br><span class="line">               <span class="string">"Age int not null,"</span></span><br><span class="line">               <span class="string">"Math int not null,"</span></span><br><span class="line">               <span class="string">"Chinese int not null,"</span></span><br><span class="line">               <span class="string">"English int not null)"</span>);</span><br><span class="line">    <span class="comment">//插入数据</span></span><br><span class="line">    query.exec(<span class="string">"Insert into student (Sno,Name,Age,Math,Chinese,English) values(1,'Dear_fox',1,100,100,100)"</span>);</span><br><span class="line">    query.exec(<span class="string">"Insert into student (Sno,Name,Age,Math,Chinese,English) values(2,'Killua',2,99,98,98)"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  主函数</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="function">QApplication <span class="title">a</span><span class="params">(argc, argv)</span></span>;</span><br><span class="line">    <span class="keyword">bool</span> isCreate = !QFile::exists(<span class="string">"DB_Stu"</span>);</span><br><span class="line">    <span class="keyword">if</span> (!createConnection())</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span>(isCreate)</span><br><span class="line">        createData();</span><br><span class="line">    StudentManage studentManage;</span><br><span class="line">    studentManage.resize(<span class="number">400</span>,<span class="number">300</span>);</span><br><span class="line">    studentManage.show();</span><br><span class="line">    <span class="keyword">return</span> a.exec();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>结果截图：</strong></p>
+<p><img src="/images/legacy/2009/07/204057561.p.png?d=20090729211407405&quot;" alt="image"></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.yidooo.net/2009/07/29/the-qt-learning-the-notes-of-15-booleanparser-logical-expression-analysis-tool-based-on-qt439s.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1685,157 +1848,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.yidooo.net/2009/07/06/the-microcontroller-a51-compile-vim-syntax-scripts.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="核动力蜗牛">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://en.gravatar.com/userimage/132614578/1525cb3f68df290f2720631caf872dff.jpg?size=200">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="异度部落格">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2009/07/06/the-microcontroller-a51-compile-vim-syntax-scripts.html" itemprop="url">单片机a51汇编 Vim语法脚本</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2009-07-06T00:00:00+08:00">
-                2009-07-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>这个脚本以前就写好了，一直没有时间放上来，由于没有学过Vim的脚本语法，可能写得有点ws，大牛们不要鄙视啊…</p>
-<p>不过这个脚本依然存在bug，就是跳转指令后面的标号不能高亮，这个应该是正则表达式的问题，由于没学过，自己看了资料还是没办法接解决，希望大牛们能给点意见啊.</p>
-<p>脚本如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><span class="line">&quot; Vim syntax file</span><br><span class="line">&quot; Language:	MCS-51 Assembler (A51)</span><br><span class="line">&quot; Maintainer:	Killua</span><br><span class="line"></span><br><span class="line">if version &lt; 600</span><br><span class="line">syntax clear</span><br><span class="line">elseif exists(&quot;b:current_syntax&quot;)</span><br><span class="line">finish</span><br><span class="line">endif</span><br><span class="line"></span><br><span class="line">setlocal iskeyword&#x3D;a-z,A-Z,48-57,.,_</span><br><span class="line">setlocal isident&#x3D;a-z,A-Z,48-57,.,_</span><br><span class="line">syn case ignore</span><br><span class="line"></span><br><span class="line">&quot;Working Register</span><br><span class="line">syn keyword a51WorkReg r0 r1 r2 r3 r4 r5 r6 r7</span><br><span class="line"></span><br><span class="line">&quot;Special Function Registers</span><br><span class="line">syn keyword a51SFR p0 p0.0 p0.1 p0.2 p0.3 p0.4 p0.5 p0.6 p0.7</span><br><span class="line">syn keyword a51SFR p1 p1.0 p1.1 p1.2 p1.3 p1.4 p1.5 p1.6 p1.7</span><br><span class="line">syn keyword a51SFR p2 p2.0 p2.1 p2.2 p2.3 p2.4 p2.5 p2.6 p2.7</span><br><span class="line">syn keyword a51SFR p3 p3.0 p3.1 p3.2 p3.3 p3.4 p3.5 p3.6 p3.7</span><br><span class="line">syn keyword a51SFR SP dpl dph dptr pcon</span><br><span class="line">syn keyword a51SFR tcon tf1 tr1 tf0 tr0 ie1 it1 ie0 it0</span><br><span class="line">syn keyword a51SFR tmod tl0 tl1 th0 th1</span><br><span class="line">syn keyword a51SFR scon sm0 sm1 sm2 ren tb8 rb8 ti ri</span><br><span class="line">syn keyword a51SFR sbuf</span><br><span class="line">syn keyword a51SFR ie ea et2 es et1 ex1 et0 ex0</span><br><span class="line">syn keyword a51SFR ip pt2 ps pt1 px1 pt0 px0</span><br><span class="line">syn keyword a51SFR psw cy ac f0 rs1 rs0 ov p</span><br><span class="line">syn keyword a51SFR a acc.0 acc.1 acc.2 acc.3 acc.4 acc.5 acc.6 acc.7</span><br><span class="line">syn keyword a51SFR b b.0 b.1 b.2 bc.3 b.4 b.5 b.6 bc.7</span><br><span class="line"></span><br><span class="line">&quot; Instruction</span><br><span class="line">syn keyword a51Instr mov movx movc push pop xch xchd swap</span><br><span class="line"></span><br><span class="line">syn keyword a51Instr add addc subb inc dec mul div da</span><br><span class="line"></span><br><span class="line">syn keyword a51Instr clr setb cpl rl rlc rr rrc anl orl xrl</span><br><span class="line"></span><br><span class="line">syn keyword a51Instr lcall acall ret reti ajmp sjmp ljmp nop jb jnb</span><br><span class="line"></span><br><span class="line">syn keyword a51Instr jz jnz cjne djnz</span><br><span class="line"></span><br><span class="line">syn keyword a51Prefix cseg at db ds end</span><br><span class="line"></span><br><span class="line">&quot;Symbol</span><br><span class="line">syn match a51Symbol &quot;[@#]&quot;</span><br><span class="line">syn match a51Symbol &quot;[()|&#x2F;[&#x2F;]:]&quot;</span><br><span class="line"></span><br><span class="line">&quot;Label</span><br><span class="line">syn match a51Label &quot;^&#x2F;s*[^; &#x2F;t]&#x2F;+:&quot;</span><br><span class="line">syn match a51Label &quot;[$]&quot;</span><br><span class="line"></span><br><span class="line">&quot; Numbers</span><br><span class="line">syn match a51BinaryNumber &quot;&#x2F;&lt;[01]&#x2F;+b&#x2F;&gt;&quot;</span><br><span class="line">syn match a51HexNumber &quot;&#x2F;&lt;&#x2F;d&#x2F;x*h&#x2F;&gt;&quot;</span><br><span class="line">syn match a51HexNumber &quot;&#x2F;&lt;&#x2F;(0x&#x2F;|$&#x2F;)&#x2F;x*&#x2F;&gt;&quot;</span><br><span class="line">syn match a51OctalNumber &quot;&#x2F;&lt;&#x2F;(0&#x2F;o&#x2F;+o&#x2F;&#x3D;&#x2F;|&#x2F;o&#x2F;+o&#x2F;)&#x2F;&gt;&quot;</span><br><span class="line">syn match a51DecimalNumber &quot;&#x2F;&lt;&#x2F;(0&#x2F;|[1-9]&#x2F;d*&#x2F;)&#x2F;&gt;&quot;</span><br><span class="line"></span><br><span class="line">&quot; Comment</span><br><span class="line">syn region a51Comment start&#x3D;&quot;;&quot; end&#x3D;&quot;$&quot;</span><br><span class="line">&quot; String</span><br><span class="line">syn region a51String start&#x3D;&quot;&#x2F;&quot;&quot; end&#x3D;&quot;&#x2F;&quot;&#x2F;|$&quot;</span><br><span class="line">syn region a51String start&#x3D;&quot;&#39;&quot; end&#x3D;&quot;&#39;&#x2F;|$&quot;</span><br><span class="line"></span><br><span class="line">&quot;define link</span><br><span class="line">hi def link a51BinaryNumber a51Number</span><br><span class="line">hi def link a51HexNumber a51Number</span><br><span class="line">hi def link a51OctalNumber a51Number</span><br><span class="line">hi def link a51DecimalNumber a51Number</span><br><span class="line"></span><br><span class="line">hi def link a51WorkReg a51Keyword</span><br><span class="line">hi def link a51SFR a51Keyword</span><br><span class="line"></span><br><span class="line">&quot; Colors</span><br><span class="line">hi a51Comment guifg&#x3D;#0033FF</span><br><span class="line">hi a51Keyword guifg&#x3D;#339933</span><br><span class="line">hi a51Number guifg&#x3D;#FF00FF</span><br><span class="line">hi a51Symbol guifg&#x3D;#FF00FF</span><br><span class="line">hi a51String guifg&#x3D;#FF00FF</span><br><span class="line">hi a51Instr guifg&#x3D;#0000CC</span><br><span class="line">hi a51Label guifg&#x3D;#FF0000</span><br><span class="line">hi a51Prefix guifg&#x3D;#9933CC</span><br><span class="line"></span><br><span class="line">let b:current_syntax &#x3D; &quot;a51&quot;</span><br><span class="line">&quot; vim: ts&#x3D;8 sw&#x3D;8 :</span><br></pre></td></tr></table></figure>
-<p>添加方法：</p>
-<p>将脚本复制到Vim目录下的syntax文件夹里面</p>
-<p>添加到列表里面</p>
-<p>修改synmenu.vim</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&quot; The following menu items are generated by makemenu.vim.</span><br><span class="line">&quot; The Start Of The Syntax Menu</span><br><span class="line"></span><br><span class="line">an 50.20.100 &amp;Syntax.C :cal SetSyn(&quot;c&quot;)&lt;CR&gt;</span><br><span class="line">an 50.20.110 &amp;Syntax.C++ :cal SetSyn(&quot;cpp&quot;)&lt;CR&gt;</span><br><span class="line">an 50.20.120 &amp;Syntax.A51 :cal SetSyn(&quot;a51&quot;)&lt;CR&gt;</span><br><span class="line"></span><br><span class="line">&quot; The End Of The Syntax Menu</span><br></pre></td></tr></table></figure>
-<p>列表里面的语法脚本应该茫茫多，只要加在他们后面就可以了，至于50.20.120，自己把握放到适当位置.</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1890,7 +1902,7 @@
               
                 <a href="/archives/%20%7C%7C%20archive">
               
-                  <span class="site-state-item-count">283</span>
+                  <span class="site-state-item-count">284</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

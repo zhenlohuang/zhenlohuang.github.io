@@ -268,6 +268,150 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.yidooo.net/2010/12/13/javasqlsqlexception-before-the-start-of-result-set-exception-approach.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="核动力蜗牛">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://en.gravatar.com/userimage/132614578/1525cb3f68df290f2720631caf872dff.jpg?size=200">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="异度部落格">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2010/12/13/javasqlsqlexception-before-the-start-of-result-set-exception-approach.html" itemprop="url">java.sql.SQLException: Before start of result set异常及处理办法</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2010-12-13T00:00:00+08:00">
+                2010-12-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-Development/" itemprop="url" rel="index">
+                    <span itemprop="name">Web Development</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><strong>异常：</strong>java.sql.SQLException: Before start of result set</p>
+<p><strong>解决方法：</strong>使用rs.getString();前一定要加上rs.next();</p>
+<p><strong>原因：</strong>ResultSet对象代表SQL语句执行的结果集，维护指向其当前数据行的光标。每调用一次next()方法，光标向下移动一行。最初它位于第一行之前，因此第一次调用next()应把光标置于第一行上，使它成为当前行。随着每次调用next()将导致光标向下移动一行。在ResultSe对象及其t父辈Statement对象关闭之前，光标一直保持有效。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.yidooo.net/2010/12/13/documentation-javascript-isnan-function.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1681,165 +1825,6 @@ org.objectweb.lomboz_3.0.1.N20050106
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.yidooo.net/2010/09/29/the-excel-into-sql-server.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="核动力蜗牛">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://en.gravatar.com/userimage/132614578/1525cb3f68df290f2720631caf872dff.jpg?size=200">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="异度部落格">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2010/09/29/the-excel-into-sql-server.html" itemprop="url">将Excel导入SQL Server</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2010-09-29T00:00:00+08:00">
-                2010-09-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Database/" itemprop="url" rel="index">
-                    <span itemprop="name">Database</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Database/SQL-Server/" itemprop="url" rel="index">
-                    <span itemprop="name">SQL Server</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>将Excel导入SQL Server<br>1）外围应用配置器的设置。<br> 从”功能外围应用配置器”中选择”启动 OPENROWSET 和 OPENDATASOURCE 支持”选项。<br>2）<br>接受数据导入的表已经存在。</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> t1 <span class="keyword">select</span> * <span class="keyword">from</span> OPENROWSET(<span class="string">'MICROSOFT.JET.OLEDB.4.0'</span> ,</span><br><span class="line"><span class="string">'Excel 5.0;HDR=YES;DATABASE=c://test.xls'</span>,sheet1$);</span><br></pre></td></tr></table></figure>
-<p>导入数据并生成表。 </p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">into</span> t1 <span class="keyword">from</span> OPENROWSET(<span class="string">'MICROSOFT.JET.OLEDB.4.0'</span>,</span><br><span class="line"><span class="string">'Excel 5.0;HDR=YES;DATABASE=c://test.xls'</span>,sheet1$);</span><br></pre></td></tr></table></figure>
-<p>导入Excel中指定的列到数据库表中指定的列。</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> t1(a1,a2,a3) <span class="keyword">SELECT</span> a1,a2,a3 <span class="keyword">FROM</span> OPENROWSET <span class="string">'MICROSOFT.JET.OLEDB.4.0'</span> ,<span class="string">'Excel5.0; HDR=YES; DATABASE=c://test.xls'</span>,sheet1$);</span><br></pre></td></tr></table></figure>
-<p>PS：导入时记得关闭Excel，默认情况下Excel的首行作为表头</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1894,7 +1879,7 @@ org.objectweb.lomboz_3.0.1.N20050106
               
                 <a href="/archives/%20%7C%7C%20archive">
               
-                  <span class="site-state-item-count">283</span>
+                  <span class="site-state-item-count">284</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

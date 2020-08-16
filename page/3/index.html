@@ -268,6 +268,196 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.yidooo.net/2014/09/22/zookeeper-server-startup.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="核动力蜗牛">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://en.gravatar.com/userimage/132614578/1525cb3f68df290f2720631caf872dff.jpg?size=200">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="异度部落格">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2014/09/22/zookeeper-server-startup.html" itemprop="url">Zookeeper源码分析-Zookeeper Server启动分析</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-09-22T00:00:00+08:00">
+                2014-09-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Big-Data/" itemprop="url" rel="index">
+                    <span itemprop="name">Big Data</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Big-Data/ZooKeeper/" itemprop="url" rel="index">
+                    <span itemprop="name">ZooKeeper</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Zookeeper Server的启动入口为org.apache.zookeeper.server.quorum.QuorumPeerMain。Zookeeper的启动模式分为两种：一种为standalone mode；另一种为cluster mode。</p>
+<ul>
+<li>Standalone模式：当配置文件中仅配置了一台server时，Zookeeper将以standalone模式启动，启动类为ZooKeeperServerMain，此处不作详细分析。</li>
+<li>Cluster模式：当配置文件中配置了多台server，构建cluster，启动类为QuorumPeer#start()。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">start</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        loadDataBase();</span><br><span class="line">        cnxnFactory.start();        </span><br><span class="line">        startLeaderElection();</span><br><span class="line">        <span class="keyword">super</span>.start();</span><br><span class="line">    &#125;</span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line"># 清理DataDir</span><br><span class="line">在Server启动时，根据启动的配置参数启动一个TimeTask用于清理DataDir中的snapshot及对应的transactionlog。由于Zookeeper的任何一个写操作都将在transaction log中留下记录，当写操作达到一定量或者一定时间间隔，Zookeeper将transaction log合并为snapshot。所以随着运行时间的增长生成的transaction log和snapshot将越来越多，所以定期清理是必要的。在DatadirCleanupManager中有两个参数：</span><br><span class="line"></span><br><span class="line">- snapRetainCount：清理后保留的snapshot的个数，该参数至少要大于<span class="number">3</span>。</span><br><span class="line">- purgeInterval：定期清理的时间间隔，以小时为单位。</span><br><span class="line"></span><br><span class="line">``` java</span><br><span class="line">	<span class="comment">// Start and schedule the the purge task</span></span><br><span class="line">        DatadirCleanupManager purgeMgr = <span class="keyword">new</span> DatadirCleanupManager(config</span><br><span class="line">                .getDataDir(), config.getDataLogDir(), config</span><br><span class="line">                .getSnapRetainCount(), config.getPurgeInterval());</span><br><span class="line">        purgeMgr.start();</span><br></pre></td></tr></table></figure>
+<h1 id="加载ZKDatabase"><a href="#加载ZKDatabase" class="headerlink" title="加载ZKDatabase"></a>加载ZKDatabase</h1><p>1.从snapshot和transaction log中恢复ZKDatabase，并将其载入内存。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zkDb.loadDataBase();</span><br></pre></td></tr></table></figure>
+<p>2.载入currentEpoch和acceptedEpoch</p>
+<p>首先要明白什么是epoch，官方给出的解释是:</p>
+<blockquote>
+<p>The zxid has two parts: the epoch and a counter. In our implementation the zxid is a 64-bit number. We use the high order 32-bits for the epoch and the low order 32-bits for the counter. Because it has two parts represent the zxid both as a number and as a pair of integers, (epoch, count). The epoch number represents a change in leadership. Each time a new leader comes into power it will have its own epoch number. </p>
+</blockquote>
+<p>从currentEpoch文件中读取current epoch；若currentEpoch文件不存在，Zookeeper将从lastProcessedZxid中获取epoch作为current epoch，写入currentEpoch文件。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">           	currentEpoch = readLongFromFile(CURRENT_EPOCH_FILENAME);</span><br><span class="line">               <span class="keyword">if</span> (epochOfZxid &gt; currentEpoch &amp;&amp; updating.exists()) &#123;</span><br><span class="line">                   LOG.info(<span class="string">"&#123;&#125; found. The server was terminated after "</span> +</span><br><span class="line">                            <span class="string">"taking a snapshot but before updating current "</span> +</span><br><span class="line">                            <span class="string">"epoch. Setting current epoch to &#123;&#125;."</span>,</span><br><span class="line">                            UPDATING_EPOCH_FILENAME, epochOfZxid);</span><br><span class="line">                   setCurrentEpoch(epochOfZxid);</span><br><span class="line">                   <span class="keyword">if</span> (!updating.delete()) &#123;</span><br><span class="line">                       <span class="keyword">throw</span> <span class="keyword">new</span> IOException(<span class="string">"Failed to delete "</span> +</span><br><span class="line">                                             updating.toString());</span><br><span class="line">                   &#125;</span><br><span class="line">               &#125;</span><br><span class="line">           &#125; <span class="keyword">catch</span>(FileNotFoundException e) &#123;</span><br><span class="line">           	<span class="comment">// pick a reasonable epoch number</span></span><br><span class="line">           	<span class="comment">// this should only happen once when moving to a</span></span><br><span class="line">           	<span class="comment">// new code version</span></span><br><span class="line">           	currentEpoch = epochOfZxid;</span><br><span class="line">           	LOG.info(CURRENT_EPOCH_FILENAME</span><br><span class="line">           	        + <span class="string">" not found! Creating with a reasonable default of &#123;&#125;. This should only happen when you are upgrading your installation"</span>,</span><br><span class="line">           	        currentEpoch);</span><br><span class="line">           	writeLongToFile(CURRENT_EPOCH_FILENAME, currentEpoch);</span><br><span class="line">           &#125;</span><br></pre></td></tr></table></figure>
+<p>同理，获取accepted epoch。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">           	acceptedEpoch = readLongFromFile(ACCEPTED_EPOCH_FILENAME);</span><br><span class="line">           &#125; <span class="keyword">catch</span>(FileNotFoundException e) &#123;</span><br><span class="line">           	<span class="comment">// pick a reasonable epoch number</span></span><br><span class="line">           	<span class="comment">// this should only happen once when moving to a</span></span><br><span class="line">           	<span class="comment">// new code version</span></span><br><span class="line">           	acceptedEpoch = epochOfZxid;</span><br><span class="line">           	LOG.info(ACCEPTED_EPOCH_FILENAME</span><br><span class="line">           	        + <span class="string">" not found! Creating with a reasonable default of &#123;&#125;. This should only happen when you are upgrading your installation"</span>,</span><br><span class="line">           	        acceptedEpoch);</span><br><span class="line">           	writeLongToFile(ACCEPTED_EPOCH_FILENAME, acceptedEpoch);</span><br><span class="line">           &#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="启动ServerCnxnFactory线程"><a href="#启动ServerCnxnFactory线程" class="headerlink" title="启动ServerCnxnFactory线程"></a>启动ServerCnxnFactory线程</h1><p>ServerCnxnFacotry是管理ServerCnxn处理类的工厂,它负责对connection上数据处理的调度,以及server级别的一些处理,例如关闭指定session等。有关ServerCnxnFactory的实现类，可分为三种情况：</p>
+<ul>
+<li>NIO模式。这是Zookeeper默认的ServerCnxnFactory实现，其实现类为NIOServerCnxnFactory。</li>
+<li>Netty模式。在Zookeeper 3.4以后引入了Netty作为Server端连接处理的可选实现。Netty是一套非常高效的异步通信框架。可以通过JVM参数zookeeper.serverCnxnFactory进行配置。</li>
+<li>自定义模型。Zookeeper还支持自定类来实现通信，同样可以通过JVM参数zookeeper.serverCnxnFactory进行配置。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Static <span class="keyword">public</span> ServerCnxnFactory <span class="title">createFactory</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        String serverCnxnFactoryName =</span><br><span class="line">            System.getProperty(ZOOKEEPER_SERVER_CNXN_FACTORY);</span><br><span class="line">        <span class="keyword">if</span> (serverCnxnFactoryName == <span class="keyword">null</span>) &#123;</span><br><span class="line">            serverCnxnFactoryName = NIOServerCnxnFactory<span class="class">.<span class="keyword">class</span>.<span class="title">getName</span>()</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> (ServerCnxnFactory) Class.forName(serverCnxnFactoryName)</span><br><span class="line">                                                .newInstance();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            IOException ioe = <span class="keyword">new</span> IOException(<span class="string">"Couldn't instantiate "</span></span><br><span class="line">                    + serverCnxnFactoryName);</span><br><span class="line">            ioe.initCause(e);</span><br><span class="line">            <span class="keyword">throw</span> ioe;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>ServerCnxnFactory的主要职责：</p>
+<ol>
+<li>在单机模式下，引导完成Zookeeper Server的实例化。</li>
+<li>异步接收Client的IO连接，并维护连接的IO操作，这是ServerCnxnFactory的核心功能。ServerCnxnFacotry本身被设计成一个Thread，在完成初始化工作之后，就开始启动自身线程，在线程run方法中，采用NIO的方式Accept客户端连接，创建一个NIOServerCnxn实例，此实例和普通的NIO设计思路一样，它持有当前连接的Channel句柄和Buffer队列，最终将此NIOServerCnxn放入Factory内部的一个set中，以便此后对链接信息进行查询和操作(比如关闭操作,IO中read和write操作等)。</li>
+</ol>
+<h1 id="Leader选举"><a href="#Leader选举" class="headerlink" title="Leader选举"></a>Leader选举</h1><p>Leader的选举算法有三种：</p>
+<ul>
+<li>LeaderElection：LeaderElection采用的是fast paxos算法的一种简单实现，目前该算法在3.4以后已经建议弃用。</li>
+<li>FastLeaderElection：FastLeaderElection是标准的fast paxos的实现，这是目前Zookeeper默认的Leader选举算法。</li>
+<li>AuthFastLeaderElection：AuthFastLeaderElection算法同FastLeaderElection算法基本一致，只是在消息中加入了认证信息，该算法在最新的Zookeeper中也建议弃用。</li>
+</ul>
+<p>Leader选举算法分析详见：<a href="/archives/zookeeper-leader-election.html">Zookeeper源码分析-Zookeeper Leader选举算法</a></p>
+<h1 id="QuorumPeer启动"><a href="#QuorumPeer启动" class="headerlink" title="QuorumPeer启动"></a>QuorumPeer启动</h1><p>完成DataDir，ZKDatabase加载以及Leader选举动作后，QuorumPeer完成初始化及启动工作。</p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="http://zookeeper.apache.org/doc/r3.4.6/zookeeperInternals.html" target="_blank" rel="noopener">http://zookeeper.apache.org/doc/r3.4.6/zookeeperInternals.html</a></p>
+<p><a href="http://shift-alt-ctrl.iteye.com/blog/1846507" target="_blank" rel="noopener">http://shift-alt-ctrl.iteye.com/blog/1846507</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.yidooo.net/2014/09/14/zookeeper-data-model.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1762,182 +1952,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.yidooo.net/2013/11/06/apache-hive-installation.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="核动力蜗牛">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://en.gravatar.com/userimage/132614578/1525cb3f68df290f2720631caf872dff.jpg?size=200">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="异度部落格">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2013/11/06/apache-hive-installation.html" itemprop="url">Apache Hive安装及配置</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2013-11-06T00:00:00+08:00">
-                2013-11-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Big-Data/" itemprop="url" rel="index">
-                    <span itemprop="name">Big Data</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Big-Data/Hive/" itemprop="url" rel="index">
-                    <span itemprop="name">Hive</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="安装前"><a href="#安装前" class="headerlink" title="安装前"></a>安装前</h1><p>在安装Hive之前，请保证已经安装了Hadoop。Hadoop安装参考：<a href="http://www.yidooo.net/archives/hadoop-2-2-0-installation-and-configuration.html">Hadoop 2.2.0安装及配置</a></p>
-<h1 id="安装Mysql"><a href="#安装Mysql" class="headerlink" title="安装Mysql"></a>安装Mysql</h1><p>本文选用mysql作为Hive的metastore。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install mysql-server</span><br></pre></td></tr></table></figure>
-<h2 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; create database hive;</span><br><span class="line">Query OK, 1 row affected (0.00 sec)</span><br></pre></td></tr></table></figure>
-<p>##修改数据库操作权限</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; grant all on hive.* to hive@<span class="string">'%'</span>  identified by <span class="string">'hive'</span>;</span><br><span class="line">Query OK, 0 rows affected (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; flush privileges;</span><br><span class="line">Query OK, 0 rows affected (0.00 sec)</span><br></pre></td></tr></table></figure>
-<h1 id="Hive安装"><a href="#Hive安装" class="headerlink" title="Hive安装"></a>Hive安装</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar zcvf hive-0.12.0.tar.gz hive-0.12.0</span><br></pre></td></tr></table></figure>
-<h1 id="Hive配置"><a href="#Hive配置" class="headerlink" title="Hive配置"></a>Hive配置</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> conf</span><br><span class="line">cp hive-default.xml.template hive-site.xml</span><br><span class="line">cp hive-env.sh.template hive-env.sh</span><br><span class="line">cp hive-log4j.properties.template hive-log4j.properties</span><br><span class="line">cp hive-exec-log4j.properties.template hive-exec-log4j.properties</span><br></pre></td></tr></table></figure>
-<ul>
-<li>hive-site.xml</li>
-</ul>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">name</span>&gt;</span>javax.jdo.option.ConnectionURL<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">value</span>&gt;</span>jdbc:mysql://localhost:3306/hive<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">description</span>&gt;</span>JDBC connect string for a JDBC metastore<span class="tag">&lt;/<span class="name">description</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">name</span>&gt;</span>javax.jdo.option.ConnectionDriverName<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">value</span>&gt;</span>com.mysql.jdbc.Driver<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">description</span>&gt;</span>Driver class name for a JDBC metastore<span class="tag">&lt;/<span class="name">description</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">name</span>&gt;</span>javax.jdo.option.ConnectionUserName<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">value</span>&gt;</span>root<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">description</span>&gt;</span>username to use against metastore database<span class="tag">&lt;/<span class="name">description</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">name</span>&gt;</span>javax.jdo.option.ConnectionPassword<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">value</span>&gt;</span>welcome123<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">description</span>&gt;</span>password to use against metastore database<span class="tag">&lt;/<span class="name">description</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">name</span>&gt;</span>hive.metastore.schema.verification<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">value</span>&gt;</span>false<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">description</span>&gt;</span></span><br><span class="line">   Enforce metastore schema version consistency.</span><br><span class="line">   True: Verify that version information stored in metastore matches with one from Hive jars.  Also disable automatic</span><br><span class="line">         schema migration attempt. Users are required to manully migrate schema after Hive upgrade which ensures</span><br><span class="line">         proper metastore schema migration. (Default)</span><br><span class="line">   False: Warn if the version information stored in metastore doesn't match with one from in Hive jars.</span><br><span class="line">   <span class="tag">&lt;/<span class="name">description</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>hive-env.sh</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Set HADOOP_HOME to point to a specific hadoop install directory</span></span><br><span class="line">HADOOP_HOME=/home/hadoop/hadoop-2.2.0</span><br><span class="line"></span><br><span class="line"><span class="comment"># Hive Configuration Directory can be controlled by:</span></span><br><span class="line"><span class="built_in">export</span> HIVE_CONF_DIR=/home/hadoop/hive-0.12.0/conf</span><br></pre></td></tr></table></figure>
-<h1 id="安装Mysql-JDBC-Connector"><a href="#安装Mysql-JDBC-Connector" class="headerlink" title="安装Mysql JDBC Connector"></a>安装Mysql JDBC Connector</h1><p>下载页面：<a href="http://www.mysql.com/downloads/connector/j/5.1.html" target="_blank" rel="noopener">http://www.mysql.com/downloads/connector/j/5.1.html</a></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp mysql-connector-java-5.1.26-bin.jar to hive/lib</span><br></pre></td></tr></table></figure>
-<h1 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hive&gt; create table <span class="built_in">test</span> (key string);</span><br><span class="line">OK</span><br><span class="line">Time taken: 1.09 seconds</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">hive&gt; create table <span class="built_in">test</span> (key string);</span><br><span class="line">hive&gt; show tables;</span><br><span class="line">OK</span><br><span class="line"><span class="built_in">test</span></span><br><span class="line">Time taken: 0.084 seconds, Fetched: 1 row(s)</span><br></pre></td></tr></table></figure>
-<h1 id="常见错误"><a href="#常见错误" class="headerlink" title="常见错误"></a>常见错误</h1><p><strong>错误：ERROR 2002 (HY000): Can’t connect to local MySQL server through socket ‘/var/lib/mysql/mysql.sock’ (2)</strong><br><strong>解决方法：</strong>sudo service mysqld start</p>
-<p><strong>错误：ERROR 1044 (42000): Access denied for user ‘‘@’localhost’ to database ‘hive’</strong><br><strong>解决方法:</strong><br>[hadoop@zhenlong-master ~]$ mysql -h localhost -u root -p<br>Enter password:</p>
-<p><strong>错误：FAILED: Execution Error, return code 1 from org.apache.hadoop.hive.ql.exec.DDLTask. java.lang.RuntimeException: Unable to instantiate org.apache.hadoop.hive.metastore.HiveMetaStoreClient</strong><br>这个错误的原因很多，因此需要进行调试。 启动hive带上调试参数，./hive -hiveconf hive.root.logger=DEBUG,console，从调试信息中可以获得错误详细信息。<br>如果错误信息为：<br>Caused by: org.datanucleus.exceptions.NucleusException: Attempt to invoke the “BoneCP” plugin to create a ConnectionPool gave an error : The specified datastore driver (“com.mysql.jdbc.Driver”) was not found in the CLASSPATH. Please check your CLASSPATH specification, and the name of the driver.<br><em>解决方法：</em>将mysql的jdbc driver拷贝到hive/lib即可。<br>如果错误信息为：<br>Caused by: MetaException(message:Version information not found in metastore. )<br><em>解决方法：</em>set hive.metastore.schema.verification = false   </p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">name</span>&gt;</span>hive.metastore.schema.verification<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">value</span>&gt;</span>false<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">description</span>&gt;</span></span><br><span class="line">    Enforce metastore schema version consistency.</span><br><span class="line">    True: Verify that version information stored in metastore matches with one from Hive jars.  Also disable automatic</span><br><span class="line">          schema migration attempt. Users are required to manully migrate schema after Hive upgrade which ensures</span><br><span class="line">          proper metastore schema migration. (Default)</span><br><span class="line">    False: Warn if the version information stored in metastore doesn't match with one from in Hive jars.</span><br><span class="line">    <span class="tag">&lt;/<span class="name">description</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1992,7 +2006,7 @@
               
                 <a href="/archives/%20%7C%7C%20archive">
               
-                  <span class="site-state-item-count">283</span>
+                  <span class="site-state-item-count">284</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

@@ -268,6 +268,149 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.yidooo.net/2010/01/19/grub2-configuration.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="核动力蜗牛">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://en.gravatar.com/userimage/132614578/1525cb3f68df290f2720631caf872dff.jpg?size=200">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="异度部落格">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2010/01/19/grub2-configuration.html" itemprop="url">grub2 配置</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2010-01-19T00:00:00+08:00">
+                2010-01-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>最近Ubuntu内核老是升级，搞得启动项茫茫多，现在修改下grub2的配置，顺便发个配置方法</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#grub2默认的是只读的，要修改的话，执行这个命令sudo chmod +w /boot/grub/grub.cfg 加上写的权限</span></span><br><span class="line"><span class="comment"># Author@Killua</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#下面这个grub.cfg是本人电脑上Ubuntu 9.10的配置文件</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># DO NOT EDIT THIS FILE</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># It is automatically generated by /usr/sbin/grub-mkconfig using templates</span></span><br><span class="line"><span class="comment"># from /etc/grub.d and settings from /etc/default/grub</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">### BEGIN /etc/grub.d/00_header ###</span></span><br><span class="line"><span class="keyword">if</span> [ -s /boot/grub/grubenv ]; <span class="keyword">then</span></span><br><span class="line">have_grubenv=<span class="literal">true</span></span><br><span class="line">load_env</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"><span class="built_in">set</span> default=<span class="string">"0"</span> <span class="comment">#默认启动为0</span></span><br><span class="line"><span class="keyword">if</span> [ <span class="variable">$&#123;prev_saved_entry&#125;</span> ]; <span class="keyword">then</span></span><br><span class="line">saved_entry=<span class="variable">$&#123;prev_saved_entry&#125;</span></span><br><span class="line">save_env saved_entry</span><br><span class="line">prev_saved_entry=</span><br><span class="line">save_env prev_saved_entry</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line">insmod ext2 <span class="comment">#除了用作启动的分区外，其他分区格式可在menu底下再添加</span></span><br><span class="line"><span class="built_in">set</span> root=(hd0,8) <span class="comment">##设定root分区</span></span><br><span class="line">search --no-floppy --fs-uuid --<span class="built_in">set</span> 867a6d05-7a0c-46ae-ae14-d4f72e06ae5d</span><br><span class="line"><span class="comment">#下面是终端配置</span></span><br><span class="line"><span class="keyword">if</span> loadfont /usr/share/grub/unicode.pf2 ; <span class="keyword">then</span> <span class="comment">#设置终端字体</span></span><br><span class="line"><span class="built_in">set</span> gfxmode=640x480 <span class="comment">#设置终端分辨率</span></span><br><span class="line">insmod gfxterm <span class="comment">#插入模块 gfxterm，支持中文显示，支持24位图像</span></span><br><span class="line">insmod vbe <span class="comment">#插入vbe模块</span></span><br><span class="line"><span class="keyword">if</span> terminal_output gfxterm ; <span class="keyword">then</span> <span class="literal">true</span> ; <span class="keyword">else</span></span><br><span class="line"><span class="comment"># For backward compatibility with versions of terminal.mod that don't</span></span><br><span class="line"><span class="comment"># understand terminal_output</span></span><br><span class="line">terminal gfxterm</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"><span class="keyword">if</span> [ <span class="variable">$&#123;recordfail&#125;</span> = 1 ]; <span class="keyword">then</span></span><br><span class="line"><span class="built_in">set</span> timeout=-1</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line"><span class="built_in">set</span> timeout=10 <span class="comment">#设置时间</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"><span class="comment">### END /etc/grub.d/00_header ###</span></span><br><span class="line"><span class="comment">### BEGIN /etc/grub.d/05_debian_theme ###</span></span><br><span class="line"><span class="built_in">set</span> menu_color_normal=white/black <span class="comment">#这两行为 Debian 下的菜单颜色设置</span></span><br><span class="line"><span class="built_in">set</span> menu_color_highlight=black/white</span><br><span class="line"><span class="comment">### END /etc/grub.d/05_debian_theme ###</span></span><br><span class="line"><span class="comment">### BEGIN /etc/grub.d/10_linux ###</span></span><br><span class="line"><span class="comment">#菜单项，要包括 menuentry 双引号" " 和大括号 &#123; &#125;才完整，你可以把不必要的删去</span></span><br><span class="line">menuentry <span class="string">"Ubuntu, Linux 2.6.31-17-generic"</span> &#123;</span><br><span class="line">recordfail=1</span><br><span class="line"><span class="keyword">if</span> [ -n <span class="variable">$&#123;have_grubenv&#125;</span> ]; <span class="keyword">then</span> save_env recordfail; <span class="keyword">fi</span></span><br><span class="line"><span class="built_in">set</span> quiet=1</span><br><span class="line">insmod ext2</span><br><span class="line"><span class="built_in">set</span> root=(hd0,8)</span><br><span class="line">search --no-floppy --fs-uuid --<span class="built_in">set</span> 867a6d05-7a0c-46ae-ae14-d4f72e06ae5d</span><br><span class="line">linux /boot/vmlinuz-2.6.31-17-generic root=UUID=867a6d05-7a0c-46ae-ae14-d4f72e06ae5d ro quiet splash</span><br><span class="line">initrd /boot/initrd.img-2.6.31-17-generic</span><br><span class="line">&#125;</span><br><span class="line">menuentry <span class="string">"Ubuntu, Linux 2.6.31-17-generic (recovery mode)"</span> &#123;</span><br><span class="line">recordfail=1</span><br><span class="line"><span class="keyword">if</span> [ -n <span class="variable">$&#123;have_grubenv&#125;</span> ]; <span class="keyword">then</span> save_env recordfail; <span class="keyword">fi</span></span><br><span class="line">insmod ext2</span><br><span class="line"><span class="built_in">set</span> root=(hd0,8)</span><br><span class="line">search --no-floppy --fs-uuid --<span class="built_in">set</span> 867a6d05-7a0c-46ae-ae14-d4f72e06ae5d</span><br><span class="line">linux /boot/vmlinuz-2.6.31-17-generic root=UUID=867a6d05-7a0c-46ae-ae14-d4f72e06ae5d ro single</span><br><span class="line">initrd /boot/initrd.img-2.6.31-17-generic</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">### END /etc/grub.d/10_linux ###</span></span><br><span class="line"><span class="comment">### BEGIN /etc/grub.d/20_memtest86+ ###</span></span><br><span class="line">menuentry <span class="string">"Memory test (memtest86+)"</span> &#123;</span><br><span class="line">linux16 /boot/memtest86+.bin</span><br><span class="line">&#125;</span><br><span class="line">menuentry <span class="string">"Memory test (memtest86+, serial console 115200)"</span> &#123;</span><br><span class="line">linux16 /boot/memtest86+.bin console=ttyS0,115200n8</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">### END /etc/grub.d/20_memtest86+ ###</span></span><br><span class="line"><span class="comment">### BEGIN /etc/grub.d/30_os-prober ###</span></span><br><span class="line"><span class="comment">#这里是windows 的引导</span></span><br><span class="line">menuentry <span class="string">"Microsoft Windows XP Professional (on /dev/sda1)"</span> &#123;</span><br><span class="line">insmod fat</span><br><span class="line"><span class="built_in">set</span> root=(hd0,1)</span><br><span class="line">search --no-floppy --fs-uuid --<span class="built_in">set</span> 7854-efb8</span><br><span class="line">drivemap -s (hd0) <span class="variable">$&#123;root&#125;</span></span><br><span class="line">chainloader +1</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">### END /etc/grub.d/30_os-prober ###</span></span><br><span class="line"><span class="comment">#Mac OS 启动配置在这里</span></span><br><span class="line"><span class="comment">### BEGIN /etc/grub.d/40_custom ###</span></span><br><span class="line"><span class="comment"># This file provides an easy way to add custom menu entries. Simply type the</span></span><br><span class="line"><span class="comment"># menu entries you want to add after this comment. Be careful not to change</span></span><br><span class="line"><span class="comment"># the 'exec tail' line above.</span></span><br><span class="line"><span class="comment">### END /etc/grub.d/40_custom ###</span></span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.yidooo.net/2010/01/19/the-role-of-qt-programming-skills-q-object-macro.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1676,163 +1819,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.yidooo.net/2009/10/26/qt-programming-skills-qt-random-number-generation.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="核动力蜗牛">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://en.gravatar.com/userimage/132614578/1525cb3f68df290f2720631caf872dff.jpg?size=200">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="异度部落格">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2009/10/26/qt-programming-skills-qt-random-number-generation.html" itemprop="url">Qt编程技巧  Qt随机数的产生</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2009-10-26T00:00:00+08:00">
-                2009-10-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Programming/" itemprop="url" rel="index">
-                    <span itemprop="name">Programming</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Programming/C/" itemprop="url" rel="index">
-                    <span itemprop="name">C++</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>首先调用函数</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">qsrand(QTime(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>).secsTo(QTime::currentTime()));</span><br></pre></td></tr></table></figure>
-<p>产生一个进程, 然后调用函数</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">n = qrand();</span><br></pre></td></tr></table></figure>
-<p>n就是所差生的随机数</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1887,7 +1873,7 @@
               
                 <a href="/archives/%20%7C%7C%20archive">
               
-                  <span class="site-state-item-count">283</span>
+                  <span class="site-state-item-count">284</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

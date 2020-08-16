@@ -268,6 +268,193 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.yidooo.net/2013/04/19/nlpir-python-version.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="核动力蜗牛">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://en.gravatar.com/userimage/132614578/1525cb3f68df290f2720631caf872dff.jpg?size=200">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="异度部落格">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2013/04/19/nlpir-python-version.html" itemprop="url">NLPIR（ICTCLAS 2013）分词工具Python封装</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2013-04-19T00:00:00+08:00">
+                2013-04-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/NLP/" itemprop="url" rel="index">
+                    <span itemprop="name">NLP</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><strong>本文只适用于python-nlpir V1.0版本，有关V2.0版本详情参照项目源代码。</strong></p>
+<p>python-nlpir是NLPIR中文分词工具的Python封装，利用SWIG完成C++到python的接口转换。</p>
+<p><em>项目地址：</em><a href="https://github.com/zhenlohuang/python-nlpir" target="_blank" rel="noopener">https://github.com/zhenlohuang/python-nlpir</a></p>
+<p>NLPIR汉语分词系统（又名ICTCLAS2013），主要功能包括中文分词；词性标注；命名实体识别；用户词典功能；支持GBK编码、UTF8编码、BIG5编码。新增微博分词、新词发现与关键词提取；是当前最好的中文分词工具之一。</p>
+<h1 id="1、使用SWIG进行接口转换"><a href="#1、使用SWIG进行接口转换" class="headerlink" title="1、使用SWIG进行接口转换"></a>1、使用SWIG进行接口转换</h1><p>SWIG是个帮助使用C或者C++编写的软件能与其它各种高级编程语言进行嵌入联接的开发工具。SWIG能应用于各种不同类型的语言包括常用脚本编译语言例如Perl, PHP, Python, Tcl, Ruby and PHP。支持语言列表中也包括非脚本编译语言，例如C#, Common Lisp (CLISP, Allegro CL, CFFI, UFFI), Java, Modula-3, OCAML以及R，甚至是编译器或者汇编的计划应用（Guile, MzScheme, Chicken）。SWIG普遍应用于创建高级语言解析或汇编程序环境，用户接口，作为一种用来测试C/C++或进行原型设计的工具。SWIG还能够导出XML或Lisp s-expressions格式的解析树。SWIG可以被自由使用，发布，修改用于商业或非商业中。</p>
+<h2 id="1）编写interface文件"><a href="#1）编写interface文件" class="headerlink" title="1）编写interface文件"></a>1）编写interface文件</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">%<span class="keyword">module</span> NLPIR</span><br><span class="line">%&#123;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> SWIG_FILE_WITH_INIT</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"NLPIR.h"</span></span></span><br><span class="line">%&#125;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> POS_MAP_NUMBER 4</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ICT_POS_MAP_FIRST 1</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ICT_POS_MAP_SECOND 0</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PKU_POS_MAP_SECOND 2</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PKU_POS_MAP_FIRST 3</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> POS_SIZE 40</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> GBK_CODE 0</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> UTF8_CODE GBK_CODE+1</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BIG5_CODE GBK_CODE+2</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> GBK_FANTI_CODE GBK_CODE+3</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">NLPIR_Init</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> * sDataPath=<span class="number">0</span>,<span class="keyword">int</span> encode=GBK_CODE,<span class="keyword">const</span> <span class="keyword">char</span>*sLicenceCode=<span class="number">0</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">NLPIR_Exit</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">const</span> <span class="keyword">char</span> * <span class="title">NLPIR_ParagraphProcess</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *sParagraph,<span class="keyword">int</span> bPOStagged=<span class="number">1</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">const</span> <span class="keyword">result_t</span> * <span class="title">NLPIR_ParagraphProcessA</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *sParagraph,<span class="keyword">int</span> *pResultCount,<span class="keyword">bool</span> bUserDict=<span class="literal">true</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">NLPIR_GetParagraphProcessAWordCount</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *sParagraph)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">NLPIR_ParagraphProcessAW</span><span class="params">(<span class="keyword">int</span> nCount,<span class="keyword">result_t</span> * result)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">NLPIR_FileProcess</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *sSourceFilename,<span class="keyword">const</span> <span class="keyword">char</span> *sResultFilename,<span class="keyword">int</span> bPOStagged=<span class="number">1</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">unsigned</span> <span class="keyword">int</span> <span class="title">NLPIR_ImportUserDict</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *sFilename)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">NLPIR_AddUserWord</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *sWord)</span></span>;<span class="comment">//add by qp 2008.11.10</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">NLPIR_SaveTheUsrDic</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">NLPIR_DelUsrWord</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *sWord)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">NLPIR_GetUniProb</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *sWord)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">NLPIR_IsWord</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *sWord)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">const</span> <span class="keyword">char</span> * <span class="title">NLPIR_GetKeyWords</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *sLine,<span class="keyword">int</span> nMaxKeyLimit=<span class="number">50</span>,<span class="keyword">bool</span> bWeightOut=<span class="literal">false</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">const</span> <span class="keyword">char</span> * <span class="title">NLPIR_GetFileKeyWords</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *sFilename,<span class="keyword">int</span> nMaxKeyLimit=<span class="number">50</span>,<span class="keyword">bool</span> bWeightOut=<span class="literal">false</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">const</span> <span class="keyword">char</span> * <span class="title">NLPIR_GetNewWords</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *sLine,<span class="keyword">int</span> nMaxKeyLimit=<span class="number">50</span>,<span class="keyword">bool</span> bWeightOut=<span class="literal">false</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">const</span> <span class="keyword">char</span> * <span class="title">NLPIR_GetFileNewWords</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *sFilename,<span class="keyword">int</span> nMaxKeyLimit=<span class="number">50</span>,<span class="keyword">bool</span> bWeightOut=<span class="literal">false</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="title">NLPIR_FingerPrint</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *sLine)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">NLPIR_SetPOSmap</span><span class="params">(<span class="keyword">int</span> nPOSmap)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">NLPIR_NWI_Start</span><span class="params">()</span></span>;<span class="comment">//New Word Indentification Start</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">NLPIR_NWI_AddFile</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *sFilename)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">NLPIR_NWI_AddMem</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *sText)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">NLPIR_NWI_Complete</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">const</span> <span class="keyword">char</span> * <span class="title">NLPIR_NWI_GetResult</span><span class="params">(<span class="keyword">bool</span> bWeightOut=<span class="literal">false</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">unsigned</span> <span class="keyword">int</span> <span class="title">NLPIR_NWI_Result2UserDict</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
+<h2 id="2）接口转换"><a href="#2）接口转换" class="headerlink" title="2）接口转换"></a>2）接口转换</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">swig -c++ -python NLPIR.interface</span><br></pre></td></tr></table></figure>
+<p>执行完成接口转换后，将生成NLPIR_wrap.cxx、NLPIR.py两个文件，到目前为止已经完成了接口的转换，不过现在接口还不能使用，因为还没有编译好相应的库。</p>
+<h1 id="2、编写setup-py文件"><a href="#2、编写setup-py文件" class="headerlink" title="2、编写setup.py文件"></a>2、编写setup.py文件</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">setup.py file for NLPIR</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="keyword">from</span> distutils.core <span class="keyword">import</span> setup, Extension</span><br><span class="line"></span><br><span class="line">NLPIR_module = Extension(<span class="string">'_NLPIR'</span>,sources=[<span class="string">'NLPIR_wrap.cxx'</span>], libraries = [<span class="string">'NLPIR'</span>])</span><br><span class="line"></span><br><span class="line">setup(name = <span class="string">'NLPIR'</span>,</span><br><span class="line">    version = <span class="string">'1.1'</span>,</span><br><span class="line">    author = <span class="string">'Killua'</span>,</span><br><span class="line">    description = <span class="string">'Python for NLPIR'</span>,</span><br><span class="line">    ext_modules = [NLPIR_module],</span><br><span class="line">    py_modules = [<span class="string">'NLPIR'</span>],</span><br><span class="line">    )</span><br></pre></td></tr></table></figure>
+<h1 id="3、编译代码"><a href="#3、编译代码" class="headerlink" title="3、编译代码"></a>3、编译代码</h1><h2 id="1）复制libNLPIR-so到-usr-lib目录下"><a href="#1）复制libNLPIR-so到-usr-lib目录下" class="headerlink" title="1）复制libNLPIR.so到/usr/lib目录下"></a>1）复制libNLPIR.so到/usr/lib目录下</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo cp libNLPIR.so /usr/lib</span><br></pre></td></tr></table></figure>
+<h2 id="2）修改NLPIR-h文件"><a href="#2）修改NLPIR-h文件" class="headerlink" title="2）修改NLPIR.h文件"></a>2）修改NLPIR.h文件</h2><p>由于原来的NLPIR.h在gcc编译器中的兼容性并不好，所以需要对原来的头文件进行简单的修改。<br>将</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> OS_LINUX</span></span><br><span class="line">	<span class="meta">#<span class="meta-keyword">define</span> NLPIR_API </span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">else</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> NLPIR_EXPORTS</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> CSHARP_API</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> NLPIR_API extern <span class="meta-string">"C"</span> __declspec(dllexport)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">else</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> NLPIR_API __declspec(dllexport)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">else</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> CSHARP_API</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> NLPIR_API extern <span class="meta-string">"C"</span>  __declspec(dllimport)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">else</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> NLPIR_API __declspec(dllimport)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">if</span> defined(NLPIR_JNI_EXPORTS)||defined(KEYEXTRACT_EXPORTS)</span></span><br><span class="line">	<span class="meta">#<span class="meta-keyword">define</span> NLPIR_API </span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+<p>改为</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> linux</span></span><br><span class="line">    <span class="meta">#<span class="meta-keyword">define</span> NLPIR_API </span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">elif</span> _WIN32 || _WIN64</span></span><br><span class="line">    <span class="meta">#<span class="meta-keyword">ifdef</span> NLPIR_EXPORTS</span></span><br><span class="line">        <span class="meta">#<span class="meta-keyword">define</span> NLPIR_API __declspec(dllexport)</span></span><br><span class="line">    <span class="meta">#<span class="meta-keyword">else</span></span></span><br><span class="line">        <span class="meta">#<span class="meta-keyword">define</span> NLPIR_API __declspec(dllimport)</span></span><br><span class="line">    <span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+<p>将</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> OS_LINUX</span></span><br><span class="line"><span class="class"><span class="keyword">class</span>  <span class="title">CNLPIR</span> &#123;</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">else</span></span></span><br><span class="line"><span class="class"><span class="keyword">class</span>  __<span class="title">declspec</span>(<span class="title">dllexport</span>) <span class="title">CNLPIR</span> &#123;</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+<p>改为</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> linux</span></span><br><span class="line"><span class="class"><span class="keyword">class</span>  <span class="title">CNLPIR</span> &#123;</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">else</span></span></span><br><span class="line"><span class="class"><span class="keyword">class</span>  __<span class="title">declspec</span>(<span class="title">dllexport</span>) <span class="title">CNLPIR</span> &#123;</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+<h2 id="3）编译代码"><a href="#3）编译代码" class="headerlink" title="3）编译代码"></a>3）编译代码</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python setup.py build_ext --inplace</span><br></pre></td></tr></table></figure>
+<h1 id="4、编写PyNLPIR-py"><a href="#4、编写PyNLPIR-py" class="headerlink" title="4、编写PyNLPIR.py"></a>4、编写PyNLPIR.py</h1><p>为了方便使用对生成的NLPIR.py进行重封装。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment">#coding:utf-8</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">Created on Fri 19, 2013</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">@author: killua</span></span><br><span class="line"><span class="string">@e-mail: killua_hzl@163.com</span></span><br><span class="line"><span class="string">@Decription: Python for NLPIR</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="keyword">import</span> NLPIR</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">nlpir_init</span><span class="params">(init_dir = <span class="string">'.'</span>, code_type = <span class="string">'GBK'</span>)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    Init the analyzer and prepare necessary data for NLPIR according the configure file.</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    <span class="keyword">if</span> code_type == <span class="string">'GBK'</span>:</span><br><span class="line">        is_succeed = NLPIR.NLPIR_Init(init_dir, NLPIR.GBK_CODE)</span><br><span class="line">    <span class="keyword">elif</span> code_type == <span class="string">'UTF-8'</span> <span class="keyword">or</span> code_type == <span class="string">'UTF8'</span>:</span><br><span class="line">        is_succeed = NLPIR.NLPIR_Init(init_dir, NLPIR.UTF8_CODE)</span><br><span class="line">    <span class="keyword">elif</span> code_type == <span class="string">'BIG5'</span>:</span><br><span class="line">        is_succeed = NLPIR.NLPIR_Init(init_dir, NLPIR.BIG5_CODE)</span><br><span class="line">    <span class="keyword">elif</span> code_type == <span class="string">'GBK_FANTI'</span>:</span><br><span class="line">        is_succeed = NLPIR.NLPIR_Init(init_dir, NLPIR.GBK_FANTI_CODE)</span><br><span class="line">    <span class="keyword">if</span> is_succeed:</span><br><span class="line">        <span class="keyword">print</span> <span class="string">'NLPIR Successful.'</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">print</span> <span class="string">'NLPIR Failed.'</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">nlpir_exit</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    Exit the program and free all resources and destroy all working buffer used in NLPIR.    </span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    <span class="keyword">return</span> NLPIR.NLPIR_Exit()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">nlpir_import_user_dict</span><span class="params">(user_dict)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    Import user-defined dictionary from a text file. </span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    <span class="keyword">return</span> NLPIR.NLPIR_ImportUserDict(user_dict)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">nlpir_paragraph_process</span><span class="params">(text, is_pos_tagged = False)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    Process a paragraph</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    <span class="keyword">return</span> NLPIR.NLPIR_ParagraphProcess(text, is_pos_tagged)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">nlpir_file_process</span><span class="params">(source_file, target_file, is_pos_tagged = False)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    Process a text file</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    <span class="keyword">return</span> NLPIR.NLPIR_FileProcess(source_file, target_file, is_pos_tagged)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">nlpir_add_user_word</span><span class="params">(word)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    Add a word to the user dictionary.</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    <span class="keyword">return</span> NLPIR.NLPIR_AddUserWord(word)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">nlpir_save_user_dict</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    Save the user dictionary to disk.</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    <span class="keyword">return</span> NLPIR.NLPIR_SaveTheUsrDic()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">nlpir_delete_user_word</span><span class="params">(word)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    Delete a word from the  user dictionary.</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    <span class="keyword">return</span> NLPIR.NLPIR_DelUsrWord(word)</span><br></pre></td></tr></table></figure>
+<h1 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h1><h2 id="编写demo-py"><a href="#编写demo-py" class="headerlink" title="编写demo.py"></a>编写demo.py</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment">#encoding: utf8</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> PyNLPIR <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line"></span><br><span class="line">    nlpir_init(<span class="string">'.'</span>, <span class="string">'UTF-8'</span>)	</span><br><span class="line">    <span class="keyword">print</span> nlpir_paragraph_process(<span class="string">r'@ICTCLAS张华平博士 应各位ICTCLAS用户的要求，张华平博士提前发布ICTCLAS2013 版本，为了与以前工作进行大的区隔，并推广NLPIR自然语言处理与信息检索共享平台，从本版本开始，系统名称调整为NLPIR汉语分词系统。'</span>)</span><br><span class="line">    <span class="keyword">print</span> </span><br><span class="line">    <span class="keyword">print</span> nlpir_paragraph_process(<span class="string">r'“屌丝”这个嘲讽意味的代词迅速爆红，迎合了大众的心理和趣味。因为你会发现从表面符合屌丝定义的人，到和屌丝属性八竿子打不着的人，都在争相认领这一名号。当人人都在忙着确认自己的屌丝身份，并乐此不疲时，屌丝一词一定与时代的什么特征实现了合拍。“屌丝”不是阿Q，他们公然比惨并乐在其中有评论认为，“屌丝”是新时代的阿Q，两者并不完全相同。首先，阿Q是文学巨匠鲁迅一己之力创造的，而“屌丝”则是网络群体狂欢的结果，它是真正由网民集体创作的形象；另外，阿Q最重要的特征是“精神胜利法”，梦想的是“银盔银甲”，意淫的是“我手持钢鞭将你打”。'</span>, <span class="literal">True</span>)</span><br><span class="line">    nlpir_exit()</span><br></pre></td></tr></table></figure>
+<h2 id="运行结果"><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h2><p><img src="/images/legacy/2013/04/nlpir.png" alt="image"></p>
+<h1 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h1><ul>
+<li>“Unable to find vcvarsall.bat”解决办法</li>
+</ul>
+<p>参见：<a href="http://www.yidooo.net/archives/unable-to-find-vcvarsall-bat-solution.html">http://www.yidooo.net/archives/unable-to-find-vcvarsall-bat-solution.html</a></p>
+<ul>
+<li>提示找不到_NLPIR模块提示找不到_NLPIR模块的文件</li>
+</ul>
+<p>Windows：将NLPIR.dll copy到System32下</p>
+<p>Linux：将libNLPIR.so copy到/usr/lib或者/usr/lib64下</p>
+<ul>
+<li>提示License过期 </li>
+</ul>
+<p>请参考：<a href="http://ictclas.nlpir.org/newsDetail?DocId=386" target="_blank" rel="noopener">http://ictclas.nlpir.org/newsDetail?DocId=386</a></p>
+<h1 id="Change-Log"><a href="#Change-Log" class="headerlink" title="Change Log"></a>Change Log</h1><p><em>Date: 2013-11-15</em></p>
+<ul>
+<li>添加对Window 64bit和Linux 64bit的支持。</li>
+<li>对项目文件结构进行调整，将library文件进行分离。</li>
+<li>将NLPIR升级到最新版本。</li>
+</ul>
+<h1 id="感谢"><a href="#感谢" class="headerlink" title="感谢"></a>感谢</h1><p>Version 1.1: 感谢<a href="https://github.com/zzdwcm" target="_blank" rel="noopener">zzdwcm</a>，所提供有关Linux 64bit的补丁。</p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="http://ictclas.nlpir.org/" target="_blank" rel="noopener">http://ictclas.nlpir.org/</a></p>
+<p><a href="http://www.nilday.com/nlpirictclas2013-python%E7%89%88/" target="_blank" rel="noopener">http://www.nilday.com/nlpirictclas2013-python%E7%89%88/</a></p>
+<p><a href="https://github.com/ch0psticks/nlpir-python-win32" target="_blank" rel="noopener">https://github.com/ch0psticks/nlpir-python-win32</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.yidooo.net/2013/04/15/spelling-corrector-based-on-bayesian-inference.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1688,151 +1875,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.yidooo.net/2012/10/06/depth-of-a-binary-tree.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="核动力蜗牛">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://en.gravatar.com/userimage/132614578/1525cb3f68df290f2720631caf872dff.jpg?size=200">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="异度部落格">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2012/10/06/depth-of-a-binary-tree.html" itemprop="url">【IT笔试面试题整理】二叉树的深度</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2012-10-06T00:00:00+08:00">
-                2012-10-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Interview/" itemprop="url" rel="index">
-                    <span itemprop="name">Interview</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>【试题描述】输入一棵二叉树的根结点，求该树的深度。从根结点到叶子结点依次经过的结点（含根、叶子节点）形成树的一条路径，最长路径的长度为树的深度。</p>
-<p>【试题来源】未知</p>
-<p>【参考代码】</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">treeDepth</span><span class="params">(BinaryTreeNode* rootNode)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span>(rootNode == <span class="literal">NULL</span>) &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> leftSubTreeDepth = treeDepth(rootNode-&gt;left);</span><br><span class="line">	<span class="keyword">int</span> rightSubTreeDepth = treeDepth(rootNode-&gt;right);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> leftSubTreeDepth &gt; rightSubTreeDepth ? (leftSubTreeDepth + <span class="number">1</span>) : (rightSubTreeDepth + <span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1887,7 +1929,7 @@
               
                 <a href="/archives/%20%7C%7C%20archive">
               
-                  <span class="site-state-item-count">283</span>
+                  <span class="site-state-item-count">284</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

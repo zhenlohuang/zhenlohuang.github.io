@@ -268,6 +268,158 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.yidooo.net/2012/02/07/resolve-can-not-run-after-fedora-install-virtualbox.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="核动力蜗牛">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://en.gravatar.com/userimage/132614578/1525cb3f68df290f2720631caf872dff.jpg?size=200">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="异度部落格">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2012/02/07/resolve-can-not-run-after-fedora-install-virtualbox.html" itemprop="url">解决Fedora安装Virtualbox后无法运行</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2012-02-07T00:00:00+08:00">
+                2012-02-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>在Fedora下安装了Virtualbox，发现运行时出现以下问题：     </p>
+<blockquote>
+<p>Kernel driver not installed (rc=-1908)<br>The VirtualBox Linux kernel driver (vboxdrv) is either not loaded or there is a permission problem with /dev/vboxdrv. Please reinstall the kernel module by executing<br>‘/etc/init.d/vboxdrv setup’<br>as root. Users of Ubuntu, Fedora or Mandriva should install the DKMS package first. This package keeps track of Linux kernel changes and recompiles the vboxdrv kernel module if necessary.</p>
+</blockquote>
+<p>然后以root身份运行/etc/init.d/vboxdrv setup<br>结果提示：</p>
+<blockquote>
+<p>Stopping VirtualBox kernel modules [确定]<br>Uninstalling old VirtualBox DKMS kernel modules [确定]<br>Trying to register the VirtualBox kernel modules using DKMSError! Bad return status for module build on kernel: 3.2.3-2.fc16.i686 (i686)<br>Consult /var/lib/dkms/vboxhost/4.0.8/build/make.log for more information.[失败]<br>(Failed, trying without DKMS)<br>Recompiling VirtualBox kernel modules [失败]<br>(Look at /var/log/vbox-install.log to find out what went wrong)</p>
+</blockquote>
+<p>解决方法：<br>先尝试：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install -y kernel-headers kernel-devel dkms gcc</span><br><span class="line">sudo &#x2F;etc&#x2F;init.d&#x2F;vboxdrv setup</span><br></pre></td></tr></table></figure>
+<p>如果执行此操作，仍然出现上述错误。可以参考下面<br>安装 PAE 包， sudo yum install kernel-PAE-devel 。<br>完成后再执行 sudo/etc/init.d/vboxdrv setup</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.yidooo.net/2012/02/07/the-fedora-texlive-install-and-chinese-environment-configuration.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1601,172 +1753,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.yidooo.net/2011/11/27/oracle-sql-front-end-complement-quot0quot.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="核动力蜗牛">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://en.gravatar.com/userimage/132614578/1525cb3f68df290f2720631caf872dff.jpg?size=200">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="异度部落格">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2011/11/27/oracle-sql-front-end-complement-quot0quot.html" itemprop="url">ORACLE SQL 前端补“0”</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2011-11-27T00:00:00+08:00">
-                2011-11-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Database/" itemprop="url" rel="index">
-                    <span itemprop="name">Database</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Database/Oracle/" itemprop="url" rel="index">
-                    <span itemprop="name">Oracle</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>1）LPAD方法：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">LPAD</span>(sal,<span class="number">8</span>,<span class="string">'0'</span>) <span class="keyword">FROM</span></span><br></pre></td></tr></table></figure>
-<p>2）TO_CHAR 方法</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> TO_CHAR(sal,<span class="string">'00000000'</span>) <span class="keyword">From</span></span><br></pre></td></tr></table></figure>
-<p>3）SUBSTR方法</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">SUBSTR</span>(<span class="string">'00000000'</span>||sal,<span class="number">-8</span>) <span class="keyword">FROM</span></span><br></pre></td></tr></table></figure>
-<p>===================================================================<br>补充：</p>
-<blockquote>
-<p>LPAD和RPAD用法：<br>Lpad()函数的用法：<br>lpad函数将左边的字符串填充一些特定的字符其语法格式如下：<br>lpad(string,n,[pad_string])<br>string：可是字符或者参数<br>n：字符的长度，是返回的字符串的数量，如果这个数量比原字符串的长度要短，lpad函数将会把字符串截取成从左到右的n个字符;<br>pad_string：是个可选参数，这个字符串是要粘贴到string的左边，如果这个参数未写，lpad函数将会在string的左边粘贴空格。<br>例如：<br>lpad(‘tech’, 7); 将返回’ tech’<br>lpad(‘tech’, 2); 将返回’te’<br>lpad(‘tech’, 8, ‘0’); 将返回’0000tech’<br>lpad(‘tech on the net’, 15, ‘z’); 将返回 ‘tech on the net’<br>lpad(‘tech on the net’, 16, ‘z’); 将返回 ‘ztech on the net’</p>
-</blockquote>
-<blockquote>
-<p>Rpad()函数的用法：<br>rpad函数将右边的字符串填充一些特定的字符其语法格式如下：<br>rpad(string,n,[pad_string])<br>string：可是字符或者参数<br>n：字符的长度，是返回的字符串的数量，如果这个数量比原字符串的长度要短，lpad函数将会把字符串截取成从左到右的n个字符;<br>pad_string：是个可选参数，这个字符串是要粘贴到string的右边，如果这个参数未写，lpad函数将会在string的右边粘贴空格。<br>例如：<br>rpad(‘tech’, 7); 将返回’ tech’<br>rpad(‘tech’, 2); 将返回’te’<br>rpad(‘tech’, 8, ‘0’); 将返回’tech0000’<br>rpad(‘tech on the net’, 15, ‘z’); 将返回 ‘tech on the net’<br>rpad(‘tech on the net’, 16, ‘z’); 将返回 ‘tech on the netz’</p>
-</blockquote>
-<p>参考资料：<a href="http://hi.baidu.com/ljw460/blog/item/5788594a1b55ff2608f7efc5.html" target="_blank" rel="noopener">http://hi.baidu.com/ljw460/blog/item/5788594a1b55ff2608f7efc5.html</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1821,7 +1807,7 @@
               
                 <a href="/archives/%20%7C%7C%20archive">
               
-                  <span class="site-state-item-count">283</span>
+                  <span class="site-state-item-count">284</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

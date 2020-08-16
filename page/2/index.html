@@ -268,6 +268,194 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.yidooo.net/2018/07/29/spark-memory-management.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="核动力蜗牛">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://en.gravatar.com/userimage/132614578/1525cb3f68df290f2720631caf872dff.jpg?size=200">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="异度部落格">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/29/spark-memory-management.html" itemprop="url">Spark内存管理模型详解</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-29T00:00:00+08:00">
+                2018-07-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Big-Data/" itemprop="url" rel="index">
+                    <span itemprop="name">Big Data</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Big-Data/Spark/" itemprop="url" rel="index">
+                    <span itemprop="name">Spark</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>Spark 作为一个基于内存的分布式计算引擎，其内存管理模块在整个系统中扮演着非常重要的角色。理解 Spark 内存管理的基本原理，有助于更好地开发 Spark 应用程序和进行性能调优。</p>
+<p>一个Spark Application一般包括Driver和Executor两种JVM进程。Driver为主控进程，负责创建Context，提交Job，并将Job转换为Task，协调Executor间的Task执行。而Executor主要负责执行具体的计算任务，将结果返回Driver。 由于Driver的内存管理比较简单，和一般的JVM程序区别不大，所以本文重点分析Executor的内存管理。所以，本文提到的内存管理都是指Executor的内存管理。</p>
+<h1 id="堆内内存和堆外内存"><a href="#堆内内存和堆外内存" class="headerlink" title="堆内内存和堆外内存"></a>堆内内存和堆外内存</h1><p>Executor作为一个JVM进程，它的内存管理是基于JVM之上的。所以JVM的内存管理包括两种方式：</p>
+<ul>
+<li><strong>堆内内存管理（On-Heap）</strong>：对象分配的在JVM的堆上，对象会受GC束缚。</li>
+<li><strong>堆外内存管理（Off-Heap）</strong>：对象通过序列化分配在JVM之外的内存里，由应用程序对其进行管理，且不受GC束缚。这种内存管理方式可以避免频繁的 GC，但缺点是必须自己编写内存申请和释放的逻辑。</li>
+</ul>
+<p>一般来说对象读写速度是：on-heap &gt; off-heap &gt; disk</p>
+<h1 id="内存空间分配"><a href="#内存空间分配" class="headerlink" title="内存空间分配"></a>内存空间分配</h1><p>在Spark中，支持两种内存管理方式：静态内存管理（Static Memory Manager）和统一内存管理（Unified Memory Manager）。</p>
+<p>Spark为Storage内存和Execution内存的管理提供了统一的接口<a href="https://github.com/apache/spark/blob/branch-2.3/core/src/main/scala/org/apache/spark/memory/MemoryManager.scala" target="_blank" rel="noopener">MemoryManager</a>，同一个 Executor内的任务都调用这个接口的方法来申请或释放内存。MemoryManager的实现上，Spark 1.6以前默认采用的是静态内存管理（<a href="(https://github.com/apache/spark/blob/branch-2.3/core/src/main/scala/org/apache/spark/memory/StaticMemoryManager.scala">StaticMemoryManager</a>）的方式；而在Spark1.6以后，默认采用的是统一内存管理(<a href="https://github.com/apache/spark/blob/branch-2.3/core/src/main/scala/org/apache/spark/memory/UnifiedMemoryManager.scala" target="_blank" rel="noopener">UnifiedMemoryManager</a>)的方式。在中Spark 1.6+中，可以通过spark.memory.useLegacyMode参数启用静态内存管理。</p>
+<h2 id="静态内存管理（Static-Memory-Manager）"><a href="#静态内存管理（Static-Memory-Manager）" class="headerlink" title="静态内存管理（Static Memory Manager）"></a>静态内存管理（Static Memory Manager）</h2><p>静态内存管理机制下，Storage内存、Execution内存和其他内存的大小在 Spark 应用程序运行期间均为固定的，但用户可以应用程序启动前进行配置。由于这种分配已经逐渐被淘汰，但出于兼容性考虑，Spark依然保留下来。有兴趣的话，可以参考：<a href="https://blog.csdn.net/Lin_wj1995/article/details/79924542" target="_blank" rel="noopener">https://blog.csdn.net/Lin_wj1995/article/details/79924542</a></p>
+<p>这边主要讲下静态内存管理的弊端：静态内存管理机制实现起来较为简单，但如果用户不熟悉Spark的存储机制，或没有根据具体的数据规模和计算任务或做相应的配置，很容易造成Storage内存和Execution内存中的一方剩余大量的空间，而另一方却早早被占满，不得不淘汰或移出旧的内容以存储新的内容。</p>
+<h2 id="统一内存管理（Unified-Memory-Manager）"><a href="#统一内存管理（Unified-Memory-Manager）" class="headerlink" title="统一内存管理（Unified Memory Manager）"></a>统一内存管理（Unified Memory Manager）</h2><p>Spark 1.6之后引入了统一内存管理机制，该机制与静态内存管理的区别在于，Storage内存和Execution内存是共享一块内存空间的，双方可以互相占用对方的空闲区域。</p>
+<h3 id="堆内模型"><a href="#堆内模型" class="headerlink" title="堆内模型"></a>堆内模型</h3><p>默认情况下，Spark仅使用了堆内内存。堆内内存的大小由Spark Application启动时的–executor-memory或spark.executor.memory 参数配置。Executor内运行的并发任务共享JVM堆内内存。</p>
+<p>Executor端的堆内内存区域大致可以分为以下四大块：</p>
+<ul>
+<li>Storage内存（Storage Memory）：主要用于存储Spark的cache数据，例如RDD的缓存、Broadcast变量，Unroll数据等。</li>
+<li>Execution内存（Execution Memory）：主要用于存放 Shuffle、Join、Sort、Aggregation等计算过程中的临时数据。</li>
+<li>用户内存（User Memory）：主要用于存储 RDD 转换操作所需要的数据，例如 RDD 依赖等信息。</li>
+<li>预留内存（Reserved Memory）：系统预留内存，会用来存储Spark内部对象。</li>
+</ul>
+<p>内存分布如下图所示:<br><img src="/images/unified_memory_managment_on_heap.svg" alt="unified_memory_managment_on_heap"></p>
+<h3 id="堆外模型"><a href="#堆外模型" class="headerlink" title="堆外模型"></a>堆外模型</h3><p>Spark 1.6 开始引入了Off-heap memory(<a href="https://www.iteblog.com/redirect.php?url=aHR0cHM6Ly9pc3N1ZXMuYXBhY2hlLm9yZy9qaXJhL2Jyb3dzZS9TUEFSSy0xMTM4OQ==&amp;article=true" target="_blank" rel="noopener">SPARK-11389</a>)。默认情况下，堆外内存是关闭的，我们可以通过spark.memory.offHeap.enabled参数启用，通过spark.memory.offHeap.size设置堆外内存大小。相比堆内内存，堆外内存的模型比较简单，只包括Storage内存和Execution内存，其分布如下图所示：<br><img src="/images/unified_memory_management_off_heap.svg" alt="unified_memory_management_off_heap"></p>
+<p>如果堆外内存被启用，那么Executor内将同时存在堆内和堆外内存，两者的使用互补影响，这个时候Executor中的Execution内存是堆内的Execution 内存和堆外的Execution内存之和，同理，Storage内存也一样。下图为Spark堆内和堆外示意图<br><img src="/images/spark_on_heap_and_off_heap_memory.png" alt="spark_on_heap_and_off_heap_memory"></p>
+<h3 id="动态占用机制"><a href="#动态占用机制" class="headerlink" title="动态占用机制"></a>动态占用机制</h3><ul>
+<li>在程序提交时，会根据spark.memory.storageFraction参数设置Storage内存区域和Execution内存区域。</li>
+<li>在程序运行时，如果双方的空间不不足（存储空间不足以放下一个完整的Block），则按照LRU规则存储到磁盘；如果己方空间不足而对方空间有空余，则借用对方的空间。</li>
+<li>Storage占用对方内存，可将占用的部分转存到硬盘，然后”归还”借用的空间。</li>
+<li>Execution占用对方内存，目前的实现是无法让对方”归还”的。因为Shuffle过程产生的文件在后面一定会被使用到，而Cache在内存的数据不一定在后面使用，归还内存可能会导致性能严重下降。</li>
+</ul>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
+<li><a href="https://stackoverflow.com/questions/6091615/difference-between-on-heap-and-off-heap" target="_blank" rel="noopener">Difference between “on-heap” and “off-heap”</a></li>
+<li><a href="https://www.ibm.com/developerworks/cn/analytics/library/ba-cn-apache-spark-memory-management/index.html" target="_blank" rel="noopener">Apache Spark 内存管理详解</a></li>
+<li><a href="https://www.iteblog.com/archives/2342.html#Off-heap_Memory" target="_blank" rel="noopener">Apache Spark 统一内存管理模型详解</a></li>
+<li><a href="https://0x0fff.com/spark-memory-management/" target="_blank" rel="noopener">Spark Memory Management</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.yidooo.net/2018/06/08/design-pattern-in-java-core-libraires.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1886,196 +2074,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.yidooo.net/2014/09/22/zookeeper-server-startup.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="核动力蜗牛">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://en.gravatar.com/userimage/132614578/1525cb3f68df290f2720631caf872dff.jpg?size=200">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="异度部落格">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2014/09/22/zookeeper-server-startup.html" itemprop="url">Zookeeper源码分析-Zookeeper Server启动分析</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-09-22T00:00:00+08:00">
-                2014-09-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Big-Data/" itemprop="url" rel="index">
-                    <span itemprop="name">Big Data</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Big-Data/ZooKeeper/" itemprop="url" rel="index">
-                    <span itemprop="name">ZooKeeper</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Zookeeper Server的启动入口为org.apache.zookeeper.server.quorum.QuorumPeerMain。Zookeeper的启动模式分为两种：一种为standalone mode；另一种为cluster mode。</p>
-<ul>
-<li>Standalone模式：当配置文件中仅配置了一台server时，Zookeeper将以standalone模式启动，启动类为ZooKeeperServerMain，此处不作详细分析。</li>
-<li>Cluster模式：当配置文件中配置了多台server，构建cluster，启动类为QuorumPeer#start()。</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">start</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        loadDataBase();</span><br><span class="line">        cnxnFactory.start();        </span><br><span class="line">        startLeaderElection();</span><br><span class="line">        <span class="keyword">super</span>.start();</span><br><span class="line">    &#125;</span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line"># 清理DataDir</span><br><span class="line">在Server启动时，根据启动的配置参数启动一个TimeTask用于清理DataDir中的snapshot及对应的transactionlog。由于Zookeeper的任何一个写操作都将在transaction log中留下记录，当写操作达到一定量或者一定时间间隔，Zookeeper将transaction log合并为snapshot。所以随着运行时间的增长生成的transaction log和snapshot将越来越多，所以定期清理是必要的。在DatadirCleanupManager中有两个参数：</span><br><span class="line"></span><br><span class="line">- snapRetainCount：清理后保留的snapshot的个数，该参数至少要大于<span class="number">3</span>。</span><br><span class="line">- purgeInterval：定期清理的时间间隔，以小时为单位。</span><br><span class="line"></span><br><span class="line">``` java</span><br><span class="line">	<span class="comment">// Start and schedule the the purge task</span></span><br><span class="line">        DatadirCleanupManager purgeMgr = <span class="keyword">new</span> DatadirCleanupManager(config</span><br><span class="line">                .getDataDir(), config.getDataLogDir(), config</span><br><span class="line">                .getSnapRetainCount(), config.getPurgeInterval());</span><br><span class="line">        purgeMgr.start();</span><br></pre></td></tr></table></figure>
-<h1 id="加载ZKDatabase"><a href="#加载ZKDatabase" class="headerlink" title="加载ZKDatabase"></a>加载ZKDatabase</h1><p>1.从snapshot和transaction log中恢复ZKDatabase，并将其载入内存。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zkDb.loadDataBase();</span><br></pre></td></tr></table></figure>
-<p>2.载入currentEpoch和acceptedEpoch</p>
-<p>首先要明白什么是epoch，官方给出的解释是:</p>
-<blockquote>
-<p>The zxid has two parts: the epoch and a counter. In our implementation the zxid is a 64-bit number. We use the high order 32-bits for the epoch and the low order 32-bits for the counter. Because it has two parts represent the zxid both as a number and as a pair of integers, (epoch, count). The epoch number represents a change in leadership. Each time a new leader comes into power it will have its own epoch number. </p>
-</blockquote>
-<p>从currentEpoch文件中读取current epoch；若currentEpoch文件不存在，Zookeeper将从lastProcessedZxid中获取epoch作为current epoch，写入currentEpoch文件。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">           	currentEpoch = readLongFromFile(CURRENT_EPOCH_FILENAME);</span><br><span class="line">               <span class="keyword">if</span> (epochOfZxid &gt; currentEpoch &amp;&amp; updating.exists()) &#123;</span><br><span class="line">                   LOG.info(<span class="string">"&#123;&#125; found. The server was terminated after "</span> +</span><br><span class="line">                            <span class="string">"taking a snapshot but before updating current "</span> +</span><br><span class="line">                            <span class="string">"epoch. Setting current epoch to &#123;&#125;."</span>,</span><br><span class="line">                            UPDATING_EPOCH_FILENAME, epochOfZxid);</span><br><span class="line">                   setCurrentEpoch(epochOfZxid);</span><br><span class="line">                   <span class="keyword">if</span> (!updating.delete()) &#123;</span><br><span class="line">                       <span class="keyword">throw</span> <span class="keyword">new</span> IOException(<span class="string">"Failed to delete "</span> +</span><br><span class="line">                                             updating.toString());</span><br><span class="line">                   &#125;</span><br><span class="line">               &#125;</span><br><span class="line">           &#125; <span class="keyword">catch</span>(FileNotFoundException e) &#123;</span><br><span class="line">           	<span class="comment">// pick a reasonable epoch number</span></span><br><span class="line">           	<span class="comment">// this should only happen once when moving to a</span></span><br><span class="line">           	<span class="comment">// new code version</span></span><br><span class="line">           	currentEpoch = epochOfZxid;</span><br><span class="line">           	LOG.info(CURRENT_EPOCH_FILENAME</span><br><span class="line">           	        + <span class="string">" not found! Creating with a reasonable default of &#123;&#125;. This should only happen when you are upgrading your installation"</span>,</span><br><span class="line">           	        currentEpoch);</span><br><span class="line">           	writeLongToFile(CURRENT_EPOCH_FILENAME, currentEpoch);</span><br><span class="line">           &#125;</span><br></pre></td></tr></table></figure>
-<p>同理，获取accepted epoch。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">           	acceptedEpoch = readLongFromFile(ACCEPTED_EPOCH_FILENAME);</span><br><span class="line">           &#125; <span class="keyword">catch</span>(FileNotFoundException e) &#123;</span><br><span class="line">           	<span class="comment">// pick a reasonable epoch number</span></span><br><span class="line">           	<span class="comment">// this should only happen once when moving to a</span></span><br><span class="line">           	<span class="comment">// new code version</span></span><br><span class="line">           	acceptedEpoch = epochOfZxid;</span><br><span class="line">           	LOG.info(ACCEPTED_EPOCH_FILENAME</span><br><span class="line">           	        + <span class="string">" not found! Creating with a reasonable default of &#123;&#125;. This should only happen when you are upgrading your installation"</span>,</span><br><span class="line">           	        acceptedEpoch);</span><br><span class="line">           	writeLongToFile(ACCEPTED_EPOCH_FILENAME, acceptedEpoch);</span><br><span class="line">           &#125;</span><br></pre></td></tr></table></figure></p>
-<h1 id="启动ServerCnxnFactory线程"><a href="#启动ServerCnxnFactory线程" class="headerlink" title="启动ServerCnxnFactory线程"></a>启动ServerCnxnFactory线程</h1><p>ServerCnxnFacotry是管理ServerCnxn处理类的工厂,它负责对connection上数据处理的调度,以及server级别的一些处理,例如关闭指定session等。有关ServerCnxnFactory的实现类，可分为三种情况：</p>
-<ul>
-<li>NIO模式。这是Zookeeper默认的ServerCnxnFactory实现，其实现类为NIOServerCnxnFactory。</li>
-<li>Netty模式。在Zookeeper 3.4以后引入了Netty作为Server端连接处理的可选实现。Netty是一套非常高效的异步通信框架。可以通过JVM参数zookeeper.serverCnxnFactory进行配置。</li>
-<li>自定义模型。Zookeeper还支持自定类来实现通信，同样可以通过JVM参数zookeeper.serverCnxnFactory进行配置。</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Static <span class="keyword">public</span> ServerCnxnFactory <span class="title">createFactory</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        String serverCnxnFactoryName =</span><br><span class="line">            System.getProperty(ZOOKEEPER_SERVER_CNXN_FACTORY);</span><br><span class="line">        <span class="keyword">if</span> (serverCnxnFactoryName == <span class="keyword">null</span>) &#123;</span><br><span class="line">            serverCnxnFactoryName = NIOServerCnxnFactory<span class="class">.<span class="keyword">class</span>.<span class="title">getName</span>()</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> (ServerCnxnFactory) Class.forName(serverCnxnFactoryName)</span><br><span class="line">                                                .newInstance();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            IOException ioe = <span class="keyword">new</span> IOException(<span class="string">"Couldn't instantiate "</span></span><br><span class="line">                    + serverCnxnFactoryName);</span><br><span class="line">            ioe.initCause(e);</span><br><span class="line">            <span class="keyword">throw</span> ioe;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<p>ServerCnxnFactory的主要职责：</p>
-<ol>
-<li>在单机模式下，引导完成Zookeeper Server的实例化。</li>
-<li>异步接收Client的IO连接，并维护连接的IO操作，这是ServerCnxnFactory的核心功能。ServerCnxnFacotry本身被设计成一个Thread，在完成初始化工作之后，就开始启动自身线程，在线程run方法中，采用NIO的方式Accept客户端连接，创建一个NIOServerCnxn实例，此实例和普通的NIO设计思路一样，它持有当前连接的Channel句柄和Buffer队列，最终将此NIOServerCnxn放入Factory内部的一个set中，以便此后对链接信息进行查询和操作(比如关闭操作,IO中read和write操作等)。</li>
-</ol>
-<h1 id="Leader选举"><a href="#Leader选举" class="headerlink" title="Leader选举"></a>Leader选举</h1><p>Leader的选举算法有三种：</p>
-<ul>
-<li>LeaderElection：LeaderElection采用的是fast paxos算法的一种简单实现，目前该算法在3.4以后已经建议弃用。</li>
-<li>FastLeaderElection：FastLeaderElection是标准的fast paxos的实现，这是目前Zookeeper默认的Leader选举算法。</li>
-<li>AuthFastLeaderElection：AuthFastLeaderElection算法同FastLeaderElection算法基本一致，只是在消息中加入了认证信息，该算法在最新的Zookeeper中也建议弃用。</li>
-</ul>
-<p>Leader选举算法分析详见：<a href="/archives/zookeeper-leader-election.html">Zookeeper源码分析-Zookeeper Leader选举算法</a></p>
-<h1 id="QuorumPeer启动"><a href="#QuorumPeer启动" class="headerlink" title="QuorumPeer启动"></a>QuorumPeer启动</h1><p>完成DataDir，ZKDatabase加载以及Leader选举动作后，QuorumPeer完成初始化及启动工作。</p>
-<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="http://zookeeper.apache.org/doc/r3.4.6/zookeeperInternals.html" target="_blank" rel="noopener">http://zookeeper.apache.org/doc/r3.4.6/zookeeperInternals.html</a></p>
-<p><a href="http://shift-alt-ctrl.iteye.com/blog/1846507" target="_blank" rel="noopener">http://shift-alt-ctrl.iteye.com/blog/1846507</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2130,7 +2128,7 @@
               
                 <a href="/archives/%20%7C%7C%20archive">
               
-                  <span class="site-state-item-count">283</span>
+                  <span class="site-state-item-count">284</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
