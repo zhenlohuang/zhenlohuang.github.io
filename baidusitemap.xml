@@ -13,11 +13,11 @@
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
-    <loc>http://www.yidooo.net/2019/10/11/kerberos-authentication.html</loc>
+    <loc>http://www.yidooo.net/2019/05/07/2pc-and-3pc.html</loc>
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
-    <loc>http://www.yidooo.net/2019/05/07/2pc-and-3pc.html</loc>
+    <loc>http://www.yidooo.net/2019/10/11/kerberos-authentication.html</loc>
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
@@ -25,11 +25,11 @@
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
-    <loc>http://www.yidooo.net/2018/08/19/spark-task-not-serializable-analysis.html</loc>
+    <loc>http://www.yidooo.net/2018/08/05/spark-basic-concepts.html</loc>
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
-    <loc>http://www.yidooo.net/2018/08/05/spark-basic-concepts.html</loc>
+    <loc>http://www.yidooo.net/2018/08/19/spark-task-not-serializable-analysis.html</loc>
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
@@ -41,6 +41,10 @@
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
+    <loc>http://www.yidooo.net/2016/01/02/hello-2016.html</loc>
+    <lastmod>2020-07-19</lastmod>
+  </url>
+  <url>
     <loc>http://www.yidooo.net/2017/06/11/java-classload-analysis.html</loc>
     <lastmod>2020-07-19</lastmod>
   </url>
@@ -49,19 +53,11 @@
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
-    <loc>http://www.yidooo.net/2016/01/02/hello-2016.html</loc>
-    <lastmod>2020-07-19</lastmod>
-  </url>
-  <url>
     <loc>http://www.yidooo.net/2018/07/29/spark-architecture.html</loc>
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
-    <loc>http://www.yidooo.net/2014/10/31/octopress-installation.html</loc>
-    <lastmod>2020-07-19</lastmod>
-  </url>
-  <url>
-    <loc>http://www.yidooo.net/2014/10/23/zab.html</loc>
+    <loc>http://www.yidooo.net/2014/10/18/zookeeper-leader-election.html</loc>
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
@@ -69,7 +65,11 @@
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
-    <loc>http://www.yidooo.net/2014/10/18/zookeeper-leader-election.html</loc>
+    <loc>http://www.yidooo.net/2014/10/23/zab.html</loc>
+    <lastmod>2020-07-19</lastmod>
+  </url>
+  <url>
+    <loc>http://www.yidooo.net/2014/10/31/octopress-installation.html</loc>
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
@@ -89,11 +89,11 @@
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
-    <loc>http://www.yidooo.net/2014/09/22/zookeeper-server-startup.html</loc>
+    <loc>http://www.yidooo.net/2014/09/14/zookeeper-data-model.html</loc>
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
-    <loc>http://www.yidooo.net/2014/09/14/zookeeper-data-model.html</loc>
+    <loc>http://www.yidooo.net/2014/09/22/zookeeper-server-startup.html</loc>
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
@@ -105,11 +105,11 @@
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
-    <loc>http://www.yidooo.net/2013/11/24/hadoop-source-compile.html</loc>
+    <loc>http://www.yidooo.net/2013/11/16/hadoop-namenode-secondarynamenode-checkpointnode-backupnode.html</loc>
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
-    <loc>http://www.yidooo.net/2013/11/16/hadoop-namenode-secondarynamenode-checkpointnode-backupnode.html</loc>
+    <loc>http://www.yidooo.net/2013/11/24/hadoop-source-compile.html</loc>
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
@@ -125,11 +125,11 @@
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
-    <loc>http://www.yidooo.net/2013/10/30/hadoop-2-2-0-new-features.html</loc>
+    <loc>http://www.yidooo.net/2013/10/30/hadoop-2-2-0-installation-and-configuration.html</loc>
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
-    <loc>http://www.yidooo.net/2013/10/30/hadoop-2-2-0-installation-and-configuration.html</loc>
+    <loc>http://www.yidooo.net/2013/10/30/hadoop-2-2-0-new-features.html</loc>
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
@@ -137,11 +137,11 @@
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
-    <loc>http://www.yidooo.net/2013/08/04/cloudera-hadoop-installation-and-configuration.html</loc>
+    <loc>http://www.yidooo.net/2013/08/11/in-the-hive-contains-a-subquery.html</loc>
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
-    <loc>http://www.yidooo.net/2013/08/11/in-the-hive-contains-a-subquery.html</loc>
+    <loc>http://www.yidooo.net/2013/08/04/cloudera-hadoop-installation-and-configuration.html</loc>
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
@@ -161,19 +161,19 @@
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
-    <loc>http://www.yidooo.net/2013/07/29/host-only-virtual-machine-network-configuration.html</loc>
-    <lastmod>2020-07-19</lastmod>
-  </url>
-  <url>
     <loc>http://www.yidooo.net/2013/05/16/java-equals-method.html</loc>
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
-    <loc>http://www.yidooo.net/2013/07/29/postgresql-installation-and-configuration.html</loc>
+    <loc>http://www.yidooo.net/2013/05/17/modify-protected-word-document.html</loc>
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
-    <loc>http://www.yidooo.net/2013/05/17/modify-protected-word-document.html</loc>
+    <loc>http://www.yidooo.net/2013/07/29/host-only-virtual-machine-network-configuration.html</loc>
+    <lastmod>2020-07-19</lastmod>
+  </url>
+  <url>
+    <loc>http://www.yidooo.net/2013/07/29/postgresql-installation-and-configuration.html</loc>
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
@@ -185,11 +185,11 @@
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
-    <loc>http://www.yidooo.net/2013/05/10/python-challenge-level-0.html</loc>
+    <loc>http://www.yidooo.net/2013/04/30/ubuntu-chrome-the-sites-security-certificate-is-not-trusted.html</loc>
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
-    <loc>http://www.yidooo.net/2013/04/30/ubuntu-chrome-the-sites-security-certificate-is-not-trusted.html</loc>
+    <loc>http://www.yidooo.net/2013/05/10/python-challenge-level-0.html</loc>
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
@@ -229,15 +229,11 @@
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
-    <loc>http://www.yidooo.net/2012/11/26/hadoop-eclipse-plugin-compiled.html</loc>
-    <lastmod>2020-07-19</lastmod>
-  </url>
-  <url>
     <loc>http://www.yidooo.net/2012/10/29/hadoop-install-and-configuration.html</loc>
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
-    <loc>http://www.yidooo.net/2012/10/06/occurrences-of-the-number-in-the-sorted-array.html</loc>
+    <loc>http://www.yidooo.net/2012/11/26/hadoop-eclipse-plugin-compiled.html</loc>
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
@@ -245,11 +241,15 @@
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
-    <loc>http://www.yidooo.net/2012/10/06/string-permutations.html</loc>
+    <loc>http://www.yidooo.net/2012/10/06/occurrences-of-the-number-in-the-sorted-array.html</loc>
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
     <loc>http://www.yidooo.net/2012/10/06/smallest-number-k.html</loc>
+    <lastmod>2020-07-19</lastmod>
+  </url>
+  <url>
+    <loc>http://www.yidooo.net/2012/10/06/string-permutations.html</loc>
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
@@ -273,19 +273,19 @@
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
-    <loc>http://www.yidooo.net/2012/09/23/from-the-top-print-binary-tree.html</loc>
-    <lastmod>2020-07-19</lastmod>
-  </url>
-  <url>
     <loc>http://www.yidooo.net/2012/09/23/contains-the-min-functions-stack.html</loc>
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
-    <loc>http://www.yidooo.net/2012/09/23/sequence-of-push-and-pop-stack.html</loc>
+    <loc>http://www.yidooo.net/2012/09/23/from-the-top-print-binary-tree.html</loc>
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
     <loc>http://www.yidooo.net/2012/09/23/merges-two-sorted-lists.html</loc>
+    <lastmod>2020-07-19</lastmod>
+  </url>
+  <url>
+    <loc>http://www.yidooo.net/2012/09/23/sequence-of-push-and-pop-stack.html</loc>
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
@@ -309,15 +309,11 @@
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
-    <loc>http://www.yidooo.net/2012/09/04/replace-spaces.html</loc>
-    <lastmod>2020-07-19</lastmod>
-  </url>
-  <url>
     <loc>http://www.yidooo.net/2012/09/04/reconstruction-of-binary-trees.html</loc>
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
-    <loc>http://www.yidooo.net/2012/09/06/rotate-the-arrays-minimum-number.html</loc>
+    <loc>http://www.yidooo.net/2012/09/04/replace-spaces.html</loc>
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
@@ -325,7 +321,7 @@
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
-    <loc>http://www.yidooo.net/2012/07/14/statistics-number-of-words-in-the-subscription-source.html</loc>
+    <loc>http://www.yidooo.net/2012/09/06/rotate-the-arrays-minimum-number.html</loc>
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
@@ -337,15 +333,19 @@
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
+    <loc>http://www.yidooo.net/2012/07/14/statistics-number-of-words-in-the-subscription-source.html</loc>
+    <lastmod>2020-07-19</lastmod>
+  </url>
+  <url>
     <loc>http://www.yidooo.net/2012/09/04/c-class-definition-space-research.html</loc>
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
-    <loc>http://www.yidooo.net/2012/06/21/common-written-examination-and-the-interview-puzzles.html</loc>
+    <loc>http://www.yidooo.net/2012/06/18/pirate-gem.html</loc>
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
-    <loc>http://www.yidooo.net/2012/06/18/pirate-gem.html</loc>
+    <loc>http://www.yidooo.net/2012/06/21/common-written-examination-and-the-interview-puzzles.html</loc>
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
@@ -365,6 +365,10 @@
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
+    <loc>http://www.yidooo.net/2012/05/24/javascript-decimal-rounding-functions.html</loc>
+    <lastmod>2020-07-19</lastmod>
+  </url>
+  <url>
     <loc>http://www.yidooo.net/2012/06/04/error-importing-repomd-xml-for-updates-solving.html</loc>
     <lastmod>2020-07-19</lastmod>
   </url>
@@ -373,7 +377,7 @@
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
-    <loc>http://www.yidooo.net/2012/05/24/javascript-decimal-rounding-functions.html</loc>
+    <loc>http://www.yidooo.net/2012/06/04/fedora-software-recommended.html</loc>
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
@@ -381,19 +385,7 @@
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
-    <loc>http://www.yidooo.net/2012/06/04/fedora-software-recommended.html</loc>
-    <lastmod>2020-07-19</lastmod>
-  </url>
-  <url>
     <loc>http://www.yidooo.net/2012/02/07/fedora-16-installation-and-configuration.html</loc>
-    <lastmod>2020-07-19</lastmod>
-  </url>
-  <url>
-    <loc>http://www.yidooo.net/2012/02/07/was-not-found-on-the-system-used-to-create-the-rpm-package-rpm-tools-the-rpmbuild-solution.html</loc>
-    <lastmod>2020-07-19</lastmod>
-  </url>
-  <url>
-    <loc>http://www.yidooo.net/2012/02/07/the-subclipse-start-unable-to-load-default-svn-client-the-solution.html</loc>
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
@@ -405,6 +397,14 @@
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
+    <loc>http://www.yidooo.net/2012/02/07/the-subclipse-start-unable-to-load-default-svn-client-the-solution.html</loc>
+    <lastmod>2020-07-19</lastmod>
+  </url>
+  <url>
+    <loc>http://www.yidooo.net/2012/02/07/was-not-found-on-the-system-used-to-create-the-rpm-package-rpm-tools-the-rpmbuild-solution.html</loc>
+    <lastmod>2020-07-19</lastmod>
+  </url>
+  <url>
     <loc>http://www.yidooo.net/2012/04/10/two-array-a-n-b-n-a-n-element-values-known-now-to-b-i-assignment.html</loc>
     <lastmod>2020-07-19</lastmod>
   </url>
@@ -413,11 +413,11 @@
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
-    <loc>http://www.yidooo.net/2012/01/28/payment-error-12306-transaction-failure-code-50050-description-the-transaction-information-is-incomplete.html</loc>
+    <loc>http://www.yidooo.net/2012/01/28/n-is-an-odd-prove-that-n-n-2-1-can-be-divisible-by-24.html</loc>
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
-    <loc>http://www.yidooo.net/2012/01/28/n-is-an-odd-prove-that-n-n-2-1-can-be-divisible-by-24.html</loc>
+    <loc>http://www.yidooo.net/2012/01/28/payment-error-12306-transaction-failure-code-50050-description-the-transaction-information-is-incomplete.html</loc>
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
@@ -441,11 +441,11 @@
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
-    <loc>http://www.yidooo.net/2011/11/27/oracle-query-results-automatically-generate-a-serial-number.html</loc>
+    <loc>http://www.yidooo.net/2011/11/21/pylucene-study-notes-document-indexing-and-retrieval.html</loc>
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
-    <loc>http://www.yidooo.net/2011/11/21/pylucene-study-notes-document-indexing-and-retrieval.html</loc>
+    <loc>http://www.yidooo.net/2011/11/27/oracle-query-results-automatically-generate-a-serial-number.html</loc>
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
@@ -517,19 +517,19 @@
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
-    <loc>http://www.yidooo.net/2010/12/13/documentation-differences-and-usage--getelementbyid--javascript-getelementsbyname.html</loc>
-    <lastmod>2020-07-19</lastmod>
-  </url>
-  <url>
     <loc>http://www.yidooo.net/2010/12/13/css-control-center.html</loc>
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
-    <loc>http://www.yidooo.net/2010/12/13/javasqlsqlexception-before-the-start-of-result-set-exception-approach.html</loc>
+    <loc>http://www.yidooo.net/2010/12/13/documentation-differences-and-usage--getelementbyid--javascript-getelementsbyname.html</loc>
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
     <loc>http://www.yidooo.net/2010/12/13/documentation-javascript-isnan-function.html</loc>
+    <lastmod>2020-07-19</lastmod>
+  </url>
+  <url>
+    <loc>http://www.yidooo.net/2010/12/13/javasqlsqlexception-before-the-start-of-result-set-exception-approach.html</loc>
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
@@ -589,11 +589,11 @@
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
-    <loc>http://www.yidooo.net/2010/08/05/python-learning-network-programming-a-tcp-connection.html</loc>
+    <loc>http://www.yidooo.net/2010/08/05/python-learning-network-programming-6-web-crawler.html</loc>
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
-    <loc>http://www.yidooo.net/2010/08/05/python-learning-network-programming-6-web-crawler.html</loc>
+    <loc>http://www.yidooo.net/2010/08/05/python-learning-network-programming-a-tcp-connection.html</loc>
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
@@ -601,11 +601,11 @@
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
-    <loc>http://www.yidooo.net/2010/08/05/python-learning-network-programming-d-e-mail.html</loc>
+    <loc>http://www.yidooo.net/2010/08/05/python-learning-network-programming-c-the-nntp-connection.html</loc>
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
-    <loc>http://www.yidooo.net/2010/08/05/python-learning-network-programming-c-the-nntp-connection.html</loc>
+    <loc>http://www.yidooo.net/2010/08/05/python-learning-network-programming-d-e-mail.html</loc>
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
@@ -621,15 +621,15 @@
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
-    <loc>http://www.yidooo.net/2010/08/05/python-learning-multithreaded-programming-producer-consumer-problem.html</loc>
-    <lastmod>2020-07-19</lastmod>
-  </url>
-  <url>
     <loc>http://www.yidooo.net/2010/08/05/learning-random-data-generator-in-python.html</loc>
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
     <loc>http://www.yidooo.net/2010/08/05/python-learning-file-traversal.html</loc>
+    <lastmod>2020-07-19</lastmod>
+  </url>
+  <url>
+    <loc>http://www.yidooo.net/2010/08/05/python-learning-multithreaded-programming-producer-consumer-problem.html</loc>
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
@@ -645,11 +645,11 @@
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
-    <loc>http://www.yidooo.net/2010/05/31/core-python-programming-exercise-chapter-vi.html</loc>
+    <loc>http://www.yidooo.net/2010/05/28/ubuntu-install-ibus-japanese-input-method.html</loc>
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
-    <loc>http://www.yidooo.net/2010/05/28/ubuntu-install-ibus-japanese-input-method.html</loc>
+    <loc>http://www.yidooo.net/2010/05/31/core-python-programming-exercise-chapter-vi.html</loc>
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
@@ -685,11 +685,11 @@
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
-    <loc>http://www.yidooo.net/2010/05/03/core-python-programming-exercise-chapter-ii.html</loc>
+    <loc>http://www.yidooo.net/2010/04/28/under-windows-eric4-installation.html</loc>
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
-    <loc>http://www.yidooo.net/2010/04/28/under-windows-eric4-installation.html</loc>
+    <loc>http://www.yidooo.net/2010/05/03/core-python-programming-exercise-chapter-ii.html</loc>
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
@@ -701,15 +701,7 @@
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
-    <loc>http://www.yidooo.net/2010/03/08/qt-programming-skills-qt-internationalization.html</loc>
-    <lastmod>2020-07-19</lastmod>
-  </url>
-  <url>
     <loc>http://www.yidooo.net/2010/03/06/constructor-and-destructor.html</loc>
-    <lastmod>2020-07-19</lastmod>
-  </url>
-  <url>
-    <loc>http://www.yidooo.net/2010/04/12/ubuntu-the-lamp-environment-to-build.html</loc>
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
@@ -718,6 +710,18 @@
   </url>
   <url>
     <loc>http://www.yidooo.net/2010/03/08/cpp-reads-the-local-time-in-digital-form-output.html</loc>
+    <lastmod>2020-07-19</lastmod>
+  </url>
+  <url>
+    <loc>http://www.yidooo.net/2010/03/08/qt-programming-skills-qt-internationalization.html</loc>
+    <lastmod>2020-07-19</lastmod>
+  </url>
+  <url>
+    <loc>http://www.yidooo.net/2010/04/12/ubuntu-the-lamp-environment-to-build.html</loc>
+    <lastmod>2020-07-19</lastmod>
+  </url>
+  <url>
+    <loc>http://www.yidooo.net/2010/02/04/qt-programming-skills-menu-bar-options.html</loc>
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
@@ -733,15 +737,11 @@
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
-    <loc>http://www.yidooo.net/2010/02/15/ubuntu-910-install-sopcast.html</loc>
-    <lastmod>2020-07-19</lastmod>
-  </url>
-  <url>
-    <loc>http://www.yidooo.net/2010/02/04/qt-programming-skills-menu-bar-options.html</loc>
-    <lastmod>2020-07-19</lastmod>
-  </url>
-  <url>
     <loc>http://www.yidooo.net/2010/02/04/qt-programming-skills-system-tray-set.html</loc>
+    <lastmod>2020-07-19</lastmod>
+  </url>
+  <url>
+    <loc>http://www.yidooo.net/2010/02/15/ubuntu-910-install-sopcast.html</loc>
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
@@ -757,11 +757,11 @@
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
-    <loc>http://www.yidooo.net/2010/02/02/my-first-mfc-program.html</loc>
+    <loc>http://www.yidooo.net/2010/01/22/mplayer-slave-mode-document-translation.html</loc>
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
-    <loc>http://www.yidooo.net/2010/01/22/mplayer-slave-mode-document-translation.html</loc>
+    <loc>http://www.yidooo.net/2010/02/02/my-first-mfc-program.html</loc>
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
@@ -805,6 +805,10 @@
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
+    <loc>http://www.yidooo.net/2009/10/26/qt-programming-skills-qt-image-rotation.html</loc>
+    <lastmod>2020-07-19</lastmod>
+  </url>
+  <url>
     <loc>http://www.yidooo.net/2009/10/26/qt-programming-skills-qlcdnumber-and-qspinbox-link.html</loc>
     <lastmod>2020-07-19</lastmod>
   </url>
@@ -813,15 +817,7 @@
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
-    <loc>http://www.yidooo.net/2009/10/26/qt-programming-skills-qt-image-rotation.html</loc>
-    <lastmod>2020-07-19</lastmod>
-  </url>
-  <url>
     <loc>http://www.yidooo.net/2009/10/26/qt-programming-skills-qt-resource-file-template.html</loc>
-    <lastmod>2020-07-19</lastmod>
-  </url>
-  <url>
-    <loc>http://www.yidooo.net/2009/10/06/ubuntu-install-prism.html</loc>
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
@@ -830,6 +826,10 @@
   </url>
   <url>
     <loc>http://www.yidooo.net/2009/10/22/microsoft-interview-questions-and-answers-091022.html</loc>
+    <lastmod>2020-07-19</lastmod>
+  </url>
+  <url>
+    <loc>http://www.yidooo.net/2009/10/06/ubuntu-install-prism.html</loc>
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
@@ -865,11 +865,11 @@
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
-    <loc>http://www.yidooo.net/2009/08/04/firefox-with-multiget-download-tool.html</loc>
+    <loc>http://www.yidooo.net/2009/07/31/the-qtsql-no-such-file-or-directory-solutions.html</loc>
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
-    <loc>http://www.yidooo.net/2009/07/31/the-qtsql-no-such-file-or-directory-solutions.html</loc>
+    <loc>http://www.yidooo.net/2009/08/04/firefox-with-multiget-download-tool.html</loc>
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
@@ -881,11 +881,11 @@
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
-    <loc>http://www.yidooo.net/2009/07/18/qt4-program-chinese-garbled-solution.html</loc>
+    <loc>http://www.yidooo.net/2009/07/18/qt-study-notes-the-eleven-symbolpicker.html</loc>
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
-    <loc>http://www.yidooo.net/2009/07/18/qt-study-notes-the-eleven-symbolpicker.html</loc>
+    <loc>http://www.yidooo.net/2009/07/18/qt4-program-chinese-garbled-solution.html</loc>
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
@@ -905,11 +905,11 @@
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
-    <loc>http://www.yidooo.net/2009/07/06/ubuntu-installation-fetion.html</loc>
+    <loc>http://www.yidooo.net/2009/07/07/reinstall-xp-restore-wubi-installation-of-ubuntu-boot-menu.html</loc>
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
-    <loc>http://www.yidooo.net/2009/07/07/reinstall-xp-restore-wubi-installation-of-ubuntu-boot-menu.html</loc>
+    <loc>http://www.yidooo.net/2009/07/06/ubuntu-installation-fetion.html</loc>
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
@@ -933,11 +933,11 @@
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
-    <loc>http://www.yidooo.net/2009/07/03/qt-study-notes-of-ten-ticker.html</loc>
+    <loc>http://www.yidooo.net/2009/07/02/qt-study-notes-eight-mdieditor.html</loc>
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
-    <loc>http://www.yidooo.net/2009/07/02/qt-study-notes-eight-mdieditor.html</loc>
+    <loc>http://www.yidooo.net/2009/07/03/qt-study-notes-of-ten-ticker.html</loc>
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
@@ -953,11 +953,11 @@
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
-    <loc>http://www.yidooo.net/2009/05/29/virtualbox39s-data-space-using-the-method-to-solve-the-problems-of-the-client-and-host-sharing.html</loc>
+    <loc>http://www.yidooo.net/2009/05/29/qt-study-notes-the-seven-findfiledialog.html</loc>
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
-    <loc>http://www.yidooo.net/2009/05/29/qt-study-notes-the-seven-findfiledialog.html</loc>
+    <loc>http://www.yidooo.net/2009/05/29/virtualbox39s-data-space-using-the-method-to-solve-the-problems-of-the-client-and-host-sharing.html</loc>
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
@@ -965,11 +965,11 @@
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
-    <loc>http://www.yidooo.net/2009/05/22/ubuntu-multimedia-applications-environment-settings.html</loc>
+    <loc>http://www.yidooo.net/2009/05/22/ubuntu-install-chinese-support.html</loc>
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
-    <loc>http://www.yidooo.net/2009/05/22/ubuntu-install-chinese-support.html</loc>
+    <loc>http://www.yidooo.net/2009/05/22/ubuntu-multimedia-applications-environment-settings.html</loc>
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
@@ -993,11 +993,11 @@
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
-    <loc>http://www.yidooo.net/2009/05/22/mp3-information-garbled-problem-solving-in-ubuntu.html</loc>
+    <loc>http://www.yidooo.net/2009/05/22/java-installation-and-configuration.html</loc>
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
-    <loc>http://www.yidooo.net/2009/05/22/java-installation-and-configuration.html</loc>
+    <loc>http://www.yidooo.net/2009/05/22/mp3-information-garbled-problem-solving-in-ubuntu.html</loc>
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
@@ -1005,11 +1005,11 @@
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
-    <loc>http://www.yidooo.net/2009/05/21/ubuntu-904-wubi-installation.html</loc>
+    <loc>http://www.yidooo.net/2009/05/19/solve-the-qt-creator-no-valid-qt-version-the-set-set-one-in-to-the-tools--options.html</loc>
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
-    <loc>http://www.yidooo.net/2009/05/19/solve-the-qt-creator-no-valid-qt-version-the-set-set-one-in-to-the-tools--options.html</loc>
+    <loc>http://www.yidooo.net/2009/05/21/ubuntu-904-wubi-installation.html</loc>
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
@@ -1021,7 +1021,7 @@
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
-    <loc>http://www.yidooo.net/2009/05/14/firefox-double-click-to-close-tab-bar-plug.html</loc>
+    <loc>http://www.yidooo.net/2009/04/28/qt-study-notes-five-hexspinbox.html</loc>
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
@@ -1029,7 +1029,7 @@
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
-    <loc>http://www.yidooo.net/2009/04/28/qt-study-notes-five-hexspinbox.html</loc>
+    <loc>http://www.yidooo.net/2009/05/14/firefox-double-click-to-close-tab-bar-plug.html</loc>
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
@@ -1037,7 +1037,7 @@
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
-    <loc>http://www.yidooo.net/2009/03/11/matlab-turn-off-automatically-solve-the-problem.html</loc>
+    <loc>http://www.yidooo.net/2009/04/12/qt-study-notes-one-of-the-age.html</loc>
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
@@ -1049,23 +1049,11 @@
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
+    <loc>http://www.yidooo.net/2009/03/11/matlab-turn-off-automatically-solve-the-problem.html</loc>
+    <lastmod>2020-07-19</lastmod>
+  </url>
+  <url>
     <loc>http://www.yidooo.net/2009/04/14/qt-study-notes-three-gotocell.html</loc>
-    <lastmod>2020-07-19</lastmod>
-  </url>
-  <url>
-    <loc>http://www.yidooo.net/2009/04/12/qt-study-notes-one-of-the-age.html</loc>
-    <lastmod>2020-07-19</lastmod>
-  </url>
-  <url>
-    <loc>http://www.yidooo.net/2008/12/11/fctix-installation-and-landscaping.html</loc>
-    <lastmod>2020-07-19</lastmod>
-  </url>
-  <url>
-    <loc>http://www.yidooo.net/2008/12/16/ubuntu-solve-the-problem-of-flash-chinese-character.html</loc>
-    <lastmod>2020-07-19</lastmod>
-  </url>
-  <url>
-    <loc>http://www.yidooo.net/2009/02/13/address-netbeans-installation-garbled.html</loc>
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
@@ -1073,11 +1061,23 @@
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
+    <loc>http://www.yidooo.net/2008/12/11/fctix-installation-and-landscaping.html</loc>
+    <lastmod>2020-07-19</lastmod>
+  </url>
+  <url>
     <loc>http://www.yidooo.net/2008/12/11/linux-can-not-be-restarted-solution.html</loc>
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
+    <loc>http://www.yidooo.net/2008/12/16/ubuntu-solve-the-problem-of-flash-chinese-character.html</loc>
+    <lastmod>2020-07-19</lastmod>
+  </url>
+  <url>
     <loc>http://www.yidooo.net/2008/12/17/ies4linux-installation.html</loc>
+    <lastmod>2020-07-19</lastmod>
+  </url>
+  <url>
+    <loc>http://www.yidooo.net/2009/02/13/address-netbeans-installation-garbled.html</loc>
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
@@ -1089,10 +1089,6 @@
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
-    <loc>http://www.yidooo.net/2008/11/28/crack-vmware-and-ruijie-conflict.html</loc>
-    <lastmod>2020-07-19</lastmod>
-  </url>
-  <url>
     <loc>http://www.yidooo.net/2008/11/27/804-ubtuntu-empty-the-recycle-bin-can-not-solve-the-program.html</loc>
     <lastmod>2020-07-19</lastmod>
   </url>
@@ -1101,15 +1097,19 @@
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
+    <loc>http://www.yidooo.net/2008/11/28/crack-vmware-and-ruijie-conflict.html</loc>
+    <lastmod>2020-07-19</lastmod>
+  </url>
+  <url>
+    <loc>http://www.yidooo.net/2008/11/02/configure-error-no-the-curses-the-termcap-the-library-found-error-when-compile-mysql-solution.html</loc>
+    <lastmod>2020-07-19</lastmod>
+  </url>
+  <url>
     <loc>http://www.yidooo.net/2008/11/05/ubuntu-install-internet-tv-sopcast.html</loc>
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
     <loc>http://www.yidooo.net/2008/11/15/my-second-procedures-for-j2me-mobile-phone-memorandum-of-understanding.html</loc>
-    <lastmod>2020-07-19</lastmod>
-  </url>
-  <url>
-    <loc>http://www.yidooo.net/2008/11/02/configure-error-no-the-curses-the-termcap-the-library-found-error-when-compile-mysql-solution.html</loc>
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
@@ -1129,11 +1129,11 @@
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
-    <loc>http://www.yidooo.net/2008/11/01/ubuntu-804-installation-ruijie-client-xrgsu.html</loc>
+    <loc>http://www.yidooo.net/2008/11/01/to-solve-the-garbage-problem-in-ubuntu-player.html</loc>
     <lastmod>2020-07-19</lastmod>
   </url>
   <url>
-    <loc>http://www.yidooo.net/2008/11/01/to-solve-the-garbage-problem-in-ubuntu-player.html</loc>
+    <loc>http://www.yidooo.net/2008/11/01/ubuntu-804-installation-ruijie-client-xrgsu.html</loc>
     <lastmod>2020-07-19</lastmod>
   </url>
 </urlset> 

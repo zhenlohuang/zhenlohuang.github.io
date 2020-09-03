@@ -187,7 +187,7 @@
       
         
         <li class="menu-item menu-item-home">
-          <a href="/%20" rel="section">
+          <a href="/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
@@ -197,7 +197,7 @@
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/archives/%20" rel="section">
+          <a href="/archives/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
@@ -207,7 +207,7 @@
       
         
         <li class="menu-item menu-item-categories">
-          <a href="/categories/%20" rel="section">
+          <a href="/categories/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
@@ -217,7 +217,7 @@
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/tags/%20" rel="section">
+          <a href="/tags/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
@@ -227,7 +227,7 @@
       
         
         <li class="menu-item menu-item-about">
-          <a href="/about/%20" rel="section">
+          <a href="/about/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
@@ -1654,7 +1654,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.yidooo.net/2009/04/12/qt-study-notes-the-two-finddialog.html">
+    <link itemprop="mainEntityOfPage" href="http://www.yidooo.net/2009/04/12/qt-study-notes-one-of-the-age.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="核动力蜗牛">
@@ -1673,7 +1673,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2009/04/12/qt-study-notes-the-two-finddialog.html" itemprop="url">QT学习笔记之一 Age</a></h2>
+                <a class="post-title-link" href="/2009/04/12/qt-study-notes-one-of-the-age.html" itemprop="url">QT学习笔记之零 Hello World</a></h2>
         
 
         <div class="post-meta">
@@ -1758,12 +1758,12 @@
       
         
           
-            <p>主要学习简单的Wdiget的添加问题…</p>
+            <p>之所以从零开始，这个也是C++的习惯吧，第一个QT程序啊，纪念一下，还是经典的Hello World</p>
 <p>main.cpp</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;QtGui/QApplication&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;QSpinBox&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;QSlider&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;QHBoxLayout&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="function">QApplication <span class="title">a</span><span class="params">(argc, argv)</span></span>;</span><br><span class="line">    <span class="comment">//创建一个小窗体部件</span></span><br><span class="line">    QWidget *widget=<span class="keyword">new</span> QWidget;</span><br><span class="line">    widget-&gt;setWindowTitle(<span class="string">"input your age"</span>);</span><br><span class="line">    <span class="comment">//创建一个QSpinBox，并设置范围0-130</span></span><br><span class="line">    QSpinBox *spinBox=<span class="keyword">new</span> QSpinBox;</span><br><span class="line">    spinBox-&gt;setRange(<span class="number">0</span>,<span class="number">130</span>);</span><br><span class="line">    <span class="comment">//创建一个QSlider，并设置范围0-130</span></span><br><span class="line">    QSlider *slider=<span class="keyword">new</span> QSlider(Qt::Horizontal);</span><br><span class="line">    slider-&gt;setRange(<span class="number">0</span>,<span class="number">130</span>);</span><br><span class="line">    <span class="comment">//设置信号和槽</span></span><br><span class="line">    QObject::connect(spinBox,SIGNAL(vauleChanged(<span class="keyword">int</span>)),slider,SLOT(setValue(<span class="keyword">int</span>)));</span><br><span class="line">    QObject::connect(slider,SIGNAL(valueChanged(<span class="keyword">int</span>)),spinBox,SLOT(setValue(<span class="keyword">int</span>)));</span><br><span class="line">    <span class="comment">//初始值</span></span><br><span class="line">    spinBox-&gt;setValue(<span class="number">0</span>);</span><br><span class="line">    <span class="comment">//布局设置</span></span><br><span class="line">    QHBoxLayout *layout=<span class="keyword">new</span> QHBoxLayout;</span><br><span class="line">    layout-&gt;addWidget(spinBox);</span><br><span class="line">    layout-&gt;addWidget(slider);</span><br><span class="line">    widget-&gt;setLayout(layout);</span><br><span class="line">    widget-&gt;show();</span><br><span class="line">    <span class="keyword">return</span> a.exec();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>运行结果</p>
-<p><img src="/images/legacy/2009/04/223310920.p.jpg?d=20090430223730624" alt="image"></p>
-<p>PS：居然connect中sender的函数打错了还能用….好囧啊</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;QtGui/QApplication&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;QLabel&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="function">QApplication <span class="title">a</span><span class="params">(argc, argv)</span></span>;</span><br><span class="line">    QLabel *label=<span class="keyword">new</span> QLabel(<span class="string">"Hello World"</span>);</span><br><span class="line">    label-&gt;show();</span><br><span class="line">    <span class="keyword">return</span> a.exec();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行结果：</p>
+<p><img src="/images/legacy/2009/04/223451108.p.JPG?d=20090430223534608" alt="image"></p>
+<p>PS:入门第一件事情果然是Hello World</p>
 
           
         
@@ -1851,7 +1851,7 @@
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/archives/%20%7C%7C%20archive">
+                <a href="/archives/%7C%7Carchive">
               
                   <span class="site-state-item-count">284</span>
                   <span class="site-state-item-name">日志</span>

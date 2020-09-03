@@ -187,7 +187,7 @@
       
         
         <li class="menu-item menu-item-home">
-          <a href="/%20" rel="section">
+          <a href="/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
@@ -197,7 +197,7 @@
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/archives/%20" rel="section">
+          <a href="/archives/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
@@ -207,7 +207,7 @@
       
         
         <li class="menu-item menu-item-categories">
-          <a href="/categories/%20" rel="section">
+          <a href="/categories/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
@@ -217,7 +217,7 @@
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/tags/%20" rel="section">
+          <a href="/tags/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
@@ -227,7 +227,7 @@
       
         
         <li class="menu-item menu-item-about">
-          <a href="/about/%20" rel="section">
+          <a href="/about/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
@@ -1524,7 +1524,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.yidooo.net/2012/02/07/was-not-found-on-the-system-used-to-create-the-rpm-package-rpm-tools-the-rpmbuild-solution.html">
+    <link itemprop="mainEntityOfPage" href="http://www.yidooo.net/2012/02/07/resolve-can-not-run-after-fedora-install-virtualbox.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="核动力蜗牛">
@@ -1543,7 +1543,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2012/02/07/was-not-found-on-the-system-used-to-create-the-rpm-package-rpm-tools-the-rpmbuild-solution.html" itemprop="url">系统上未找到用于创建 RPM 包的 RPM 工具 (rpmbuild)解决方法</a></h2>
+                <a class="post-title-link" href="/2012/02/07/resolve-can-not-run-after-fedora-install-virtualbox.html" itemprop="url">解决Fedora安装Virtualbox后无法运行</a></h2>
         
 
         <div class="post-meta">
@@ -1617,7 +1617,17 @@
       
         
           
-            <p>安装rpm-build包 yum install rpm-build</p>
+            <p>在Fedora下安装了Virtualbox，发现运行时出现以下问题：     </p>
+<blockquote>
+<p>Kernel driver not installed (rc=-1908)<br>The VirtualBox Linux kernel driver (vboxdrv) is either not loaded or there is a permission problem with /dev/vboxdrv. Please reinstall the kernel module by executing<br>‘/etc/init.d/vboxdrv setup’<br>as root. Users of Ubuntu, Fedora or Mandriva should install the DKMS package first. This package keeps track of Linux kernel changes and recompiles the vboxdrv kernel module if necessary.</p>
+</blockquote>
+<p>然后以root身份运行/etc/init.d/vboxdrv setup<br>结果提示：</p>
+<blockquote>
+<p>Stopping VirtualBox kernel modules [确定]<br>Uninstalling old VirtualBox DKMS kernel modules [确定]<br>Trying to register the VirtualBox kernel modules using DKMSError! Bad return status for module build on kernel: 3.2.3-2.fc16.i686 (i686)<br>Consult /var/lib/dkms/vboxhost/4.0.8/build/make.log for more information.[失败]<br>(Failed, trying without DKMS)<br>Recompiling VirtualBox kernel modules [失败]<br>(Look at /var/log/vbox-install.log to find out what went wrong)</p>
+</blockquote>
+<p>解决方法：<br>先尝试：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install -y kernel-headers kernel-devel dkms gcc</span><br><span class="line">sudo &#x2F;etc&#x2F;init.d&#x2F;vboxdrv setup</span><br></pre></td></tr></table></figure>
+<p>如果执行此操作，仍然出现上述错误。可以参考下面<br>安装 PAE 包， sudo yum install kernel-PAE-devel 。<br>完成后再执行 sudo/etc/init.d/vboxdrv setup</p>
 
           
         
@@ -1666,7 +1676,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.yidooo.net/2012/02/07/the-subclipse-start-unable-to-load-default-svn-client-the-solution.html">
+    <link itemprop="mainEntityOfPage" href="http://www.yidooo.net/2012/02/07/the-fedora-texlive-install-and-chinese-environment-configuration.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="核动力蜗牛">
@@ -1685,7 +1695,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2012/02/07/the-subclipse-start-unable-to-load-default-svn-client-the-solution.html" itemprop="url">Subclipse启动出现unable to load default svn client的解决办法</a></h2>
+                <a class="post-title-link" href="/2012/02/07/the-fedora-texlive-install-and-chinese-environment-configuration.html" itemprop="url">Fedora TexLive安装及中文环境配置</a></h2>
         
 
         <div class="post-meta">
@@ -1720,8 +1730,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Others/" itemprop="url" rel="index">
-                    <span itemprop="name">Others</span>
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
                   </a>
                 </span>
 
@@ -1759,8 +1769,16 @@
       
         
           
-            <p>安装SVNKit<br><a href="http://svnkit.com/download.php" target="_blank" rel="noopener">http://svnkit.com/download.php</a></p>
-<p>Window &gt; Preferences, Team &gt; SVN and change there the JavaHL client to SVNKit. Restart.</p>
+            <p>*OS：Fedora 16<br>TexLive Version: TexLive 2011</p>
+<p>1)添加rpm源*</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo rpm -i http:&#x2F;&#x2F;jnovy.fedorapeople.org&#x2F;texlive&#x2F;2011&#x2F;packages.fc16&#x2F;texlive-release.noarch.rpm</span><br></pre></td></tr></table></figure>
+<p>（其他版本可以到<a href="http://jnovy.fedorapeople.org/找下对应源）" target="_blank" rel="noopener">http://jnovy.fedorapeople.org/找下对应源）</a></p>
+<p><em>2）安装texlive2011</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo yum clean all</span><br><span class="line">sudo yum install texlive</span><br></pre></td></tr></table></figure>
+<p><em>3)下载中文库包</em><br>Url：<a href="http://bj.soulinfo.com/~hugang/tex/tex2007/YueWang-zhfonts-final_1.01.tar.bz2" target="_blank" rel="noopener">http://bj.soulinfo.com/~hugang/tex/tex2007/YueWang-zhfonts-final_1.01.tar.bz2</a><br>解压后取出texmf-var，将里面的内容分别复制到/usr/share/texlive/texmf-local和/usr/share/texlive/texmf-var里面<br>然后执行sudo texhash,重新建立数据库    </p>
+<p><em>4）测试</em><br>documentclass{article}<br>usepackage{CJKutf8}<br>begin{document}<br>begin{CJK}{UTF8}{hei}<br>Hello , Latex !<br>你好，Latex<br>end{CJK}<br>end{document}    </p>
+<p>保存test.tex退出,然后，执行<br>latex test.tex<br>dvipdfm test.dvi    </p>
+<p>PS：如果运行时出现CJKutf8.sty找不到，执行sudo yum install ‘tex(CJKutf8.sty)’解决</p>
 
           
         
@@ -1848,7 +1866,7 @@
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/archives/%20%7C%7C%20archive">
+                <a href="/archives/%7C%7Carchive">
               
                   <span class="site-state-item-count">284</span>
                   <span class="site-state-item-name">日志</span>

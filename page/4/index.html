@@ -187,7 +187,7 @@
       
         
         <li class="menu-item menu-item-home">
-          <a href="/%20" rel="section">
+          <a href="/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
@@ -197,7 +197,7 @@
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/archives/%20" rel="section">
+          <a href="/archives/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
@@ -207,7 +207,7 @@
       
         
         <li class="menu-item menu-item-categories">
-          <a href="/categories/%20" rel="section">
+          <a href="/categories/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
@@ -217,7 +217,7 @@
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/tags/%20" rel="section">
+          <a href="/tags/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
@@ -227,7 +227,7 @@
       
         
         <li class="menu-item menu-item-about">
-          <a href="/about/%20" rel="section">
+          <a href="/about/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
@@ -615,196 +615,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.yidooo.net/2013/10/30/hadoop-2-2-0-new-features.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="核动力蜗牛">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://en.gravatar.com/userimage/132614578/1525cb3f68df290f2720631caf872dff.jpg?size=200">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="异度部落格">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2013/10/30/hadoop-2-2-0-new-features.html" itemprop="url">Hadoop 2.2.0新特性简介</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2013-10-30T00:00:00+08:00">
-                2013-10-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Big-Data/" itemprop="url" rel="index">
-                    <span itemprop="name">Big Data</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Big-Data/Hadoop/" itemprop="url" rel="index">
-                    <span itemprop="name">Hadoop</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>2013年10月15日，Apache Hadoop发布了2.2.0版本。这个是里程碑式的版本，它是Hadoop 2.0的第一个stable版本，它标志着Hadoop从此进入了2.0时代。</p>
-<ul>
-<li>YARN</li>
-</ul>
-<p>YARN（Yet Another Resource Negotiator），也称MapReduce 2.0，它是Hadoop 2.0引入的一个全新的通用资源管理系统，可以在其上运行各种程序和框架。YARN是从MapReduce 1.0衍化来的。引入了ResourceManager、ApplicationMaster和NodeManager等组件用于系统的资源调度。</p>
-<ul>
-<li>HDFS High Availability</li>
-</ul>
-<p>Hadoop HA同时解决了NameNode单点故障问题和内存受限问题。主要利用Active NameNode和Standby NameNode之间的状态切换解决单节点故障问题。而其中采用NFS、QJM和Bookeeper三种可选策略用于NameNode之间的Metadata共享。</p>
-<ul>
-<li>HDFS Federation</li>
-</ul>
-<p>HDFS Federation，它允许一个HDFS集群中存在多个NameNode，每个NameNode分管一部分目录，而不同NameNode之间彼此独立，共享所有DataNode的存储资源，由于NameNode Federation中的每个NameNode仍存在单点问题，需为每个NameNode提供一个backup以解决单点故障问题。</p>
-<ul>
-<li>HDFS Snapshots</li>
-</ul>
-<p>HDFS Snapshots，是HDFS在某一时刻的只读镜像。它可以是整个文件系统也可以是一部分文件夹。通常用于数据备份，防止数据丢失或者误操作。</p>
-<ul>
-<li>NFSv3</li>
-</ul>
-<p>将NFS引入HDFS后，用户可像读写本地文件一样读写HDFS上的文件，大大简化了HDFS使用。</p>
-<ul>
-<li>支持Windows平台</li>
-</ul>
-<p>在2.2.0版本之前，Hadoop仅支持Linux操作系统，而Windows仅作为实验平台使用。将Microsoft有关Hadoop Windows Patch吸收进代码之后，Hadoop对Windows的支持有了本质上的增强。其实之前Hortonworks的HDP的也曾发布支持Windows的Hadoop。</p>
-<ul>
-<li>兼容Hadoop 1.x的MapReduce程序</li>
-</ul>
-<p>为了使MRv1可以在YARN架构上运行，对MR API进行了修改保证可以在YARN上运行。</p>
-<ul>
-<li>完成与Hadoop生态圈的其他软件的集成测试</li>
-</ul>
-<p>相比Hadoop 1.0中，Hadoop 2.0对HDFS和MapReduce等核心组件进行了较大的改动，并引入了全新的资源调度框架YARN。因此对那些以Hadoop作为底层的应用进行集成测试是十分必要的。</p>
-<p>参考资料：</p>
-<p>Apache Hadoop 2.2.0: <a href="http://hadoop.apache.org/docs/r2.2.0/" target="_blank" rel="noopener">http://hadoop.apache.org/docs/r2.2.0/</a></p>
-<p>Hadoop 2.0稳定版本2.2.0新特性剖析: <a href="http://dongxicheng.org/mapreduce-nextgen/hadoop-2-2-0/" target="_blank" rel="noopener">http://dongxicheng.org/mapreduce-nextgen/hadoop-2-2-0/</a></p>
-<p>HDFS Snapshots: <a href="http://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-hdfs/HdfsSnapshots.html" target="_blank" rel="noopener">http://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-hdfs/HdfsSnapshots.html</a></p>
-<p>Hadoop For Windows: <a href="http://dongxicheng.org/mapreduce/hadoop-for-windows/" target="_blank" rel="noopener">http://dongxicheng.org/mapreduce/hadoop-for-windows/</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.yidooo.net/2013/10/30/hadoop-2-2-0-installation-and-configuration.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -970,6 +780,196 @@
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~/hadoop-2.2.0/bin/hadoop jar ~/hadoop-2.2.0/share/hadoop/mapreduce/hadoop-mapreduce-examples-2.2.0.jar wordcount file wordcount_out</span><br></pre></td></tr></table></figure>
 <p><img src="/images/legacy/2013/10/yarn.png" alt="image"></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.yidooo.net/2013/10/30/hadoop-2-2-0-new-features.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="核动力蜗牛">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://en.gravatar.com/userimage/132614578/1525cb3f68df290f2720631caf872dff.jpg?size=200">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="异度部落格">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2013/10/30/hadoop-2-2-0-new-features.html" itemprop="url">Hadoop 2.2.0新特性简介</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2013-10-30T00:00:00+08:00">
+                2013-10-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Big-Data/" itemprop="url" rel="index">
+                    <span itemprop="name">Big Data</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Big-Data/Hadoop/" itemprop="url" rel="index">
+                    <span itemprop="name">Hadoop</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>2013年10月15日，Apache Hadoop发布了2.2.0版本。这个是里程碑式的版本，它是Hadoop 2.0的第一个stable版本，它标志着Hadoop从此进入了2.0时代。</p>
+<ul>
+<li>YARN</li>
+</ul>
+<p>YARN（Yet Another Resource Negotiator），也称MapReduce 2.0，它是Hadoop 2.0引入的一个全新的通用资源管理系统，可以在其上运行各种程序和框架。YARN是从MapReduce 1.0衍化来的。引入了ResourceManager、ApplicationMaster和NodeManager等组件用于系统的资源调度。</p>
+<ul>
+<li>HDFS High Availability</li>
+</ul>
+<p>Hadoop HA同时解决了NameNode单点故障问题和内存受限问题。主要利用Active NameNode和Standby NameNode之间的状态切换解决单节点故障问题。而其中采用NFS、QJM和Bookeeper三种可选策略用于NameNode之间的Metadata共享。</p>
+<ul>
+<li>HDFS Federation</li>
+</ul>
+<p>HDFS Federation，它允许一个HDFS集群中存在多个NameNode，每个NameNode分管一部分目录，而不同NameNode之间彼此独立，共享所有DataNode的存储资源，由于NameNode Federation中的每个NameNode仍存在单点问题，需为每个NameNode提供一个backup以解决单点故障问题。</p>
+<ul>
+<li>HDFS Snapshots</li>
+</ul>
+<p>HDFS Snapshots，是HDFS在某一时刻的只读镜像。它可以是整个文件系统也可以是一部分文件夹。通常用于数据备份，防止数据丢失或者误操作。</p>
+<ul>
+<li>NFSv3</li>
+</ul>
+<p>将NFS引入HDFS后，用户可像读写本地文件一样读写HDFS上的文件，大大简化了HDFS使用。</p>
+<ul>
+<li>支持Windows平台</li>
+</ul>
+<p>在2.2.0版本之前，Hadoop仅支持Linux操作系统，而Windows仅作为实验平台使用。将Microsoft有关Hadoop Windows Patch吸收进代码之后，Hadoop对Windows的支持有了本质上的增强。其实之前Hortonworks的HDP的也曾发布支持Windows的Hadoop。</p>
+<ul>
+<li>兼容Hadoop 1.x的MapReduce程序</li>
+</ul>
+<p>为了使MRv1可以在YARN架构上运行，对MR API进行了修改保证可以在YARN上运行。</p>
+<ul>
+<li>完成与Hadoop生态圈的其他软件的集成测试</li>
+</ul>
+<p>相比Hadoop 1.0中，Hadoop 2.0对HDFS和MapReduce等核心组件进行了较大的改动，并引入了全新的资源调度框架YARN。因此对那些以Hadoop作为底层的应用进行集成测试是十分必要的。</p>
+<p>参考资料：</p>
+<p>Apache Hadoop 2.2.0: <a href="http://hadoop.apache.org/docs/r2.2.0/" target="_blank" rel="noopener">http://hadoop.apache.org/docs/r2.2.0/</a></p>
+<p>Hadoop 2.0稳定版本2.2.0新特性剖析: <a href="http://dongxicheng.org/mapreduce-nextgen/hadoop-2-2-0/" target="_blank" rel="noopener">http://dongxicheng.org/mapreduce-nextgen/hadoop-2-2-0/</a></p>
+<p>HDFS Snapshots: <a href="http://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-hdfs/HdfsSnapshots.html" target="_blank" rel="noopener">http://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-hdfs/HdfsSnapshots.html</a></p>
+<p>Hadoop For Windows: <a href="http://dongxicheng.org/mapreduce/hadoop-for-windows/" target="_blank" rel="noopener">http://dongxicheng.org/mapreduce/hadoop-for-windows/</a></p>
 
           
         
@@ -2034,7 +2034,7 @@
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/archives/%20%7C%7C%20archive">
+                <a href="/archives/%7C%7Carchive">
               
                   <span class="site-state-item-count">284</span>
                   <span class="site-state-item-name">日志</span>

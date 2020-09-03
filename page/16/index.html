@@ -187,7 +187,7 @@
       
         
         <li class="menu-item menu-item-home">
-          <a href="/%20" rel="section">
+          <a href="/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
@@ -197,7 +197,7 @@
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/archives/%20" rel="section">
+          <a href="/archives/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
@@ -207,7 +207,7 @@
       
         
         <li class="menu-item menu-item-categories">
-          <a href="/categories/%20" rel="section">
+          <a href="/categories/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
@@ -217,7 +217,7 @@
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/tags/%20" rel="section">
+          <a href="/tags/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
@@ -227,7 +227,7 @@
       
         
         <li class="menu-item menu-item-about">
-          <a href="/about/%20" rel="section">
+          <a href="/about/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
@@ -254,163 +254,6 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.yidooo.net/2010/08/05/python-learning-network-programming-a-tcp-connection.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="核动力蜗牛">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://en.gravatar.com/userimage/132614578/1525cb3f68df290f2720631caf872dff.jpg?size=200">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="异度部落格">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2010/08/05/python-learning-network-programming-a-tcp-connection.html" itemprop="url">Python学习 网络编程（一） TCP连接</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2010-08-05T00:00:00+08:00">
-                2010-08-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Programming/" itemprop="url" rel="index">
-                    <span itemprop="name">Programming</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Programming/Python/" itemprop="url" rel="index">
-                    <span itemprop="name">Python</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>这里定义了一个TCPServer和TCPClient。这里创建一个TCP服务程序，服务器会把客户发送过来的字符串加上一个时间戳，然后显示,并返回客户端。主要后面无论如何都要记得close()关上连接，虽然基本上不会执行那一句。</p>
-<p><strong>TCPServer.py</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment">#创建一个TCP服务程序，这个程序会把客户发送过来的字符串加上一个时间戳，然后显示,并返回客户端</span></span><br><span class="line"><span class="keyword">from</span> socket <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> time <span class="keyword">import</span> ctime</span><br><span class="line">HOST = <span class="string">''</span></span><br><span class="line">PORT = <span class="number">20000</span>     </span><br><span class="line">BUFSIZE = <span class="number">1024</span>    <span class="comment">#1KB</span></span><br><span class="line">ADDR = (HOST, PORT)</span><br><span class="line">tcpSerSock = socket(AF_INET, SOCK_STREAM)</span><br><span class="line">tcpSerSock.bind(ADDR)</span><br><span class="line">tcpSerSock.listen(<span class="number">5</span>)</span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    <span class="keyword">print</span> <span class="string">'waiting for connection...'</span></span><br><span class="line">    tcpClientSock,clientAddr = tcpSerSock.accept()</span><br><span class="line">    <span class="keyword">print</span> <span class="string">'...connected from :'</span>, clientAddr</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        data = tcpClientSock.recv(BUFSIZE)</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> data:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">print</span> <span class="string">'[%s] %s'</span> % (ctime(), data)</span><br><span class="line">        tcpClientSock.send(<span class="string">'[%s] %s'</span> % (ctime(), data))</span><br><span class="line">    tcpClientSock.close()</span><br><span class="line">tcpSerSock.close()</span><br></pre></td></tr></table></figure>
-<p><strong>TCPClient.py</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment">#创建一个TCP客户端</span></span><br><span class="line"><span class="keyword">from</span> socket <span class="keyword">import</span> *</span><br><span class="line">HOST = <span class="string">'localhost'</span></span><br><span class="line">PORT = <span class="number">20000</span></span><br><span class="line">BUFSIZE = <span class="number">1024</span></span><br><span class="line">ADDR = (HOST, PORT)</span><br><span class="line">tcpClientSock = socket(AF_INET, SOCK_STREAM)</span><br><span class="line">tcpClientSock.connect(ADDR)</span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    data = raw_input(<span class="string">'Enter a string your want to send &gt;'</span>)</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> data:</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    tcpClientSock.send(data)</span><br><span class="line">    data = tcpClientSock.recv(BUFSIZE)</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> data:</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">print</span> data</span><br><span class="line">tcpClientSock.close()</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
     
       
 
@@ -539,6 +382,163 @@
 <p>下面是代码部分<br><strong>NetCrawl.py</strong></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment">#网络爬虫程序</span></span><br><span class="line"><span class="keyword">from</span> sys <span class="keyword">import</span> argv</span><br><span class="line"><span class="keyword">from</span> os <span class="keyword">import</span> makedirs, unlink, sep</span><br><span class="line"><span class="keyword">from</span> os.path <span class="keyword">import</span> dirname, exists, isdir, splitext</span><br><span class="line"><span class="keyword">from</span> string <span class="keyword">import</span> replace, find, lower</span><br><span class="line"><span class="keyword">from</span> htmllib <span class="keyword">import</span> HTMLParser</span><br><span class="line"><span class="keyword">from</span> urllib <span class="keyword">import</span> urlretrieve</span><br><span class="line"><span class="keyword">from</span> urlparse <span class="keyword">import</span> urlparse, urljoin</span><br><span class="line"><span class="keyword">from</span> formatter <span class="keyword">import</span> DumbWriter, AbstractFormatter</span><br><span class="line"><span class="keyword">from</span> cStringIO <span class="keyword">import</span> StringIO</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Downloader</span><span class="params">(object)</span> :</span></span><br><span class="line">    <span class="comment">#构造器</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, url)</span> :</span></span><br><span class="line">        self.url = url</span><br><span class="line">        self.file = self.filename(url)</span><br><span class="line">    <span class="comment">#分析获取文件名</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">filename</span><span class="params">(self, url, defFile = <span class="string">'index.htm'</span>)</span> :</span></span><br><span class="line">        parsedUrl = urlparse(url, <span class="string">'http:'</span>, <span class="number">0</span>)</span><br><span class="line">        path = parsedUrl[<span class="number">1</span>] + parsedUrl[<span class="number">2</span>]</span><br><span class="line">        ext = splitext(path)</span><br><span class="line">        <span class="keyword">if</span> ext[<span class="number">1</span>] == <span class="string">''</span>:        <span class="comment">#使用默认文件名</span></span><br><span class="line">            <span class="keyword">if</span> path[<span class="number">-1</span>] == <span class="string">'/'</span>:</span><br><span class="line">                path += defFile</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                path += <span class="string">'/'</span> + defFile</span><br><span class="line">        localDir = dirname(path)</span><br><span class="line">        <span class="keyword">if</span> sep != <span class="string">'/'</span>:</span><br><span class="line">            localDir = replace(localDir, <span class="string">'/'</span>, sep)</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> isdir(localDir):</span><br><span class="line">            <span class="keyword">if</span> exists(localDir):     <span class="comment">#文件存在删除</span></span><br><span class="line">                unlink(localDir)</span><br><span class="line">            makedirs(localDir)</span><br><span class="line">        <span class="keyword">return</span> path</span><br><span class="line">    <span class="comment">#下载页面</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">download</span><span class="params">(self)</span> :</span></span><br><span class="line">        <span class="keyword">try</span> :</span><br><span class="line">            retval = urlretrieve(self.url, self.file)</span><br><span class="line">        <span class="keyword">except</span> IOError:</span><br><span class="line">            retval = (<span class="string">'***ERROR: invalid URL "%s"'</span> % self.url)</span><br><span class="line">        <span class="keyword">return</span> retval</span><br><span class="line">    <span class="comment">#分析保存链接</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">parseAndGetLinks</span><span class="params">(self)</span> :</span></span><br><span class="line">        self.parser = HTMLParser(AbstractFormatter( /</span><br><span class="line">            DumbWriter(StringIO())))</span><br><span class="line">        self.parser.feed(open(self.file).read())</span><br><span class="line">        self.parser.close()</span><br><span class="line">        <span class="keyword">return</span> self.parser.anchorlist</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">NetCrawler</span><span class="params">(object)</span>:</span></span><br><span class="line">    count = <span class="number">0</span>  <span class="comment">#计数器</span></span><br><span class="line">    <span class="comment">#构造器</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, url)</span> :</span></span><br><span class="line">        self.queue = [url]</span><br><span class="line">        self.seen = []</span><br><span class="line">        self.dom = urlparse(url)[<span class="number">1</span>]</span><br><span class="line">    <span class="comment">#获取页面</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getPage</span><span class="params">(self, url)</span> :</span></span><br><span class="line">        dl = Downloader(url)</span><br><span class="line">        retval = dl.download()</span><br><span class="line">        <span class="keyword">if</span> retval[<span class="number">0</span>] == <span class="string">'*'</span> :</span><br><span class="line">            <span class="keyword">print</span> retval, <span class="string">'...skipping parse'</span></span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        NetCrawler.count += <span class="number">1</span></span><br><span class="line">        <span class="keyword">print</span> <span class="string">'/n('</span>, NetCrawler.count, <span class="string">')'</span></span><br><span class="line">        <span class="keyword">print</span> <span class="string">'Url: '</span>, url</span><br><span class="line">        <span class="keyword">print</span> <span class="string">'File: '</span>, retval[<span class="number">0</span>]</span><br><span class="line">        self.seen.append(url)</span><br><span class="line">        links = dl.parseAndGetLinks()</span><br><span class="line">        <span class="keyword">for</span> eachLink <span class="keyword">in</span> links :</span><br><span class="line">            <span class="keyword">if</span> eachLink[ : <span class="number">4</span>] != <span class="string">'http'</span> <span class="keyword">and</span> /</span><br><span class="line">               find(eachLink, <span class="string">'://'</span>) == <span class="number">-1</span>:</span><br><span class="line">                eachLink = urljoin(url, eachLink)</span><br><span class="line">                <span class="keyword">print</span> <span class="string">'*'</span>,eachLink</span><br><span class="line">            <span class="keyword">if</span> find(lower(eachLink), <span class="string">'mailto:'</span>) != <span class="number">-1</span>:</span><br><span class="line">                <span class="keyword">print</span> <span class="string">'... discarded, mailto link'</span></span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            <span class="keyword">if</span> eachLink <span class="keyword">not</span> <span class="keyword">in</span> self.seen:</span><br><span class="line">                <span class="keyword">if</span> find(eachLink, self.dom) == <span class="number">-1</span> :</span><br><span class="line">                    <span class="keyword">print</span> <span class="string">'... discarded, not in domain'</span></span><br><span class="line">                <span class="keyword">else</span> :</span><br><span class="line">                    <span class="keyword">if</span> eachLink <span class="keyword">not</span> <span class="keyword">in</span> self.queue :</span><br><span class="line">                        self.queue.append(eachLink)</span><br><span class="line">                        <span class="keyword">print</span> <span class="string">'... new, added to queue'</span></span><br><span class="line">                    <span class="keyword">else</span> :</span><br><span class="line">                        <span class="keyword">print</span> <span class="string">'... dirscarded, already in queue'</span></span><br><span class="line">            <span class="keyword">else</span> :</span><br><span class="line">                <span class="keyword">print</span> <span class="string">'... discarded, already processed'</span></span><br><span class="line">    <span class="comment">#处理队列中的链接</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(self)</span> :</span></span><br><span class="line">        <span class="keyword">while</span> self.queue :</span><br><span class="line">            url = self.queue.pop()</span><br><span class="line">            self.getPage(url)</span><br><span class="line"><span class="comment">#主函数</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span> :</span></span><br><span class="line">    <span class="comment">#url = 'http://www.hao123.com/haoserver/index.htm'</span></span><br><span class="line">    <span class="keyword">if</span> len(argv) &gt; <span class="number">1</span> :</span><br><span class="line">        url = argv[<span class="number">1</span>]</span><br><span class="line">    <span class="keyword">else</span> :</span><br><span class="line">        <span class="keyword">try</span> :</span><br><span class="line">            url = raw_input(<span class="string">'Enter starting URL: '</span>)</span><br><span class="line">        expect (KeyboardInterrupt, EOFError) :</span><br><span class="line">            url = <span class="string">''</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> url :</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    netCrawler = NetCrawler(url)</span><br><span class="line">    netCrawler.run()</span><br><span class="line">        </span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span> :</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
 <p>这里的程序只是简单的抓取网页，如果要抓取指定网页可以加上也正则表达式（模块）来进行处理</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.yidooo.net/2010/08/05/python-learning-network-programming-a-tcp-connection.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="核动力蜗牛">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://en.gravatar.com/userimage/132614578/1525cb3f68df290f2720631caf872dff.jpg?size=200">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="异度部落格">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2010/08/05/python-learning-network-programming-a-tcp-connection.html" itemprop="url">Python学习 网络编程（一） TCP连接</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2010-08-05T00:00:00+08:00">
+                2010-08-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Programming/" itemprop="url" rel="index">
+                    <span itemprop="name">Programming</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Programming/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>这里定义了一个TCPServer和TCPClient。这里创建一个TCP服务程序，服务器会把客户发送过来的字符串加上一个时间戳，然后显示,并返回客户端。主要后面无论如何都要记得close()关上连接，虽然基本上不会执行那一句。</p>
+<p><strong>TCPServer.py</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment">#创建一个TCP服务程序，这个程序会把客户发送过来的字符串加上一个时间戳，然后显示,并返回客户端</span></span><br><span class="line"><span class="keyword">from</span> socket <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> time <span class="keyword">import</span> ctime</span><br><span class="line">HOST = <span class="string">''</span></span><br><span class="line">PORT = <span class="number">20000</span>     </span><br><span class="line">BUFSIZE = <span class="number">1024</span>    <span class="comment">#1KB</span></span><br><span class="line">ADDR = (HOST, PORT)</span><br><span class="line">tcpSerSock = socket(AF_INET, SOCK_STREAM)</span><br><span class="line">tcpSerSock.bind(ADDR)</span><br><span class="line">tcpSerSock.listen(<span class="number">5</span>)</span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    <span class="keyword">print</span> <span class="string">'waiting for connection...'</span></span><br><span class="line">    tcpClientSock,clientAddr = tcpSerSock.accept()</span><br><span class="line">    <span class="keyword">print</span> <span class="string">'...connected from :'</span>, clientAddr</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        data = tcpClientSock.recv(BUFSIZE)</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> data:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">print</span> <span class="string">'[%s] %s'</span> % (ctime(), data)</span><br><span class="line">        tcpClientSock.send(<span class="string">'[%s] %s'</span> % (ctime(), data))</span><br><span class="line">    tcpClientSock.close()</span><br><span class="line">tcpSerSock.close()</span><br></pre></td></tr></table></figure>
+<p><strong>TCPClient.py</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment">#创建一个TCP客户端</span></span><br><span class="line"><span class="keyword">from</span> socket <span class="keyword">import</span> *</span><br><span class="line">HOST = <span class="string">'localhost'</span></span><br><span class="line">PORT = <span class="number">20000</span></span><br><span class="line">BUFSIZE = <span class="number">1024</span></span><br><span class="line">ADDR = (HOST, PORT)</span><br><span class="line">tcpClientSock = socket(AF_INET, SOCK_STREAM)</span><br><span class="line">tcpClientSock.connect(ADDR)</span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    data = raw_input(<span class="string">'Enter a string your want to send &gt;'</span>)</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> data:</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    tcpClientSock.send(data)</span><br><span class="line">    data = tcpClientSock.recv(BUFSIZE)</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> data:</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">print</span> data</span><br><span class="line">tcpClientSock.close()</span><br></pre></td></tr></table></figure>
 
           
         
@@ -744,7 +744,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.yidooo.net/2010/08/05/python-learning-pyqt-the-hello-world.html">
+    <link itemprop="mainEntityOfPage" href="http://www.yidooo.net/2010/08/05/python-learning-network-programming-c-the-nntp-connection.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="核动力蜗牛">
@@ -763,7 +763,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2010/08/05/python-learning-pyqt-the-hello-world.html" itemprop="url">Python 学习  PyQt Hello World</a></h2>
+                <a class="post-title-link" href="/2010/08/05/python-learning-network-programming-c-the-nntp-connection.html" itemprop="url">Python学习 网络编程（三） NNTP连接</a></h2>
         
 
         <div class="post-meta">
@@ -848,9 +848,8 @@
       
         
           
-            <p>Qt 开发库是一个使用广泛的跨平台 GUI 开发库，可用于 Windows、Linux、Mac OSX 和许多手持平台。QT 具有良好结构化（但灵活）的面向对象的结构、清晰的文档以及直观的 API。自Trolltech公司被Nokia收购后，Qt成为Nokia旗下的一个部门。</p>
-<p>Python的默认GUI是Tkinter，PyQt是跨平台应用程式框架 Qt 的 Python绑定版本，同时也是PyKDE（KDE API 的Python绑定）的基础。PyQt支持Linux操作系统和其他Unix ，以及Mac OS X操作系统和微软Windows 。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment">#PyQt Hello World</span></span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">from</span> PyQt4 <span class="keyword">import</span> QtCore,QtGui</span><br><span class="line">app = QtGui.QApplication(sys.argv)</span><br><span class="line">label = QtGui.QLabel(<span class="string">"Hello World"</span>, <span class="literal">None</span>)</span><br><span class="line">label.show()</span><br><span class="line">sys.exit(app.exec_())</span><br></pre></td></tr></table></figure>
+            <p>NNTP连接主要是用在新闻组的消息上面，下面的代码演示了NNTP连接的建立，不过显然下面的那个新闻组客户端程序是不能用的。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment">#新闻组客户端程序</span></span><br><span class="line"><span class="keyword">import</span> nntplib</span><br><span class="line"><span class="keyword">import</span> socket</span><br><span class="line">HOST = <span class="string">'your.nntp.server'</span></span><br><span class="line">GRNM = <span class="string">'comp.lang.python'</span></span><br><span class="line">USERNAME = <span class="string">'Killua'</span></span><br><span class="line">PASSWORD = <span class="string">'123456'</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">NNTPClient</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        n = nntplib.NNTP(HOST)</span><br><span class="line">    <span class="keyword">except</span> socket.gaierror, e:</span><br><span class="line">        <span class="keyword">print</span> <span class="string">'ERROR: cannot connect host "%s"'</span> % HOST</span><br><span class="line">        <span class="keyword">print</span> <span class="string">'("%s")'</span> % eval(str(e))[<span class="number">1</span>]</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    <span class="keyword">except</span> nntplib.NNTPPermanentError, e:</span><br><span class="line">        <span class="keyword">print</span> <span class="string">'ERROR: access denied on "%s"'</span> % HOST</span><br><span class="line">        <span class="keyword">print</span> <span class="string">'("%s")'</span> % str(e)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    <span class="keyword">print</span> <span class="string">'&gt;&gt; Connected to host "%s"'</span> % HOST</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        rsp, ct, fst, lst, grp = n.group(GRNM)</span><br><span class="line">    <span class="keyword">except</span> nntplib.NNTPTemporaryError, e:</span><br><span class="line">        <span class="keyword">print</span> <span class="string">'ERROR: cannot load group "%s"'</span> % GRNM</span><br><span class="line">        <span class="keyword">print</span> <span class="string">'("%s")'</span> % str(e)</span><br><span class="line">        <span class="keyword">print</span> <span class="string">'Server may require authentication'</span></span><br><span class="line">        <span class="keyword">print</span> <span class="string">'Uncomment/Edit login lne above'</span></span><br><span class="line">        n.quit()</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    <span class="keyword">except</span> nntplib.NNTPTemporaryError, e:</span><br><span class="line">        <span class="keyword">print</span> <span class="string">'ERROR: group "%s" unavailable'</span> % GRNM</span><br><span class="line">        <span class="keyword">print</span> <span class="string">'("%s")'</span> % str(e)</span><br><span class="line">        n.quit()</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    <span class="keyword">print</span> <span class="string">'&gt;&gt; Found newgroup "%s"'</span> % GRNM</span><br><span class="line">    rng = <span class="string">'%s-%s'</span> % (lst,lst)</span><br><span class="line">    rsp, frm = n.xhdr(<span class="string">'from'</span>, rng)</span><br><span class="line">    rsp, sub = n.xhdr(<span class="string">'subjec'</span>, rng)</span><br><span class="line">    rsp, dat = n.xhdr(<span class="string">'date'</span>, rng)</span><br><span class="line">    <span class="keyword">print</span> <span class="string">''' Found last article(#%s):</span></span><br><span class="line"><span class="string">From: %s</span></span><br><span class="line"><span class="string">Subject: %s</span></span><br><span class="line"><span class="string">Date: %s</span></span><br><span class="line"><span class="string">'''</span> (lst, frm[<span class="number">0</span>][<span class="number">1</span>], sub[<span class="number">0</span>][<span class="number">1</span>], dat[<span class="number">0</span>][<span class="number">1</span>])</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">displayFirst20</span><span class="params">(data)</span>:</span></span><br><span class="line">    <span class="string">'Display First 20 lines'</span></span><br><span class="line">    count = <span class="number">0</span></span><br><span class="line">    lines = (line.rstrip() <span class="keyword">for</span> line <span class="keyword">in</span> data)</span><br><span class="line">    lastBlank = <span class="literal">True</span></span><br><span class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> lines:</span><br><span class="line">        <span class="keyword">if</span> line:</span><br><span class="line">            lower = line.lower()</span><br><span class="line">            <span class="keyword">if</span> (lower.startswith(<span class="string">'&gt;'</span>) <span class="keyword">and</span> /</span><br><span class="line">                <span class="keyword">not</span> lower.startswith(<span class="string">'&gt;&gt;&gt;'</span>)) <span class="keyword">or</span> /</span><br><span class="line">                lower.startswith(<span class="string">'|'</span>) <span class="keyword">or</span> /</span><br><span class="line">                lower.startswith(<span class="string">'in article'</span>) <span class="keyword">or</span> /</span><br><span class="line">                lower.endswith(<span class="string">'writes:'</span>) <span class="keyword">or</span> /</span><br><span class="line">                lower.endswith(<span class="string">'wrote:'</span>):</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> lastBlank <span class="keyword">or</span> (lastBlank <span class="keyword">and</span> line):</span><br><span class="line">            <span class="keyword">print</span> <span class="string">'%s'</span> % line</span><br><span class="line">        <span class="keyword">if</span> line:</span><br><span class="line">            count += <span class="number">1</span></span><br><span class="line">            lastBlank = <span class="literal">False</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            lastBlank = <span class="literal">True</span></span><br><span class="line">        <span class="keyword">if</span> count == <span class="number">20</span>:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">    NNTPClient()</span><br><span class="line">    DisplayFirst20()</span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
 
           
         
@@ -1053,160 +1052,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.yidooo.net/2010/08/05/python-learning-network-programming-c-the-nntp-connection.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="核动力蜗牛">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://en.gravatar.com/userimage/132614578/1525cb3f68df290f2720631caf872dff.jpg?size=200">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="异度部落格">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2010/08/05/python-learning-network-programming-c-the-nntp-connection.html" itemprop="url">Python学习 网络编程（三） NNTP连接</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2010-08-05T00:00:00+08:00">
-                2010-08-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Programming/" itemprop="url" rel="index">
-                    <span itemprop="name">Programming</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Programming/Python/" itemprop="url" rel="index">
-                    <span itemprop="name">Python</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>NNTP连接主要是用在新闻组的消息上面，下面的代码演示了NNTP连接的建立，不过显然下面的那个新闻组客户端程序是不能用的。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment">#新闻组客户端程序</span></span><br><span class="line"><span class="keyword">import</span> nntplib</span><br><span class="line"><span class="keyword">import</span> socket</span><br><span class="line">HOST = <span class="string">'your.nntp.server'</span></span><br><span class="line">GRNM = <span class="string">'comp.lang.python'</span></span><br><span class="line">USERNAME = <span class="string">'Killua'</span></span><br><span class="line">PASSWORD = <span class="string">'123456'</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">NNTPClient</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        n = nntplib.NNTP(HOST)</span><br><span class="line">    <span class="keyword">except</span> socket.gaierror, e:</span><br><span class="line">        <span class="keyword">print</span> <span class="string">'ERROR: cannot connect host "%s"'</span> % HOST</span><br><span class="line">        <span class="keyword">print</span> <span class="string">'("%s")'</span> % eval(str(e))[<span class="number">1</span>]</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    <span class="keyword">except</span> nntplib.NNTPPermanentError, e:</span><br><span class="line">        <span class="keyword">print</span> <span class="string">'ERROR: access denied on "%s"'</span> % HOST</span><br><span class="line">        <span class="keyword">print</span> <span class="string">'("%s")'</span> % str(e)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    <span class="keyword">print</span> <span class="string">'&gt;&gt; Connected to host "%s"'</span> % HOST</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        rsp, ct, fst, lst, grp = n.group(GRNM)</span><br><span class="line">    <span class="keyword">except</span> nntplib.NNTPTemporaryError, e:</span><br><span class="line">        <span class="keyword">print</span> <span class="string">'ERROR: cannot load group "%s"'</span> % GRNM</span><br><span class="line">        <span class="keyword">print</span> <span class="string">'("%s")'</span> % str(e)</span><br><span class="line">        <span class="keyword">print</span> <span class="string">'Server may require authentication'</span></span><br><span class="line">        <span class="keyword">print</span> <span class="string">'Uncomment/Edit login lne above'</span></span><br><span class="line">        n.quit()</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    <span class="keyword">except</span> nntplib.NNTPTemporaryError, e:</span><br><span class="line">        <span class="keyword">print</span> <span class="string">'ERROR: group "%s" unavailable'</span> % GRNM</span><br><span class="line">        <span class="keyword">print</span> <span class="string">'("%s")'</span> % str(e)</span><br><span class="line">        n.quit()</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    <span class="keyword">print</span> <span class="string">'&gt;&gt; Found newgroup "%s"'</span> % GRNM</span><br><span class="line">    rng = <span class="string">'%s-%s'</span> % (lst,lst)</span><br><span class="line">    rsp, frm = n.xhdr(<span class="string">'from'</span>, rng)</span><br><span class="line">    rsp, sub = n.xhdr(<span class="string">'subjec'</span>, rng)</span><br><span class="line">    rsp, dat = n.xhdr(<span class="string">'date'</span>, rng)</span><br><span class="line">    <span class="keyword">print</span> <span class="string">''' Found last article(#%s):</span></span><br><span class="line"><span class="string">From: %s</span></span><br><span class="line"><span class="string">Subject: %s</span></span><br><span class="line"><span class="string">Date: %s</span></span><br><span class="line"><span class="string">'''</span> (lst, frm[<span class="number">0</span>][<span class="number">1</span>], sub[<span class="number">0</span>][<span class="number">1</span>], dat[<span class="number">0</span>][<span class="number">1</span>])</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">displayFirst20</span><span class="params">(data)</span>:</span></span><br><span class="line">    <span class="string">'Display First 20 lines'</span></span><br><span class="line">    count = <span class="number">0</span></span><br><span class="line">    lines = (line.rstrip() <span class="keyword">for</span> line <span class="keyword">in</span> data)</span><br><span class="line">    lastBlank = <span class="literal">True</span></span><br><span class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> lines:</span><br><span class="line">        <span class="keyword">if</span> line:</span><br><span class="line">            lower = line.lower()</span><br><span class="line">            <span class="keyword">if</span> (lower.startswith(<span class="string">'&gt;'</span>) <span class="keyword">and</span> /</span><br><span class="line">                <span class="keyword">not</span> lower.startswith(<span class="string">'&gt;&gt;&gt;'</span>)) <span class="keyword">or</span> /</span><br><span class="line">                lower.startswith(<span class="string">'|'</span>) <span class="keyword">or</span> /</span><br><span class="line">                lower.startswith(<span class="string">'in article'</span>) <span class="keyword">or</span> /</span><br><span class="line">                lower.endswith(<span class="string">'writes:'</span>) <span class="keyword">or</span> /</span><br><span class="line">                lower.endswith(<span class="string">'wrote:'</span>):</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> lastBlank <span class="keyword">or</span> (lastBlank <span class="keyword">and</span> line):</span><br><span class="line">            <span class="keyword">print</span> <span class="string">'%s'</span> % line</span><br><span class="line">        <span class="keyword">if</span> line:</span><br><span class="line">            count += <span class="number">1</span></span><br><span class="line">            lastBlank = <span class="literal">False</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            lastBlank = <span class="literal">True</span></span><br><span class="line">        <span class="keyword">if</span> count == <span class="number">20</span>:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">    NNTPClient()</span><br><span class="line">    DisplayFirst20()</span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.yidooo.net/2010/08/05/python-learning-object-oriented-programming.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1313,6 +1158,161 @@
           
             <p>这里自行定义了一个MyTime的类，继承于系统类object。在Python里面默认的情况的下都要继承于这个类。类里面对<strong>init</strong>,<strong>str</strong>，<strong>add</strong>，<strong>iadd</strong>函数进行了重载。其实严格上讲不能叫重载，因为Python不支持重载，确切说应该叫覆盖。里面我还企图对<strong>init</strong>进行再次重载，显然不允许的，放在那边做个比较。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyTime</span><span class="params">(object)</span> :</span></span><br><span class="line">    <span class="string">'MyTime - operate hours, minutes and seconds'</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, h, m, s)</span> :</span></span><br><span class="line">        <span class="string">'MyTime - Constructor'</span></span><br><span class="line">        self.hour = h;</span><br><span class="line">        self.min = m;</span><br><span class="line">        self.sec = s;</span><br><span class="line">        </span><br><span class="line">    <span class="comment">#def __init__(self, seconds) :</span></span><br><span class="line">    <span class="comment">#    'MyTime - Constructor'</span></span><br><span class="line">    <span class="comment">#    self.hour = seconds / 3600</span></span><br><span class="line">    <span class="comment">#    seconds = seconds % 3600</span></span><br><span class="line">    <span class="comment">#    self.min = seconds /60</span></span><br><span class="line">    <span class="comment">#    self.sec = seconds % 60</span></span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span> :</span>    <span class="comment">#显示函数重载</span></span><br><span class="line">        <span class="string">'MyTime - string representation'</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">'%d : %d : %d'</span> % (self.hour, self.min, self.sec)</span><br><span class="line">    __repr__ = __str__</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__add__</span><span class="params">(self, time)</span> :</span>   <span class="comment">#加法重载</span></span><br><span class="line">        <span class="string">'MyTime - overloading the addition operator'</span></span><br><span class="line">        h = m = s = <span class="number">0</span></span><br><span class="line">        t = self.sec + time.sec</span><br><span class="line">        s = t % <span class="number">60</span></span><br><span class="line">        m += t /<span class="number">60</span></span><br><span class="line">        t = self.min + time.min + m</span><br><span class="line">        m = t % <span class="number">60</span></span><br><span class="line">        h = t / <span class="number">60</span></span><br><span class="line">        t = self.hour + time.hour + h</span><br><span class="line">        h = t % <span class="number">24</span></span><br><span class="line">        <span class="keyword">return</span> self.__class__(h, m, s)</span><br><span class="line">                       </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__iadd__</span><span class="params">(self, time)</span> :</span>   <span class="comment">#自增重载</span></span><br><span class="line">        <span class="string">'MyTime - overloading the in-place addition operator'</span></span><br><span class="line">        t = self.sec + time.sec</span><br><span class="line">        self.sec = t % <span class="number">60</span></span><br><span class="line">        self.min += t / <span class="number">60</span></span><br><span class="line">        t = self.min + time.min</span><br><span class="line">        self.min = t % <span class="number">60</span></span><br><span class="line">        self.hour += t /<span class="number">60</span></span><br><span class="line">        t = self.hour + time.hour</span><br><span class="line">        self.hour = t % <span class="number">24</span></span><br><span class="line">        <span class="keyword">return</span> self</span><br><span class="line">        </span><br><span class="line"><span class="comment">#测试部分</span></span><br><span class="line">t1 = MyTime(<span class="number">12</span>,<span class="number">34</span>,<span class="number">57</span>)</span><br><span class="line">t2 = MyTime(<span class="number">8</span>,<span class="number">6</span>,<span class="number">56</span>)</span><br><span class="line"><span class="keyword">print</span> <span class="string">'t1 &gt;&gt; '</span>, t1</span><br><span class="line"><span class="keyword">print</span> <span class="string">'t2 &gt;&gt; '</span>, t2</span><br><span class="line"><span class="keyword">print</span> <span class="string">'t1 + t2 &gt;&gt; '</span>, t1 + t2</span><br><span class="line">t1 += t2</span><br><span class="line"><span class="keyword">print</span> <span class="string">'t1 += t2 &gt;&gt; '</span>, t1 </span><br><span class="line"><span class="comment">#测试结果</span></span><br><span class="line"><span class="comment">#t1 &gt;&gt;  12 : 34 : 57</span></span><br><span class="line"><span class="comment">#t2 &gt;&gt;  8 : 6 : 56</span></span><br><span class="line"><span class="comment">#t1 + t2 &gt;&gt;  20 : 41 : 53</span></span><br><span class="line"><span class="comment">#t1 += t2 &gt;&gt;  20 : 41 : 53</span></span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.yidooo.net/2010/08/05/python-learning-pyqt-the-hello-world.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="核动力蜗牛">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://en.gravatar.com/userimage/132614578/1525cb3f68df290f2720631caf872dff.jpg?size=200">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="异度部落格">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2010/08/05/python-learning-pyqt-the-hello-world.html" itemprop="url">Python 学习  PyQt Hello World</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2010-08-05T00:00:00+08:00">
+                2010-08-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Programming/" itemprop="url" rel="index">
+                    <span itemprop="name">Programming</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Programming/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Qt 开发库是一个使用广泛的跨平台 GUI 开发库，可用于 Windows、Linux、Mac OSX 和许多手持平台。QT 具有良好结构化（但灵活）的面向对象的结构、清晰的文档以及直观的 API。自Trolltech公司被Nokia收购后，Qt成为Nokia旗下的一个部门。</p>
+<p>Python的默认GUI是Tkinter，PyQt是跨平台应用程式框架 Qt 的 Python绑定版本，同时也是PyKDE（KDE API 的Python绑定）的基础。PyQt支持Linux操作系统和其他Unix ，以及Mac OS X操作系统和微软Windows 。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment">#PyQt Hello World</span></span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">from</span> PyQt4 <span class="keyword">import</span> QtCore,QtGui</span><br><span class="line">app = QtGui.QApplication(sys.argv)</span><br><span class="line">label = QtGui.QLabel(<span class="string">"Hello World"</span>, <span class="literal">None</span>)</span><br><span class="line">label.show()</span><br><span class="line">sys.exit(app.exec_())</span><br></pre></td></tr></table></figure>
 
           
         
@@ -1872,7 +1872,7 @@
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/archives/%20%7C%7C%20archive">
+                <a href="/archives/%7C%7Carchive">
               
                   <span class="site-state-item-count">284</span>
                   <span class="site-state-item-name">日志</span>

@@ -187,7 +187,7 @@
       
         
         <li class="menu-item menu-item-home">
-          <a href="/%20" rel="section">
+          <a href="/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
@@ -197,7 +197,7 @@
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/archives/%20" rel="section">
+          <a href="/archives/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
@@ -207,7 +207,7 @@
       
         
         <li class="menu-item menu-item-categories">
-          <a href="/categories/%20" rel="section">
+          <a href="/categories/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
@@ -217,7 +217,7 @@
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/tags/%20" rel="section">
+          <a href="/tags/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
@@ -227,7 +227,7 @@
       
         
         <li class="menu-item menu-item-about">
-          <a href="/about/%20" rel="section">
+          <a href="/about/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
@@ -1679,7 +1679,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.yidooo.net/2009/10/26/qt-programming-skills-qlcdnumber-and-qspinbox-link.html">
+    <link itemprop="mainEntityOfPage" href="http://www.yidooo.net/2009/10/26/qt-programming-skills-qt-image-rotation.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="核动力蜗牛">
@@ -1698,7 +1698,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2009/10/26/qt-programming-skills-qlcdnumber-and-qspinbox-link.html" itemprop="url">Qt编程技巧  QLCDNumber与QSpinBox链接</a></h2>
+                <a class="post-title-link" href="/2009/10/26/qt-programming-skills-qt-image-rotation.html" itemprop="url">Qt编程技巧  Qt图片翻转</a></h2>
         
 
         <div class="post-meta">
@@ -1783,7 +1783,7 @@
       
         
           
-            <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">connect(spinBox, SIGNAL(valueChanged(QString)), lcdNumber, SLOT(display(QString)));</span><br></pre></td></tr></table></figure>
+            <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  水平翻转</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ImageViewer::horFilp</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    image = image.mirrored(<span class="literal">true</span>, <span class="literal">false</span>);</span><br><span class="line">    imageLabel-&gt;setPixmap(QPixmap::fromImage(image));</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  垂直翻转</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ImageViewer::verFilp</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    image = image.mirrored(<span class="literal">false</span>, <span class="literal">true</span>);</span><br><span class="line">    imageLabel-&gt;setPixmap(QPixmap::fromImage(image));</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  顺时针旋转</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ImageViewer::clockwise</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    QMatrix matrix;</span><br><span class="line">    matrix.rotate(<span class="number">90.0</span>);</span><br><span class="line">    image = image.transformed(matrix,Qt::FastTransformation);</span><br><span class="line">    imageLabel-&gt;setPixmap(QPixmap::fromImage(image));</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  逆时针旋转</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ImageViewer::anticlockwise</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    QMatrix matrix;</span><br><span class="line">    matrix.rotate(<span class="number">-90.0</span>);</span><br><span class="line">    image = image.transformed(matrix,Qt::FastTransformation);</span><br><span class="line">    imageLabel-&gt;setPixmap(QPixmap::fromImage(image));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
           
         
@@ -1871,7 +1871,7 @@
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/archives/%20%7C%7C%20archive">
+                <a href="/archives/%7C%7Carchive">
               
                   <span class="site-state-item-count">284</span>
                   <span class="site-state-item-name">日志</span>
