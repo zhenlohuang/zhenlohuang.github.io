@@ -268,6 +268,184 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.yidooo.net/2014/10/18/zookeeper-server-roles.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="核动力蜗牛">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://en.gravatar.com/userimage/132614578/1525cb3f68df290f2720631caf872dff.jpg?size=200">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="异度部落格">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2014/10/18/zookeeper-server-roles.html" itemprop="url">Zookeeper源码分析-Zookeeper角色</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-10-18T00:00:00+08:00">
+                2014-10-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Big-Data/" itemprop="url" rel="index">
+                    <span itemprop="name">Big Data</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Big-Data/ZooKeeper/" itemprop="url" rel="index">
+                    <span itemprop="name">ZooKeeper</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>在Zookeeper集群中，主要分为三者角色，而每一个节点同时只能扮演一种角色，这三种角色分别是：</p>
+<ul>
+<li>Leader：接受所有Follower的提案请求并统一协调发起提案的投票，负责与所有的Follower进行内部的数据交换(同步);</li>
+<li>Follower：直接为客户端服务并参与提案的投票，同时与Leader进行数据交换(同步);</li>
+<li>Observer：直接为客户端服务但并不参与提案的投票，同时也与Leader进行数据交换(同步);</li>
+</ul>
+<p>Follower与Observer并称为Learner。</p>
+<p><img src="/images/zookeeper-server-roles.png" alt="zookeeper-server-roles"></p>
+<h1 id="Leader"><a href="#Leader" class="headerlink" title="Leader"></a>Leader</h1><p>在Zookeeper集群中，只有一个Leader节点，其主要职责：</p>
+<ul>
+<li>恢复数据；</li>
+<li>维持与Learner的心跳，接收Learner请求并判断Learner的请求消息类型； </li>
+</ul>
+<p>Leader的工作流程简图如下所示，在实际实现中，流程要比下图复杂得多，启动了三个线程来实现功能。</p>
+<p><img src="/images/leader-workflow.jpg" alt="leader-workflow"></p>
+<p>PING：Learner的心跳。<br>REQUEST：Follower发送的提议信息，包括写请求及同步请求。<br>ACK：Follower的对提议的回复，超过半数的Follower通过，则commit该提议。<br>REVALIDATE：用来延长SESSION有效时间。</p>
+<h1 id="Follower"><a href="#Follower" class="headerlink" title="Follower"></a>Follower</h1><p>在Zookeeper集群中，follower可以为多个，其主要职责：</p>
+<ul>
+<li>向Leader发送请求；</li>
+<li>接收Leader的消息并进行处理；</li>
+<li>接收Zookeeper Client的请求，如果为写清求，转发给Leader进行处理</li>
+</ul>
+<p>Follower的工作流程简图如下所示，在实际实现中，Follower是通过5个线程来实现功能的。</p>
+<p><img src="/images/follower-workflow.jpg" alt="follower-workflow"></p>
+<p>PING：心跳消息。<br>PROPOSAL：Leader发起的提案，要求Follower投票。<br>COMMIT：服务器端最新一次提案的信息。<br>UPTODATE：表明同步完成。<br>REVALIDATE：根据Leader的REVALIDATE结果，关闭待revalidate的session还是允许其接受消息。<br>SYNC：返回SYNC结果到客户端，这个消息最初由客户端发起，用来强制得到最新的更新。</p>
+<h1 id="Observer"><a href="#Observer" class="headerlink" title="Observer"></a>Observer</h1><p>此处Observer就不再分析，其与follower基本相同，唯一不同就在于Observer不参与投票。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.yidooo.net/2014/09/22/zookeeper-server-startup.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1785,173 +1963,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.yidooo.net/2013/11/09/consistent-hashing.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="核动力蜗牛">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://en.gravatar.com/userimage/132614578/1525cb3f68df290f2720631caf872dff.jpg?size=200">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="异度部落格">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2013/11/09/consistent-hashing.html" itemprop="url">一致性Hash算法(Consistent Hashing)</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2013-11-09T00:00:00+08:00">
-                2013-11-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Distributed-System/" itemprop="url" rel="index">
-                    <span itemprop="name">Distributed System</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>一致性Hash算法（Consistent hashing）早在 1997 年就在论文 <a href="http://portal.acm.org/citation.cfm?id=258660" target="_blank" rel="noopener">Consistent hashing and random trees</a> 中被提出，目前在 cache 系统中应用越来越广泛。</p>
-<h1 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h1><p>假设有N 个 cache 服务器，那么如何将一个对象 object 映射到 N 个 cache 服务器上呢，你很可能会采用类似下面的通用方法计算 object 的 hash 值，然后均匀的映射到到 N 个 cache：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">hash</span>(object)%N</span><br></pre></td></tr></table></figure>
-<p>考虑如下的两种情况；<br>1）假设一个 cache 服务器m挂掉了，这样所有映射到 cache m 的对象都会失效。这时需要把cache服务器m从系统中移除，cache服务器数变成N-1台，因此映射公式变成：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">hash</span>(object)%(N-1)</span><br></pre></td></tr></table></figure>
-<p>2）如果需要添加cache服务器 ，cache服务器数变成N+1台，映射公式变成：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">hash</span>(object)%(N+1)</span><br></pre></td></tr></table></figure>
-<p>这两种情况的出现，使得原来的cache都失效了。可见上述的Hash算法并不能很好的适应cache系统，因此为了解决这两种情况我们引入一致性Hash。</p>
-<h1 id="一致性Hash算法"><a href="#一致性Hash算法" class="headerlink" title="一致性Hash算法"></a>一致性Hash算法</h1><p>算法具体步骤如下：    </p>
-<ol>
-<li>首先求出每个Cache服务器的hash（可以利用IP来计算），并将其配置到一个0~2^32的圆环区间上。    </li>
-<li>使用同样的方法求出需要存储对象的hash，也将其配置到这个圆环上。    </li>
-<li>从数据映射到的位置开始顺时针查找，将数据保存到找到的第一个Cache节点上。如果超过2^32仍然找不到Cache节点，就会保存到第一个Cache节点上。<br><img src="/images/legacy/2013/11/0_1300845930vO032.gif" alt="image"></li>
-</ol>
-<h2 id="新增Cache服务器"><a href="#新增Cache服务器" class="headerlink" title="新增Cache服务器"></a>新增Cache服务器</h2><p>假设在这个环形哈希空间中，cache5被映射在Cache3和Cache4之间，那么受影响的将仅是沿Cache5逆时针遍历直到下一个Cache（Cache3）之间的对象（它们本来映射到Cache4上）。</p>
-<p><img src="/images/legacy/2013/11/0_13008459978RI82.gif" alt="image"></p>
-<ul>
-<li>移除Cache服务器</li>
-</ul>
-<p>假设在这个环形哈希空间中，Cache3被移除，那么受影响的将仅是沿Cache3逆时针遍历直到下一个Cache（Cache2）之间的对象（它们本来映射到Cache3上）。</p>
-<p><img src="/images/legacy/2013/11/0_1300846030mZN31.gif" alt="image"></p>
-<h1 id="虚拟Cache服务器"><a href="#虚拟Cache服务器" class="headerlink" title="虚拟Cache服务器"></a>虚拟Cache服务器</h1><p>考虑到哈希算法并不是保证绝对的平衡，尤其Cache较少的话，对象并不能被均匀的映射到 Cache上。为了解决这种情况，一致性Hash引入了“虚拟节点”的概念： 一个实际节点对虚拟成若干个“虚拟节点”，这个对应个数也成为“复制个数”，“虚拟节点”在哈希空间中以哈希值排列。仍以4台Cache服务器为例，在下图中看到，引入虚拟节点，并设置“复制个数”为2后，共有8个“虚拟节点”分部在环形区域上，缓解了映射不均的情况。</p>
-<p><img src="/images/legacy/2013/11/0_1300846075umFj2.gif" alt="image"></p>
-<p>引入了“虚拟节点”后，映射关系就从【对象—&gt;Cache服务器】转换成了【对象—&gt;虚拟节点—&gt; Cache服务器】。查询对象所在Cache服务器的映射关系如下图所示。</p>
-<p><img src="/images/legacy/2013/11/0_1300846198h1782.gif" alt="image"></p>
-<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p>一致性hash算法 - consistent hashing: <a href="http://blog.csdn.net/sparkliang/article/details/5279393" target="_blank" rel="noopener">http://blog.csdn.net/sparkliang/article/details/5279393</a><br>一致性哈希算法（Consistent Hashing）: <a href="http://blog.csdn.net/x15594/article/details/6270242" target="_blank" rel="noopener">http://blog.csdn.net/x15594/article/details/6270242</a><br>一致性hash和solr千万级数据分布式搜索引擎中的应用: <a href="http://blog.jobbole.com/47023/&quot;" target="_blank" rel="noopener">http://blog.jobbole.com/47023/&quot;</a><a href="http://blog.jobbole.com/47023/&gt;" target="_blank" rel="noopener">http://blog.jobbole.com/47023/&gt;</a>    </p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2006,7 +2017,7 @@
               
                 <a href="/archives/%7C%7Carchive">
               
-                  <span class="site-state-item-count">284</span>
+                  <span class="site-state-item-count">285</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

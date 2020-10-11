@@ -268,6 +268,186 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.yidooo.net/2018/07/29/spark-architecture.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="核动力蜗牛">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://en.gravatar.com/userimage/132614578/1525cb3f68df290f2720631caf872dff.jpg?size=200">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="异度部落格">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/29/spark-architecture.html" itemprop="url">Spark架构简介</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-29T00:00:00+08:00">
+                2018-07-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Big-Data/" itemprop="url" rel="index">
+                    <span itemprop="name">Big Data</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Big-Data/Spark/" itemprop="url" rel="index">
+                    <span itemprop="name">Spark</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Spark-架构简介"><a href="#Spark-架构简介" class="headerlink" title="Spark 架构简介"></a>Spark 架构简介</h1><p>Spark是一个master/slave架构的分布式系统，它的架构主要包含有</p>
+<ul>
+<li>Spark Driver</li>
+<li>Spark Executor</li>
+<li>Cluster Manager<br><img src="/images/spark_architecture.png" alt="spark_architecture.png"></li>
+</ul>
+<p>一个Spark集群一般拥有单个的Driver和多个的Executor。Spark Driver和Executor都是独立运行的JVM进程，它们可以运行在单台机器上，也可以运行在多台机器上。</p>
+<h1 id="Spark-Driver"><a href="#Spark-Driver" class="headerlink" title="Spark Driver"></a>Spark Driver</h1><p>Spark Driver是一个Spark Application的主入口，它可以用Scala，Python或者R进行编写。一个Spark Driver包含有一个SparkContext，这是整个Spark Application中最核心的组件。同时，还包含有DAGScheduler, TaskScheduler, BackendScheduler和BlockManager等组件用于将用户代码转换为Spark job运行在集群当中。Spark Driver的主要功能包括：</p>
+<ul>
+<li>负责协调Job的运行和以及Cluster Manager进行交互。</li>
+<li>将RDD转换为执行的DAG图，同时把DAG图分为不同的Stage</li>
+<li>将Job切割成更小的执行单元，Task，由Executor执行。</li>
+<li>启动一个HTTP Server，端口为4040。这个Web UI会把Spark Application运行时的信息展示出来。</li>
+</ul>
+<h1 id="Spark-Executor"><a href="#Spark-Executor" class="headerlink" title="Spark Executor"></a>Spark Executor</h1><p>Spark Executor是Task的实际执行者。每个Application的Executor数量可以通过配置指定（Static Allocation）或者有Spark动态分配（Dynamic Allocation）。Executor的主要功能包括：</p>
+<ul>
+<li>负责所有的数据处理工作</li>
+<li>用于读取和写入外部数据源</li>
+<li>缓存着计算过程中的数据</li>
+</ul>
+<h1 id="Cluster-Manager"><a href="#Cluster-Manager" class="headerlink" title="Cluster Manager"></a>Cluster Manager</h1><p>严格上说Cluster Manager并不是Spark的一部分，而是一个外部的Service（除了Standalone）。Spark Driver会和其进行交互用于从集群里获取资源（CPU，Memory等）。目前Spark支持4种Cluster Manager：</p>
+<ul>
+<li>Standalone：这是一种Spark自带的集群管理模式，设计也比较简单。</li>
+<li>Apache Mesos：Mesos是一种通用的集群资源管理服务，用于管理MapReduce应用或者其他类型的应用。</li>
+<li>Hadoop YARN ：YARN是由Hadoop 2.0引入的集群资源管理服务。</li>
+<li>Kubernetes：Kubernetes是一种管理containerized的应用的服务。Spark 2.3以后引入了对Kubernetes的支持。</li>
+</ul>
+<p>至于选择使用哪一种Cluster Manager，完全取决于生产环境以及业务场景，并没有绝对的优劣。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.yidooo.net/2018/07/29/spark-memory-management.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1896,184 +2076,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.yidooo.net/2014/10/18/zookeeper-server-roles.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="核动力蜗牛">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://en.gravatar.com/userimage/132614578/1525cb3f68df290f2720631caf872dff.jpg?size=200">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="异度部落格">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2014/10/18/zookeeper-server-roles.html" itemprop="url">Zookeeper源码分析-Zookeeper角色</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-10-18T00:00:00+08:00">
-                2014-10-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Big-Data/" itemprop="url" rel="index">
-                    <span itemprop="name">Big Data</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Big-Data/ZooKeeper/" itemprop="url" rel="index">
-                    <span itemprop="name">ZooKeeper</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>在Zookeeper集群中，主要分为三者角色，而每一个节点同时只能扮演一种角色，这三种角色分别是：</p>
-<ul>
-<li>Leader：接受所有Follower的提案请求并统一协调发起提案的投票，负责与所有的Follower进行内部的数据交换(同步);</li>
-<li>Follower：直接为客户端服务并参与提案的投票，同时与Leader进行数据交换(同步);</li>
-<li>Observer：直接为客户端服务但并不参与提案的投票，同时也与Leader进行数据交换(同步);</li>
-</ul>
-<p>Follower与Observer并称为Learner。</p>
-<p><img src="/images/zookeeper-server-roles.png" alt="zookeeper-server-roles"></p>
-<h1 id="Leader"><a href="#Leader" class="headerlink" title="Leader"></a>Leader</h1><p>在Zookeeper集群中，只有一个Leader节点，其主要职责：</p>
-<ul>
-<li>恢复数据；</li>
-<li>维持与Learner的心跳，接收Learner请求并判断Learner的请求消息类型； </li>
-</ul>
-<p>Leader的工作流程简图如下所示，在实际实现中，流程要比下图复杂得多，启动了三个线程来实现功能。</p>
-<p><img src="/images/leader-workflow.jpg" alt="leader-workflow"></p>
-<p>PING：Learner的心跳。<br>REQUEST：Follower发送的提议信息，包括写请求及同步请求。<br>ACK：Follower的对提议的回复，超过半数的Follower通过，则commit该提议。<br>REVALIDATE：用来延长SESSION有效时间。</p>
-<h1 id="Follower"><a href="#Follower" class="headerlink" title="Follower"></a>Follower</h1><p>在Zookeeper集群中，follower可以为多个，其主要职责：</p>
-<ul>
-<li>向Leader发送请求；</li>
-<li>接收Leader的消息并进行处理；</li>
-<li>接收Zookeeper Client的请求，如果为写清求，转发给Leader进行处理</li>
-</ul>
-<p>Follower的工作流程简图如下所示，在实际实现中，Follower是通过5个线程来实现功能的。</p>
-<p><img src="/images/follower-workflow.jpg" alt="follower-workflow"></p>
-<p>PING：心跳消息。<br>PROPOSAL：Leader发起的提案，要求Follower投票。<br>COMMIT：服务器端最新一次提案的信息。<br>UPTODATE：表明同步完成。<br>REVALIDATE：根据Leader的REVALIDATE结果，关闭待revalidate的session还是允许其接受消息。<br>SYNC：返回SYNC结果到客户端，这个消息最初由客户端发起，用来强制得到最新的更新。</p>
-<h1 id="Observer"><a href="#Observer" class="headerlink" title="Observer"></a>Observer</h1><p>此处Observer就不再分析，其与follower基本相同，唯一不同就在于Observer不参与投票。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2128,7 +2130,7 @@
               
                 <a href="/archives/%7C%7Carchive">
               
-                  <span class="site-state-item-count">284</span>
+                  <span class="site-state-item-count">285</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

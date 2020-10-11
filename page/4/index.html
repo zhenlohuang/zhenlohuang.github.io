@@ -268,6 +268,173 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.yidooo.net/2013/11/09/consistent-hashing.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="核动力蜗牛">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://en.gravatar.com/userimage/132614578/1525cb3f68df290f2720631caf872dff.jpg?size=200">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="异度部落格">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2013/11/09/consistent-hashing.html" itemprop="url">一致性Hash算法(Consistent Hashing)</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2013-11-09T00:00:00+08:00">
+                2013-11-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Distributed-System/" itemprop="url" rel="index">
+                    <span itemprop="name">Distributed System</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>一致性Hash算法（Consistent hashing）早在 1997 年就在论文 <a href="http://portal.acm.org/citation.cfm?id=258660" target="_blank" rel="noopener">Consistent hashing and random trees</a> 中被提出，目前在 cache 系统中应用越来越广泛。</p>
+<h1 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h1><p>假设有N 个 cache 服务器，那么如何将一个对象 object 映射到 N 个 cache 服务器上呢，你很可能会采用类似下面的通用方法计算 object 的 hash 值，然后均匀的映射到到 N 个 cache：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">hash</span>(object)%N</span><br></pre></td></tr></table></figure>
+<p>考虑如下的两种情况；<br>1）假设一个 cache 服务器m挂掉了，这样所有映射到 cache m 的对象都会失效。这时需要把cache服务器m从系统中移除，cache服务器数变成N-1台，因此映射公式变成：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">hash</span>(object)%(N-1)</span><br></pre></td></tr></table></figure>
+<p>2）如果需要添加cache服务器 ，cache服务器数变成N+1台，映射公式变成：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">hash</span>(object)%(N+1)</span><br></pre></td></tr></table></figure>
+<p>这两种情况的出现，使得原来的cache都失效了。可见上述的Hash算法并不能很好的适应cache系统，因此为了解决这两种情况我们引入一致性Hash。</p>
+<h1 id="一致性Hash算法"><a href="#一致性Hash算法" class="headerlink" title="一致性Hash算法"></a>一致性Hash算法</h1><p>算法具体步骤如下：    </p>
+<ol>
+<li>首先求出每个Cache服务器的hash（可以利用IP来计算），并将其配置到一个0~2^32的圆环区间上。    </li>
+<li>使用同样的方法求出需要存储对象的hash，也将其配置到这个圆环上。    </li>
+<li>从数据映射到的位置开始顺时针查找，将数据保存到找到的第一个Cache节点上。如果超过2^32仍然找不到Cache节点，就会保存到第一个Cache节点上。<br><img src="/images/legacy/2013/11/0_1300845930vO032.gif" alt="image"></li>
+</ol>
+<h2 id="新增Cache服务器"><a href="#新增Cache服务器" class="headerlink" title="新增Cache服务器"></a>新增Cache服务器</h2><p>假设在这个环形哈希空间中，cache5被映射在Cache3和Cache4之间，那么受影响的将仅是沿Cache5逆时针遍历直到下一个Cache（Cache3）之间的对象（它们本来映射到Cache4上）。</p>
+<p><img src="/images/legacy/2013/11/0_13008459978RI82.gif" alt="image"></p>
+<ul>
+<li>移除Cache服务器</li>
+</ul>
+<p>假设在这个环形哈希空间中，Cache3被移除，那么受影响的将仅是沿Cache3逆时针遍历直到下一个Cache（Cache2）之间的对象（它们本来映射到Cache3上）。</p>
+<p><img src="/images/legacy/2013/11/0_1300846030mZN31.gif" alt="image"></p>
+<h1 id="虚拟Cache服务器"><a href="#虚拟Cache服务器" class="headerlink" title="虚拟Cache服务器"></a>虚拟Cache服务器</h1><p>考虑到哈希算法并不是保证绝对的平衡，尤其Cache较少的话，对象并不能被均匀的映射到 Cache上。为了解决这种情况，一致性Hash引入了“虚拟节点”的概念： 一个实际节点对虚拟成若干个“虚拟节点”，这个对应个数也成为“复制个数”，“虚拟节点”在哈希空间中以哈希值排列。仍以4台Cache服务器为例，在下图中看到，引入虚拟节点，并设置“复制个数”为2后，共有8个“虚拟节点”分部在环形区域上，缓解了映射不均的情况。</p>
+<p><img src="/images/legacy/2013/11/0_1300846075umFj2.gif" alt="image"></p>
+<p>引入了“虚拟节点”后，映射关系就从【对象—&gt;Cache服务器】转换成了【对象—&gt;虚拟节点—&gt; Cache服务器】。查询对象所在Cache服务器的映射关系如下图所示。</p>
+<p><img src="/images/legacy/2013/11/0_1300846198h1782.gif" alt="image"></p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p>一致性hash算法 - consistent hashing: <a href="http://blog.csdn.net/sparkliang/article/details/5279393" target="_blank" rel="noopener">http://blog.csdn.net/sparkliang/article/details/5279393</a><br>一致性哈希算法（Consistent Hashing）: <a href="http://blog.csdn.net/x15594/article/details/6270242" target="_blank" rel="noopener">http://blog.csdn.net/x15594/article/details/6270242</a><br>一致性hash和solr千万级数据分布式搜索引擎中的应用: <a href="http://blog.jobbole.com/47023/&quot;" target="_blank" rel="noopener">http://blog.jobbole.com/47023/&quot;</a><a href="http://blog.jobbole.com/47023/&gt;" target="_blank" rel="noopener">http://blog.jobbole.com/47023/&gt;</a>    </p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.yidooo.net/2013/11/06/apache-hive-installation.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1818,170 +1985,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.yidooo.net/2013/07/29/postgresql-installation-and-configuration.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="核动力蜗牛">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://en.gravatar.com/userimage/132614578/1525cb3f68df290f2720631caf872dff.jpg?size=200">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="异度部落格">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2013/07/29/postgresql-installation-and-configuration.html" itemprop="url">Postgresql 安装及配置</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2013-07-29T00:00:00+08:00">
-                2013-07-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Database/" itemprop="url" rel="index">
-                    <span itemprop="name">Database</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Database/PostgreSQL/" itemprop="url" rel="index">
-                    <span itemprop="name">PostgreSQL</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><strong>安装</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install postgresql postgresql-server</span><br></pre></td></tr></table></figure>
-<p><strong>初始化数据库</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">  service postgresql initdb</span><br></pre></td></tr></table></figure>
-<p><strong>配置postgresql.conf</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /var/lib/pgsql/data/postgresql.conf</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#---------------------------------------------------------------------------</span><br><span class="line"># CONNECTIONS AND AUTHENTICATION</span><br><span class="line">#---------------------------------------------------------------------------</span><br><span class="line">listen_addresses &#x3D; &#39;*&#39;              # what IP address(es) to listen on;</span><br><span class="line">                                        # comma-separated list of addresses;</span><br><span class="line">                                        # defaults to &#39;localhost&#39;, &#39;*&#39; &#x3D; all</span><br><span class="line">                                        # (change requires restart)</span><br><span class="line">port &#x3D; 5432                          # (change requires restart)</span><br></pre></td></tr></table></figure>
-<p><strong>配置pg_hba.conf</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /var/lib/pgsql/data/pg_hba.conf</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># TYPE  DATABASE    USER        CIDR-ADDRESS          METHOD</span><br><span class="line"># &quot;local&quot; is for Unix domain socket connections only</span><br><span class="line">local   all         all                               trust</span><br><span class="line"># IPv4 local connections:</span><br><span class="line">host    all         all         127.0.0.1&#x2F;32          md5</span><br><span class="line">host    all         all         192.168.137.2&#x2F;16        md5 </span><br><span class="line">host    all         all         192.168.137.3&#x2F;16        md5 </span><br><span class="line"># IPv6 local connections:</span><br><span class="line">host    all         all         ::1&#x2F;128               md5</span><br></pre></td></tr></table></figure>
-<p><strong>重启服务</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo service postgresql restart</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2036,7 +2039,7 @@
               
                 <a href="/archives/%7C%7Carchive">
               
-                  <span class="site-state-item-count">284</span>
+                  <span class="site-state-item-count">285</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Machine Learning," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="论文原文：Hidden Technical Debt in Machine Learning Systems 在文章的开篇，Google工程师们就指出：虽然开发和部署机器学习系统相对快速并且成本低廉，但是持续的维护比较困难且成本高昂。这是由于： 首先，机器学习系统本质上也是一种软件系统，所以它具有其它软件系统中存在的技术债务。更复杂的是，机器学习系统又有很多机器学习相关的技术债务。而这些问题往往存">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【MLSys Weekly】Hidden Technical Debt in Machine Learning Systems">
+<meta property="og:url" content="http://www.yidooo.net/2020/10/11/Hidden-Technical-Debt-in-Machine-Learning-Systems.html">
+<meta property="og:site_name" content="异度部落格">
+<meta property="og:description" content="论文原文：Hidden Technical Debt in Machine Learning Systems 在文章的开篇，Google工程师们就指出：虽然开发和部署机器学习系统相对快速并且成本低廉，但是持续的维护比较困难且成本高昂。这是由于： 首先，机器学习系统本质上也是一种软件系统，所以它具有其它软件系统中存在的技术债务。更复杂的是，机器学习系统又有很多机器学习相关的技术债务。而这些问题往往存">
+<meta property="og:image" content="http://www.yidooo.net/images/ml-code-in-real-world.jpg">
+<meta property="article:published_time" content="2020-10-11T13:10:39.000Z">
+<meta property="article:modified_time" content="2020-10-11T13:25:20.001Z">
+<meta property="article:author" content="核动力蜗牛">
+<meta property="article:tag" content="Machine Learning">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://www.yidooo.net/images/ml-code-in-real-world.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.yidooo.net/2020/10/11/Hidden-Technical-Debt-in-Machine-Learning-Systems.html"/>
+
+
+
+
+
+  <title>【MLSys Weekly】Hidden Technical Debt in Machine Learning Systems | 异度部落格</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?7935dce3b8c7c4adacbbff4e2533811b";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">异度部落格</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">学习是一种生活态度。</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于我
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.yidooo.net/2020/10/11/Hidden-Technical-Debt-in-Machine-Learning-Systems.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="核动力蜗牛">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://en.gravatar.com/userimage/132614578/1525cb3f68df290f2720631caf872dff.jpg?size=200">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="异度部落格">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">【MLSys Weekly】Hidden Technical Debt in Machine Learning Systems</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-10-11T21:10:39+08:00">
+                2020-10-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Machine-Learning/" itemprop="url" rel="index">
+                    <span itemprop="name">Machine Learning</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>论文原文：<a href="https://papers.nips.cc/paper/5656-hidden-technical-debt-in-machine-learning-systems.pdf" target="_blank" rel="noopener">Hidden Technical Debt in Machine Learning Systems</a></p>
+<p>在文章的开篇，Google工程师们就指出：虽然开发和部署机器学习系统相对快速并且成本低廉，但是持续的维护比较困难且成本高昂。这是由于：</p>
+<p>首先，机器学习系统本质上也是一种软件系统，所以它具有其它软件系统中存在的技术债务。更复杂的是，机器学习系统又有很多机器学习相关的技术债务。而这些问题往往存在于系统级别 (system level)，而不是代码级别 (code level)。</p>
+<p>基于上面的判断，作者们给出了基于他们实践经验的技术债务总结。</p>
+<h1 id="复杂模型侵蚀边界-Complex-Models-Erode-Boundaries"><a href="#复杂模型侵蚀边界-Complex-Models-Erode-Boundaries" class="headerlink" title="复杂模型侵蚀边界 (Complex Models Erode Boundaries)"></a>复杂模型侵蚀边界 (Complex Models Erode Boundaries)</h1><p>这一部分的标题乍一看显得很晦涩，实际上作者们指出的是：在传统的软件工程中，人们往往需要用封装、模块化等等手段来定义一些抽象边界，以达到改善软件系统的可维护性的目的。然而，在机器学习系统中，由于其依赖于大量的外部数据，这样的边界变得难以准确描述和定义了。</p>
+<p>举个例子，如果一个机器学习系统中的模型使用了特征x1, x2, …, xn。当x1的分布情况变化时，原有模型的其他特征的权重也会发生改变，这就给系统的管理带来了很大的挑战。作者们把这种影响叫做CACE原则：</p>
+<p>| Changing Anything Changes Everything. （改变任何一个就改变了所有）</p>
+<p>这个问题叫做 Entanglement，作者们给出了两个方案来改善这一问题：隔离模型和专注检测模型预测中的变化。</p>
+<h1 id="数据依赖比代码依赖成本更高（Data-Dependencies-Cost-More-than-Code-Dependencies）"><a href="#数据依赖比代码依赖成本更高（Data-Dependencies-Cost-More-than-Code-Dependencies）" class="headerlink" title="数据依赖比代码依赖成本更高（Data Dependencies Cost More than Code Dependencies）"></a>数据依赖比代码依赖成本更高（Data Dependencies Cost More than Code Dependencies）</h1><p>在传统的软件工程中，人们往往可以借助于静态分析（Static Analysis）来发现和分析代码依赖关系。然而数据的依赖关系要更难以分析。</p>
+<p>第一个问题就是数据的依赖关系可能很不稳定（Unstable data dependencies）。一个简单的例子就是一个机器学习系统可能把另一个系统的输出作为一个输入。然后，这种输入是不稳定的，并且变化是难以觉察的。作者们给出了一个可行的方案是对输入进行版本控制。</p>
+<p>另一个问题就是不必要的数据依赖（Underutilized data dependencies），比如随着系统的变化不再需要的软件包。作者们建议用 leave-one-feature-out 的方法，来定期的检查和去除非必要的软件包。</p>
+<p>由于数据依赖方面静态分析（Static analysis of data dependencies）工具的缺失，作者们也建议开发相应的工具来帮助分析数据依赖。</p>
+<h1 id="机器学习系统的反模式（ML-System-Anti-Patterns）"><a href="#机器学习系统的反模式（ML-System-Anti-Patterns）" class="headerlink" title="机器学习系统的反模式（ML-System Anti-Patterns）"></a>机器学习系统的反模式（ML-System Anti-Patterns）</h1><p>在一个实际的机器学习系统中，仅仅一小部分代码是用于学习和预测的。随着时间的推移，一个机器学习系统中会出现各种各样系统设计中的反模式。</p>
+<p><img src="/images/ml-code-in-real-world.jpg" alt="ml-code-in-real-world.jpg"></p>
+<h2 id="胶水代码（Glue-Code）"><a href="#胶水代码（Glue-Code）" class="headerlink" title="胶水代码（Glue Code）"></a>胶水代码（Glue Code）</h2><p>作者们发现机器学习工程师们倾向于使用各种通用的机器学习库来编写代码，这就导致了系统中存在着大量的来自于庞大的通用机器学习库的代码。作者们的建议是把这些胶水代码用相同的API封装起来。</p>
+<h2 id="管道丛林（Piepline-Jungles）"><a href="#管道丛林（Piepline-Jungles）" class="headerlink" title="管道丛林（Piepline Jungles）"></a>管道丛林（Piepline Jungles）</h2><p>这里主要指的是数据准备（data preparation）阶段可能存在的问题。如果不加以注意，随着时间的推移，越来越多的输入信号加入到数据准备中，导致其变成一个混杂着各种爬虫、连接、取样等各种数据操作的丛林。有意思的是，作者们给出的解决方案是让工程师和科研工作者更多的合作，譬如在一个团队中，来帮助减少这种问题。</p>
+<h2 id="无用的实验代码路径（Dead-Experimental-Codepaths"><a href="#无用的实验代码路径（Dead-Experimental-Codepaths" class="headerlink" title="无用的实验代码路径（Dead Experimental Codepaths)"></a>无用的实验代码路径（Dead Experimental Codepaths)</h2><p>机器学习常常伴随着大量的试验，很容易导致在原有代码中产生各种条件分支。而后，随着条件分支越来越多，系统的技术债务也随之增加。作者们建议定期检查并删除这些无用的代码路径。</p>
+<h2 id="抽象债务（Abstraction-Debt）"><a href="#抽象债务（Abstraction-Debt）" class="headerlink" title="抽象债务（Abstraction Debt）"></a>抽象债务（Abstraction Debt）</h2><p>那么为什么会有这么多的技术债务问题呢？作者们的观点是我们目前还是缺乏用来描述机器学习系统的强抽象。无论是 MapReduce 还是 pramater-server 都达不到需要的抽象描述。</p>
+<h2 id="常见味道（Common-Smells"><a href="#常见味道（Common-Smells" class="headerlink" title="常见味道（Common Smells)"></a>常见味道（Common Smells)</h2><p>在软件工程中，有一个词语常常用来描述可能的代码结构问题，叫做坏的代码味道（bad code smell）。那么这里呢，作者们也列举了几个他们发现的可能的机器学习系统的坏的代码味道。</p>
+<ul>
+<li>基础数据类型（Plain-Old-Data Type Smell）</li>
+<li>多种语言（Multiple-Language Smell）</li>
+<li>原型（Prototype Smell）</li>
+</ul>
+<h1 id="配置债务（Configuration-Debt）"><a href="#配置债务（Configuration-Debt）" class="headerlink" title="配置债务（Configuration Debt）"></a>配置债务（Configuration Debt）</h1><p>由于机器学习系统和算法的复杂性，一个大型的机器学习系统中常常存在着大量的配置，譬如使用哪些特征、数据如何选取、具体算法的参数设置、预处理的方式等等。作者们强调了配置的可维护性和易读性。譬如，配置也应该经过代码评审并提交到代码库中。</p>
+<h1 id="处理外部环境的变化（Dealing-with-Changes-in-the-External-World）"><a href="#处理外部环境的变化（Dealing-with-Changes-in-the-External-World）" class="headerlink" title="处理外部环境的变化（Dealing with Changes in the External World）"></a>处理外部环境的变化（Dealing with Changes in the External World）</h1><p>一个机器学习系统常常要和外部世界交互。然而，一个不容忽视的问题就是外部环境常常存在着各种变化。这无疑给机器学习系统的维护带来了极大的挑战。比如，一个机器学习系统应该如何监测呢？我们知道一个模型上线后，随着时间的推移以及新的数据的注入，常常会发生概念偏移（Concept drift），模型的准确率可能会有较大的变化。所以持续的监控和预警也就是非常必要的了。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/money/wechatpay.jpg" alt="核动力蜗牛 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/money/alipay.jpg" alt="核动力蜗牛 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Machine-Learning/" rel="tag"># Machine Learning</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/08/16/A-Berkeley-View-of-Systems-Challenges-for-AI.html" rel="next" title="【MLSys Weekly】A Berkeley View of Systems Challenges for AI">
+                <i class="fa fa-chevron-left"></i> 【MLSys Weekly】A Berkeley View of Systems Challenges for AI
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  
+    <div class="comments" id="comments">
+      <div id="vcomments"></div>
+    </div>
+  
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://en.gravatar.com/userimage/132614578/1525cb3f68df290f2720631caf872dff.jpg?size=200"
+                alt="核动力蜗牛" />
+            
+              <p class="site-author-name" itemprop="name">核动力蜗牛</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%7C%7Carchive">
+              
+                  <span class="site-state-item-count">285</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">96</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/zhenlohuang" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:zhenlohuang@gmail.com" target="_blank" title="E-Mail">
+                    
+                      <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://twitter.com/zhenlohunag" target="_blank" title="Twitter">
+                    
+                      <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.facebook.com/zhenlohuang" target="_blank" title="FB Page">
+                    
+                      <i class="fa fa-fw fa-facebook"></i>FB Page</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://stackoverflow.com/users/2945192" target="_blank" title="StackOverflow">
+                    
+                      <i class="fa fa-fw fa-stack-overflow"></i>StackOverflow</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#复杂模型侵蚀边界-Complex-Models-Erode-Boundaries"><span class="nav-number">1.</span> <span class="nav-text">复杂模型侵蚀边界 (Complex Models Erode Boundaries)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据依赖比代码依赖成本更高（Data-Dependencies-Cost-More-than-Code-Dependencies）"><span class="nav-number">2.</span> <span class="nav-text">数据依赖比代码依赖成本更高（Data Dependencies Cost More than Code Dependencies）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#机器学习系统的反模式（ML-System-Anti-Patterns）"><span class="nav-number">3.</span> <span class="nav-text">机器学习系统的反模式（ML-System Anti-Patterns）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#胶水代码（Glue-Code）"><span class="nav-number">3.1.</span> <span class="nav-text">胶水代码（Glue Code）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#管道丛林（Piepline-Jungles）"><span class="nav-number">3.2.</span> <span class="nav-text">管道丛林（Piepline Jungles）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#无用的实验代码路径（Dead-Experimental-Codepaths"><span class="nav-number">3.3.</span> <span class="nav-text">无用的实验代码路径（Dead Experimental Codepaths)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#抽象债务（Abstraction-Debt）"><span class="nav-number">3.4.</span> <span class="nav-text">抽象债务（Abstraction Debt）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常见味道（Common-Smells"><span class="nav-number">3.5.</span> <span class="nav-text">常见味道（Common Smells)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置债务（Configuration-Debt）"><span class="nav-number">4.</span> <span class="nav-text">配置债务（Configuration Debt）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#处理外部环境的变化（Dealing-with-Changes-in-the-External-World）"><span class="nav-number">5.</span> <span class="nav-text">处理外部环境的变化（Dealing with Changes in the External World）</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">核动力蜗牛</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine@1.1.4/dist/Valine.min.js"></script>
+  <script type="text/javascript">
+    new Valine({
+        av: AV,
+        el: '#vcomments' ,
+        verify: true,
+        notify: true,
+        app_id: 'GdWobeifa1Cr5zJubUFLGuA9-gzGzoHsz',
+        app_key: 'zkFt8YflR67GWT6cIhKF0tVH',
+        placeholder: '欢迎评论'
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
