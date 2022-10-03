@@ -125,7 +125,7 @@ int main(int argc, char *argv[])
 ```
 运行结果：
 
-![image](/images/legacy/2009/04/223312202.p.jpg?d=20090430223913795)
+![image](/images/legacy/2009/04/223312202.p.jpg)
 
 PS
 编译过程出现这个错误：

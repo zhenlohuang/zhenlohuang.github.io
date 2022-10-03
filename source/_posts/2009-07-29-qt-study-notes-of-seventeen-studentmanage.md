@@ -136,4 +136,4 @@ int main(int argc, char *argv[])
 
 **结果截图：**
 
-![image](/images/legacy/2009/07/204057561.p.png?d=20090729211407405")
+![image](/images/legacy/2009/07/204057561.p.png")

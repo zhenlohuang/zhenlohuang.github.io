@@ -200,7 +200,7 @@ void Timer::draw(QPainter *painter)
 ```
 界面截图如下：
 
-![image](/images/legacy/2009/07/171212076.p.png?d=20090705172314576)
+![image](/images/legacy/2009/07/171212076.p.png)
 ---
 
 PS:最近电脑经常出问题，看来是RP太差了....

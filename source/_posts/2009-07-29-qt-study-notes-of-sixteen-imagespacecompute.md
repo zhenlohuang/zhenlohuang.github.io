@@ -58,4 +58,4 @@ SOURCES += main.cpp
 ```
 软件截图：
 
-![image](/images/legacy/2009/07/204058014.p.jpg?d=20090729205945389)
+![image](/images/legacy/2009/07/204058014.p.jpg)

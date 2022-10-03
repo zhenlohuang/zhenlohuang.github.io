@@ -108,7 +108,7 @@ void StringMatch::reapplyFilter()
 ```
 
 **软件截图：**
-![image](/images/legacy/2009/07/233505564.p.png?d=20090718235822986)
+![image](/images/legacy/2009/07/233505564.p.png)
 
 ---
 直到今天才把Qt4的中文乱码搞定太尴尬了.......鄙视下自己.....

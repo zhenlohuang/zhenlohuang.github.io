@@ -45,6 +45,6 @@ int main(int argc, char *argv[])
 ```
 运行结果
 
-![image](/images/legacy/2009/04/223310920.p.jpg?d=20090430223730624)
+![image](/images/legacy/2009/04/223310920.p.jpg)
 
 PS：居然connect中sender的函数打错了还能用….好囧啊
